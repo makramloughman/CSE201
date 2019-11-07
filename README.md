@@ -1,7 +1,4 @@
 # CSE201 - GeoGebra
-# Geo---CSE201---Project
-
-CSE201 PROJECT:
 
    # GeoBachelor
 
