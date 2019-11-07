@@ -19,4 +19,4 @@ CSE201 PROJECT:
     - Meryem Bennani, MeryemBennani
     - Farah El-Euch, faraheleuch
     - Naya Khalil
-    - Kaylynn Pellicer
+    - Kaylynn Pellicer, kaylynnn
