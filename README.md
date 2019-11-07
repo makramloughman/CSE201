@@ -14,7 +14,7 @@ CSE201 PROJECT:
     - Bogdan Raonic, bogdanraonic, team leader
     - Milica Bozanic, milicabozanic, ide leader
     - Makram Loughman , makramloughman, git leader
-    - Gautier Aassaire
+    - Gautier Alassaire
     - Aya Hankir, ayahankir
     - Meryem Bennani, MeryemBennani
     - Farah El-Euch, faraheleuch
