@@ -6,7 +6,7 @@
 
     [More about project will be written soon]
 
-    ## Members (name surname, github username, [role])
+   ## Members (name surname, github username, [role])
 
     - Bogdan Raonic, bogdanraonic, team leader
     - Milica Bozanic, milicabozanic, ide leader
