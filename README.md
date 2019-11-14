@@ -13,7 +13,7 @@
     - Makram Loughman , makramloughman, git leader
     - Gautier Alassaire, gautieralassaire, treasurer 
     - Aya Hankir, ayahankir
-    - Meryem Bennani, MeryemBennani
+    - Meryem Bennani, merybeni
     - Farah El-Euch, faraheleuch
-    - Naya Khalil
+    - Naya Khalil, naya-khalil
     - Kaylynn Pellicer, kaylynnn
