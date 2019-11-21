@@ -93,14 +93,14 @@ public:
     void show_layer(int layer_number);
     //create helpers so that when thw users puts the mouse on a toolbox
     //a small text box appears describing breifly the funtion of the toolbox
-    void tips():]
+    void tips();
 
     //user should be able to take a snapshot of the grid
     void snapshot();
 
     // user should be able to undo and redo
-    void undo()
-    void redo()
+    void undo();
+    void redo();
 
     //the user should be able to clear the grid as he pleases
     void clear_sheet();
