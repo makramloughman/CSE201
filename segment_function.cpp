@@ -49,8 +49,9 @@ public:
     void point_symmetry(); //symmetry wrt a point
     void line_symmetry();  //symmetry wrt a line(axis)
 
-    void getlength();      //get distance between endpoints
-
+    void getlength(int x1, int x2, int y1, int y2);      //get distance between endpoints
+        sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    
     void pointonsegment();     //creates point on segment
     void linethroughsegment(); //creates line passing through the
 
@@ -59,8 +60,9 @@ public:
     void parallel(double distance);     //creates the parallel at some distance (could be negative)
     void perpendicular(int distance);   //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
 
-    void midpoint();                    //give the midpoint of the segment
-
+    void midpoint(int x1, int y1, int x2, int y2);                    //give the midpoint of the segment
+         cout << float((x1 + x2)/2) << "," << float((y1 + y2) / 2);
+    
     void mediator();                    //creates the mediator(line)
 
     
