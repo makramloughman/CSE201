@@ -13,16 +13,16 @@ Point::Point(double x, double y){
     this->x = x;
     this->y = y;
     this-> name = ""; //A...Z then A_1...Z_1 ... until A_n...Z_n
-    this-> color = "rgba(0,0,0)";
+    this-> color = rgba(0,0,0);
 }
 
 Point::changecolour(R,G,B){
-    this-> color = "rgba(R,G,B)";
+    this-> color = rgba(R,G,B);
 
 }
 
-Point::hide(){
-    this-> color = "rgba(0,0,0,0)";
+Point::hidecolor(){
+    this-> color = rgba(0,0,0,0);
 }
 
 Point::setx(double a){
@@ -43,6 +43,10 @@ Point::gety(){
 
 Point::givename(std::string n){
     name = n;
+}
+
+Point::hidename() {
+ this -> name -> color = rgba(0,0,0,100); // the point appears transparent    
 }
 
 Point::symmetry_axisy(){
