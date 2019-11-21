@@ -47,7 +47,7 @@ Point::symmetry_axisx(){
     B.name = name +"'"+"'"
 }
 
-void distance(Point A, Point B){
+Point::distance(Point A, Point B){
    return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
 }
 
