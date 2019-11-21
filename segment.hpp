@@ -4,8 +4,10 @@ class Segment{
 public:
     //create endpoints of segment (point1 and point2)
     Point(double x1, double y1) _point1;
-    Point(double x2, double y2) _point2;
-
+    Point(double x2, double y2) _point2;  
+    
+    void polarcoordinates(); //gives polar coordinates of the point
+    
     void createsegment( _point1 , _point2 );
 
     void display();         //displays segment
