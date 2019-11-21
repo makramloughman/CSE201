@@ -63,6 +63,21 @@ Point::~Point() {
   std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
 }
 
+}
+
+Point::symmetry_axisx(){
+    B = Point(x, -y);
+    B.name = name +"'"+"'";
+}
+
+Point::distance(Point A, Point B){
+   return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
+}
+
+Point::~Point() {
+  std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
+}
+
 
 Point::distance(Point A, Point B){
    return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
