@@ -7,6 +7,11 @@
 
 Class Vector : public Segment {
   public:
-    void setDirection();  //set the pointing arrow to the second point
+  
+    void setStart(); //sets the starting point
+  
+    void setEnd(); //sets the destination
+  
+    void setDirection();  //arrow pointing from start to end
 };
   
