@@ -11,8 +11,8 @@ public:
     void display();         //displays segment
     void displyendpoints(); //displays segment with endpoints 
 
-    void hide();
-    void hidepoints();
+    void hide();            //hide the segment
+    void hidepoints();      //hide the endpoint of the segment
 
     void extandright();     //move right point while staying in same line to extand
     void extandleft();      //move left point while staying in same line to extand
@@ -35,7 +35,7 @@ public:
     void pointonsegment();     //creates point on segment
     void linethroughsegment(); //creates line passing through the segment
 
-    void copy();           //copying segment
+    void copy();               //copying segment
 
     void parallel(double distance);   //creates the parallel at some distance (could be negative)
     void perpendicular(int distance); //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
