@@ -6,7 +6,7 @@ private:
     //with respect to the coordinate system of the gris that is set by default.
     double x_p;
     double y_p;
-    X_p=1
+    x_p=1
     y_p=1
     
     //the color of the font should be initialized to white
