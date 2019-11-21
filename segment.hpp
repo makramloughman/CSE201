@@ -25,23 +25,24 @@ public:
     void moverightpoint(); //extand or shrink and then rotate (using previous methods)
     void moveleftpoint();  //same
 
-    void movesegment();
+    void movesegment();    //move the segment keeping it parallel to where it was
 
     void point_symmetry(); //symmetry wrt a point
     void line_symmetry();  //symmetry wrt a line(axis)
 
-    void getlength();
+    void getlength();      //get distance between endpoints
 
-    void pointonsegment(); //creates point on segment
+    void pointonsegment();     //creates point on segment
+    void linethroughsegment(); //creates line passing through the segment
 
-    void copy(); //copying segment
+    void copy();           //copying segment
 
-    void parallel(double distance); //creates the parallel at some distance (could be negative)
+    void parallel(double distance);   //creates the parallel at some distance (could be negative)
     void perpendicular(int distance); //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
 
-    void midpoint(); //give the midpoint of the segment
+    void midpoint();                  //give the midpoint of the segment
 
-    void mediator(); //creates the mediator(line)
+    void mediator();                  //creates the mediator(line)
 
     
 
