@@ -8,7 +8,7 @@ class Segment{
 
 public:
     //create endpoints of segment (point1 and point2)
-    Point(double x1, double y1) _point1;
+    Point(double x1, double y1) _point1; 
     Point(double x2, double y2) _point2;
 
     float radius_polarcoordinates(Point point){                      //gives the radius from polar coordinates of the point (r,theta)
@@ -29,7 +29,11 @@ public:
     void hide();            //hide the segment
     void hidepoints();      //hide the endpoint of the segment
 
-    void extandright();     //move right point while staying in same line to extand
+    //A FINIR
+    //void extandright(float x){
+    //    _point2.
+
+    //};     //move right point while staying in same line to extand
     void extandleft();      //move left point while staying in same line to extand
 
     void shrinkright();     //move right point while staying in same line to shrink
