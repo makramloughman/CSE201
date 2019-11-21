@@ -7,8 +7,8 @@ private:
     double y; 
 
     std::string name; //name of the point (a letter)
-    //color //default color is black rgba(0,0,0)
-    // shape (circle,cross,etc)
+    int color [3]; // matrix of size 3x1 corresponding to rgb
+    int shape; // 0 for dot; 1 for circle; 2 for cross...
 
 public : 
 
@@ -34,8 +34,8 @@ public :
     void gety(); //gives the y coordinate
     
     void givename(std::string n); //changes the name of the point
-    // void hidename(); //hides the name but not the point
-    // void changeshape(); //changes the shape of the point 
+    void hidename(); //hides the name but not the point
+    void changeshape(); //changes the shape of the point 
 
     void changecolour(R,G,B); 
     void hide(); //hides the point by setting opacity level to 0
