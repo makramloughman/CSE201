@@ -34,6 +34,11 @@ Point::sety(double b){
     y = b;
 }
 
+Point::translate(float a, float b){
+    x= x+a;
+    y= y+b;
+}
+
 Point::getx(){
     std::cout << x << std:endl;
 }
