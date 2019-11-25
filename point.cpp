@@ -21,8 +21,9 @@ Point::changecolour(R,G,B){
 
 }
 
-Point::hidecolor(){
-    this-> color = rgba(0,0,0,0);
+Point::hide(){    
+    this-> color = rgba(0,0,0,0.5);
+    this-> namecolor = rgba(0,0,0.5);
 }
 
 Point::setx(double a){
@@ -41,12 +42,13 @@ Point::gety(){
     std::cout << y << std:endl;
 }
 
+
 Point::givename(std::string n){
     name = n;
 }
 
 Point::hidename() {
- this -> name -> color = rgba(0,0,0,100); // the point appears transparent    
+ this -> namecolor = rgba(0,0,0,0.5); // the point appears transparent    
 }
 
 Point::symmetry_axisy(){
