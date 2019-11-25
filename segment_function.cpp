@@ -10,7 +10,33 @@ public:
     //create endpoints of segment (point1 and point2)
     Point(double x1, double y1) _point1; 
     Point(double x2, double y2) _point2;
-
+    
+    Segment(Point _point1,Point _point2){
+        p1 = _point1
+        p2 = _point2
+    };
+    ///
+    // to get the coordinates of the endpoints:
+    ///
+    float getx1(){
+        return getx(p1)
+    };
+    
+    float gety1(){
+        return gety(p1)
+    };
+    
+    float getx2(){
+        return getx(p2)
+    };
+    
+    float gety2(){
+        return gety(p2)
+    };
+    ///
+    //now we have the coordinates of the endpoints as p1=(getx1(),gety1()) ...
+    ///
+    
     float radius_polarcoordinates(Point point){                      //gives the radius from polar coordinates of the point (r,theta)
         float r = sqrt(pow(point.getx(),2)+pow(point.gety(),2));     //radius = sqrt(x^2+y^2)
         return r;
