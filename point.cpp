@@ -65,6 +65,20 @@ Point::distance(Point A, Point B){
    return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
 }
 
+///
+///gives the radius from polar coordinates of the point (r,theta)
+float radius_polarcoordinates(Point point){                      
+    float r = sqrt(pow(point.getx(),2)+pow(point.gety(),2));     //radius = sqrt(x^2+y^2)
+    return r;
+}; 
+///
+///gives the angle from polar coordinates of the point (r,theta)
+float angle_polarcoordinates(Point point){                       
+    float theta = atan(point.gety() / point.getx() ) * 180 / PI; //angle in degree theta = atan(y/x) *180/pi
+    return theta;
+};
+
+
 Point::~Point() {
   std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
 }
