@@ -7,10 +7,7 @@ using namespace std;
 class Segment{
 
 public:
-    //create endpoints of segment (point1 and point2)
-    Point(double x1, double y1) _point1; 
-    Point(double x2, double y2) _point2;
-    
+    //create segment:
     Segment(Point _point1,Point _point2){
         p1 = _point1
         p2 = _point2
@@ -45,11 +42,14 @@ public:
     void hidepoints();      //hide the endpoint of the segment
 
     //A FINIR
-    //void extandright(float x){
-    //    _point2.
+    Segment::extand_shrink_right(float x, float y){
+        p2.translate(x,y);
+    }
 
     //};     //move right point while staying in same line to extand
-    void extandleft();      //move left point while staying in same line to extand
+    Segment::extand_shrink_left(float x, float y);{
+        p1.translate(x,y)
+    }    //move left point while staying in same line to extand
 
     void shrinkright();     //move right point while staying in same line to shrink
     void shrinkleft();      //move right point while staying in same line to shrink
