@@ -1,12 +1,15 @@
 // include files for point and line
+# pragma once
 class Ellipse{
     private:
         Point f1; // coordinates of one focal point
         Point f2; // coordinates of the second focal point
         double a; // size of semi-major axis
     public:
-        Point getX(); // gives coordinates of the first focal point
-        Point getY(); // gives coordinates of the second focal point
+        Ellipse(Point f1m Point f2, double a); // constructor
+        ~Ellipse(); //destructor
+        Point getF1(); // gives coordinates of the first focal point
+        Point getF2(); // gives coordinates of the second focal point
         double getX1(); // gives x coordinate of the first focal point
         double getY1(); // gives y coordinate of the first focal point
         double getX2(); // gives x coordinate of the second focal point
