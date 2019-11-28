@@ -24,18 +24,18 @@ class Polygone {
    public:
     // create an empty list
     PointList();
-    // display the list of points
-    void display();
     // add an element to the list
     void append();
-
+  }
+  
+    // display the polygone
+    void display();
+  
     //delete the polygone
     ~Polygone;
 
     // get the surface
     double surface();
-  }
-  
 }
 
 
