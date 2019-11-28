@@ -13,9 +13,9 @@ class Line {
     
     //void semi_line(Point &p1, Point &p2); //creates a semi line from p1 and passing through p2
   
-    Line slope(); //computes the slope of the line
+    double slope(); //computes the slope of the line
     
-    Line equation(); //computes the equation of the line
+    double equation(); //computes the equation of the line
   
     Line mediatrice(Point &p3);//create the medriatrice to the line passing through p3
   
