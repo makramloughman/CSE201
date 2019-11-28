@@ -3,6 +3,8 @@
 #include "point.hpp"
 
 class Polygone {
+  private:
+    int color [3];
   
   class NodeList {
     public:
@@ -28,8 +30,13 @@ class Polygone {
     void append();
   }
   
+    void changecolour(R,G,B);
+    // changes the colour
+  
     // display the polygone
     void display();
+    // hide the polygone
+    void hide();
   
     //delete the polygone
     ~Polygone;
