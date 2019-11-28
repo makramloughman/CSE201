@@ -31,3 +31,17 @@ void PointList::append()
 	last = last -> next;
 }
 }
+
+Polygone::~Polygone()
+// delete the polygone
+{
+	delete(PointList)
+}
+
+double PointList::surface()
+// get the surface
+{
+	double s= sum(PointList);
+	return s;
+}
+
