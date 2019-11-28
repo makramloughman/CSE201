@@ -50,6 +50,8 @@ public :
 
     double distance(Point A, Point B); //gives the distance between two points
     double angle(Point A, Point B, Point C); //gives the angle between three points
+    float radius_polarcoordinates(); //gives the radius from polar coordinates of the point (r,theta)
+    float angle_polarcoordinates(); //gives the angle from polar coordinates of the point (r,theta)
 
     ~Point(); //deletes the point
 }
