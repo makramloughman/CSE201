@@ -39,11 +39,11 @@ Point::translate(float a, float b){
     y= y+b;
 }
 
-Point::getx(){
+double Point::getx(){
     return x;
 }
 
-Point::gety(){
+double Point::gety(){
     return y;
 }
 
@@ -71,7 +71,7 @@ Point::symmetry_point(float a , float b){ //sym wrt point with coordinates (x,y)
     return A;
 }
 
-Point::distance(Point A, Point B){
+double Point::distance(Point A, Point B){
    return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
 }
 
