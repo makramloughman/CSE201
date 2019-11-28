@@ -33,7 +33,7 @@ class Polygone {
     void remove();
 
     // get the surface
-    void surface();
+    double surface();
   }
   
 }
