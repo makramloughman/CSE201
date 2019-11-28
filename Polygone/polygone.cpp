@@ -45,3 +45,14 @@ double PointList::surface()
 	return s;
 }
 
+void Polygone::hide()
+// hide the polygone
+{
+	this -> color = rgba(0,0,0,0.5);
+}
+
+void Polygone::changecolour(R,G,B)
+  // changes colour
+{
+	this -> colour = rgba(R,G,B);
+}
