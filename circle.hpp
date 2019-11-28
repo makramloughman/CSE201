@@ -10,9 +10,10 @@ class Circle{
         double getX(); // returns x coordinate of the center
         double getY(); // returns y coordinate of the center
         double getR(); // returns radius
-        double setX(double x); // set x coordinate of the center
-        double setY(double y); // set y coordinate of the center
-        double setR(double r); // set radius of the circle
+        void setX(double x); // set x coordinate of the center
+        void setY(double y); // set y coordinate of the center
+        void setR(double r); // set radius of the circle
+        void movecenter(double x, double y); //moves the center to the position (x, y)
         double surface(); // returns surface of the circle
         double perimeter(); // returns perimeter of the circle
         double diameter(); // return diameter of the circle
