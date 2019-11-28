@@ -31,8 +31,8 @@ public :
     void setx(double a); //changes the x coordinate
     void sety(double b); //changes the y coordinate
 
-    void getx(); //gives the x coordinate
-    void gety(); //gives the y coordinate
+    double getx(); //gives the x coordinate
+    double gety(); //gives the y coordinate
     
     void givename(std::string n); //changes the name of the point
     void hidename(); //hides the name but not the point
@@ -48,8 +48,8 @@ public :
     void symmetry_axisy(); //creates the symmetric point with respect to the y axis
     void symmetry_axisx(); //creates the symmetric point with respect to the y axis
 
-    void distance(Point A, Point B); //gives the distance between two points
-    void angle(Point A, Point B, Point C); //gives the angle between three points
+    double distance(Point A, Point B); //gives the distance between two points
+    double angle(Point A, Point B, Point C); //gives the angle between three points
 
     ~Point(); //deletes the point
 }
