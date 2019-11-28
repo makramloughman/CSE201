@@ -27,21 +27,27 @@ double Circle:: getR()
   return r;
 }
 
-double Circle:: setX(double x)
+void Circle:: setX(double x)
 {
   double y = p.gety();
-  center = new Point(x, y);
+  Point* center = new Point(x, y);
 }
 
-double Circle:: setY(double y)
+void Circle:: setY(double y)
 {
   double x = p.getx();
-  center = new Point(x,y);
+  Point* center = new Point(x,y);
 }
 
-double Circle:: setR(double r)
+void Circle:: setR(double r)
 {
   (*this).r = r;
+}
+
+void Circle:: movecenter(double x, double y)
+{
+  setX(x);
+  setY(y);
 }
 
 double Circle:: surface()
