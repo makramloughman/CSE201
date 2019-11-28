@@ -40,11 +40,11 @@ Point::translate(float a, float b){
 }
 
 Point::getx(){
-    std::cout << x << std:endl;
+    return x;
 }
 
 Point::gety(){
-    std::cout << y << std:endl;
+    return y;
 }
 
 
@@ -66,9 +66,15 @@ Point::symmetry_axisx(){
     B.name = name +"'"+"'";
 }
 
+Point::symmetry_point(float a , float b){ //sym wrt point with coordinates (x,y)
+    A = Point(2*a-x,2*b-y);
+    return A;
+}
+
 Point::distance(Point A, Point B){
    return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
 }
+
 
 ///
 ///gives the radius from polar coordinates of the point (r,theta)
