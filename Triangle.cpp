@@ -69,8 +69,15 @@ bool Triangle::rectangle(){
     else return false;
 }
 
+double getheight1(){
+    double d1 = distance(point1,point2); 
+    return (2*getArea())/d1
+}
 
-
+double getheight2(){
+    double d2 = distance(point2,point3);
+    return (2*getArea())/
+}
 
 
 
