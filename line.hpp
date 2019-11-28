@@ -15,7 +15,7 @@ class Line {
   
     double slope(); //computes the slope of the line
     
-    double intercept(); //computes the intercept of the line with the origin
+    double y_intercept(); //computes the intercept of the line with the origin
   
     Line mediatrice(Point &p3);//create the medriatrice to the line passing through p3
   
