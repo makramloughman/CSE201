@@ -30,7 +30,7 @@ class Polygone {
     void append();
 
     //delete the polygone
-    void remove();
+    ~Polygone;
 
     // get the surface
     double surface();
