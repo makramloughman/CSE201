@@ -1,4 +1,8 @@
 #include "Triangle.hpp"
+#include <iostream>
+#include "Point.hpp"
+#include <math.h>
+#include <stdio.h>
 Triangle::Triangle(double point1 ,double point2 ,double point3)
 {
     this->point1 = point1;
@@ -12,44 +16,59 @@ Triangle:: ~Triangle(){
    delete(point3)
 }
 
+
 double Triangle:: getArea(){
-    segment s1 = new segment(&point1,&point2);
-    a=s1.getlength();
-    segment s2 = new segment(&point2,&point3);
-    b=s2.getlength();
-    segment s3 = new segment(&point1,&point3);
-    c=s3.getlength();
-    s=(a+b+c)/2
-    return s*(s-a)*(s-b)*(s-c)
+    double d1 = distance(point1,point2);
+    double d2 = distance(point2,point3);
+    double d3 = distance(point1,point3);
+    s=(d1+d2+d3)/2
+    return sqrt(s*(s-a)*(s-b)*(s-c))
 }
 
 double Triangle::getPerimeter(){
+    double d1 = distance(point1,point2);
+    double d2 = distance(point2,point3);
+    double d3 = distance(point1,point3);
     return a+b+c
 }
 
 bool Triangle::isocele(){
-    segment s1 = new segment(&point1,&point2);
-    segment s2 = new segment(&point2,&point3);
-    segment s3 = new segment(&point1,&point3);
-    if ((s1==s2) || (s2==s3) || (s1==s3)){
+    double d1 = distance(point1,point2);
+    double d2 = distance(point2,point3);
+    double d3 = distance(point1,point3);
+    if ((d1==d2) || (d2==d3) || (d1==d3)){
         return true ;
     }
     else return false; 
 }
 
 bool Triangle::equilateral(){
-    segment s1 = new segment(&point1,&point2);
-    segment s2 = new segment(&point2,&point3);
-    segment s3 = new segment(&point1,&point3);
-    if ((s1==s2) & (s2==s3)){
+    double d1 = distance(point1,point2);
+    double d2 = distance(point2,point3);
+    double d3 = distance(point1,point3);
+    if ((d1==d2) & (d2==d3)){
         return true 
     }
     else return false;
 }
 
 bool Triangle::rectangle(){
-    if 
+    double d1 = distance(point1,point2);
+    double d2 = distance(point2,point3);
+    double d3 = distance(point1,point3);
+
+    if (d1*d1=d2*d2+d3*d3){
+        return true
+    }
+    else if (d2*d2=d1*d1+d3*d3){
+        return true
+    }
+    else if (d3*d3=d1*d1+d2*d2){
+        return true
+    }
+    else return false;
 }
+
 
 
 
