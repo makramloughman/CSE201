@@ -24,10 +24,10 @@ void PointList::append()
 {
   if (last == NULL) {
     first = new NodeList(d);
-	last = first; // cuz on a plus que un seul element 
+	last = first; 
 }
 	else {
-	last -> next = new NodeList(d); // on creer un element de type listode(d)
+	last -> next = new NodeList(d); 
 	last = last -> next;
 }
 }
