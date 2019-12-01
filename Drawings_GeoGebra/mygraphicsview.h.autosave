@@ -1,0 +1,17 @@
+#ifndef MYGRAPHICSVIEW_H
+#define MYGRAPHICSVIEW_H
+
+#pragma once
+#include <QtWidgets>
+#include <QMainWindow>
+#include <QPainter>
+#include <QDialog>
+#include <QGraphicsScene>
+
+
+class MyView : public QGraphicsView
+    public:
+        explicit MainWindow(QWidget *parent = 0); //constructor
+
+
+#endif // MYGRAPHICSVIEW_H

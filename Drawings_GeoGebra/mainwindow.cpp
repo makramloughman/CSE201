@@ -7,8 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    scene = new QGraphicsScene(this);
+    theWindow = this; //for static variable
+
+    ui->setupUi(this); //setting up
+    scene = new QGraphicsScene(this); ///seting up the scene
 
        ui->graphicsView->setScene(scene);
 
@@ -21,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
        // to determine the view's default scrollable area,
        // and by QGraphicsScene to manage item indexing.
 
-       scene->setSceneRect(-150, -150, 300, 300);
+       scene->setSceneRect(0, 0, 100, 100);
 
        QLineF topLine(scene->sceneRect().topLeft(),
                       scene->sceneRect().topRight());
@@ -34,12 +36,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
        QPen myPen = QPen(Qt::red);
 
-       //scene->addLine(topLine, myPen);
-       //scene->addLine(leftLine, myPen);
-       //scene->addLine(rightLine, myPen);
-       //scene->addLine(bottomLine, myPen);
-       ellipse = scene->addEllipse(0, -100, 300, 60);
-       ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+       scene->addLine(topLine, myPen);
+       scene->addLine(leftLine, myPen);
+       scene->addLine(rightLine, myPen);
+       scene->addLine(bottomLine, myPen);
+       //ellipse = scene->addEllipse(0, -100, 300, 60);
+       //ellipse->setFlag(QGraphicsItem::ItemIsMovable);
 
 }
 
@@ -50,14 +52,22 @@ void MainWindow::drawLine(QLineF l)
 
 }
 
+MainWindow* MainWindow:: getInstance()
+{
+    return theWindow;
+}
+
+MainWindow *MainWindow::theWindow = nullptr;
+
 MainWindow::~MainWindow()
 {
+    theWindow = nullptr;
     delete ui;
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    QLineF l(scene->sceneRect().topLeft(),
+    QLineF topLine(scene->sceneRect().topLeft(),
                    scene->sceneRect().topRight());
-    MainWindow::drawLine(l);
+    drawLine(topLine);
 }
