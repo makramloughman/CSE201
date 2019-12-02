@@ -1,6 +1,6 @@
 #pragma once
 // include files for point and line
-class Circle{
+class Circle: public Item{
     private:
         Point center; //center of the circle
         double r; // radius of the circle

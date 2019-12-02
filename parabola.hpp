@@ -1,6 +1,6 @@
 #pragma once
 //include files for point and line
-class Parabola{
+class Parabola: public Item{
     private:
         Point focus; // the focus of the parablaola
         Line directrix; // the directrix of the parabola

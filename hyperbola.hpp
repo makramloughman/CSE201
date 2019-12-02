@@ -1,6 +1,6 @@
 #pragma once
 // include files for point and line
-class Hyperbola{
+class Hyperbola: public Item{
     private:
         Point v1; // coordinates of the first vertex
         Point v2; // coordinates of the second vertex
