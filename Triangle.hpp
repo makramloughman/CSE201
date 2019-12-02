@@ -1,5 +1,5 @@
 
-class Triangle: public  Item {
+class Triangle: public  Item{
     private:
     //creates points for triangle
     Point point1;
