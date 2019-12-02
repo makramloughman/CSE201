@@ -26,8 +26,20 @@ class Polygone:public Item {
     // get the surface
     double surface();
   
+    // get perimeter
+    double perimeter();
+  
+    // diagonalize
+    void display_diagonals();
+    void hide_diagonals();
+  
+    // get the angles
+    double angles();
+    void display_angles();
+    void hide_angles();
+      
     // duplicate
-    duplicate();
+    void duplicate();
   
     // translate and extand included in segment
   
@@ -36,6 +48,5 @@ class Polygone:public Item {
 
     //delete the polygone
     ~Polygone;
-
     
 }
