@@ -46,7 +46,7 @@ class RegularPolygone : public Polygone {
   public :
   
   RegularPolygone(); //empty regular polygone with empty vector of points 
-  RegularPolygone(segment, number);
+  RegularPolygone(segment, number); //creates a regular polygone with given number of sides and a segment(two points, length)
 
   void length(); //returns the length of a side
   void angle(); //returns the value of an angle
