@@ -1,6 +1,7 @@
 #pragma once
 
-class Line {
+class Line : public Item
+{
   
   private:
   
