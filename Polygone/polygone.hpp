@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
-#include <list>
-#include "point.hpp"
+#include <vector>
+#include "segment.hpp"
 
-class Polygone {
+class Polygone:public Item {
   private:
     int color [3];
     std::vector<point> Pointlist; 
@@ -25,6 +25,14 @@ class Polygone {
 
     // get the surface
     double surface();
+  
+    // duplicate
+    duplicate();
+  
+    // translate and extand included in segment
+  
+    //display trace (when translated)
+    void trace();
 
     //delete the polygone
     ~Polygone;
