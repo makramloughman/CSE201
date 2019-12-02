@@ -70,6 +70,7 @@ public:
     void copy();                //copying segment
 
     void parallel(double distance);     //creates the parallel at some distance (could be negative)
+    
     Segment::perpendicular(float a, float b , float xc){
         float xp1 = p1.getx();
         float yp1 = p1.gety();
@@ -97,7 +98,9 @@ public:
     };
     
     
-    void mediator();                    //creates the mediator(line)
+    Segment::mediator(){
+        return Segment.perpendicular(float Segment.midpoint().getx() , float Segment.midpoint().getx(), float 0)
+    };                    //creates the mediator(line)
 
     
 
