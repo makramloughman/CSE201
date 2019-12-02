@@ -1,48 +1,41 @@
 #include <iostream>
 #include <string>
-#include "point.hpp"
+#include <vector>
+#include "segment.hpp"
 
-class Polygone {
+class Polygone:public Item {
   private:
     int color [3];
-  
-  class NodeList {
-    public:
-      int data;
-      NodeList *next;
-
-      // create a single node with data d
-      // and optional next node
-      NodeList(int d,  NodeList* nxt = NULL);
-
-      // delete this node and all successor nodes
-      ~ NodeList();
-  };
-
-  class PointList {
-    private:
-    NodeList *first, *last;
+    std::vector<point> Pointlist; 
     
-   public:
-    // create an empty list
-    PointList();
-    // add an element to the list
-    void append();
-  }
-  
+  public : 
+    //create empty list
+    Polygone();
+    //add points to the list
+    void append(point);
+
     void changecolour(R,G,B);
     // changes the colour
-  
+
     // display the polygone
     void display();
+
     // hide the polygone
     void hide();
-  
-    //delete the polygone
-    ~Polygone;
 
     // get the surface
     double surface();
+  
+    // duplicate
+    duplicate();
+  
+    // translate and extand included in segment
+  
+    //display trace (when translated)
+    void trace();
+
+    //delete the polygone
+    ~Polygone;
+
+    
 }
-
-

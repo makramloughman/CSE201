@@ -24,17 +24,30 @@ double Line::y_intercept(){
   return y_intercept;
 }
 
-Line::mediatrice(Point &p3){
+Line::perpendicular(Point &p3){
   double a = Line.slope;
   double b1 = Line.y_intercept();
   double x0 = &p3.getx();
   double y0 = &p3.gety();
-  double b2 = y0 + (1/a)*x0 //the equation of the mediatrice is now y = -(1/a) + b2
+  double b2 = y0 + (1/a)*x0 //the equation of the perpendicular line is now y = -(1/a) + b2
   double xstar;
   xstar = (b2 - b1)/(a + (1/a);
   double ystar;
   ystar = -(1/a)*xstar + b2;
   Point pstar(xstar, ystar);
-  Line med(*pstar, p3);
-  return med;
+  Line per(*pstar, p3);
+  return per;
   }
+
+Line::parallel(Point &p3){
+  double a = Line.slope;
+  double x0 = &p3.getx();
+  double y0 = &p3.gety();
+  double x = x0 + 1;
+  double y = y0 + a;
+  Point pstar(x, y);
+  Line par(*pstar, p3);
+  return par;
+  }
+  
+  

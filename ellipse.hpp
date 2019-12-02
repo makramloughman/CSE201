@@ -1,6 +1,6 @@
 // include files for point and line
 # pragma once
-class Ellipse{
+class Ellipse: public Item{
     private:
         Point f1; // coordinates of one focal point
         Point f2; // coordinates of the second focal point

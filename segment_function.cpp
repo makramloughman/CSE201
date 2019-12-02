@@ -66,14 +66,12 @@ public:
 
     void getlength(int x1, int x2, int y1, int y2);      //get distance between endpoints
         sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-    
-    void pointonsegment();     //creates point on segment
-    void linethroughsegment(); //creates line passing through the
 
     void copy();                //copying segment
 
     void parallel(double distance);     //creates the parallel at some distance (could be negative)
-    void perpendicular(float a, float b , float xc){
+    
+    Segment::perpendicular(float a, float b , float xc){
         float xp1 = p1.getx();
         float yp1 = p1.gety();
         float xp2 = p2.getx();
@@ -82,14 +80,27 @@ public:
         float yc = b + (a-xc)/m;
         Point point1(a , b);
         Point point2(xc , yc);
-        return createsegment(point1 , point2 )
+        return createsegment(point1 , point2 );
     };   //creates the perpendicular going throught (a,b)
 
-
-    void midpoint(int x1, int y1, int x2, int y2);                    //give the midpoint of the segment
+    
+    void midpt(int x1, int y1, int x2, int y2);                    //give the midpoint of the segment
          cout << float((x1 + x2)/2) << "," << float((y1 + y2) / 2);
     
-    void mediator();                    //creates the mediator(line)
+    Segment::midpoint(){
+        float xp1 = p1.getx();
+        float yp1 = p1.gety();
+        float xp2 = p2.getx();
+        float yp2 = p2.gety();
+        float xm = (xp1+xp2)/2
+        float ym = (yp1+yp2)/2
+        return Point(double xm, double ym);
+    };
+    
+    
+    Segment::mediator(){
+        return Segment.perpendicular(float Segment.midpoint().getx() , float Segment.midpoint().getx(), float 0)
+    };                    //creates the mediator(line)
 
     
 

@@ -1,6 +1,7 @@
 #pragma once
 
-class Line {
+class Line : public Item
+{
   
   private:
   
@@ -17,7 +18,7 @@ class Line {
     
     double y_intercept(); //computes the intercept of the line with the origin
   
-    Line mediatrice(Point &p3);//create the medriatrice to the line passing through p3
+    Line perpendicular(Point &p3);//create the perpendicular to the line passing through p3
   
     Line parallel(Point &p3); //draw the parallel to the line passing through p3
   

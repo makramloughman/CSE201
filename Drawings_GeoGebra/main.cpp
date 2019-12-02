@@ -5,9 +5,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-
+    MainWindow w; //defining the main window
+    w.setWindowState(Qt::WindowMaximized); //set FULLSCREEN
+    w.show(); //show the window
     return a.exec();
 }
