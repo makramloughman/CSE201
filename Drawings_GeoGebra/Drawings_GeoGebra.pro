@@ -26,12 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    Scene.cpp \
     myview.cpp
 
 HEADERS += \
         mainwindow.h \
-    Scene.h \
     myview.h
 
 FORMS += \

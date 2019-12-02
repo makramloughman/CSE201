@@ -7,6 +7,7 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
     this->segment_chosen = false; //no segment chosen
     this->circle_chosen = false; //no circe chosem
     this->inf_line_chosen = false; //no infinite line chosen
+    this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
 
 }
