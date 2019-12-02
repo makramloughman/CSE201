@@ -38,3 +38,16 @@ Line::mediatrice(Point &p3){
   Line med(*pstar, p3);
   return med;
   }
+
+Line::parallel(Point &p3){
+  double a = Line.slope;
+  double x0 = &p3.getx();
+  double y0 = &p3.gety();
+  double x = x0 + 1;
+  double y = y0 + a;
+  Point pstar(x, y);
+  Line par(*pstar, p3);
+  return par;
+  }
+  
+  
