@@ -6,6 +6,11 @@ Polygone::Polygone(){
 	std::vector<point> Point;
 }
 
+void Polygone::append(point) {
+// append points to the list
+	push_back(point);
+}
+
 Polygone::~Polygone()
 // delete the polygone
 {
