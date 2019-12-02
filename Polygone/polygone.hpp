@@ -26,20 +26,8 @@ class Polygone:public Item {
     // get the surface
     double surface();
   
-    // get perimeter
-    double perimeter();
-  
-    // diagonalize
-    void display_diagonals();
-    void hide_diagonals();
-  
-    // get the angles
-    double angles();
-    void display_angles();
-    void hide_angles();
-      
     // duplicate
-    void duplicate();
+    duplicate();
   
     // translate and extand included in segment
   
@@ -48,5 +36,26 @@ class Polygone:public Item {
 
     //delete the polygone
     ~Polygone;
-    
+}
+
+class RegularPolygone : public Polygone {
+  private :
+  int color[3];
+  std::vector<point> Pointlist;
+  
+  public :
+  
+  RegularPolygone(); //empty regular polygone with empty vector of points 
+  RegularPolygone(segment, number);
+
+  void length(); //returns the length of a side
+  void angle(); //returns the value of an angle
+
+  void centerofcircumscribed(); //returns the c`oordinates of the circumscribed circle
+  void centerofinscribed(); //returns the coordinates of the inscribed circle 
+
+  void circumscribedcircle(); //draws and create the circumscribed circle
+  void inscribedcircle(); //draws and create the inscribed circle
+  
+
 }
