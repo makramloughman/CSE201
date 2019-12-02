@@ -9,11 +9,10 @@ class Polygone {
     std::list<point> Pointlist; 
     
   public : 
-
+    //create empty list
     Polygone();
-
-    void Appendpoint(point);
-
+    //add points to the list
+    void append(point);
 
     void changecolour(R,G,B);
     // changes the colour
