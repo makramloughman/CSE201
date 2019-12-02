@@ -1,29 +1,34 @@
 #include <iostream>
 #include <string>
+#include <list>
 #include "point.hpp"
 
 class Polygone {
   private:
     int color [3];
-    // create an empty list
+    std::list<point> Pointlist; 
+    
+  public : 
+
     Polygone();
-    // add an element to the list
-    void append();
-  }
-  
+
+    void Appendpoint(point);
+
+
     void changecolour(R,G,B);
     // changes the colour
-  
+
     // display the polygone
     void display();
+
     // hide the polygone
     void hide();
-  
-    //delete the polygone
-    ~Polygone;
 
     // get the surface
     double surface();
+
+    //delete the polygone
+    ~Polygone;
+
+    
 }
-
-
