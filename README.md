@@ -15,6 +15,7 @@ The GeoBachelor is a remake of GeoGebra.
 ### Installation
 
 ```
+git clone https://github.com/makramloughman/CSE201.git
 [TBC]
 ```
 
