@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::createActions(){
+    MoveAction = new QAction("Move", this);
+    SelectAction = new QAction("Select", this);
+
     PointAction = new QAction("Point", this);
     PointOnObjectAction = new QAction("Point on Object", this);
     IntersectAction = new QAction("Intersect", this);
@@ -33,6 +36,32 @@ void MainWindow::createActions(){
     PerpendicularBisectorAction = new QAction("Perpendicular Bisector", this);
     AngleBisectorAction = new QAction("Angle Bisector", this);
     TangentAction = new QAction("Tangent", this);
+
+    PolygonAction = new QAction("Polygon", this);
+    RegularPolygonAction = new QAction("Regular Polygon", this);
+
+    CircleCPTAction = new QAction("Circle with Center through Point", this);
+    CircleCRTAction = new QAction("Circle: Center and Radius", this);
+
+    EllipseAction = new QAction("Ellipse", this);
+    ParabolaAction = new QAction("Parabola", this);
+    HyperbolaAction = new QAction("Hyperbola", this);
+
+    AngleAction = new QAction("Angle", this);
+    DistanceAction = new QAction("Distance or Length", this);
+    AreaAction = new QAction("Area", this);
+    SlopeAction = new QAction("Slope", this);
+    RelationAction = new QAction("Relation", this);
+
+    LineSymmetryAction = new QAction("Reflect about Line", this);
+    PointSymmetryAction = new QAction("Reflect about Point", this);
+    TranslateAction = new QAction("Translate by Vector", this);
+
+    DeleteAction = new QAction("Delete", this);
+    ClearAction = new QAction("Clear", this);
+
+    MoveAction->setIcon(QIcon(":/images/move.png"));
+    SelectAction->setIcon(QIcon(":/images/middlefinger.png"));
 
     PointAction->setIcon(QIcon(":/images/point.png"));
     PointOnObjectAction->setIcon(QIcon(":/images/pointonobject.png"));
@@ -55,6 +84,32 @@ void MainWindow::createActions(){
     AngleBisectorAction->setIcon(QIcon(":/images/angularbisector.png"));
     TangentAction->setIcon(QIcon(":/images/tangent.png"));
 
+    PolygonAction->setIcon(QIcon(":/images/polygon.png"));
+    RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
+
+    CircleCPTAction->setIcon(QIcon(":/images/xxx.png"));
+    CircleCRTAction->setIcon(QIcon(":/images/xxx.png"));
+
+    EllipseAction->setIcon(QIcon(":/images/xxx.png"));
+    ParabolaAction->setIcon(QIcon(":/images/xxx.png"));
+    HyperbolaAction->setIcon(QIcon(":/images/xxx.png"));
+
+    AngleAction->setIcon(QIcon(":/images/xxx.png"));
+    DistanceAction->setIcon(QIcon(":/images/xxx.png"));
+    AreaAction->setIcon(QIcon(":/images/xxx.png"));
+    SlopeAction->setIcon(QIcon(":/images/xxx.png"));
+    RelationAction->setIcon(QIcon(":/images/xxx.png"));
+
+    LineSymmetryAction->setIcon(QIcon(":/images/xxx.png"));
+    PointSymmetryAction->setIcon(QIcon(":/images/xxx.png"));
+    TranslateAction->setIcon(QIcon(":/images/xxx.png"));
+
+    DeleteAction->setIcon(QIcon(":/images/xxx.png"));
+    ClearAction->setIcon(QIcon(":/images/xxx.png"));
+
+    QObject::connect(MoveAction, SIGNAL(triggered()), this, SLOT(Move()));
+    QObject::connect(SelectAction, SIGNAL(triggered()), this, SLOT(Select()));
+
     QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point()));
     QObject::connect(PointOnObjectAction, SIGNAL(triggered()), this, SLOT(PointOnObject()));
     QObject::connect(IntersectAction, SIGNAL(triggered()), this, SLOT(Intersection()));
@@ -75,9 +130,36 @@ void MainWindow::createActions(){
     QObject::connect(PerpendicularBisectorAction, SIGNAL(triggered()), this, SLOT(PerpendicularBisector()));
     QObject::connect(AngleBisectorAction, SIGNAL(triggered()), this, SLOT(AngleBisector()));
     QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
+
+    QObject::connect(PolygonAction, SIGNAL(triggered()), this, SLOT(Polygon()));
+    QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
+
+    QObject::connect(CircleCPTAction, SIGNAL(triggered()), this, SLOT(CircleCPT()));
+    QObject::connect(CircleCRTAction, SIGNAL(triggered()), this, SLOT(CircleCRT()));
+
+    QObject::connect(EllipseAction, SIGNAL(triggered()), this, SLOT(Ellipse()));
+    QObject::connect(ParabolaAction, SIGNAL(triggered()), this, SLOT(Parabola()));
+    QObject::connect(HyperbolaAction, SIGNAL(triggered()), this, SLOT(Hyperbola()));
+
+    QObject::connect(AngleAction, SIGNAL(triggered()), this, SLOT(Angle()));
+    QObject::connect(DistanceAction, SIGNAL(triggered()), this, SLOT(Distance()));
+    QObject::connect(AreaAction, SIGNAL(triggered()), this, SLOT(Area()));
+    QObject::connect(SlopeAction, SIGNAL(triggered()), this, SLOT(Slope()));
+    QObject::connect(RelationAction, SIGNAL(triggered()), this, SLOT(Relation()));
+
+    QObject::connect(LineSymmetryAction, SIGNAL(triggered()), this, SLOT(LineSymmetry()));
+    QObject::connect(PointSymmetryAction, SIGNAL(triggered()), this, SLOT(PointSymmetry()));
+    QObject::connect(TranslateAction, SIGNAL(triggered()), this, SLOT(Translate()));
+
+    QObject::connect(DeleteAction, SIGNAL(triggered()), this, SLOT(Delete()));
+    QObject::connect(ClearAction, SIGNAL(triggered()), this, SLOT(Clear()));
 }
 
 void MainWindow::createMenus(){
+    MouseMenu = new QMenu;
+    MouseMenu->addAction(MoveAction);
+    MouseMenu->addAction(SelectAction);
+
     PointMenu = new QMenu;
     PointMenu->addAction(PointAction);
     PointMenu->addAction(PointOnObjectAction);
@@ -101,9 +183,45 @@ void MainWindow::createMenus(){
     SpecialLineMenu->addAction(PerpendicularBisectorAction);
     SpecialLineMenu->addAction(AngleBisectorAction);
     SpecialLineMenu->addAction(TangentAction);
+
+    PolygonMenu = new QMenu;
+    PolygonMenu->addAction(PolygonAction);
+    PolygonMenu->addAction(RegularPolygonAction);
+
+    CircleMenu = new QMenu;
+    CircleMenu->addAction(CircleCPTAction);
+    CircleMenu->addAction(CircleCRTAction);
+
+    ConicMenu = new QMenu;
+    ConicMenu->addAction(EllipseAction);
+    ConicMenu->addAction(ParabolaAction);
+    ConicMenu->addAction(HyperbolaAction);
+
+    MeasurementMenu = new QMenu;
+    MeasurementMenu->addAction(AngleAction);
+    MeasurementMenu->addAction(DistanceAction);
+    MeasurementMenu->addAction(AreaAction);
+    MeasurementMenu->addAction(SlopeAction);
+    MeasurementMenu->addAction(RelationAction);
+
+    TransformationMenu = new QMenu;
+    TransformationMenu->addAction(LineSymmetryAction);
+    TransformationMenu->addAction(PointSymmetryAction);
+    TransformationMenu->addAction(TranslateAction);
+
+    GeneralMenu = new QMenu;
+    GeneralMenu->addAction(DeleteAction);
+    GeneralMenu->addAction(ClearAction);
 }
 
 void MainWindow::createToolButtons(){
+    MouseButton = new DropDownToolButton;
+    MouseButton->setMenu(MouseMenu);
+    MouseButton->setDefaultAction(MoveAction);
+    MouseButton->setMinimumHeight(32);
+    MouseButton->setMinimumWidth(44);
+    MouseButton->setIconSize(QSize(32,32));
+
     PointButton = new DropDownToolButton;
     PointButton->setMenu(PointMenu);
     PointButton->setDefaultAction(PointAction);
@@ -124,13 +242,70 @@ void MainWindow::createToolButtons(){
     SpecialLineButton->setMinimumHeight(32);
     SpecialLineButton->setMinimumWidth(44);
     SpecialLineButton->setIconSize(QSize(32,32));
+
+    PolygonButton = new DropDownToolButton;
+    PolygonButton->setMenu(PolygonMenu);
+    PolygonButton->setDefaultAction(PolygonAction);
+    PolygonButton->setMinimumHeight(32);
+    PolygonButton->setMinimumWidth(44);
+    PolygonButton->setIconSize(QSize(32,32));
+
+    CircleButton = new DropDownToolButton;
+    CircleButton->setMenu(CircleMenu);
+    CircleButton->setDefaultAction(CircleCPTAction);
+    CircleButton->setMinimumHeight(32);
+    CircleButton->setMinimumWidth(44);
+    CircleButton->setIconSize(QSize(32,32));
+
+    ConicButton = new DropDownToolButton;
+    ConicButton->setMenu(ConicMenu);
+    ConicButton->setDefaultAction(EllipseAction);
+    ConicButton->setMinimumHeight(32);
+    ConicButton->setMinimumWidth(44);
+    ConicButton->setIconSize(QSize(32,32));
+
+    MeasurementButton = new DropDownToolButton;
+    MeasurementButton->setMenu(MeasurementMenu);
+    MeasurementButton->setDefaultAction(AngleAction);
+    MeasurementButton->setMinimumHeight(32);
+    MeasurementButton->setMinimumWidth(44);
+    MeasurementButton->setIconSize(QSize(32,32));
+
+    TransformationButton = new DropDownToolButton;
+    TransformationButton->setMenu(TransformationMenu);
+    TransformationButton->setDefaultAction(LineSymmetryAction);
+    TransformationButton->setMinimumHeight(32);
+    TransformationButton->setMinimumWidth(44);
+    TransformationButton->setIconSize(QSize(32,32));
+
+    GeneralButton = new DropDownToolButton;
+    GeneralButton->setMenu(GeneralMenu);
+    GeneralButton->setDefaultAction(DeleteAction);
+    GeneralButton->setMinimumHeight(32);
+    GeneralButton->setMinimumWidth(44);
+    GeneralButton->setIconSize(QSize(32,32));
 }
 
 void MainWindow::createToolBars(){
+    ui->horizontalLayout_2->addWidget(MouseButton);
     ui->horizontalLayout_2->addWidget(PointButton);
     ui->horizontalLayout_2->addWidget(LineButton);
     ui->horizontalLayout_2->addWidget(SpecialLineButton);
+    ui->horizontalLayout_2->addWidget(PolygonButton);
+    ui->horizontalLayout_2->addWidget(CircleButton);
+    ui->horizontalLayout_2->addWidget(ConicButton);
+    ui->horizontalLayout_2->addWidget(MeasurementButton);
+    ui->horizontalLayout_2->addWidget(TransformationButton);
+    ui->horizontalLayout_2->addWidget(GeneralButton);
     ui->horizontalLayout_2->addStretch();
+}
+
+void MainWindow::Move(){
+    qDebug() << "MainWindow::Move()";
+}
+
+void MainWindow::Select(){
+    qDebug() << "MainWindow::Select()";
 }
 
 void MainWindow::Point(){
@@ -203,6 +378,74 @@ void MainWindow::AngleBisector(){
 
 void MainWindow::Tangent(){
     qDebug() << "MainWindow::Tangent()";
+}
+
+void MainWindow::Polygon(){
+    qDebug() << "MainWindow::Polygon()";
+}
+
+void MainWindow::RegularPolygon(){
+    qDebug() << "MainWindow::RegularPolygon()";
+}
+
+void MainWindow::CircleCPT(){
+    qDebug() << "MainWindow::CircleCPT()";
+}
+
+void MainWindow::CircleCRT(){
+    qDebug() << "MainWindow::CircleCRT()";
+}
+
+void MainWindow::Ellipse(){
+    qDebug() << "MainWindow::Ellipse()";
+}
+
+void MainWindow::Parabola(){
+    qDebug() << "MainWindow::Parabola()";
+}
+
+void MainWindow::Hyperbola(){
+    qDebug() << "MainWindow::Hyperbola()";
+}
+
+void MainWindow::Angle(){
+    qDebug() << "MainWindow::Angle()";
+}
+
+void MainWindow::Distance(){
+    qDebug() << "MainWindow::Distance()";
+}
+
+void MainWindow::Area(){
+    qDebug() << "MainWindow::Area()";
+}
+
+void MainWindow::Slope(){
+    qDebug() << "MainWindow::Slope()";
+}
+
+void MainWindow::Relation(){
+    qDebug() << "MainWindow::Relation()";
+}
+
+void MainWindow::LineSymmetry(){
+    qDebug() << "MainWindow::LineSymmetry()";
+}
+
+void MainWindow::PointSymmetry(){
+    qDebug() << "MainWindow::PointSymmetry()";
+}
+
+void MainWindow::Translate(){
+    qDebug() << "MainWindow::Translate()";
+}
+
+void MainWindow::Delete(){
+    qDebug() << "MainWindow::Delete()";
+}
+
+void MainWindow::Clear(){
+    qDebug() << "MainWindow::Clear()";
 }
 
 MainWindow::~MainWindow()

@@ -22,6 +22,8 @@ public:
     ~MainWindow();
 
 public slots:
+    void Move();
+    void Select();
 
     void Point();
     void PointOnObject();
@@ -44,12 +46,40 @@ public slots:
     void AngleBisector();
     void Tangent();
 
+    void Polygon();
+    void RegularPolygon();
+
+    void CircleCPT();
+    void CircleCRT();
+
+    void Ellipse();
+    void Parabola();
+    void Hyperbola();
+
+    void Angle();
+    void Distance();
+    void Area();
+    void Slope();
+    void Relation();
+
+    void LineSymmetry();
+    void PointSymmetry();
+    void Translate();
+
+    void Delete();
+    void Clear();
+
 private:
     Ui::MainWindow *ui;
     void createActions();
     void createMenus();
     void createToolBars();
     void createToolButtons();
+
+    QAction* MoveAction;
+    QAction* SelectAction;
+    QMenu* MouseMenu;
+    DropDownToolButton* MouseButton;
 
     QAction* PointAction;
     QAction* PointOnObjectAction;
@@ -77,6 +107,41 @@ private:
     QAction* TangentAction;
     QMenu* SpecialLineMenu;
     DropDownToolButton* SpecialLineButton;
+
+    QAction* PolygonAction;
+    QAction* RegularPolygonAction;
+    QMenu* PolygonMenu;
+    DropDownToolButton* PolygonButton;
+
+    QAction* CircleCPTAction; // center through point tool
+    QAction* CircleCRTAction; // center and radius
+    QMenu* CircleMenu;
+    DropDownToolButton* CircleButton;
+
+    QAction* EllipseAction;
+    QAction* ParabolaAction;
+    QAction* HyperbolaAction;
+    QMenu* ConicMenu;
+    DropDownToolButton* ConicButton;
+
+    QAction* AngleAction; // get angle
+    QAction* DistanceAction; // get distance
+    QAction* AreaAction; //get area
+    QAction* SlopeAction; // get slope
+    QAction* RelationAction; // get relation between two objects
+    QMenu* MeasurementMenu;
+    DropDownToolButton* MeasurementButton;
+
+    QAction* LineSymmetryAction;
+    QAction* PointSymmetryAction;
+    QAction* TranslateAction; // translate by vector
+    QMenu* TransformationMenu;
+    DropDownToolButton* TransformationButton;
+
+    QAction* DeleteAction;
+    QAction* ClearAction;
+    QMenu* GeneralMenu;
+    DropDownToolButton* GeneralButton;
 };
 
 #endif // MAINWINDOW_H

@@ -18,5 +18,9 @@
         <file>images/orthogonal.png</file>
         <file>images/linebisector.png</file>
         <file>images/angularbisector.png</file>
+        <file>images/move.png</file>
+        <file>images/middlefinger.png</file>
+        <file>images/polygon.png</file>
+        <file>images/regularpolygon.png</file>
     </qresource>
 </RCC>
