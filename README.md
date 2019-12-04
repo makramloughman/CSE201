@@ -1,21 +1,35 @@
-# CSE201 - GeoGebra
+# CSE201 - GeoBachelor
 
-   # GeoBachelor
+## Getting Started
 
- The GeoBachelor is the project that will interpret the program GeoGebra.
+This is the project for the class of CSE201.
+ 
+The GeoBachelor is a remake of GeoGebra.
 
- [More about project will be written soon]
+### Prerequisites
 
- ![Preview](/GeoBachelor/images/GeoBachelor.png)
+- QT 4.5.2 or newer
 
-   # Members (name surname, github username, [role])
+>**Note**: The program was tested on QT 4.5.2 running on Ubuntu 18.04
 
- - Bogdan Raonic, bogdanraonic, team leader
- - Milica Bozanic, milicabozanic, ide leader
- - Makram Loughman , makramloughman, git leader
- - Gautier Alassaire, gautieralassaire, treasurer 
- - Aya Hankir, ayahankir
- - Meryem Bennani, merybeni
- - Farah El-Euch, faraheleuch
- - Naya Khalil, naya-khalil
- - Kaylynn Pellicer, kaylynnn
+### Installation
+
+```
+[TBC]
+```
+
+### Screenshot
+
+![Preview](/GeoBachelor/images/GeoBachelor.png)
+
+## Authors
+
+- Bogdan Raonic, bogdanraonic, team leader
+- Milica Bozanic, milicabozanic, ide leader
+- Makram Loughman, makramloughman, git leader
+- Gautier Alassaire, gautieralassaire, treasurer 
+- Aya Hankir, ayahankir
+- Meryem Bennani, merybeni
+- Farah El-Euch, faraheleuch
+- Naya Khalil, naya-khalil
+- Kaylynn Pellicer, kaylynnn
