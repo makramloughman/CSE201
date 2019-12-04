@@ -28,6 +28,12 @@ void MainWindow::createActions(){
     VectorAction = new QAction("Vector", this);
     VectorFromPointAction = new QAction("Vector from Point", this);
 
+    PerpendicularLineAction = new QAction("Perpendicular Line", this);
+    ParallelLineAction = new QAction("Parallel Line", this);
+    PerpendicularBisectorAction = new QAction("Perpendicular Bisector", this);
+    AngleBisectorAction = new QAction("Angle Bisector", this);
+    TangentAction = new QAction("Tangent", this);
+
     PointAction->setIcon(QIcon(":/images/point.png"));
     PointOnObjectAction->setIcon(QIcon(":/images/pointonobject.png"));
     IntersectAction->setIcon(QIcon(":/images/intersect.png"));
@@ -43,6 +49,12 @@ void MainWindow::createActions(){
     VectorAction->setIcon(QIcon(":/images/vector.png"));
     VectorFromPointAction->setIcon(QIcon(":/images/vectorfrompoint.png"));
 
+    PerpendicularLineAction->setIcon(QIcon(":/images/orthogonal.png"));
+    ParallelLineAction->setIcon(QIcon(":/images/parallel.png"));
+    PerpendicularBisectorAction->setIcon(QIcon(":/images/linebisector.png"));
+    AngleBisectorAction->setIcon(QIcon(":/images/angularbisector.png"));
+    TangentAction->setIcon(QIcon(":/images/tangent.png"));
+
     QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point()));
     QObject::connect(PointOnObjectAction, SIGNAL(triggered()), this, SLOT(PointOnObject()));
     QObject::connect(IntersectAction, SIGNAL(triggered()), this, SLOT(Intersection()));
@@ -57,6 +69,12 @@ void MainWindow::createActions(){
     QObject::connect(PolylineAction, SIGNAL(triggered()), this, SLOT(Polyline()));
     QObject::connect(VectorAction, SIGNAL(triggered()), this, SLOT(Vector()));
     QObject::connect(VectorFromPointAction, SIGNAL(triggered()), this, SLOT(VectorFromPoint()));
+
+    QObject::connect(PerpendicularLineAction, SIGNAL(triggered()), this, SLOT(PerpendicularLine()));
+    QObject::connect(ParallelLineAction, SIGNAL(triggered()), this, SLOT(ParallelLine()));
+    QObject::connect(PerpendicularBisectorAction, SIGNAL(triggered()), this, SLOT(PerpendicularBisector()));
+    QObject::connect(AngleBisectorAction, SIGNAL(triggered()), this, SLOT(AngleBisector()));
+    QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
 }
 
 void MainWindow::createMenus(){
@@ -76,6 +94,13 @@ void MainWindow::createMenus(){
     LineMenu->addAction(PolylineAction);
     LineMenu->addAction(VectorAction);
     LineMenu->addAction(VectorFromPointAction);
+
+    SpecialLineMenu = new QMenu;
+    SpecialLineMenu->addAction(PerpendicularLineAction);
+    SpecialLineMenu->addAction(ParallelLineAction);
+    SpecialLineMenu->addAction(PerpendicularBisectorAction);
+    SpecialLineMenu->addAction(AngleBisectorAction);
+    SpecialLineMenu->addAction(TangentAction);
 }
 
 void MainWindow::createToolButtons(){
@@ -92,11 +117,19 @@ void MainWindow::createToolButtons(){
     LineButton->setMinimumHeight(32);
     LineButton->setMinimumWidth(44);
     LineButton->setIconSize(QSize(32,32));
+
+    SpecialLineButton = new DropDownToolButton;
+    SpecialLineButton->setMenu(SpecialLineMenu);
+    SpecialLineButton->setDefaultAction(PerpendicularLineAction);
+    SpecialLineButton->setMinimumHeight(32);
+    SpecialLineButton->setMinimumWidth(44);
+    SpecialLineButton->setIconSize(QSize(32,32));
 }
 
 void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addWidget(PointButton);
     ui->horizontalLayout_2->addWidget(LineButton);
+    ui->horizontalLayout_2->addWidget(SpecialLineButton);
     ui->horizontalLayout_2->addStretch();
 }
 
@@ -150,6 +183,26 @@ void MainWindow::Vector(){
 
 void MainWindow::VectorFromPoint(){
     qDebug() << "MainWindow::VectorFromPoint()";
+}
+
+void MainWindow::PerpendicularLine(){
+    qDebug() << "MainWindow::PerpendicularLine()";
+}
+
+void MainWindow::ParallelLine(){
+    qDebug() << "MainWindow::ParallelLine()";
+}
+
+void MainWindow::PerpendicularBisector(){
+    qDebug() << "MainWindow::PerpendicularBisector()";
+}
+
+void MainWindow::AngleBisector(){
+    qDebug() << "MainWindow::AngleBisector()";
+}
+
+void MainWindow::Tangent(){
+    qDebug() << "MainWindow::Tangent()";
 }
 
 MainWindow::~MainWindow()

@@ -38,6 +38,12 @@ public slots:
     void Vector();
     void VectorFromPoint();
 
+    void PerpendicularLine();
+    void ParallelLine();
+    void PerpendicularBisector();
+    void AngleBisector();
+    void Tangent();
+
 private:
     Ui::MainWindow *ui;
     void createActions();
@@ -63,6 +69,14 @@ private:
     QAction* VectorFromPointAction;
     QMenu* LineMenu;
     DropDownToolButton* LineButton;
+
+    QAction* PerpendicularLineAction;
+    QAction* ParallelLineAction;
+    QAction* PerpendicularBisectorAction;
+    QAction* AngleBisectorAction;
+    QAction* TangentAction;
+    QMenu* SpecialLineMenu;
+    DropDownToolButton* SpecialLineButton;
 };
 
 #endif // MAINWINDOW_H

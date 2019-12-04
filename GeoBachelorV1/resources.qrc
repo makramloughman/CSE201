@@ -13,5 +13,10 @@
         <file>images/ray.png</file>
         <file>images/polyline.png</file>
         <file>images/join.png</file>
+        <file>images/tangent.png</file>
+        <file>images/parallel.png</file>
+        <file>images/orthogonal.png</file>
+        <file>images/linebisector.png</file>
+        <file>images/angularbisector.png</file>
     </qresource>
 </RCC>
