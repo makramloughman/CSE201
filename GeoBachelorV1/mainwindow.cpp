@@ -41,10 +41,14 @@ void MainWindow::createToolButtons(){
     PointButton = new DropDownToolButton;
     PointButton->setMenu(PointMenu);
     PointButton->setDefaultAction(PointAction);
+    PointButton->setMinimumHeight(32);
+    PointButton->setMinimumWidth(44);
+    PointButton->setIconSize(QSize(32,32));
 }
 
 void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addWidget(PointButton);
+    ui->horizontalLayout_2->addStretch();
 }
 
 void MainWindow::Point(){
