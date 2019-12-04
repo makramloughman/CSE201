@@ -18,10 +18,10 @@ void MainWindow::createActions(){
     IntersectAction = new QAction("Intersect", this);
     MidPointAction = new QAction("Midpoint", this);
 
-    PointAction->setIcon(QIcon(":/images/GeoGebra_button_point.png"));
-    PointInRegionAction->setIcon(QIcon(":/images/GeoGebra_button_point_in_region.png"));
-    IntersectAction->setIcon(QIcon(":/images/GeoGebra_button_intersect.png"));
-    MidPointAction->setIcon(QIcon(":/images/GeoGebra_button_midpoint.png"));
+    PointAction->setIcon(QIcon(":/images/point.png"));
+    PointInRegionAction->setIcon(QIcon(":/images/pointonobject.png"));
+    IntersectAction->setIcon(QIcon(":/images/intersect.png"));
+    MidPointAction->setIcon(QIcon(":/images/midpoint.png"));
 
     QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point()));
     QObject::connect(PointInRegionAction, SIGNAL(triggered()), this, SLOT(PointInRegion()));

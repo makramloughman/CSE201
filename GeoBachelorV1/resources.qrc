@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/GeoGebra_button_point_in_region.png</file>
-        <file>images/GeoGebra_button_point.png</file>
-        <file>images/GeoGebra_button_midpoint.png</file>
-        <file>images/GeoGebra_button_intersect.png</file>
+        <file>images/pointonobject.png</file>
+        <file>images/point.png</file>
+        <file>images/midpoint.png</file>
+        <file>images/intersect.png</file>
     </qresource>
 </RCC>
