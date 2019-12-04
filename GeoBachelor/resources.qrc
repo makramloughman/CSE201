@@ -22,5 +22,19 @@
         <file>images/middlefinger.png</file>
         <file>images/polygon.png</file>
         <file>images/regularpolygon.png</file>
+        <file>images/angle.png</file>
+        <file>images/area.png</file>
+        <file>images/circle2.png</file>
+        <file>images/circlepointradius.png</file>
+        <file>images/delete.png</file>
+        <file>images/distance.png</file>
+        <file>images/ellipse.png</file>
+        <file>images/hyperbola3.png</file>
+        <file>images/mirroratline.png</file>
+        <file>images/mirroratpoint.png</file>
+        <file>images/parabola.png</file>
+        <file>images/relation.png</file>
+        <file>images/slope.png</file>
+        <file>images/translatebyvector.png</file>
     </qresource>
 </RCC>

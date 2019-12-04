@@ -87,24 +87,24 @@ void MainWindow::createActions(){
     PolygonAction->setIcon(QIcon(":/images/polygon.png"));
     RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
 
-    CircleCPTAction->setIcon(QIcon(":/images/xxx.png"));
-    CircleCRTAction->setIcon(QIcon(":/images/xxx.png"));
+    CircleCPTAction->setIcon(QIcon(":/images/circle2.png"));
+    CircleCRTAction->setIcon(QIcon(":/images/circlepointradius.png"));
 
-    EllipseAction->setIcon(QIcon(":/images/xxx.png"));
-    ParabolaAction->setIcon(QIcon(":/images/xxx.png"));
-    HyperbolaAction->setIcon(QIcon(":/images/xxx.png"));
+    EllipseAction->setIcon(QIcon(":/images/ellipse.png"));
+    ParabolaAction->setIcon(QIcon(":/images/parabola.png"));
+    HyperbolaAction->setIcon(QIcon(":/images/hyperbola3.png"));
 
-    AngleAction->setIcon(QIcon(":/images/xxx.png"));
-    DistanceAction->setIcon(QIcon(":/images/xxx.png"));
-    AreaAction->setIcon(QIcon(":/images/xxx.png"));
-    SlopeAction->setIcon(QIcon(":/images/xxx.png"));
-    RelationAction->setIcon(QIcon(":/images/xxx.png"));
+    AngleAction->setIcon(QIcon(":/images/angle.png"));
+    DistanceAction->setIcon(QIcon(":/images/distance.png"));
+    AreaAction->setIcon(QIcon(":/images/area.png"));
+    SlopeAction->setIcon(QIcon(":/images/slope.png"));
+    RelationAction->setIcon(QIcon(":/images/relation.png"));
 
-    LineSymmetryAction->setIcon(QIcon(":/images/xxx.png"));
-    PointSymmetryAction->setIcon(QIcon(":/images/xxx.png"));
-    TranslateAction->setIcon(QIcon(":/images/xxx.png"));
+    LineSymmetryAction->setIcon(QIcon(":/images/mirroratline.png"));
+    PointSymmetryAction->setIcon(QIcon(":/images/mirroratpoint.png"));
+    TranslateAction->setIcon(QIcon(":/images/translatebyvector.png"));
 
-    DeleteAction->setIcon(QIcon(":/images/xxx.png"));
+    DeleteAction->setIcon(QIcon(":/images/delete.png"));
     ClearAction->setIcon(QIcon(":/images/xxx.png"));
 
     QObject::connect(MoveAction, SIGNAL(triggered()), this, SLOT(Move()));
