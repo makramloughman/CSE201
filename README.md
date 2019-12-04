@@ -8,9 +8,9 @@ The GeoBachelor is a remake of GeoGebra.
 
 ### Prerequisites
 
-- QT 4.5.2 or newer
+- QT 5.9.5 or newer
 
->**Note**: The program was tested on QT 4.5.2 running on Ubuntu 18.04
+>**Note**: The program was tested on Ubuntu 18.04 with QT 5.9.5
 
 ### Installation
 
