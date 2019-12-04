@@ -22,10 +22,21 @@ public:
     ~MainWindow();
 
 public slots:
+
     void Point();
-    void PointInRegion();
+    void PointOnObject();
     void Intersection();
     void MidPoint();
+    void ComplexPoint();
+    void Extremum();
+    void Roots();
+
+    void Line();
+    void Segment();
+    void Ray();
+    void Polyline();
+    void Vector();
+    void VectorFromPoint();
 
 private:
     Ui::MainWindow *ui;
@@ -35,11 +46,23 @@ private:
     void createToolButtons();
 
     QAction* PointAction;
-    QAction* PointInRegionAction;
+    QAction* PointOnObjectAction;
     QAction* IntersectAction;
     QAction* MidPointAction;
+    QAction* ComplexPointAction;
+    QAction* ExtremumAction;
+    QAction* RootsAction;
     QMenu* PointMenu;
     DropDownToolButton* PointButton;
+
+    QAction* LineAction;
+    QAction* SegmentAction;
+    QAction* RayAction;
+    QAction* PolylineAction;
+    QAction* VectorAction;
+    QAction* VectorFromPointAction;
+    QMenu* LineMenu;
+    DropDownToolButton* LineButton;
 };
 
 #endif // MAINWINDOW_H

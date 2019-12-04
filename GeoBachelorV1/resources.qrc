@@ -4,5 +4,14 @@
         <file>images/point.png</file>
         <file>images/midpoint.png</file>
         <file>images/intersect.png</file>
+        <file>images/roots.png</file>
+        <file>images/extremum.png</file>
+        <file>images/complexnumber.png</file>
+        <file>images/vectorfrompoint.png</file>
+        <file>images/vector.png</file>
+        <file>images/segment.png</file>
+        <file>images/ray.png</file>
+        <file>images/polyline.png</file>
+        <file>images/join.png</file>
     </qresource>
 </RCC>
