@@ -313,7 +313,7 @@ void MainWindow::Point(){
 }
 
 void MainWindow::PointOnObject(){
-    qDebug() << "MainWindow::alignCenter()";
+    qDebug() << "MainWindow::PointOnObject()";
 }
 
 void MainWindow::Intersection(){
@@ -341,7 +341,7 @@ void MainWindow::Line(){
 }
 
 void MainWindow::Segment(){
-    qDebug() << "MainWindow::Roots()";
+    qDebug() << "MainWindow::Segment()";
 }
 
 void MainWindow::Ray(){
