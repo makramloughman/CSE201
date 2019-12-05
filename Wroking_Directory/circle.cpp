@@ -73,14 +73,14 @@ Line Circle::tangent(Point M)
   double y1 = M.gety();
   double x0 = center.getx();
   double y0 = center.gety();
-  double d = (x -x1) * (x - x1) + (y -y1) * (y-y1);
+  double d = (x0 -x1) * (x0 - x1) + (y0 -y1) * (y0-y1);
   if (x0 != x1)
   {
-    double a = (d - 2 * r + y0*y0 - y1*y1 + x0*x0 - x1*x1) / (2*(x0 -x1));
-    double b = (y1 -y0) / (x0 - x1);
+    double b = (d - 2 * r + y0*y0 - y1*y1 + x0*x0 - x1*x1) / (2*(x0 -x1));
+    double a = (y1 -y0) / (x0 - x1);
     double n = a * a + 1;
     double m = 2 * a * (b - x0) - 2 * y0;
-    double p = (b - x0) * (b -x0) + y0 * y0
+    double p = (b - x0) * (b -x0) + y0 * y0;
     if (m*m - 4 * n * p < 0)
     {
       std::cout << "Tangent line does not exist" << std::endl;
@@ -105,11 +105,11 @@ Line Circle::tangent(Point M)
   }
   else if (y1 != y0)
   {
-    double a = (d - 2 * r + y0*y0 - y1*y1) / (2*(y0 -y1));
-    double b = 0;
+    double b = (d - 2 * r + y0*y0 - y1*y1) / (2*(y0 -y1));
+    double a = 0;
     double n = a * a + 1;
     double m = 2 * a * (b - y0) - 2 * x0;
-    double p = (b - y0) * (b -y0) + x0 * x0
+    double p = (b - y0) * (b -y0) + x0 * x0;
     if (m*m - 4 * n * p < 0)
     {
       std::cout << "Tangent line does not exist" << std::endl;
