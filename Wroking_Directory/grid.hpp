@@ -1,4 +1,15 @@
+#pragma once
 #include <iostream>
+#include <iostream>
+#include <QPalette>
+#include <QObject>
+#include <QGraphicsView>
+#include <QGraphicsLineItem>
+#include <vector>
+#include <QGraphicsScene>
+#include <cmath>
+
+
 class Grid {
 //private functions below represent the default initialisation of the grid
 private:
@@ -6,34 +17,38 @@ private:
     //with respect to the coordinate system of the gris that is set by default.
     double x_p;
     double y_p;
-    x_p=1
-    y_p=1
+
     
     //the color of the font should be initialized to white
     void initialize_fontcolor();
 
     // the argument represent the norm of the unit vector
     //maximum value for x
-    void draw_x_axis(double scale);
-    void set_max_x(int max_x);;
-    void set_xaxis_label()
+    void draw_coordinate_system();
+    void set_max_x(int max_x);
+    void set_xaxis_label();
 
     // the argument represent the norm of the unit vector
     //maximum value for y
-    void draw_y_axis(double scale);
     void set_max_y(int max_y);
-    vois set_yaxos_label();
+    void set_yaxis_label();
 
     // function that initialises pointer tools
     void coordinates_pointers();
-    // current state
-    int current_objects[10]
-
+    
 
 
 
 public:
-    
+    std::vector<Item> current_items;
+    Grid(int x,int y);
+    Grid();
+    Grid(double x, double y);
+    double getX();
+    double getY();
+
+
+
     //we should have a function that allows the user to use diffrent types of grids
     //as he was styling his own sheet
     void style_grid();

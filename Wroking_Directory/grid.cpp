@@ -1,52 +1,119 @@
 #include 'grid.hpp'
-#include <iostream>
-#include <QPalette>
+
 class Grid{
 private:
     double x_p;
     double y_p;
-    x_p=1
-    y_p=1
+    
+    t=QTransform();
     //the color of the font should be initialized to white
-    void initialize_fontcolor(){
-        m_CustomPlot->setBackground(QBrush(QColor("#b3daff")));
+    void Grid::initialize_fontcolor()
+    {
+        ui->myGraphicsView->setScene(myScene);
+        ui->myGraphicsView->setBackgroundBrush(QBrush(Qt::white, Qt::SolidPattern));
         //->replot
     }
     // the argument represent the norm of the unit vector
     //maximum value for x
-    void draw_x_axis(double scale);
-    QGraphicsLineItem* ox = new QGraphicsLineItem(0,-width/2,0,width/2);
+    void Grid::draw_coordinate_system()
+{
+    MainWindow* mainw= MAinwindow::getInstance();
+    double x = g.getX();
+    double y = g.getY();
 
-    void set_max_x(int max_x);
-    const int MaxX  = std::ceil(width/zoom_factor);
-    void set_xaxis_label();
+    double w = ui->graphicsView->width();
+    double h = ui->graphicsView->height();
 
+    QPointF x1 = QPointF(ui->graphicsView->mapToScene(0, y));
+    QPointF x2 = QPointF(ui->graphicsView->mapToScene(w, y));
+    QPointF y1 = QPointF(ui->graphicsView->mapToScene(x, 0));
+    QPointF y2 = QPointF(ui->graphicsView->mapToScene(x, h));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    QPen myPen = QPen(Qt::gray);
+    myPen.setWidth(3);
+    mainW->drawLine(x1,x2,myPen);
+    mainW->drawLine(y1,y2,myPen);
 }
+public:
+   
+    // translate the center or translate the whole coordinate system so that
+    //a specified point become the center
+    void translate(int percentage);
+    void change_center_view();
+
+    //user should be able to hide and show coordinate axis
+    //WE NEED TO DEFINE PUBLIC ATTRIBUTES QGRAPHICSITEM_X QGRAPHICSITEM_Y in the main window
+    void hide_x_axis();
+    void show_x_axis();
+    void hide_y_axis();
+    void show_y_axis();
+
+    //allows the user the rotate the coordinate system
+    void Grid::right_rotation(double angle_of_rotation)
+    {
+
+    
+    void left_rotation(double angle_of_rotation);
+    
+    //zoom on a specific zome of the grid
+    //we still need to see how to define the achpr where we click
+    void Grid::zoom_in(int percentage)
+    {
+        t.scale(int percentage,int percentage);
+        setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        view->setTransform(t);
+    }
+    void Grid::zoom_out(int percentage)
+    {
+        t.scale(int -percentage,int -percentage);
+        setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        view->setTransform(t);
+    
+    }
+
+        
+    
+    //the user should be able to rescale the axis
+    //user should also be able to rename the axis
+    void rescale_axis(double new_scale);
+    void rename_axis();
+
+    //the user should be able to write a legend for the figures he draws
+    void legend_box();
+
+    //checkbox tool is to hide several objects
+    void checkboxtool();
+    
+    //user should able to lable everything on his fugures and modify them
+    void create_labels();
+    void modify_labels();
+    void delete_labels();
+
+    //(advanced fuction) we should have the visibility status of some chosen objects depend
+    //on certain conditions fixed by the user
+    void conditional_visibility();
+    void hide_object();
+    void reshow_object();
+
+    //user should be able to change the opacity of objects
+    void opacity();
+
+    //create layers in order to determine which object to select when users clicks on 
+    //multiple objects at the same time
+    void create_layers();
+    void hide_layer(int layer_number);
+    void show_layer(int layer_number);
+    //create helpers so that when thw users puts the mouse on a toolbox
+    //a small text box appears describing breifly the funtion of the toolbox
+    void tips():]
+
+    //user should be able to take a snapshot of the grid
+    void snapshot();
+
+    // user should be able to undo and redo
+    void undo()
+    void redo()
+
+    //the user should be able to clear the grid as he pleases
+    void clear_sheet();
+};
