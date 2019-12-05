@@ -7,7 +7,9 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
     this->segment_chosen = false; //no segment chosen
     this->circle_chosen = false; //no circe chosem
     this->inf_line_chosen = false; //no infinite line chosen
+    this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
+    this->n_polygon = 0; //polygon that we have chosen
 
 }
 
@@ -76,7 +78,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
             mainW->drawPoint(this->clickedP[0]);
         }
-        else if (this->n_counter<=4-1){ //it works now only for n=4
+        else if (this->n_counter<=n_polygon-1){
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
             QLineF line(this->clickedP[n_counter],this->clickedP[n_counter-1]);
             this->n_counter++;
@@ -84,7 +86,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->drawPoint(this->clickedP[n_counter-1]);
             mainW->drawPoint(this->clickedP[n_counter-2]);
 
-            if(n_counter==4)
+            if(n_counter==n_polygon)
             {
                 //or call mainW->drawPolygon(clickedP) => too much job
                 QLineF line(this->clickedP[n_counter-1],this->clickedP[0]);

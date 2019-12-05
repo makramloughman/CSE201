@@ -31,6 +31,12 @@ void MainWindow::drawLine(QPointF p1, QPointF p2)
     MainWindow::drawLine(QLineF(p1,p2));
 }
 
+void MainWindow::drawLine(QPointF p1, QPointF p2, QPen pen)
+{
+    QLineF f = QLineF(p1, p2);
+    scene->addLine(f, pen);
+}
+
 void MainWindow::drawPoint(QPointF p)
 {
     double rad = 3;
@@ -63,9 +69,44 @@ void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2)
     MainWindow::drawLine(p11,p21);
 }
 
+void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
+{
+    std::vector<QPointF> ps;
+    ps.push_back(p1);
+    ps.push_back(p2);
+    ps.push_back(p3);
+    MainWindow::drawPolygon(ps);
+}
+
 void MainWindow::drawPolygon(std::vector<QPointF> points)
 {
+    int n = points.size();
+    for(int i=0;i<n-1;i++)
+    {
+        MainWindow::drawLine(points[i],points[i+1]);
+    }
+    MainWindow::drawLine(points[0],points[n-1]);
+}
 
+
+void MainWindow::drawCoordinateSystem(Grid g)
+{
+
+    double x = g.getX();
+    double y = g.getY();
+
+    double w = ui->graphicsView->width();
+    double h = ui->graphicsView->height();
+
+    QPointF x1 = QPointF(ui->graphicsView->mapToScene(-1000, y));
+    QPointF x2 = QPointF(ui->graphicsView->mapToScene(1000+w, y));
+    QPointF y1 = QPointF(ui->graphicsView->mapToScene(x, -1000));
+    QPointF y2 = QPointF(ui->graphicsView->mapToScene(x, 1000+h));
+
+    QPen myPen = QPen(Qt::gray);
+    myPen.setWidth(3);
+    MainWindow::drawLine(x1,x2,myPen);
+    MainWindow::drawLine(y1,y2,myPen);
 }
 
 MainWindow* MainWindow:: getInstance()
@@ -113,4 +154,12 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_pushButton_5_clicked()
 {
     ui->graphicsView->polygon_chosen = true;
+    ui->graphicsView->n_polygon = 4;
 }
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    ui->graphicsView->polygon_chosen = true;
+    ui->graphicsView->n_polygon = 3;
+}
+
