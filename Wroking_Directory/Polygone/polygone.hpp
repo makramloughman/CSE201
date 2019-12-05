@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "segment.hpp"
+#include "circle.hpp"
 
 class Polygone:public Item {
   private:
@@ -48,14 +49,12 @@ class RegularPolygone : public Polygone {
   RegularPolygone(); //empty regular polygone with empty vector of points 
   RegularPolygone(segment, number); //creates a regular polygone with given number of sides and a segment(two points, length)
 
-  void length(); //returns the length of a side
-  void angle(); //returns the value of an angle
+  double length(); //returns the length of a side
+  float angle(); //returns the value of an angle
 
-  void centerofcircumscribed(); //returns the c`oordinates of the circumscribed circle
-  void centerofinscribed(); //returns the coordinates of the inscribed circle 
+  point centerofcircumscribed(); //returns the coordinates of the circumscribed circle
+ 
+  cirlce circumscribedcircle(); //draws and create the circumscribed circle
 
-  void circumscribedcircle(); //draws and create the circumscribed circle
-  void inscribedcircle(); //draws and create the inscribed circle
-  
 
 }
