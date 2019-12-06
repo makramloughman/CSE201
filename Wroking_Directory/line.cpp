@@ -17,7 +17,7 @@ double Line::slope(){
 
 double Line::y_intercept(){
   double y_intercept;
-  double a = Line.slope;
+  double a = Line.slope();
   double x1 = p1.getx();
   double y1 = p1.gety();
   y_intercept = y1 - a*x1;
@@ -25,7 +25,7 @@ double Line::y_intercept(){
 }
 
 Line::perpendicular(Point &p3){
-  double a = Line.slope;
+  double a = Line.slope();
   double b1 = Line.y_intercept();
   double x0 = &p3.getx();
   double y0 = &p3.gety();
@@ -40,7 +40,7 @@ Line::perpendicular(Point &p3){
   }
 
 Line::parallel(Point &p3){
-  double a = Line.slope;
+  double a = Line.slope();
   double x0 = &p3.getx();
   double y0 = &p3.gety();
   double x = x0 + 1;
@@ -49,5 +49,16 @@ Line::parallel(Point &p3){
   Line par(*pstar, p3);
   return par;
   }
-  
+
+Point Line::intersection(Line B){
+  double a1 = Line.slope();
+  double a2 = B.slope();
+  double b1 = Line.y_intercept();
+  double b2 = B.y_intercept();
+  double xstar;
+  xstar = (b1 - b2)/(a2 - a1);
+  ystar = a1 * xstar + b1;
+  Point pstar(xstar, ystar);
+  return pstar;
+  }
   
