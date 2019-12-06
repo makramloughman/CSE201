@@ -8,6 +8,7 @@
 #include <vector>
 #include <QGraphicsScene>
 #include <cmath>
+#include <QGraphicsTextItem>
 
 
 class Grid {
@@ -25,12 +26,10 @@ private:
     // the argument represent the norm of the unit vector
     //maximum value for x
     void draw_coordinate_system();
-    void set_max_x(int max_x);
     void set_xaxis_label();
 
     // the argument represent the norm of the unit vector
     //maximum value for y
-    void set_max_y(int max_y);
     void set_yaxis_label();
 
     // function that initialises pointer tools
@@ -51,6 +50,7 @@ public:
 
     //we should have a function that allows the user to use diffrent types of grids
     //as he was styling his own sheet
+    void Draw_grid();
     void style_grid();
     void change_font_color();
     void change_grid_color();

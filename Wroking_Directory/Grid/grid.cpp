@@ -7,6 +7,7 @@ private:
     
     t=QTransform();
     //the color of the font should be initialized to white
+    
     void Grid::initialize_fontcolor()
     {
         ui->myGraphicsView->setScene(myScene);
@@ -15,6 +16,9 @@ private:
     }
     // the argument represent the norm of the unit vector
     //maximum value for x
+   
+   
+   
     void Grid::draw_coordinate_system()
 {
     MainWindow* mainw= MAinwindow::getInstance();
@@ -34,10 +38,45 @@ private:
     mainW->drawLine(x1,x2,myPen);
     mainW->drawLine(y1,y2,myPen);
 }
+
+void Grid::set_yaxis_label(){
+    QGraphicsTextItem *text = scene->addText();
+    text->setPos(x_p-50, 50);
+}
+void Grid::set_xaxis_label(){
+    double w = ui->graphicsView->width();
+    double h = ui->graphicsView->height();
+    text->setPos(width-50, y_p+50);
+
 public:
    
     // translate the center or translate the whole coordinate system so that
     //a specified point become the center
+  
+void Grid::Draw_grid(){
+    // Add the vertical lines first
+    for (int x=0; x<=1100; x+=50)
+        Qpoint p1(x,0);
+        Qpoint p2(x,1100);
+    mainW->drawInfiniteLine(p1,p2)
+
+    // Now add the horizontal lines,
+    for (int y=0; y<=500; y+=50)
+        Qpoint p1(0,y);
+        Qpoint p2(1100,y);
+        mainW->drawInfiniteLine(p1,p2)
+
+    // Fit the view in the scene's bounding rect
+    ui->view->fitInView(scene->itemsVBoundingRect());
+  
+  
+  
+  
+  
+  
+  
+  
+  
     void translate(int percentage);
     void change_center_view();
 
@@ -111,8 +150,8 @@ public:
     void snapshot();
 
     // user should be able to undo and redo
-    void undo()
-    void redo()
+    void undo();
+    void redo();
 
     //the user should be able to clear the grid as he pleases
     void clear_sheet();
