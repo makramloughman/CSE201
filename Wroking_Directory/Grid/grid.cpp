@@ -67,10 +67,8 @@ void Grid::Draw_grid(){
         mainW->drawInfiniteLine(p1,p2)
 
     // Fit the view in the scene's bounding rect
-    ui->view->fitInView(scene->itemsVBoundingRect());
-  
-  
-  
+    ui->view->fitInView(scene->itemsVBoundingRect()); 
+}
   
   
   
