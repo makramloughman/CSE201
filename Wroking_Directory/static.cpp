@@ -79,7 +79,7 @@ static * Inter::intersection(Line line,Circle circle){
 
     }
 
-    if (B*B-4*A*C=0){
+    if (B*B-4*A*C==0){
         array=new Point[1]
         double x1=-B/2*A;
         double y1=s*x1+c;
@@ -94,7 +94,8 @@ static * Inter::intersection(Line line,Circle circle){
 static *intersection(Circle circle1,Circle circle2){
 
     Point *array;
-    
+
+
 }
 
 
