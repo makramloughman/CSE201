@@ -14,6 +14,19 @@ static Point Inter::interesection(Line line1,Line line2)
     return Point(x,y)
 
 }
+static * Inter::interesection(Line line ,Segment segment){
+    Line linebis= Line( segment._point1 , segment._point2);
+    double s=linebis.slope();
+    double c=linebis.y_intercept();
+    Point inter_point= intersection(Line line ,Line linebis);
+    
+    if (0=<inter_point.getx()-segment._point1.getx()/segment._point2.getx()-segment._point1.getx()<=1) and 
+    (0=<inter_point.gety()-segment._point1.gety()/segment._point2.gety()-segment._point1.gety()<=1){
+
+
+    }
+
+}
 
 static * Inter::intersection(Line line,Circle circle){
     
@@ -32,7 +45,7 @@ static * Inter::intersection(Line line,Circle circle){
     double C=b*b-2c*b+c*c+a*a-r*r;
 
     if (B*B-4*A*C<0){
-        return;
+        return array;
     }
 
     if (B*B-4*A*C>0){
@@ -46,18 +59,21 @@ static * Inter::intersection(Line line,Circle circle){
         *array[0]=Point(x1,y1);
         *array[1]=Point(x2,y2);
         
-        return *array
+        return array
 
     }
 
     if (B*B-4*A*C=0){
-        
+        array=new Point[1]
         double x1=-B/2*A;
         double y1=s*x1+c;
 
-        return Point(x1,y1);
+        *array[0]=Point(x1,y1)
+
+        return array;
 
     }
+    
 }
 
-static interesection
+
