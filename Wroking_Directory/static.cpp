@@ -123,12 +123,38 @@ static *intersection(Circle circle1,Circle circle2){
     }
     if (d==r1+r2){
         array= new Point[0]
-         double w1=x1-x2/(r1+r2)*r1+x2;
-         double w2=y1-y2/(r0+r2)
-        
-        *array[0]=Point()
+         double w1=x2-x1/(r1+r2)*r1+x1;
+         double w2=y2-y1/(r1+r2)*r1+y1;
+
+        *array[0]=Point(w1,w2);
+        return array;
 
     }
+
+    else{
+
+       array = new Point[2]
+       double a=(r1*r1-r2*r2+d*d) /2*d;
+       double h=sqrt(r1*r1-a*a);
+
+       //point 2 is the point where the line through 
+       //he circle interesction points crosses the line 
+       //between the circle centers.
+       double q=(x2-x1)*a/d + x1;
+       double s=(y2-y1)*a/d + y1;
+       Point p2(q,s);
+       
+       double x3=q+h*(y2-y1)/d;
+       double y3=s-h*(x2-x1)/d;
+       double x4=q-h*(y2-y1)/d;
+       double y4=s+h*(x2-x1)/d;
+       
+       *array[0]=Point(x3,y3);
+       *array[1]=Point(x4,y4);
+
+        return array;
+    }
+
 }
 
 
