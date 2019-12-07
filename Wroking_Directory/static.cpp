@@ -1,4 +1,5 @@
 #include "static.cpp"
+#include<math.o>
 using namespace std;
 
 static * Inter::interesection(Line line1,Line line2)
@@ -94,8 +95,40 @@ static * Inter::intersection(Line line,Circle circle){
 static *intersection(Circle circle1,Circle circle2){
 
     Point *array;
+    double x1=circle1.getX();
+    double y1=cirlce1.getY();
+    double r1=cirlce1.getR();
+    double y1=circle2.getX();
+    double y2=circle2.getY();
+    double r2=circle2.getR();
 
+    double d=distance(Point(x1,y1),Point(x2,y2));
+    
+    //d is the horizontal and vertical distances between the circle centers  
 
+    if (d==0 and r1==r2){
+        
+        return NULL // infinite interesection ie:circles coincide
+    }
+
+    if (d>r1+r2){
+
+        return NULL //no interesection
+    }
+
+    if (d<Math.Abs(r1-r2)){
+
+        return NULL // One circle contain the other one 
+
+    }
+    if (d==r1+r2){
+        array= new Point[0]
+         double w1=x1-x2/(r1+r2)*r1+x2;
+         double w2=y1-y2/(r0+r2)
+        
+        *array[0]=Point()
+
+    }
 }
 
 
