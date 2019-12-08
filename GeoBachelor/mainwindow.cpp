@@ -557,7 +557,7 @@ void MainWindow::Delete(){
 }
 
 void MainWindow::Clear(){
-    qDebug() << "MainWindow::Clear()";
+    scene->clear();
 }
 
 MainWindow::~MainWindow()
