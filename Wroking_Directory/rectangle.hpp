@@ -11,4 +11,5 @@ public :
 Rectangle(const Point &p1, const Point &p2 );
 double length();
 double width();
+double getPerimeter()const;
 double getArea()const;
