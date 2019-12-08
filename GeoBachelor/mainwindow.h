@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#pragma once
+
 #include <QMainWindow>
 #include <QAction>
 #include <QMenu>
@@ -8,6 +10,12 @@
 #include <QToolButton>
 #include <QDebug>
 #include "dropdowntoolbutton.h"
+#include <QPainter>
+#include <QWidget>
+#include <QGraphicsScene>
+#include <iostream>
+#include <vector>
+#include <grid.h>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +28,19 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    QGraphicsScene* scene;
+    static MainWindow* getInstance();
+    void drawLine(QLineF l);
+    void drawLine(QPointF p1, QPointF p2);
+    void drawLine(QPointF p1, QPointF p2, QPen pen);
+    void drawPoint(QPointF p);
+    void drawCircle(QPointF p,double r);
+    void drawInfiniteLine(QPointF p1, QPointF p2);
+    void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle
+    void drawPolygon(std::vector<QPointF> points);
+    void drawCoordinateSystem(Grid g);
+    void drawScene();
+    void clearScene(); //sufficient for moving the grid! (moving/zooming)
 
 public slots:
     void Move();
@@ -71,6 +92,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    static MainWindow *theWindow;
     void createActions();
     void createMenus();
     void createToolBars();
