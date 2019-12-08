@@ -28,13 +28,17 @@ SOURCES += \
         mainwindow.cpp \
     dropdowntoolbutton.cpp \
     myview.cpp \
-    grid.cpp
+    grid.cpp \
+    mathobject.cpp \
+    point.cpp
 
 HEADERS += \
         mainwindow.h \
     dropdowntoolbutton.h \
     myview.h \
-    grid.h
+    grid.h \
+    mathobject.h \
+    point.hpp
 
 FORMS += \
     mainwindow.ui

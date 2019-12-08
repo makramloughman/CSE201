@@ -11,6 +11,8 @@
 #include <vector>
 #include <cmath>
 #include <grid.h>
+#include <point.hpp>
+#include <mathobject.h>
 
 using namespace std;
 
@@ -29,7 +31,6 @@ class MyView : public QGraphicsView
         bool polygon_chosen; //triangle, quadrilateral, more sided polygons...
         int n_polygon; // number of points of certain polygon that we have chosen
         int n_counter; //we will have many options, so this one counts the number of points we have chosen after clicking certain option
-        Grid gr;
 };
 
 #endif // MYVIEW_H

@@ -8,6 +8,5 @@ int main(int argc, char *argv[])
     w.setWindowState(Qt::WindowMaximized);
     w.setWindowTitle("GeoBachelor");
     w.show();
-
     return a.exec();
 }

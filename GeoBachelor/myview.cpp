@@ -71,6 +71,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
     else if (this->point_chosen){
         mainW -> drawPoint(mapToScene(ev->x(),ev->y()));
         this->point_chosen = false;
+        mainW->mainGrid->objects.push_back(Point()); //We need it in the grid coordinates -> will be discussed soon
     }
     else if (this->polygon_chosen){
         if(this->n_counter == 0){

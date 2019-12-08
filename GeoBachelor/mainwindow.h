@@ -16,6 +16,8 @@
 #include <iostream>
 #include <vector>
 #include <grid.h>
+#include <point.hpp>
+#include <mathobject.h>
 
 namespace Ui {
 class MainWindow;

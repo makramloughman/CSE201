@@ -10,6 +10,8 @@
 #include <QGraphicsScene>
 #include <cmath>
 #include <QGraphicsTextItem>
+#include <mathobject.h>
+#include <point.hpp>
 #pragma once
 
 class Grid {
@@ -32,6 +34,8 @@ public:
     double getX();
     double getY();
     void set_BackColor(QBrush b);
+
+    std::vector<MathObject> objects;
 
 };
 
