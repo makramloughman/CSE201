@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     createMenus();
     createToolButtons();
     createToolBars();
+    this->started = false;
+
 }
 
 void MainWindow::createActions(){
@@ -376,24 +378,14 @@ void MainWindow::drawPolygon(std::vector<QPointF> points)
 }
 
 
-void MainWindow::drawCoordinateSystem(Grid g)
+void MainWindow::drawCoordinateSystem()
 {
+    this->mainGrid->draw();
+}
 
-    double x = g.getX();
-    double y = g.getY();
-
-    double w = ui->graphicsView->width();
-    double h = ui->graphicsView->height();
-
-    QPointF x1 = QPointF(ui->graphicsView->mapToScene(-1000, y));
-    QPointF x2 = QPointF(ui->graphicsView->mapToScene(1000+w, y));
-    QPointF y1 = QPointF(ui->graphicsView->mapToScene(x, -1000));
-    QPointF y2 = QPointF(ui->graphicsView->mapToScene(x, 1000+h));
-
-    QPen myPen = QPen(Qt::gray);
-    myPen.setWidth(3);
-    MainWindow::drawLine(x1,x2,myPen);
-    MainWindow::drawLine(y1,y2,myPen);
+void MainWindow::setGrid(Grid* g)
+{
+    this->mainGrid = g;
 }
 
 MainWindow* MainWindow:: getInstance()
@@ -410,7 +402,32 @@ void MainWindow::clearScene()
     scene->clear();
 }
 
-MainWindow *MainWindow::theWindow = nullptr;
+int MainWindow::getWidth_View()
+{
+    return ui->graphicsView->width();
+}
+
+int MainWindow::getHeight_View()
+{
+    return ui->graphicsView->height();
+}
+
+void MainWindow::setBackGroundColor_View(QBrush b)
+{
+    scene->setBackgroundBrush(b);
+}
+
+QPointF MainWindow::mapToMyScene(double x, double y)
+{
+    return ui->graphicsView->mapToScene(x,y);
+}
+
+QPointF MainWindow::mapFromMyScene(double x, double y)
+{
+    return ui->graphicsView->mapFromScene(x,y);
+}
+
+MainWindow *MainWindow::theWindow = nullptr; //declare static
 
 void MainWindow::Move(){
     qDebug() << "MainWindow::Move()";
@@ -621,4 +638,16 @@ MainWindow::~MainWindow()
     delete GeneralMenu;
     delete GeneralButton;
 
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(!started)
+    {
+        this->started = true;
+        Grid* g = new Grid(50,this->getHeight_View()-50);
+        setGrid(g);
+        g->draw();
+        g->set_BackColor(QBrush(Qt::yellow, Qt::SolidPattern));
+    }
 }

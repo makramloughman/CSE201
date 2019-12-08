@@ -38,9 +38,22 @@ public:
     void drawInfiniteLine(QPointF p1, QPointF p2);
     void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle
     void drawPolygon(std::vector<QPointF> points);
-    void drawCoordinateSystem(Grid g);
-    void drawScene();
+
+    //grid part => drawings
+    Grid* mainGrid;
+    void drawCoordinateSystem(); //just using the functuons of the grid
+    void setGrid(Grid* g); //seting the main grid
+
+    //scene functions:
+    void drawScene(); //drawing rectangle
     void clearScene(); //sufficient for moving the grid! (moving/zooming)
+
+    //GraphicsView
+    int getWidth_View();
+    int getHeight_View();
+    void setBackGroundColor_View(QBrush b);
+    QPointF mapToMyScene(double x,double y);
+    QPointF mapFromMyScene(double x,double y);
 
 public slots:
     void Move();
@@ -90,9 +103,14 @@ public slots:
     void Delete();
     void Clear();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     static MainWindow *theWindow;
+    bool started; //if the user clicked start button
+
     void createActions();
     void createMenus();
     void createToolBars();

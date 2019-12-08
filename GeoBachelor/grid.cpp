@@ -13,10 +13,41 @@ Grid::Grid()
     this->y_p = 0;
 }
 
-void Grid::draw(double scale)
+void Grid::draw()
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
-    mainW->drawCoordinateSystem(*this);
+    QPen myPen1 = QPen(Qt::lightGray);
+    myPen1.setWidth(0.5);
+
+    // Add the vertical lines first
+    for (int x=0; x<=1100; x+=50)
+    {
+        QPointF p1 = QPointF(mainW -> mapToMyScene(x,0));
+        QPointF p2 = QPointF(mainW -> mapToMyScene(x,1100));
+        mainW->drawLine(p1,p2,myPen1);
+    }
+    // Now add the horizontal lines,
+    for (int y=mainW->getHeight_View(); y>-100; y-=50)
+    {
+        QPointF p1= QPointF(mainW -> mapToMyScene(0,y));
+        QPointF p2= QPointF(mainW -> mapToMyScene(1100,y));
+        mainW->drawLine(p1,p2,myPen1);
+    }
+    double x = this->getX();
+    double y = this->getY();
+
+    double w = mainW->getWidth_View();
+    double h = mainW->getHeight_View();
+
+    QPointF x1 = QPointF(mainW->mapToMyScene(-1000, y));
+    QPointF x2 = QPointF(mainW->mapToMyScene(1000+w, y));
+    QPointF y1 = QPointF(mainW->mapToMyScene(x, -1000));
+    QPointF y2 = QPointF(mainW->mapToMyScene(x, 1000+h));
+
+    QPen myPen = QPen(Qt::gray);
+    myPen.setWidth(3);
+    mainW->drawLine(x1,x2,myPen);
+    mainW->drawLine(y1,y2,myPen);
 }
 
 double Grid::getX()
@@ -28,3 +59,226 @@ double Grid::getY()
 {
     return this->y_p;
 }
+
+void Grid::set_BackColor(QBrush b)
+{
+    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    mainW -> setBackGroundColor_View(b);
+}
+
+
+
+/*
+#include 'grid.hpp'
+
+class Grid{
+private:
+    double x_p;
+    double y_p;
+<<<<<<< HEAD
+
+    t=QTransform();
+    //the color of the font should be initialized to white
+
+=======
+
+    t=QTransform();
+    //the color of the font should be initialized to white
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    void Grid::initialize_fontcolor()
+    {
+        ui->myGraphicsView->setScene(myScene);
+        ui->myGraphicsView->setBackgroundBrush(QBrush(Qt::white, Qt::SolidPattern));
+        //->replot
+    }
+    // the argument represent the norm of the unit vector
+    //maximum value for x
+
+<<<<<<< HEAD
+}
+
+=======
+}
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    void Grid::draw()
+{
+   MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+
+    double x = this->getX();
+    double y = this->getY();
+
+    double w = mainW->getWidth_View();
+    double h = mainW->getHeight_View();
+
+    QPointF x1 = QPointF(mainW->mapToMyScene(-1000, y));
+    QPointF x2 = QPointF(mainW->mapToMyScene(1000+w, y));
+    QPointF y1 = QPointF(mainW->mapToMyScene(x, -1000));
+    QPointF y2 = QPointF(mainW->mapToMyScene(x, 1000+h));
+
+    QPen myPen = QPen(Qt::gray);
+    myPen.setWidth(3);
+    mainW->drawLine(x1,x2,myPen);
+    mainW->drawLine(y1,y2,myPen);
+}
+
+void Grid::set_yaxis_label(){
+    QGraphicsTextItem *text = scene->addText();
+    text->setPos(x_p-50, 50);
+}
+void Grid::set_xaxis_label(){
+    double w = ui->graphicsView->width();
+    double h = ui->graphicsView->height();
+    text->setPos(width-50, y_p+50);
+
+public:
+<<<<<<< HEAD
+
+    // translate the center or translate the whole coordinate system so that
+    //a specified point become the center
+
+=======
+
+    // translate the center or translate the whole coordinate system so that
+    //a specified point become the center
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+void Grid::Draw_grid(){
+    // Add the vertical lines first
+    for (int x=0; x<=1100; x+=50)
+        Qpoint p1(x,0);
+        Qpoint p2(x,1100);
+    mainW->drawInfiniteLine(p1,p2)
+
+    // Now add the horizontal lines,
+    for (int y=0; y<=500; y+=50)
+        Qpoint p1(0,y);
+        Qpoint p2(1100,y);
+        mainW->drawInfiniteLine(p1,p2)
+
+    // Fit the view in the scene's bounding rect
+    ui->view->fitInView(scene->itemsVBoundingRect());
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    void translate(int percentage);
+    void change_center_view();
+
+    //user should be able to hide and show coordinate axis
+    //WE NEED TO DEFINE PUBLIC ATTRIBUTES QGRAPHICSITEM_X QGRAPHICSITEM_Y in the main window
+    void hide_x_axis();
+    void show_x_axis();
+    void hide_y_axis();
+    void show_y_axis();
+
+    //allows the user the rotate the coordinate system
+    void Grid::right_rotation(double angle_of_rotation)
+    {
+
+<<<<<<< HEAD
+
+    void left_rotation(double angle_of_rotation);
+
+=======
+
+    void left_rotation(double angle_of_rotation);
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    //zoom on a specific zome of the grid
+    //we still need to see how to define the achpr where we click
+    void Grid::zoom_in(int percentage)
+    {
+        t.scale(int percentage,int percentage);
+        setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        view->setTransform(t);
+    }
+    void Grid::zoom_out(int percentage)
+    {
+        t.scale(int -percentage,int -percentage);
+        setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        view->setTransform(t);
+<<<<<<< HEAD
+
+    }
+
+
+
+=======
+
+    }
+
+
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    //the user should be able to rescale the axis
+    //user should also be able to rename the axis
+    void rescale_axis(double new_scale);
+    void rename_axis();
+
+    //the user should be able to write a legend for the figures he draws
+    void legend_box();
+
+    //checkbox tool is to hide several objects
+    void checkboxtool();
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    //user should able to lable everything on his fugures and modify them
+    void create_labels();
+    void modify_labels();
+    void delete_labels();
+
+    //(advanced fuction) we should have the visibility status of some chosen objects depend
+    //on certain conditions fixed by the user
+    void conditional_visibility();
+    void hide_object();
+    void reshow_object();
+
+    //user should be able to change the opacity of objects
+    void opacity();
+
+<<<<<<< HEAD
+    //create layers in order to determine which object to select when users clicks on
+=======
+    //create layers in order to determine which object to select when users clicks on
+>>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
+    //multiple objects at the same time
+    void create_layers();
+    void hide_layer(int layer_number);
+    void show_layer(int layer_number);
+    //create helpers so that when thw users puts the mouse on a toolbox
+    //a small text box appears describing breifly the funtion of the toolbox
+    void tips():]
+
+    //user should be able to take a snapshot of the grid
+    void snapshot();
+
+    // user should be able to undo and redo
+    void undo();
+    void redo();
+
+    //the user should be able to clear the grid as he pleases
+    void clear_sheet();
+};
+*/
