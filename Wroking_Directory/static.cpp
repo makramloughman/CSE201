@@ -2,7 +2,9 @@
 #include<math.o>
 using namespace std;
 
-static * Inter::interesection(Line line1,Line line2)
+// if these functions doesn't work with arrays i will modify it and define the type of the function 
+//below to be a list of Point .
+static * Inter::interesection_LL(Line line1,Line line2)
     Point *array;
 
 {
@@ -23,7 +25,7 @@ static * Inter::interesection(Line line1,Line line2)
     return array;
     }
 }
-static * Inter::interesection(Line line ,Segment segment){
+static * Inter::interesection_LS(Line line ,Segment segment){
     Point *array;
 
     Line linebis= Line( segment._point1 , segment._point2);
@@ -46,7 +48,7 @@ static * Inter::interesection(Line line ,Segment segment){
 
 }
 
-static * Inter::intersection(Line line,Circle circle){
+static * Inter::intersection_CC(Line line,Circle circle){
     
     Point *array;
    
@@ -92,7 +94,7 @@ static * Inter::intersection(Line line,Circle circle){
   
 }
 
-static *intersection(Circle circle1,Circle circle2){
+static *intersection_LC(Circle circle1,Circle circle2){
 
     Point *array;
     double x1=circle1.getX();
@@ -153,6 +155,30 @@ static *intersection(Circle circle1,Circle circle2){
        *array[1]=Point(x4,y4);
 
         return array;
+    }
+
+}
+
+static *intersection_SC(Segment segment,Circle circle){
+    
+    Point *array;
+
+    Line line_of_seg= Line( segment._point1 , segment._point2);
+    double s=line_of_seg.slope();
+    double c=line_of_seg.y_intercept();
+    Point inter_point= intersection(Line line_of_seg ,Circle circle);
+
+    if (0=<inter_point.getx()-segment._point1.getx()/segment._point2.getx()-segment._point1.getx()<=1) and 
+    (0=<inter_point.gety()-segment._point1.gety()/segment._point2.gety()-segment._point1.gety()<=1){
+        
+        array= new Point[1];
+        *array[0]=inter_point
+
+        return array;
+        
+    }
+    else{
+        return NULL;
     }
 
 }

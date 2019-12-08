@@ -1,9 +1,9 @@
 
 
 
-Rectangle::Rectangle(double p1, double p2){
-    this->p1 = p1;
-    this->p2 = p2;
+Rectangle::Rectangle(const Point &p1, const Point &p2){
+    this->point1 = p1;
+    this->point2 = p2;
 }
 
 Rectangle::~ Rectangle(){
@@ -22,11 +22,11 @@ double Rectangle::width(){
 
 }
 
-double Rectangle::perimeter(){
+double Rectangle::getPerimeter()const{
     return length()+width()
 }
 
-double Rectangle::area(){
+double Rectangle::getArea()const{
     return length()*width()
 }
 

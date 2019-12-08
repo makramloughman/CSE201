@@ -4,11 +4,11 @@
 
 class Rectangle {
 private:
-Point p1;
-Point p2;
+Point point1;
+Point point2;
 
 public :
+Rectangle(const Point &p1, const Point &p2 );
 double length();
 double width();
-double perimeter();
-double area();
+double getArea()const;

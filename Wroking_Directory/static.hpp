@@ -7,14 +7,14 @@
 class Inter:
 {
     public:
-    static *intersection(Line line1,Line line2);
+    static *intersection_LL(Line line1,Line line2);
     //
-    static *intersection(Line line,Segment segment);
+    static *intersection_LS(Line line,Segment segment);
     //
-    static *intersection(Circle circle1, Circle circle2);
+    static *intersection_CC(Circle circle1, Circle circle2);
     //
-    static *intersection(Line line,Circle circle);
+    static *intersection_LC(Line line,Circle circle);
     //
-    static *intersection(Segment segment,Circle circle)
+    static *intersection_SC(Segment segment,Circle circle)
     //
 }
