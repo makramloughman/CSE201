@@ -8,36 +8,16 @@ class Polygone:public Item {
   private:
     int color [3];
     std::vector<point> Pointlist; 
-  
- /* Old version
-  
-  class NodeList {
-    public:
-      int data;
-      NodeList *next;
-
-      // create a single node with data d
-      // and optional next node
-      NodeList(int d,  NodeList* nxt = NULL);
-
-      // delete this node and all successor nodes
-      ~ NodeList();
-  };
-
-  class PointList {
-    private:
-    NodeList *first, *last;
-
-   public:
-    // create an empty list
-    PointList(); */
+    int size;
 
   public : 
     //create empty list
     Polygone();
     //add points to the list
     void append(point);
-
+    
+    Polygone(int k, vector<point>);
+ 
     void changecolour(R,G,B);
     // changes the colour
 
@@ -79,5 +59,5 @@ class RegularPolygone : public Polygone {
  
   cirlce circumscribedcircle(); //draws and create the circumscribed circle
 
-
+ 
 }
