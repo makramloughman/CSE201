@@ -18,7 +18,8 @@
 #include <grid.h>
 #include <point.hpp>
 #include <mathobject.h>
-
+#include <line.hpp>
+#include <circle.hpp>
 namespace Ui {
 class MainWindow;
 }

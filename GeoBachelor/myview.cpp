@@ -49,6 +49,9 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this->clickedP.clear();
             this->circle_chosen = false;
             this->n_counter =0;
+
+            mainW->mainGrid->objects.push_back(Circle(Point(mainW->mapFromSceneToGrid(clickedP[0].x(),clickedP[0].y())),
+                                                      Point(mainW->mapFromSceneToGrid(clickedP[1].x(),clickedP[1].y())))); //Figured out
         }
     }
     else if (this->inf_line_chosen){
