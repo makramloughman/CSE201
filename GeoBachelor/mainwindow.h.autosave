@@ -50,9 +50,13 @@ public:
     void drawScene(); //drawing rectangle
     void clearScene(); //sufficient for moving the grid! (moving/zooming)
     
-    
+    //Coordinate systems => conversions
     QPointF mapFromGridToScene(double x,double y); //Grid to Scene
     QPointF mapFromSceneToGrid(double x, double y); //Scene to Grid
+    QPointF mapToMyScene(double x,double y); // View to Scene
+    QPointF mapFromMyScene(double x,double y); //Scene to View
+    QPointF mapFromSceneToView(double x, double y); //Scene to View
+    QPointF mapFromViewtoScene(double x, double y); //View to Scene    
     
     //GraphicsView
     int getWidth_View();
