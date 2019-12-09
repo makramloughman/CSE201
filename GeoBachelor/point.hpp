@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <mathobject.h>
+#include <QGraphicsScene>
 
 class Point : public MathObject
 {
@@ -24,6 +25,7 @@ public :
 
     //Creates a Point with given coordinates
     Point(double x, double y); 
+    Point(QPointF p);
 
     virtual void draw();
     virtual void translate(double c, double y); //moves the point in the window

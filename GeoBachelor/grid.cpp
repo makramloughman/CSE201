@@ -30,8 +30,8 @@ void Grid::draw()
     double w = mainW->getWidth_View();
     double h = mainW->getHeight_View();
 
-    // Add the vertical lines first (for x>=x_p)
-    for (double x = x_p; x <= w+unit ; x+=unit)
+    // Add the vertical lines first
+    for (int x=0; x<=mainW->getWidth_View()+50; x+=50)
     {
         QPointF p1 = QPointF(mainW -> mapToMyScene(x,0));
         QPointF p2 = QPointF(mainW -> mapToMyScene(x,h));
@@ -51,7 +51,7 @@ void Grid::draw()
     for (double y = y_p; y< h + unit; y+=unit)
     {
         QPointF p1= QPointF(mainW -> mapToMyScene(0,y));
-        QPointF p2= QPointF(mainW -> mapToMyScene(w,y));
+        QPointF p2= QPointF(mainW -> mapToMyScene(mainW->getWidth_View()+50,y));
         mainW->drawLine(p1,p2,myPen1);
     }
 

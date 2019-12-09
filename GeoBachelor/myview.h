@@ -12,6 +12,7 @@
 #include <cmath>
 #include <grid.h>
 #include <point.hpp>
+#include <line.hpp>
 #include <mathobject.h>
 
 using namespace std;
