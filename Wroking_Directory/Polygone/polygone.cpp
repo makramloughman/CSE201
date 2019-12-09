@@ -6,16 +6,15 @@ Polygone::Polygone(){              // create the polygone by selecting points on
 	size = 0;
 }
 
-Polygone::Polygone(int k, vector<point> P){ // create the polygone by adding points in a list
+Polygone::Polygone(int k, vector<point> P){     // create the polygone by adding points to the list
 	size = k;
 	for(int i=0; i<size; i++) {
 		Pointlist.pushback(P[i]);
 	}
 }
 	
-void Polygone::append(point) {
-// append points to the list
-	push_back(point);
+void Polygone::append(point) {   // append points to the list afterwards
+	Pointlist.pushback(point);
 }
 
 Polygone::~Polygone()
