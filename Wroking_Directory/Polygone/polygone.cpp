@@ -3,14 +3,14 @@
 
 
 Polygone::Polygone(){              // create the polygone by selecting points on the grid
-	// std::vector<point> Point;
 	size = 0;
 }
 
-Polygone::Polygone(int k, vector<point>){ // create the polygone by adding points in a list
+Polygone::Polygone(int k, vector<point> P){ // create the polygone by adding points in a list
 	size = k;
-	len = new int[size];
-	for(int i=0; i<size; i++) len[i]=l[i];
+	for(int i=0; i<size; i++) {
+		Pointlist.pushback(P[i]);
+	}
 }
 	
 void Polygone::append(point) {
