@@ -27,6 +27,9 @@ void Grid::draw()
     QPen myPen1 = QPen(Qt::lightGray);
     myPen1.setWidth(0.5);
 
+    double w = mainW->getWidth_View();
+    double h = mainW->getHeight_View();
+
     // Add the vertical lines first
     for (int x=0; x<=mainW->getWidth_View()+50; x+=50)
     {
