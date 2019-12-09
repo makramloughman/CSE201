@@ -2,27 +2,36 @@
 #iostream "Polygone.hpp"
 
 
-Polygone::Polygone(){
-	std::vector<point> Point;
+Polygone::Polygone(){              // create the polygone by selecting points on the grid
+	size = 0;
 }
 
-void Polygone::append(point) {
-// append points to the list
-	push_back(point);
+Polygone::Polygone(int k, vector<point> P){     // create the polygone by adding points to the list
+	size = k;
+	for(int i=0; i<size; i++) {
+		Pointlist.pushback(P[i]);
+	}
+}
+	
+void Polygone::append(point) {   // append points to the list afterwards
+	Pointlist.pushback(point);
 }
 
 Polygone::~Polygone()
 // delete the polygone
 {
-	delete(PointList)
+	delete Point;
 }
 
-double PointList::surface()
+double Polygone::surface()
 // get the surface
 {
-	double s= sum(PointList);
+	// double s= sum(PointList);
+	double s = 0;
+	for(int i=0;i<size;i++) s+=len[i];
 	return s;
 }
+
 
 void Polygone::hide()
 // hide the polygone

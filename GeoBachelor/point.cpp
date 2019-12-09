@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
-#include <mainwindow.h>
 #include "point.hpp"
+#include <mainwindow.h>
 
 Point::Point() {
     this->x = 0.0;
@@ -16,6 +16,18 @@ Point::Point(double x, double y){
     color.push_back(0);
     color.push_back(0);
     color.push_back(0);
+    this->shape = 0;
+}
+
+Point::Point(QPointF p)
+{
+    this->x = p.x();
+    this->y = p.y();
+    this-> name = ""; //A...Z then A_1...Z_1 ... until A_n...Z_n
+    color.push_back(0);
+    color.push_back(0);
+    color.push_back(0);
+    this->shape = 0;
 }
 
 void Point::draw() //virtual function from the class MathObject

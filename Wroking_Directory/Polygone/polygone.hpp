@@ -8,13 +8,18 @@ class Polygone:public Item {
   private:
     int color [3];
     std::vector<point> Pointlist; 
-    
+    int size;
+
   public : 
     //create empty list
     Polygone();
-    //add points to the list
+    //create a polygone
+    Polygone(int k, vector<point> P);
+    //add points to the list afterwards
     void append(point);
-
+    
+    Polygone(int k, vector<point>);
+ 
     void changecolour(R,G,B);
     // changes the colour
 
@@ -56,5 +61,5 @@ class RegularPolygone : public Polygone {
  
   cirlce circumscribedcircle(); //draws and create the circumscribed circle
 
-
+ 
 }
