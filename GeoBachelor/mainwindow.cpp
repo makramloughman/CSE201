@@ -5,11 +5,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    theWindow = this;
     ui->setupUi(this);
+    scene = new QGraphicsScene(this);
+       ui->graphicsView->setScene(scene);
+       ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+       scene->setSceneRect(0, 0, 300, 300);
     createActions();
     createMenus();
     createToolButtons();
     createToolBars();
+    this->started = false;
+
 }
 
 void MainWindow::createActions(){
@@ -300,6 +307,152 @@ void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addStretch();
 }
 
+void MainWindow::drawLine(QLineF l)
+{
+    QPen myPen = QPen();
+    myPen.setWidth(1.5);
+    scene->addLine(l, myPen);
+
+}
+
+void MainWindow::drawLine(QPointF p1, QPointF p2)
+{
+    MainWindow::drawLine(QLineF(p1,p2));
+}
+
+void MainWindow::drawLine(QPointF p1, QPointF p2, QPen pen)
+{
+    QLineF f = QLineF(p1, p2);
+    scene->addLine(f, pen);
+}
+
+void MainWindow::drawPoint(QPointF p)
+{
+    double rad = 3;
+    scene->addEllipse(p.x()-rad, p.y()-rad, rad*2.0, rad*2.0,
+                      QPen(Qt::blue), QBrush(Qt::SolidPattern));
+}
+
+void MainWindow::drawCircle(QPointF p, double r)
+{
+    QPen myPen = QPen();
+    myPen.setWidth(1.5);
+    scene->addEllipse(p.x()-r, p.y()-r, r*2.0, r*2.0,
+                      myPen);
+}
+
+void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2)
+{
+    //construct y = k*x + n
+    double slope = (p1.y()-p2.y())/(p1.x()-p2.x()); //k
+    double term = (p1.y() - slope * p1.x()); //n
+
+    //now, we create two points on the edges of the form
+    //WE ARE ASSUMING SLOPE!=0
+
+    int y0 = 0; //at this y-coordinate is the first point
+    int y1 = ui->graphicsView->height();
+    QPointF p11 = ui->graphicsView->mapToScene((y0 - term)/slope, y0);
+    QPointF p21 = ui->graphicsView->mapToScene((y1 - term)/slope, y1);
+
+    MainWindow::drawLine(p11,p21);
+}
+
+void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
+{
+    std::vector<QPointF> ps;
+    ps.push_back(p1);
+    ps.push_back(p2);
+    ps.push_back(p3);
+    MainWindow::drawPolygon(ps);
+}
+
+void MainWindow::drawPolygon(std::vector<QPointF> points)
+{
+    int n = points.size();
+    for(int i=0;i<n-1;i++)
+    {
+        MainWindow::drawLine(points[i],points[i+1]);
+    }
+    MainWindow::drawLine(points[0],points[n-1]);
+}
+
+
+void MainWindow::drawCoordinateSystem()
+{
+    this->mainGrid->draw();
+}
+
+void MainWindow::setGrid(Grid* g)
+{
+    this->mainGrid = g;
+}
+
+MainWindow* MainWindow:: getInstance()
+{
+    return theWindow;
+}
+
+void MainWindow::drawScene()
+{
+    scene->addRect(scene->sceneRect());
+}
+void MainWindow::clearScene()
+{
+    scene->clear();
+}
+
+QPointF MainWindow::mapFromGridToScene(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
+QPointF MainWindow::mapFromSceneToGrid(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
+int MainWindow::getWidth_View()
+{
+    return ui->graphicsView->width();
+}
+
+int MainWindow::getHeight_View()
+{
+    return ui->graphicsView->height();
+}
+
+void MainWindow::setBackGroundColor_View(QBrush b)
+{
+    scene->setBackgroundBrush(b);
+}
+
+QPointF MainWindow::mapToMyScene(double x, double y)
+{
+    return ui->graphicsView->mapToScene(x,y);
+}
+
+QPointF MainWindow::mapFromMyScene(double x, double y)
+{
+    return ui->graphicsView->mapFromScene(x,y);
+}
+
+QPointF MainWindow::mapFromViewToGrid(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
+QPointF MainWindow::mapFromGridToView(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
+MainWindow *MainWindow::theWindow = nullptr; //declare static
+
 void MainWindow::Move(){
     qDebug() << "MainWindow::Move()";
 }
@@ -309,7 +462,7 @@ void MainWindow::Select(){
 }
 
 void MainWindow::Point(){
-    qDebug() << "MainWindow::Point()";
+    ui->graphicsView->point_chosen = true;
 }
 
 void MainWindow::PointOnObject(){
@@ -337,11 +490,11 @@ void MainWindow::Roots(){
 }
 
 void MainWindow::Line(){
-    qDebug() << "MainWindow::Line()";
+    ui->graphicsView->inf_line_chosen = true;
 }
 
 void MainWindow::Segment(){
-    qDebug() << "MainWindow::Segment()";
+    ui->graphicsView->segment_chosen = true;
 }
 
 void MainWindow::Ray(){
@@ -389,7 +542,7 @@ void MainWindow::RegularPolygon(){
 }
 
 void MainWindow::CircleCPT(){
-    qDebug() << "MainWindow::CircleCPT()";
+    ui->graphicsView->circle_chosen = true;
 }
 
 void MainWindow::CircleCRT(){
@@ -445,7 +598,7 @@ void MainWindow::Delete(){
 }
 
 void MainWindow::Clear(){
-    qDebug() << "MainWindow::Clear()";
+    scene->clear();
 }
 
 MainWindow::~MainWindow()
@@ -509,4 +662,16 @@ MainWindow::~MainWindow()
     delete GeneralMenu;
     delete GeneralButton;
 
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(!started)
+    {
+        this->started = true;
+        Grid* g = new Grid(50,this->getHeight_View()-50);
+        setGrid(g);
+        g->draw();
+        g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
+    }
 }

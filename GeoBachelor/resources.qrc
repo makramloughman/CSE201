@@ -1,40 +1,41 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/pointonobject.png</file>
-        <file>images/point.png</file>
-        <file>images/midpoint.png</file>
-        <file>images/intersect.png</file>
-        <file>images/roots.png</file>
-        <file>images/extremum.png</file>
-        <file>images/complexnumber.png</file>
-        <file>images/vectorfrompoint.png</file>
-        <file>images/vector.png</file>
-        <file>images/segment.png</file>
-        <file>images/ray.png</file>
-        <file>images/polyline.png</file>
-        <file>images/join.png</file>
-        <file>images/tangent.png</file>
-        <file>images/parallel.png</file>
-        <file>images/orthogonal.png</file>
-        <file>images/linebisector.png</file>
-        <file>images/angularbisector.png</file>
-        <file>images/move.png</file>
-        <file>images/middlefinger.png</file>
-        <file>images/polygon.png</file>
-        <file>images/regularpolygon.png</file>
         <file>images/angle.png</file>
+        <file>images/angularbisector.png</file>
         <file>images/area.png</file>
         <file>images/circle2.png</file>
         <file>images/circlepointradius.png</file>
+        <file>images/complexnumber.png</file>
         <file>images/delete.png</file>
         <file>images/distance.png</file>
         <file>images/ellipse.png</file>
+        <file>images/extremum.png</file>
+        <file>images/GeoBachelor.png</file>
         <file>images/hyperbola3.png</file>
+        <file>images/intersect.png</file>
+        <file>images/join.png</file>
+        <file>images/linebisector.png</file>
+        <file>images/middlefinger.png</file>
+        <file>images/midpoint.png</file>
         <file>images/mirroratline.png</file>
         <file>images/mirroratpoint.png</file>
+        <file>images/move.png</file>
+        <file>images/orthogonal.png</file>
         <file>images/parabola.png</file>
+        <file>images/parallel.png</file>
+        <file>images/point.png</file>
+        <file>images/pointonobject.png</file>
+        <file>images/polygon.png</file>
+        <file>images/polyline.png</file>
+        <file>images/ray.png</file>
+        <file>images/regularpolygon.png</file>
         <file>images/relation.png</file>
+        <file>images/roots.png</file>
+        <file>images/segment.png</file>
         <file>images/slope.png</file>
+        <file>images/tangent.png</file>
         <file>images/translatebyvector.png</file>
+        <file>images/vector.png</file>
+        <file>images/vectorfrompoint.png</file>
     </qresource>
 </RCC>

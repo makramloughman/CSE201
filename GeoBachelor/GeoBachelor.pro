@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-12-03T17:35:28
+# Project created by QtCreator 2019-12-08T13:09:52
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = GeoBachelorV1
+TARGET = GeoBachelor
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,14 +26,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dropdowntoolbutton.cpp
+    dropdowntoolbutton.cpp \
+    myview.cpp \
+    grid.cpp \
+    mathobject.cpp \
+    point.cpp
 
 HEADERS += \
         mainwindow.h \
-    dropdowntoolbutton.h
+    dropdowntoolbutton.h \
+    myview.h \
+    grid.h \
+    mathobject.h \
+    point.hpp
 
 FORMS += \
-        mainwindow.ui
+    mainwindow.ui
 
 RESOURCES += \
     resources.qrc

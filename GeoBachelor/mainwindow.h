@@ -1,5 +1,7 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
+#pragma once
 
 #include <QMainWindow>
 #include <QAction>
@@ -8,6 +10,14 @@
 #include <QToolButton>
 #include <QDebug>
 #include "dropdowntoolbutton.h"
+#include <QPainter>
+#include <QWidget>
+#include <QGraphicsScene>
+#include <iostream>
+#include <vector>
+#include <grid.h>
+#include <point.hpp>
+#include <mathobject.h>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +30,39 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    QGraphicsScene* scene;
+    static MainWindow* getInstance();
+    void drawLine(QLineF l);
+    void drawLine(QPointF p1, QPointF p2);
+    void drawLine(QPointF p1, QPointF p2, QPen pen);
+    void drawPoint(QPointF p);
+    void drawCircle(QPointF p,double r);
+    void drawInfiniteLine(QPointF p1, QPointF p2);
+    void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle
+    void drawPolygon(std::vector<QPointF> points);
+
+    //grid part => drawings
+    Grid* mainGrid;
+    void drawCoordinateSystem(); //just using the functuons of the grid
+    void setGrid(Grid* g); //seting the main grid
+
+    //scene functions:
+    void drawScene(); //drawing rectangle
+    void clearScene(); //sufficient for moving the grid! (moving/zooming)
+
+    //Coordinate systems => conversions
+    QPointF mapFromGridToScene(double x,double y); //Grid to Scene
+    QPointF mapFromSceneToGrid(double x, double y); //Scene to Grid
+    QPointF mapToMyScene(double x,double y); // View to Scene
+    QPointF mapFromMyScene(double x,double y); //Scene to View
+    QPointF mapFromGridToView(double x, double y); //Grid to View
+    QPointF mapFromViewToGrid(double x, double y); //View to Grid
+
+    //GraphicsView
+    int getWidth_View();
+    int getHeight_View();
+    void setBackGroundColor_View(QBrush b);
+
 
 public slots:
     void Move();
@@ -69,8 +112,14 @@ public slots:
     void Delete();
     void Clear();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    static MainWindow *theWindow;
+    bool started; //if the user clicked start button
+
     void createActions();
     void createMenus();
     void createToolBars();

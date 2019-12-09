@@ -34,3 +34,7 @@ git clone https://github.com/makramloughman/CSE201.git
 - Farah El-Euch, faraheleuch
 - Naya Khalil, naya-khalil
 - Kaylynn Pellicer, kaylynnn
+
+## License
+
+This project is for educational purposes only. Icons form the official GeoGebra application were used in the design. Under no right this software may be distributed.
