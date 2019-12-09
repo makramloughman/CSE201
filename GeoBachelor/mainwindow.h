@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #pragma once
@@ -50,12 +50,19 @@ public:
     void drawScene(); //drawing rectangle
     void clearScene(); //sufficient for moving the grid! (moving/zooming)
 
+    //Coordinate systems => conversions
+    QPointF mapFromGridToScene(double x,double y); //Grid to Scene
+    QPointF mapFromSceneToGrid(double x, double y); //Scene to Grid
+    QPointF mapToMyScene(double x,double y); // View to Scene
+    QPointF mapFromMyScene(double x,double y); //Scene to View
+    QPointF mapFromGridToView(double x, double y); //Grid to View
+    QPointF mapFromViewToGrid(double x, double y); //View to Grid
+
     //GraphicsView
     int getWidth_View();
     int getHeight_View();
     void setBackGroundColor_View(QBrush b);
-    QPointF mapToMyScene(double x,double y);
-    QPointF mapFromMyScene(double x,double y);
+
 
 public slots:
     void Move();

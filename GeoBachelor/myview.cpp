@@ -10,7 +10,7 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
     this->inf_line_chosen = false; //no infinite line chosen
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
-    this->n_polygon = 0; //polygon that we have chosen
+    this->n_polygon = 0; //no polygon chosen
 }
 
 void MyView::mousePressEvent(QMouseEvent *ev)
@@ -69,9 +69,12 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         }
     }
     else if (this->point_chosen){
+        //User chose the feature to create a point using mouse
         mainW -> drawPoint(mapToScene(ev->x(),ev->y()));
         this->point_chosen = false;
-        mainW->mainGrid->objects.push_back(Point()); //We need it in the grid coordinates -> will be discussed soon
+
+        QPointF help = mainW->mapFromViewToGrid(ev->x(),ev->y());
+        mainW->mainGrid->objects.push_back(Point(help.x(),help.y()));
     }
     else if (this->polygon_chosen){
         if(this->n_counter == 0){
