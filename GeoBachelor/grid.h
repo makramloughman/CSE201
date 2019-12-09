@@ -27,7 +27,6 @@ public:
     //we should have a function that allows the user to use diffrent types of grids
     //as he was styling his own sheet
 
-    std::vector<int> current_items;
     Grid(double x, double y);
     Grid();
     void draw();

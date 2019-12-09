@@ -402,6 +402,18 @@ void MainWindow::clearScene()
     scene->clear();
 }
 
+QPointF MainWindow::mapFromGridToScene(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
+QPointF MainWindow::mapFromSceneToGrid(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
 int MainWindow::getWidth_View()
 {
     return ui->graphicsView->width();
@@ -425,6 +437,18 @@ QPointF MainWindow::mapToMyScene(double x, double y)
 QPointF MainWindow::mapFromMyScene(double x, double y)
 {
     return ui->graphicsView->mapFromScene(x,y);
+}
+
+QPointF MainWindow::mapFromSceneToView(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
+}
+
+QPointF MainWindow::mapFromViewtoScene(double x, double y)
+{
+    //Naya to implement
+    return QPointF(0,0);
 }
 
 MainWindow *MainWindow::theWindow = nullptr; //declare static
