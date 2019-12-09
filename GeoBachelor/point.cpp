@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-
+#include <mainwindow.h>
 #include "point.hpp"
 
 Point::Point() {
@@ -18,9 +18,10 @@ Point::Point(double x, double y){
     color.push_back(0);
 }
 
-void Point::draw()
+void Point::draw() //virtual function from the class MathObject
 {
-
+     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+     mainW -> drawPoint(mainW->mapFromGridToScene(this->x,this->y)); //Remark: We save data in Grid coordinates, so we need conversion
 }
 
 void Point::changecolour(double R,double G,double B){
@@ -45,9 +46,10 @@ void Point::sety(double b){
     y = b;
 }
 
-void Point::translate(double a, double b){
-    x= x+a;
-    y= y+b;
+void Point::translate(double a, double b) //virtual function from the class MathObject
+{
+    x = x+a;
+    y = y+b;
 }
 
 double Point::getx(){
@@ -83,25 +85,28 @@ void Point::symmetry_axisx(){
 }
 */
 
-double Point::distance(Point A, Point B){
+double Point::distance(Point A, Point B)
+{
    return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
 }
 
 
-///
-///gives the radius from polar coordinates of the point (r,theta)
-float radius_polarcoordinates(Point point){                      
+
+//gives the radius from polar coordinates of the point (r,theta)
+float radius_polarcoordinates(Point point)
+{
     float r = sqrt(pow(point.getx(),2)+pow(point.gety(),2));     //radius = sqrt(x^2+y^2)
     return r;
 }
-///
-///gives the angle from polar coordinates of the point (r,theta)
-float angle_polarcoordinates(Point point){                       
+
+//gives the angle from polar coordinates of the point (r,theta)
+float angle_polarcoordinates(Point point)
+{
     float theta = atan(point.gety() / point.getx() ) * 180 / M_PI; //angle in degree theta = atan(y/x) *180/pi
     return theta;
 }
 
-
-Point::~Point() {
+Point::~Point()
+{
   std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
 }

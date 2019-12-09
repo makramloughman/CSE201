@@ -28,13 +28,15 @@ public:
     //as he was styling his own sheet
 
     Grid(double x, double y);
+    Grid(double x, double y,double unit);
     Grid();
     void draw();
     double getX();
     double getY();
     void set_BackColor(QBrush b);
+    double unit; //number of pixels correspondig to 1 natural unit (in our grid)
 
-    std::vector<MathObject> objects;
+    std::vector<MathObject> objects; //all the current objects
 
 };
 

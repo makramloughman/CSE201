@@ -12,8 +12,9 @@ private:
     double y; 
 
     std::string name; //name of the point (a letter)
-    std::vector<double> color; // matrix of size 3x1 corresponding to rgb
+    std::vector<double> color; // vector of size 3x1 corresponding to rgb
     int shape; // 0 for dot; 1 for circle; 2 for cross...
+
     //int namecolor [3] //color of the point's name
         
 public : 
@@ -21,16 +22,11 @@ public :
     //Creates Point(0,0)
     Point();
 
-   // Point(std::string mystring) //{
-      //  name = mystring;
-   // }
-
     //Creates a Point with given coordinates
     Point(double x, double y); 
 
     virtual void draw();
     virtual void translate(double c, double y); //moves the point in the window
-
 
     void clickpoint(); //creates a point where we click
 

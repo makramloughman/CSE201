@@ -5,6 +5,14 @@ Grid::Grid(double x, double y)
 {
     this->x_p = x;
     this->y_p = y;
+    this->unit = 50;
+}
+
+Grid::Grid(double x, double y, double unit)
+{
+    this->x_p = x;
+    this->y_p = y;
+    this->unit = unit;
 }
 
 Grid::Grid()
@@ -19,30 +27,49 @@ void Grid::draw()
     QPen myPen1 = QPen(Qt::lightGray);
     myPen1.setWidth(0.5);
 
-    // Add the vertical lines first
-    for (int x=0; x<=1100; x+=50)
-    {
-        QPointF p1 = QPointF(mainW -> mapToMyScene(x,0));
-        QPointF p2 = QPointF(mainW -> mapToMyScene(x,1100));
-        mainW->drawLine(p1,p2,myPen1);
-    }
-    // Now add the horizontal lines,
-    for (int y=mainW->getHeight_View(); y>-100; y-=50)
-    {
-        QPointF p1= QPointF(mainW -> mapToMyScene(0,y));
-        QPointF p2= QPointF(mainW -> mapToMyScene(1100,y));
-        mainW->drawLine(p1,p2,myPen1);
-    }
-    double x = this->getX();
-    double y = this->getY();
-
     double w = mainW->getWidth_View();
     double h = mainW->getHeight_View();
 
-    QPointF x1 = QPointF(mainW->mapToMyScene(-1000, y));
-    QPointF x2 = QPointF(mainW->mapToMyScene(1000+w, y));
-    QPointF y1 = QPointF(mainW->mapToMyScene(x, -1000));
-    QPointF y2 = QPointF(mainW->mapToMyScene(x, 1000+h));
+    // Add the vertical lines first (for x>=x_p)
+    for (double x = x_p; x <= w+unit ; x+=unit)
+    {
+        QPointF p1 = QPointF(mainW -> mapToMyScene(x,0));
+        QPointF p2 = QPointF(mainW -> mapToMyScene(x,h));
+        mainW->drawLine(p1,p2,myPen1);
+    }
+
+    // Add the vertical lines first (for x<x_p)
+
+    for (double x = x_p-unit; x >= -1*unit ; x-=unit)
+    {
+        QPointF p1 = QPointF(mainW -> mapToMyScene(x,0));
+        QPointF p2 = QPointF(mainW -> mapToMyScene(x,h));
+        mainW->drawLine(p1,p2,myPen1);
+    }
+
+    // Now add the horizontal lines for y>=y_p
+    for (double y = y_p; y< h + unit; y+=unit)
+    {
+        QPointF p1= QPointF(mainW -> mapToMyScene(0,y));
+        QPointF p2= QPointF(mainW -> mapToMyScene(w,y));
+        mainW->drawLine(p1,p2,myPen1);
+    }
+
+    // Now add the horizontal lines for y<y_p
+    for (double y = y_p-unit; y>= -1*unit; y-=unit)
+    {
+        QPointF p1= QPointF(mainW -> mapToMyScene(0,y));
+        QPointF p2= QPointF(mainW -> mapToMyScene(w,y));
+        mainW->drawLine(p1,p2,myPen1);
+    }
+
+    double x = this->getX();
+    double y = this->getY();
+
+    QPointF x1 = QPointF(mainW->mapToMyScene(std::min(0.0,x_p), y));
+    QPointF x2 = QPointF(mainW->mapToMyScene(std::max(w,x_p), y));
+    QPointF y1 = QPointF(mainW->mapToMyScene(x, std::min(y_p,0.0)));
+    QPointF y2 = QPointF(mainW->mapToMyScene(x, std::max(h,y_p)));
 
     QPen myPen = QPen(Qt::gray);
     myPen.setWidth(3);
