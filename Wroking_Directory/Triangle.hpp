@@ -8,11 +8,11 @@ class Triangle: public  Item{
     
     
     public:
-    void getArea();//
-    void getHeight(); //
-    void getParameter(); //
-    void getCenterofgravity();//
-    void getOrthocenter();//
-    void Circumscribedcercle();//
-    void getInscribedcercle();//
+    double getArea();//
+    double getHeight(); //
+    double getParameter(); //
+    Point getCenterofgravity();//
+    Point getOrthocenter();//
+    Circle Circumscribedcercle();//
+    Circle getInscribedcercle();//
 }
