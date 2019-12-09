@@ -102,17 +102,10 @@ class Grid{
 private:
     double x_p;
     double y_p;
-<<<<<<< HEAD
 
     t=QTransform();
     //the color of the font should be initialized to white
 
-=======
-
-    t=QTransform();
-    //the color of the font should be initialized to white
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     void Grid::initialize_fontcolor()
     {
         ui->myGraphicsView->setScene(myScene);
@@ -122,13 +115,8 @@ private:
     // the argument represent the norm of the unit vector
     //maximum value for x
 
-<<<<<<< HEAD
 }
 
-=======
-}
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     void Grid::draw()
 {
    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
@@ -160,17 +148,10 @@ void Grid::set_xaxis_label(){
     text->setPos(width-50, y_p+50);
 
 public:
-<<<<<<< HEAD
 
     // translate the center or translate the whole coordinate system so that
     //a specified point become the center
 
-=======
-
-    // translate the center or translate the whole coordinate system so that
-    //a specified point become the center
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
 void Grid::Draw_grid(){
     // Add the vertical lines first
     for (int x=0; x<=1100; x+=50)
@@ -186,7 +167,6 @@ void Grid::Draw_grid(){
 
     // Fit the view in the scene's bounding rect
     ui->view->fitInView(scene->itemsVBoundingRect());
-<<<<<<< HEAD
 
 
 
@@ -196,17 +176,6 @@ void Grid::Draw_grid(){
 
 
 
-=======
-
-
-
-
-
-
-
-
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     void translate(int percentage);
     void change_center_view();
 
@@ -221,15 +190,9 @@ void Grid::Draw_grid(){
     void Grid::right_rotation(double angle_of_rotation)
     {
 
-<<<<<<< HEAD
 
     void left_rotation(double angle_of_rotation);
 
-=======
-
-    void left_rotation(double angle_of_rotation);
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     //zoom on a specific zome of the grid
     //we still need to see how to define the achpr where we click
     void Grid::zoom_in(int percentage)
@@ -243,19 +206,11 @@ void Grid::Draw_grid(){
         t.scale(int -percentage,int -percentage);
         setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
         view->setTransform(t);
-<<<<<<< HEAD
 
     }
 
 
 
-=======
-
-    }
-
-
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     //the user should be able to rescale the axis
     //user should also be able to rename the axis
     void rescale_axis(double new_scale);
@@ -266,11 +221,6 @@ void Grid::Draw_grid(){
 
     //checkbox tool is to hide several objects
     void checkboxtool();
-<<<<<<< HEAD
-
-=======
-
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     //user should able to lable everything on his fugures and modify them
     void create_labels();
     void modify_labels();
@@ -285,11 +235,7 @@ void Grid::Draw_grid(){
     //user should be able to change the opacity of objects
     void opacity();
 
-<<<<<<< HEAD
     //create layers in order to determine which object to select when users clicks on
-=======
-    //create layers in order to determine which object to select when users clicks on
->>>>>>> 696fdc0f4512462924fd9e97fca0c2504da3b5ba
     //multiple objects at the same time
     void create_layers();
     void hide_layer(int layer_number);
