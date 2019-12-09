@@ -76,9 +76,41 @@ double getheight1(){
 
 double getheight2(){
     double d2 = distance(point2,point3);
-    return (2*getArea())/
+    return (2*getArea())/d2
 }
 
+double getheight3(){
+    double d3 = distance(point1,point3);
+    return (2*getArea())/d3
+}
 
+Segment getBaricentre1(){
+    Segment s=Segment(Point point2,Point point3);
+    Point m=s.midpoint();
+    Segment l=Segment(Point m,Point 1);
+    return l
+}
+
+Segment getBaricentre2(){
+    Segment s=Segment(Point point1,Point point3);
+    Point m=s.midpoint();
+    Segment l=Segment(Point m,Point 2);
+    return l
+}
+Segment getBaricentre1(){
+    Segment s=Segment(Point point1,Point point2);
+    Point m=s.midpoint();
+    Segment l=Segment(Point m,Point 3);
+    return l
+}
+Point getCenterofgravity(){
+
+    return static *Inter::intersection(getBaricentre1,getBaricentre2);
+
+}
+
+Point orthocenter{
+    
+}
 
 
