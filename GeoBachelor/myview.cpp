@@ -59,13 +59,18 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         }
         else if (this->n_counter==1){
             //we are drawing the infinite
+
             QPointF f_point = mapFromScene(this->clickedP[0].x(),clickedP[0].y());
             QPointF s_point = QPointF(ev->x(),ev->y());
             mainW->drawInfiniteLine(f_point,s_point);
-
             this->clickedP.clear();
             this->inf_line_chosen = false;
             this->n_counter =0;
+
+            Point p1 = Point(mainW->mapFromViewToGrid(this->clickedP[0].x(),clickedP[0].y()));
+            Point p2 = Point(mainW->mapFromViewToGrid(this->clickedP[1].x(),clickedP[1].y()));
+
+            mainW -> mainGrid ->objects.push_back(Line(p1,p2));
         }
     }
     else if (this->point_chosen){
@@ -74,7 +79,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         this->point_chosen = false;
 
         QPointF help = mainW->mapFromViewToGrid(ev->x(),ev->y());
-        mainW->mainGrid->objects.push_back(Point(help.x(),help.y()));
+        mainW->mainGrid->objects.push_back(Point(help));
     }
     else if (this->polygon_chosen){
         if(this->n_counter == 0){

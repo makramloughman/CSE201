@@ -6,12 +6,15 @@ class Line : public MathObject
 {
   
   private:
+
+  public:
   
     Point p1;
     Point p2;
 
-  public:
-  
+    virtual void draw();
+    virtual void translate(double xx, double yy);
+
     Line(Point p1, Point p2); //creates a line passing through two points which correspond to the two arguments
     Line();
 
