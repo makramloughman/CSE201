@@ -13,7 +13,9 @@ class Polygone:public Item {
   public : 
     //create empty list
     Polygone();
-    //add points to the list
+    //create a polygone
+    Polygone(int k, vector<point> P);
+    //add points to the list afterwards
     void append(point);
     
     Polygone(int k, vector<point>);
