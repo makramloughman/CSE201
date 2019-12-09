@@ -30,7 +30,8 @@ SOURCES += \
     myview.cpp \
     grid.cpp \
     mathobject.cpp \
-    point.cpp
+    point.cpp \
+    line.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     myview.h \
     grid.h \
     mathobject.h \
-    point.hpp
+    point.hpp \
+    line.hpp
 
 FORMS += \
     mainwindow.ui
