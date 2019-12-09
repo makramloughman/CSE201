@@ -80,7 +80,7 @@ Line Circle::tangent(Point M)
     double a = (y1 -y0) / (x0 - x1);
     double n = a * a + 1;
     double m = 2 * a * (b - x0) - 2 * y0;
-    double p = (b - x0) * (b -x0) + y0 * y0;
+    double p = (b - x0) * (b -x0) + y0 * y0 - r * r;
     if (m*m - 4 * n * p < 0)
     {
       std::cout << "Tangent line does not exist" << std::endl;
@@ -88,15 +88,15 @@ Line Circle::tangent(Point M)
     else if (m*m - 4 * n * p == 0)
     {
       std::cout << "There is only one tangent line" << std::endl;
-      double y = -n/(2 * n);
+      double y = -m/(2 * n);
       double x = a * y + b;
       return Line(Point(x,y), m);
     }
     else
     {
-      double delta = math.sqrt(m * m - 4 * n * p);
-      double yt1 = -n - delta / (2 * m);
-      double yt2 = -n + delta / (2 * m);
+      double delta = sqrt(m * m - 4 * n * p);
+      double yt1 = (-m - delta) / (2 * n);
+      double yt2 = (-m + delta) / (2 * n);
       double xt1 = a * yt1 + b;
       double xt2 = a * yt2 + b;
       return std::vector{Line(Point (xt1, yt1), M), Line(Point(xt2, yt2), M)};
@@ -109,7 +109,7 @@ Line Circle::tangent(Point M)
     double a = 0;
     double n = a * a + 1;
     double m = 2 * a * (b - y0) - 2 * x0;
-    double p = (b - y0) * (b -y0) + x0 * x0;
+    double p = (b - y0) * (b -y0) + x0 * x0 - r * r;
     if (m*m - 4 * n * p < 0)
     {
       std::cout << "Tangent line does not exist" << std::endl;
@@ -117,15 +117,15 @@ Line Circle::tangent(Point M)
     else if (m*m - 4 * n * p == 0)
     {
       std::cout << "There is only one tangent line" << std::endl;
-      double x = -n/(2 * n);
+      double x = -m/(2 * n);
       double y = a * x + b;
       return Line(Point(x,y), m);
     }
     else
     {
       double delta = math.sqrt(m * m - 4 * n * p);
-      double xt1 = -n - delta / (2 * m);
-      double xt2 = -n + delta / (2 * m);
+      double xt1 = (-m - delta) / (2 * n);
+      double xt2 = (-m + delta )/ (2 * n);
       double yt1 = a * xt1 + b;
       double yt2 = a * xt2 + b;
       return std::vector{Line(Point (xt1, yt1), M), Line(Point(xt2, yt2), M)};
