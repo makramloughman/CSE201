@@ -84,4 +84,9 @@ Point Line::intersection(Line B){
   double ystar = a1 * xstar + b1;
   Point pstar(xstar, ystar);
   return pstar;
-  }
+}
+
+Line::~Line()
+{
+
+}

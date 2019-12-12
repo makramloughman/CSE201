@@ -344,18 +344,41 @@ void MainWindow::drawCircle(QPointF p, double r)
 void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2)
 {
     //construct y = k*x + n
-    double slope = (p1.y()-p2.y())/(p1.x()-p2.x()); //k
-    double term = (p1.y() - slope * p1.x()); //n
+    double slope = 0;
+    double term = 0;
+    if (p1.x()!=p2.x()){
+        slope = (p1.y()-p2.y())/(p1.x()-p2.x()); //k
+        term = (p1.y() - slope * p1.x()); //n
+    }
+
+
 
     //now, we create two points on the edges of the form
     //WE ARE ASSUMING SLOPE!=0
 
     int y0 = 0; //at this y-coordinate is the first point
     int y1 = ui->graphicsView->height();
-    QPointF p11 = ui->graphicsView->mapToScene((y0 - term)/slope, y0);
-    QPointF p21 = ui->graphicsView->mapToScene((y1 - term)/slope, y1);
+    int x1 = ui->graphicsView->width();
 
-    MainWindow::drawLine(p11,p21);
+    if(slope!=0)
+    {
+        QPointF p11 = ui->graphicsView->mapToScene((y0 - term)/slope, y0);
+        QPointF p21 = ui->graphicsView->mapToScene((y1 - term)/slope, y1);
+        MainWindow::drawLine(p11,p21);
+    }
+
+    else if (p1.x()==p2.x())
+    {
+        QPointF p11 = ui->graphicsView->mapToScene(p1.x(), y0);
+        QPointF p21 = ui->graphicsView->mapToScene(p2.x(), y1);
+        MainWindow::drawLine(p11,p21);
+    }
+    else
+    {
+        QPointF p11 = ui->graphicsView->mapToScene(0, p1.y());
+        QPointF p21 = ui->graphicsView->mapToScene(x1, p2.y());
+        MainWindow::drawLine(p11,p21);
+    }
 }
 
 void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
@@ -454,8 +477,8 @@ QPointF MainWindow::mapFromGridToView(double x, double y)
 {
     //Naya to implement
     Grid* mainGrid;
-    double x_v = (x - mainGrid-> getX())*mainGrid->unit;
-    double y_v = (y-mainGrid-> getY())*mainGrid->unit;
+    double x_v = (x*mainGrid->unit + mainGrid-> getX());
+    double y_v = (-y*mainGrid->unit + mainGrid-> getY());
     return QPointF(x_v,y_v);
 }
 

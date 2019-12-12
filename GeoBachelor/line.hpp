@@ -29,4 +29,6 @@ class Line : public MathObject
     Line parallel(Point p3); //draw the parallel to the line passing through p3
     
     Point intersection(Line B); //return the point where the two lines intersect
+
+    ~Line();
 };
