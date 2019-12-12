@@ -51,7 +51,11 @@ Segment Segment::point_symmetry(float a, float b){  //symmetry wrt a point
 };
 
 
-Segment::line_symmetry(){};  //symmetry wrt a line(axis)
+Segment::line_symmetry(){
+
+    // TO IMPLEMENT
+
+};  //symmetry wrt a line(axis)
 
 void getlength(int x1, int x2, int y1, int y2);      //get distance between endpoints
     sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
