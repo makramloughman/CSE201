@@ -83,14 +83,14 @@ void Point::hidename() {
  //this -> namecolor = rgba(0,0,0,0.5); // the point appears transparent
 }
 
-void Point::symmetry_axisy(){
-    Point B = Point(-x, y);
-    B.name = name +"'";
+Point Point::symmetry_axisy(){
+    B = Point(-x, y);
+    return B
 }
 
-void Point::symmetry_axisx(){
-    Point B = Point(x, -y);
-    B.name = name +"'"+"'";
+Point Point::symmetry_axisx(){
+    B = Point(x, -y);
+    return B
 }
 
 Point Point::symmetry_point(Point A , Point B){ //sym wrt point with coordinates (x,y)
