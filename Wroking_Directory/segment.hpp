@@ -1,14 +1,17 @@
 #include "point.hpp"
-class Segment{
+#include "line.hpp"
+#pragma once
+class Segment : public Line {
 
 public:
     //create endpoints of segment (point1 and point2)
-    Point(double x1, double y1) _point1;
-    Point(double x2, double y2) _point2;  
+    Point p1 = Point(double x1, double y1);
+    Point p2 = Point(double x2, double y2);
+
+    Segment(Point _point1, Point _point2);
+    ~Segment();
     
     void polarcoordinates(); //gives polar coordinates of the point
-    
-    void createsegment( _point1 , _point2 );
 
     void display();         //displays segment
     void displyendpoints(); //displays segment with endpoints 
@@ -16,14 +19,12 @@ public:
     void hide();            //hide the segment
     void hidepoints();      //hide the endpoint of the segment
 
-    void extandright();     //move right point while staying in same line to extand
-    void extandleft();      //move left point while staying in same line to extand
+    void extand_shrink_right();     //move right point while staying in same line to extand
+    void extand_shrink_left();      //move left point while staying in same line to extand
 
-    void shrinkright();     //move right point while staying in same line to shrink
-    void shrinkleft();      //move right point while staying in same line to shrink
+    void rotate_around_p2(); //rotate around pont(x,y) with some degree(could be negative)
+    void rotate_around_p();
 
-    void rotate(Point(double x, double y), double degree); //rotate around pont(x,y) with some degree(could be negative)
-    
     void moverightpoint(); //extand or shrink and then rotate (using previous methods)
     void moveleftpoint();  //same
 
@@ -48,4 +49,4 @@ public:
 
     
 
-}
+};
