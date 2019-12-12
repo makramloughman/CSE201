@@ -26,6 +26,12 @@ double Polygone::surface()
 	return s;
 }
 
+int Polygone::edge(int e)
+// get the edge
+{
+	return len[e];
+}
+
 // duplicate
 void Polygone::duplicate(int k, vector<point> P) {
 	// TO CHECK
