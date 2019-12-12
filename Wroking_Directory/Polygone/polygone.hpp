@@ -33,7 +33,7 @@ class Polygone:public Item {
     double surface();
   
     // get the edge
-    int edge(int e);
+    <vect> edge();
   
     // duplicate
     void duplicate();
