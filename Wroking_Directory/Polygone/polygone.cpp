@@ -28,6 +28,7 @@ double Polygone::surface()
 
 // duplicate
 void Polygone::duplicate(int k, vector<point> P) {
+	// TO CHECK
 	size = k;
 	for(int i=0; i<size; i++) {
 	Pointlist.pushback(P[i]);
