@@ -32,8 +32,11 @@ class Polygone:public Item {
     // get the surface
     double surface();
   
+    // get the edge
+    int edge(int e);
+  
     // duplicate
-    Polygone duplicate();
+    void duplicate();
   
     // translate and extand included in segment
   
