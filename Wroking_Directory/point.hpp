@@ -54,7 +54,7 @@ public :
     void symmetry_axisy(); //creates the symmetric point with respect to the y axis
     
     void symmetry_axisx(); //creates the symmetric point with respect to the y axis
-    void symmetry_line(); //creates the symmetric point with respect to a line
+    void symmetry_line(Point A, Line B); //creates the symmetric point with respect to a line
 
     double distance(Point A, Point B); //gives the distance between two points
     double angle(Point A, Point B, Point C); //gives the angle between three points
