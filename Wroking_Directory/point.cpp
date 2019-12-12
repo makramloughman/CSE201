@@ -2,6 +2,7 @@
 #include <cmath>
 #include "point.hpp"
 #include <mainwindow.h>
+#include "line.hpp"
 
 Point::Point() {
     this->x = 0.0;
@@ -96,6 +97,17 @@ void Point::symmetry_axisx(){
     return A;
 }
 */
+
+void Point::symmetry_line(Point A, Line B){
+    C = B.perpendicular(A)
+    D = C.intersection(B)
+    E = this-> symmetry_point(A,E)
+    ~C
+    ~D
+        
+    
+     
+}
 
 double Point::distance(Point A, Point B)
 {
