@@ -54,7 +54,7 @@ void Polygone::changecolour(R,G,B)
 	
  }
 
- RegularPolygone::centerofcircumscribed(){
+ Point RegularPolygone:: centergravity(){
  	segment s1 = Segment(Pointlist[0] , Pointlist[1])
 	segement s2 = Segment(Pointlist[1] , Pointlist[2])
 	 
@@ -64,16 +64,17 @@ void Polygone::changecolour(R,G,B)
 	return intersection(m1,m2) //need this
  }
 
- RegularPolygone::circumscribedcircle(){
+ Circle RegularPolygone::circumscribedcircle(){
 	 point c = centerofcircumscribed()
 	 double r = this->distance(c, Pointlist[0])
 	 return Circle(c, r)
  }
 
- RegularPolygone::length(){
+ double RegularPolygone::length(){
 	 return this->distance(Pointlist[0],Pointlist[1])
  }
 
- RegularPolygone::angle(){
-	 //noidea
+ float RegularPolygone::angle(){
+       A = Pointlist[0].angle(Pointlist[1],Pointlist[2])
+       return A
  }
