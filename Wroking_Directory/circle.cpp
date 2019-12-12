@@ -62,6 +62,8 @@ double Circle:: perimeter()
   return 2*r*math.pi;
 }
 
+//Point Circle::intersection(Circle A, Line B){}//
+
 double Circle::diameter()
 {
   return 2*r;

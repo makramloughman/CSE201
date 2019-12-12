@@ -18,6 +18,7 @@ class Circle: public Item{
         double perimeter(); // returns perimeter of the circle
         double diameter(); // return diameter of the circle
         Line tangent(Point M); // returns tangents to the circle that contain point M
+        Point line_intersection(Circle A, Line B);
 };
 
 

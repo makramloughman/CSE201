@@ -3,6 +3,7 @@
 #include "point.hpp"
 #include <mainwindow.h>
 #include "line.hpp"
+#include "circle.hpp"
 
 Point::Point() {
     this->x = 0.0;
@@ -92,20 +93,18 @@ void Point::symmetry_axisx(){
     B.name = name +"'"+"'";
 }
 
-/*void Point::symmetry_point(float a , float b){ //sym wrt point with coordinates (x,y)
-    Point A = Point(2*a-x,2*b-y);
-    return A;
-}
-*/
+Point Point::symmetry_point(Point A , Point B){ //sym wrt point with coordinates (x,y)
+    L = Line(A,B)
+    D = this->distance(A,B)
+    C = Circle(B, D)
+    S = C.line_intersection(L)
+    return S
 
-void Point::symmetry_line(Point A, Line B){
+Point Point::symmetry_line(Point A, Line B){
     C = B.perpendicular(A)
     D = C.intersection(B)
     E = this-> symmetry_point(A,E)
-    ~C
-    ~D
-        
-    
+    return E
      
 }
 
