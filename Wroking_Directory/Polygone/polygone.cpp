@@ -17,12 +17,6 @@ void Polygone::append(point) {   // append points to the list afterwards
 	Pointlist.pushback(point);
 }
 
-Polygone::~Polygone()
-// delete the polygone
-{
-	delete Point;
-}
-
 double Polygone::surface()
 // get the surface
 {
@@ -32,6 +26,10 @@ double Polygone::surface()
 	return s;
 }
 
+// duplicate
+void Polygone::duplicate() {
+	
+}
 
 void Polygone::hide()
 // hide the polygone
@@ -39,11 +37,27 @@ void Polygone::hide()
 	this -> color = rgba(0,0,0,0.5);
 }
 
+// display the polygone
+void Polygone::display() {
+	
+}
+
 void Polygone::changecolour(R,G,B)
   // changes colour
 {
 	this -> colour = rgba(R,G,B);
 }
+
+
+Polygone::~Polygone()
+// delete the polygone
+{
+	delete Point;
+}
+
+
+// REGULAR POLYGONES
+
 
  RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of points 
  {
