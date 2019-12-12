@@ -99,6 +99,7 @@ Point Point::symmetry_point(Point A , Point B){ //sym wrt point with coordinates
     C = Circle(B, D)
     S = C.line_intersection(L)
     return S
+}
 
 Point Point::symmetry_line(Point A, Line B){
     C = B.perpendicular(A)
