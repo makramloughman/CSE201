@@ -26,10 +26,10 @@ double Polygone::surface()
 	return s;
 }
 
-int Polygone::edge(int e)
-// get the edge
+<vect> Polygone::edges()
+// get the edges
 {
-	return len[e];
+	return Pointlist;
 }
 
 // duplicate
