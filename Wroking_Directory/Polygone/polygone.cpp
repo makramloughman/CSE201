@@ -27,8 +27,10 @@ double Polygone::surface()
 }
 
 // duplicate
-void Polygone::duplicate() {
-	
+void Polygone::duplicate(int k, vector<point> P) {
+	size = k;
+	for(int i=0; i<size; i++) {
+	Pointlist.pushback(P[i]);
 }
 
 void Polygone::hide()
@@ -39,7 +41,6 @@ void Polygone::hide()
 
 // display the polygone
 void Polygone::display() {
-	
 }
 
 void Polygone::changecolour(R,G,B)
