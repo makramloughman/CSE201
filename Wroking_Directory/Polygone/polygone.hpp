@@ -33,7 +33,7 @@ class Polygone:public Item {
     double surface();
   
     // duplicate
-    duplicate();
+    Polygone duplicate();
   
     // translate and extand included in segment
   
@@ -57,9 +57,9 @@ class RegularPolygone : public Polygone {
   double length(); //returns the length of a side
   float angle(); //returns the value of an angle
 
-  point centerofcircumscribed(); //returns the coordinates of the circumscribed circle
+  Point centergravity(); //returns the coordinates of the circumscribed circle
  
-  cirlce circumscribedcircle(); //draws and create the circumscribed circle
+  Cirlce circumscribedcircle(); //draws and create the circumscribed circle
 
  
 }
