@@ -50,11 +50,10 @@ public :
 
     void display_trace(); //display the trace when the point is translate
     
-    void symmetry_point(Point A, Point B); //it creates the symmetric point of A wtr to B
-    void symmetry_axisy(); //creates the symmetric point with respect to the y axis
-    
-    void symmetry_axisx(); //creates the symmetric point with respect to the y axis
-    void symmetry_line(Point A, Line B); //creates the symmetric point with respect to a line
+    Point symmetry_point(Point A, Point B); //it creates the symmetric point of A wtr to B
+    Point symmetry_axisy(); //creates the symmetric point with respect to the y axis
+    Point symmetry_axisx(); //creates the symmetric point with respect to the y axis
+    Point oid symmetry_line(Point A, Line B); //creates the symmetric point with respect to a line
 
     double distance(Point A, Point B); //gives the distance between two points
     double angle(Point A, Point B, Point C); //gives the angle between three points
