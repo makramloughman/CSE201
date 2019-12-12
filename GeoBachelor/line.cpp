@@ -33,12 +33,20 @@ Line::Line()
 }
   
 double Line::slope(){
-  double slope;
+  double slope = 0;
   double x1 = p1.getx();
   double x2 = p2.getx();
   double y1 = p1.gety();
   double y2 = p2.gety();
-  slope = (y2 - y1) / (x2 - x1);
+  if (x1!=x2)
+  {
+     slope = (y2 - y1) / (x2 - x1);
+  }
+  else
+  {
+     slope = pow(10,20); //something big => for vertical lines
+  }
+
   return slope;
 }
 
@@ -64,7 +72,8 @@ Line Line::perpendicular(Point p3){
   return per;
   }
 
-Line Line::parallel(Point p3){
+Line Line::parallel(Point p3)
+{
   double a = this->slope();
   double x0 = p3.getx();
   double y0 = p3.gety();
