@@ -41,6 +41,7 @@ void Polygone::hide()
 
 // display the polygone
 void Polygone::display() {
+	this -> color = rgba(0,0,0);
 }
 
 void Polygone::changecolour(R,G,B)
