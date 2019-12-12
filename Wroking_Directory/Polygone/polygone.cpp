@@ -55,8 +55,8 @@ void Polygone::changecolour(R,G,B)
  }
 
  RegularPolygone::centerofcircumscribed(){
- 	segment s1 = createsegment(Pointlist[0] , Pointlist[1])
-	segement s2 = createsegment(Pointlist[1] , Pointlist[2])
+ 	segment s1 = Segment(Pointlist[0] , Pointlist[1])
+	segement s2 = Segment(Pointlist[1] , Pointlist[2])
 	 
 	m1 = this -> mediator(s1)
 	m2 = this -> mediator(s2)
