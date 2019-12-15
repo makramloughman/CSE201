@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <point.hpp>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -117,7 +118,7 @@ void MainWindow::createActions(){
     QObject::connect(MoveAction, SIGNAL(triggered()), this, SLOT(Move()));
     QObject::connect(SelectAction, SIGNAL(triggered()), this, SLOT(Select()));
 
-    QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point()));
+    QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point_()));
     QObject::connect(PointOnObjectAction, SIGNAL(triggered()), this, SLOT(PointOnObject()));
     QObject::connect(IntersectAction, SIGNAL(triggered()), this, SLOT(Intersection()));
     QObject::connect(MidPointAction, SIGNAL(triggered()), this, SLOT(MidPoint()));
@@ -125,7 +126,7 @@ void MainWindow::createActions(){
     QObject::connect(ExtremumAction, SIGNAL(triggered()), this, SLOT(Extremum()));
     QObject::connect(RootsAction, SIGNAL(triggered()), this, SLOT(Roots()));
 
-    QObject::connect(LineAction, SIGNAL(triggered()), this, SLOT(Line()));
+    QObject::connect(LineAction, SIGNAL(triggered()), this, SLOT(Line_()));
     QObject::connect(SegmentAction, SIGNAL(triggered()), this, SLOT(Segment()));
     QObject::connect(RayAction, SIGNAL(triggered()), this, SLOT(Ray()));
     QObject::connect(PolylineAction, SIGNAL(triggered()), this, SLOT(Polyline()));
@@ -476,7 +477,6 @@ QPointF MainWindow::mapFromViewToGrid(double x, double y)
 QPointF MainWindow::mapFromGridToView(double x, double y)
 {
     //Naya to implement
-    Grid* mainGrid;
     double x_v = (x*mainGrid->unit + mainGrid-> getX());
     double y_v = (-y*mainGrid->unit + mainGrid-> getY());
     return QPointF(x_v,y_v);
@@ -492,7 +492,8 @@ void MainWindow::Select(){
     qDebug() << "MainWindow::Select()";
 }
 
-void MainWindow::Point(){
+void MainWindow::Point_()
+{
     ui->graphicsView->point_chosen = true;
 }
 
@@ -520,7 +521,7 @@ void MainWindow::Roots(){
     qDebug() << "MainWindow::Roots()";
 }
 
-void MainWindow::Line(){
+void MainWindow::Line_(){
     ui->graphicsView->inf_line_chosen = true;
 }
 
@@ -705,4 +706,15 @@ void MainWindow::on_pushButton_clicked()
         g->draw();
         g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    std::cout<<typeid(*mainGrid->objects[1]).name()<<endl;
+    std::cout<<typeid(Line).name()<<endl;
+
+    //std::vector<Point*> in =
+    intersection(*mainGrid->objects[0],*mainGrid->objects[1]);
+    //std::cout << "Destroying Point( " << in.size() << " )" << std::endl;
+
 }

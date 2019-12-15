@@ -1,32 +1,25 @@
-#pragma once
-#include <point.hpp>
-#include <line.hpp>
-#include <cmath>
-#include <mainwindow.h>
-#include <iostream>
+#include <general_functions.h>
+#include <vector>
 
-/*double distance(Point p1, Point p2)
+double distance(Point p1, Point p2)
 {
     return sqrt(pow(p1.getx()-p2.getx(), 2) + pow(p1.gety()-p2.gety(), 2));
 }
-*/
-/*
-std::vector<Point> intersectionLL(Line *l1, Line *l2) //copied from Line.hpp
+
+std::vector<Point> intersection(Line l1, Line l2) //copied from Line.hpp
 {
-    std::vector<Point> vec;
-    double a1 = l1->slope();
-    double a2 = l2->slope();
-    double b1 = l1->y_intercept();
-    double b2 = l2->y_intercept();
-    if ((a1-a2)>pow(10,-5)) //some thresh hold (since we wrote that vertical line have 10^10 slope (and not +inf)
-    {
+    vector<Point> vec;
+    double a1 = l1.slope();
+    double a2 = l2.slope();
+    double b1 = l1.y_intercept();
+    double b2 = l2.y_intercept();
+    if (s1!=s2){
         double xstar = (b1 - b2)/(a2 - a1);
         double ystar = a1 * xstar + b1;
         vec.push_back(Point(xstar, ystar));
     }
     return vec;
 }
-
 
 std::vector<Point> intersection_SS(Segment segment1,Segment segment2)
 {
@@ -41,15 +34,15 @@ std::vector<Point> intersection_SS(Segment segment1,Segment segment2)
     double c2=line2.y_intersection();
 
     Point inter_point= intersection(Line line1,Line line2);
-     if ((0=<inter_point.getx()-segment1._point1.getx()/segment1._point2.getx()-segment1._point1.getx()<=1) &&
-         (0=<inter_point.gety()-segment1._point1.gety()/segment1._point2.gety()-segment1._point1.gety()<=1) &&
-         (0=<inter_point.getx()-segment2._point1.getx()/segment2._point2.getx()-segment2._point1.getx()<=1) &&
-         (0=<inter_point.gety()-segment2._point1.gety()/segment2._point2.gety()-segment2._point1.gety()<=1))
+     if (    (0=<inter_point.getx()-segment1._point1.getx()/segment1._point2.getx()-segment1._point1.getx()<=1) &&
+             (0=<inter_point.gety()-segment1._point1.gety()/segment1._point2.gety()-segment1._point1.gety()<=1) &&
+             (0=<inter_point.getx()-segment2._point1.getx()/segment2._point2.getx()-segment2._point1.getx()<=1) &&
+             (0=<inter_point.gety()-segment2._point1.gety()/segment2._point2.gety()-segment2._point1.gety()<=1))
     {
         vec.push_back(inter_point);
     }
 
-    return vec;
+return vec;
 }
 
 vector<Point> interesection_LS(Line line ,Segment segment){
@@ -88,20 +81,22 @@ vector<Point> interesection_LS(Line line ,Segment segment){
 
 }
 
-std::vector<Point> intersection(Line line, Circle circle)
-{
+
+vector<Point> intersection_CC(Line line,Circle circle){
     
-    std::vector<Point> vec;
+    vector<Point> vec;
+   
+
     
     double s=line.slope();
-    double c1=line.y_intercept();
-    double a1=circle.getX();
-    double b1=circle.getY();
+    double c=line.y_intercept();
+    double a=circle.getX();
+    double b=circle.getY();
     double r=circle.getR();
 
     double A=1+s*s;
-    double B=2*(s*c1-s*b1-a1);
-    double C=b1*b1-2*c1*b1+c1*c1+a1*a1-r*r;
+    double B=2(s*c-s*b-a);
+    double C=b*b-2c*b+c*c+a*a-r*r;
 
       
 
@@ -109,23 +104,22 @@ std::vector<Point> intersection(Line line, Circle circle)
         
         
         double x1=(-B+sqrt(B*B-4*A*C))/2*A;
-        double y1=s*x1+c1;
+        double y1=s*x1+c;
         double x2=(-B-sqrt(B*B-4*A*C))/2*A;
-        double y2=s*x2+c1;
+        double y2=s*x2+c;
         
-        vec.push_back(Point(x1,y1));
-        vec.push_back(Point(x2,y2));
+        vec.push_back(Point(x1,y1);
+        vec.push_back(Point(x2,y2);
       
 
     }
 
-    if (B*B-4*A*C==0)
-    {
+    if (B*B-4*A*C==0){
     
         double x1=-B/2*A;
-        double y1=s*x1+c1;
+        double y1=s*x1+c;
 
-        vec.push_back(Point(x1,y1));
+        vec.push_back(Point(x1,y1)
 
         
     }
@@ -133,13 +127,13 @@ std::vector<Point> intersection(Line line, Circle circle)
   
 }
 
-std::vector<Point> intersection(Circle circle1,Circle circle2){
+vector<Point> intersection_LC(Circle circle1,Circle circle2){
 
-    std::vector<Point> vec;
+    vector<Point> vec;
     double x1=circle1.getX();
-    double y1=circle1.getY();
-    double r1=circle1.getR();
-    double x2=circle2.getX();
+    double y1=cirlce1.getY();
+    double r1=cirlce1.getR();
+    double y1=circle2.getX();
     double y2=circle2.getY();
     double r2=circle2.getR();
 
@@ -148,19 +142,19 @@ std::vector<Point> intersection(Circle circle1,Circle circle2){
     //d is the horizontal and vertical distances between the circle centers  
 
     if (d==0 and r1==r2){
-        std::cout<<"There is infinite intersection"<< std::endl;
+         cout<<"There is infinite intersection"<< endl;
         return  vec;// infinite interesection ie:circles coincide
     }
 
     if (d>r1+r2){
 
-        std::cout<<"There is not intersection"<<std::endl;
+        cout<<"There is not intersection"
         return vec; //no interesection
     }
 
-    if (d<abs(r1-r2)){
+    if (d<Math.Abs(r1-r2)){
 
-        std::cout<< "There is not interection one circle cointain the other one"<<std::endl;
+        cout<< "There is not interection one circle cointain the other one"
         return vec; // One circle contain the other one 
 
     }
@@ -183,9 +177,9 @@ std::vector<Point> intersection(Circle circle1,Circle circle2){
        //point 2 is the point where the line through 
        //he circle interesction points crosses the line 
        //between the circle centers.
-       double q = (x2-x1)*a/d + x1;
-       double s = (y2-y1)*a/d + y1;
-       Point p2 = Point(q,s);
+       double q=(x2-x1)*a/d + x1;
+       double s=(y2-y1)*a/d + y1;
+       Point p2(q,s);
        
        double x3=q+h*(y2-y1)/d;
        double y3=s-h*(x2-x1)/d;
@@ -200,9 +194,7 @@ std::vector<Point> intersection(Circle circle1,Circle circle2){
     
 
 }
-
-
-std::vector<Point> intersection_SC(Segment segment,Circle circle){
+vector<Point> intersection_SC(Segment segment,Circle circle){
     
     vector<Point> vec;
 
@@ -224,29 +216,3 @@ vector<Point> intersection_PP(Polygone polygone1,Polygone polygone2){
 
 }
 
-*/
-
-template <typename T1,typename T2> std::vector<Point*> intersection(T1 l1,T2 l2)
-{
-    std::vector<Point*> l{};
-    return l;
-}
-
-template <> std::vector<Point*> intersection <int,int>(int l1, int l2)
-{
-    std::vector<Point*> vec{};
-    /*
-    double a1 = l1.slope();
-    double a2 = l2.slope();
-    double b1 = l1.y_intercept();
-    double b2 = l2.y_intercept();
-    if ((a1-a2)>pow(10,-5)) //some thresh hold (since we wrote that vertical line have 10^10 slope (and not +inf)
-    {
-
-        double xstar = (b1 - b2)/(a2 - a1);
-        double ystar = a1 * xstar + b1;
-        std::cout << "Destroying Point( " << xstar << " , " << ystar << " )" << std::endl;
-        vec.push_back(new Point(xstar, ystar));
-    }*/
-    return vec;
-}

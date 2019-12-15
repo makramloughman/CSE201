@@ -45,8 +45,7 @@ HEADERS += \
     point.hpp \
     line.hpp \
     circle.hpp \
-    Triangle.hpp \
-    general_functions.h
+    Triangle.hpp
 
 FORMS += \
     mainwindow.ui

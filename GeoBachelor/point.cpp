@@ -120,5 +120,5 @@ float angle_polarcoordinates(Point point)
 
 Point::~Point()
 {
-  std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
+    std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
 }

@@ -20,6 +20,9 @@
 #include <mathobject.h>
 #include <line.hpp>
 #include <circle.hpp>
+#include <general_functions.cpp>
+#include <typeinfo>
+
 namespace Ui {
 class MainWindow;
 }
@@ -69,7 +72,7 @@ public slots:
     void Move();
     void Select();
 
-    void Point();
+    void Point_(); //DO NOT WRITE IT AS Point, since that's the class..
     void PointOnObject();
     void Intersection();
     void MidPoint();
@@ -77,7 +80,7 @@ public slots:
     void Extremum();
     void Roots();
 
-    void Line();
+    void Line_();
     void Segment();
     void Ray();
     void Polyline();
@@ -115,6 +118,8 @@ public slots:
 
 private slots:
     void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;

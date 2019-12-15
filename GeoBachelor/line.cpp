@@ -20,11 +20,12 @@ void Line::translate(double xx, double yy)
 
 }
 
-Line::Line(Point p1, Point p2)
+Line::Line(Point &p1, Point &p2)
 {
     this->p1 = p1;
     this->p2 = p2;
 }
+
 
 Line::Line()
 {
@@ -97,5 +98,5 @@ Point Line::intersection(Line B){
 
 Line::~Line()
 {
-
+    std::cout << "Destroying Line" << std::endl;
 }

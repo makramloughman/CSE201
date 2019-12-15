@@ -10,8 +10,8 @@ class Circle: public MathObject
         Point center; //center of the circle
         double r; // radius of the circle
     public:
-        Circle(Point p, double r); //constructor
-        Circle(Point center, Point x);
+        Circle(Point& p, double r); //constructor
+        Circle(Point& center, Point x);
         ~Circle(); // destructor
         double getX(); // returns x coordinate of the center
         double getY(); // returns y coordinate of the center

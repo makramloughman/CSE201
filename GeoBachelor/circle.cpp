@@ -1,13 +1,13 @@
 #include <circle.hpp>
 // include files for class Point
 
-Circle:: Circle(Point p, double r)
+Circle:: Circle(Point &p, double r)
 {
-  center = p;
+  this->center = p;
   this->r = r;
 }
 
-Circle::Circle(Point center, Point x)
+Circle::Circle(Point &center, Point x)
 {
     this->center = center;
     this->r = sqrt(pow(x.getx()-center.getx(),2)+pow(x.gety()-center.gety(),2));
@@ -97,7 +97,8 @@ std::vector<Line> Circle::tangent(Point M)
       std::cout << "There is only one tangent line" << std::endl;
       double y = -m/(2 * n);
       double x = a * y + b;
-      l.push_back(Line(Point(x,y), M));
+      Point h = Point(x,y);
+      l.push_back(Line(h, M));
     }
     else
     {
@@ -107,8 +108,10 @@ std::vector<Line> Circle::tangent(Point M)
       double xt1 = a * yt1 + b;
       double xt2 = a * yt2 + b;
       std::vector<Line> l;
-      l.push_back(Line(Point(xt1, yt1), M));
-      l.push_back(Line(Point(xt2, yt2), M));
+      Point h1 = Point(xt1, yt1);
+      Point h2 = Point(xt2, yt2);
+      l.push_back(Line(h1, M));
+      l.push_back(Line(h2, M));
       return l;
     }
     
@@ -129,7 +132,8 @@ std::vector<Line> Circle::tangent(Point M)
       std::cout << "There is only one tangent line" << std::endl;
       double x = -m/(2 * n);
       double y = a * x + b;
-      l.push_back(Line(Point(x,y), M));
+      Point h = Point(x,y);
+      l.push_back(Line(h, M));
       return l;
     }
     else
@@ -139,8 +143,11 @@ std::vector<Line> Circle::tangent(Point M)
       double xt2 = (-m + delta )/ (2 * n);
       double yt1 = a * xt1 + b;
       double yt2 = a * xt2 + b;
-      l.push_back(Line(Point (xt1, yt1), M));
-      l.push_back(Line(Point(xt2, yt2), M));
+
+      Point h1 = Point(xt1, yt1);
+      Point h2 = Point(xt2, yt2);
+      l.push_back(Line(h1, M));
+      l.push_back(Line(h2, M));
       return l;
     }
   }
