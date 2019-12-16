@@ -48,7 +48,7 @@ std::vector<double> Polygone::hide()
 
 // display the polygone
 std::vector<double> Polygone::display() {
-	Colour.pushback(0);
+	Colour.pop();
 }
 
 std::vector<double> Polygone::changeColour(R,G,B)
