@@ -6,7 +6,7 @@
 
 class Polygone {
   private:
-    int color [3];
+    std::vector<double> Color;
     std::vector<point> Pointlist; 
     int size;
 
