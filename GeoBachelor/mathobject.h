@@ -1,6 +1,6 @@
 #ifndef MATHOBJECT_H
 #define MATHOBJECT_H
-
+#pragma once
 
 class MathObject
 {

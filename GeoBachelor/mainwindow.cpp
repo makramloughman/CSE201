@@ -710,11 +710,5 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    std::cout<<typeid(*mainGrid->objects[1]).name()<<endl;
-    std::cout<<typeid(Line).name()<<endl;
-
-    //std::vector<Point*> in =
-    intersection(*mainGrid->objects[0],*mainGrid->objects[1]);
-    //std::cout << "Destroying Point( " << in.size() << " )" << std::endl;
 
 }

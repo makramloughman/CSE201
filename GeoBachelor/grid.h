@@ -43,19 +43,6 @@ public:
 #endif // GRID_H
 
 /*
-#pragma once
-#include <iostream>
-#include <iostream>
-#include <QPalette>
-#include <QObject>
-#include <QGraphicsView>
-#include <QGraphicsLineItem>
-#include <vector>
-#include <QGraphicsScene>
-#include <cmath>
-#include <QGraphicsTextItem>
-
-
 class Grid {
 //private functions below represent the default initialisation of the grid
 private:

@@ -2,7 +2,6 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
-#include <general_functions.cpp>
 
 Triangle::Triangle(Point point1 ,Point point2 ,Point point3)
 {

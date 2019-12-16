@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #pragma once
-
 #include <QMainWindow>
 #include <QAction>
 #include <QMenu>
@@ -20,7 +19,7 @@
 #include <mathobject.h>
 #include <line.hpp>
 #include <circle.hpp>
-#include <general_functions.cpp>
+//#include <general_functions.cpp>
 #include <typeinfo>
 
 namespace Ui {
