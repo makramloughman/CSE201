@@ -33,7 +33,7 @@ Line Parabola:: getD()
 
 Line Parabola:: symmetric()
 {
-  //TO BE IMPLEMENTED
+  return directrix.perpendicular(f);
 }
 
 Line Parabola:: tangent(Point M)
@@ -43,5 +43,11 @@ Line Parabola:: tangent(Point M)
 
 Point Parabola:: vertex()
 {
-  //TO BE IMPLEMENTED
+  double xf = getX();
+  double yf = getY();
+  double k = d.slope();
+  double n = d.y_intercept();
+  double x = (-n + yf + xf/k) / (k + 1/k);
+  double y = k * x + n;
+  return Point( x + xf) / 2, (y+yf) / 2);
 }
