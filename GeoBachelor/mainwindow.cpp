@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <point.hpp>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -117,7 +118,7 @@ void MainWindow::createActions(){
     QObject::connect(MoveAction, SIGNAL(triggered()), this, SLOT(Move()));
     QObject::connect(SelectAction, SIGNAL(triggered()), this, SLOT(Select()));
 
-    QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point()));
+    QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point_()));
     QObject::connect(PointOnObjectAction, SIGNAL(triggered()), this, SLOT(PointOnObject()));
     QObject::connect(IntersectAction, SIGNAL(triggered()), this, SLOT(Intersection()));
     QObject::connect(MidPointAction, SIGNAL(triggered()), this, SLOT(MidPoint()));
@@ -125,7 +126,7 @@ void MainWindow::createActions(){
     QObject::connect(ExtremumAction, SIGNAL(triggered()), this, SLOT(Extremum()));
     QObject::connect(RootsAction, SIGNAL(triggered()), this, SLOT(Roots()));
 
-    QObject::connect(LineAction, SIGNAL(triggered()), this, SLOT(Line()));
+    QObject::connect(LineAction, SIGNAL(triggered()), this, SLOT(Line_()));
     QObject::connect(SegmentAction, SIGNAL(triggered()), this, SLOT(Segment()));
     QObject::connect(RayAction, SIGNAL(triggered()), this, SLOT(Ray()));
     QObject::connect(PolylineAction, SIGNAL(triggered()), this, SLOT(Polyline()));
@@ -344,18 +345,41 @@ void MainWindow::drawCircle(QPointF p, double r)
 void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2)
 {
     //construct y = k*x + n
-    double slope = (p1.y()-p2.y())/(p1.x()-p2.x()); //k
-    double term = (p1.y() - slope * p1.x()); //n
+    double slope = 0;
+    double term = 0;
+    if (p1.x()!=p2.x()){
+        slope = (p1.y()-p2.y())/(p1.x()-p2.x()); //k
+        term = (p1.y() - slope * p1.x()); //n
+    }
+
+
 
     //now, we create two points on the edges of the form
     //WE ARE ASSUMING SLOPE!=0
 
     int y0 = 0; //at this y-coordinate is the first point
     int y1 = ui->graphicsView->height();
-    QPointF p11 = ui->graphicsView->mapToScene((y0 - term)/slope, y0);
-    QPointF p21 = ui->graphicsView->mapToScene((y1 - term)/slope, y1);
+    int x1 = ui->graphicsView->width();
 
-    MainWindow::drawLine(p11,p21);
+    if(slope!=0)
+    {
+        QPointF p11 = ui->graphicsView->mapToScene((y0 - term)/slope, y0);
+        QPointF p21 = ui->graphicsView->mapToScene((y1 - term)/slope, y1);
+        MainWindow::drawLine(p11,p21);
+    }
+
+    else if (p1.x()==p2.x())
+    {
+        QPointF p11 = ui->graphicsView->mapToScene(p1.x(), y0);
+        QPointF p21 = ui->graphicsView->mapToScene(p2.x(), y1);
+        MainWindow::drawLine(p11,p21);
+    }
+    else
+    {
+        QPointF p11 = ui->graphicsView->mapToScene(0, p1.y());
+        QPointF p21 = ui->graphicsView->mapToScene(x1, p2.y());
+        MainWindow::drawLine(p11,p21);
+    }
 }
 
 void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
@@ -405,16 +429,15 @@ void MainWindow::clearScene()
 QPointF MainWindow::mapFromGridToScene(double x, double y)
 {
     //naya to implement
-    QPointF p_s= mapToMyScene(x,y)
-   
-    return p_s;
+    QPointF p =mapFromGridToView(x,y);
+    return mapToMyScene(p.x(),p.y());
 }
 
 QPointF MainWindow::mapFromSceneToGrid(double x, double y)
 {
     //Naya to implement
-    QpointF p_g = mapFromMyScene(x,y)
-    return p_g;
+    QPointF p = mapFromMyScene(x,y);
+    return mapFromViewToGrid(p.x(),p.y());
 }
 
 int MainWindow::getWidth_View()
@@ -445,8 +468,7 @@ QPointF MainWindow::mapFromMyScene(double x, double y)
 QPointF MainWindow::mapFromViewToGrid(double x, double y)
 {
     //Naya to implement
-    Grid*mainGrid;
-    double x_g =(x + mainGrid-> getX())/ mainGrid->unit;
+    double x_g =(x - mainGrid-> getX())/ mainGrid->unit;
     double y_g = (mainGrid-> getY()-y)/ mainGrid->unit;
 
     return QPointF(x_g,y_g);
@@ -455,9 +477,8 @@ QPointF MainWindow::mapFromViewToGrid(double x, double y)
 QPointF MainWindow::mapFromGridToView(double x, double y)
 {
     //Naya to implement
-    Grid* mainGrid;
-    double x_v = (x - mainGrid-> getX())*mainGrid->unit;
-    double y_v = (y-mainGrid-> getY())*mainGrid->unit;
+    double x_v = (x*mainGrid->unit + mainGrid-> getX());
+    double y_v = (-y*mainGrid->unit + mainGrid-> getY());
     return QPointF(x_v,y_v);
 }
 
@@ -471,7 +492,8 @@ void MainWindow::Select(){
     qDebug() << "MainWindow::Select()";
 }
 
-void MainWindow::Point(){
+void MainWindow::Point_()
+{
     ui->graphicsView->point_chosen = true;
 }
 
@@ -499,7 +521,7 @@ void MainWindow::Roots(){
     qDebug() << "MainWindow::Roots()";
 }
 
-void MainWindow::Line(){
+void MainWindow::Line_(){
     ui->graphicsView->inf_line_chosen = true;
 }
 
@@ -684,4 +706,15 @@ void MainWindow::on_pushButton_clicked()
         g->draw();
         g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    std::cout<<typeid(*mainGrid->objects[1]).name()<<endl;
+    std::cout<<typeid(Line).name()<<endl;
+
+    //std::vector<Point*> in =
+    intersection(*mainGrid->objects[0],*mainGrid->objects[1]);
+    //std::cout << "Destroying Point( " << in.size() << " )" << std::endl;
+
 }

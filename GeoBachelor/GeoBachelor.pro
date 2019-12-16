@@ -31,7 +31,10 @@ SOURCES += \
     grid.cpp \
     mathobject.cpp \
     point.cpp \
-    line.cpp
+    line.cpp \
+    circle.cpp \
+    Triangle.cpp \
+    general_functions.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +43,9 @@ HEADERS += \
     grid.h \
     mathobject.h \
     point.hpp \
-    line.hpp
+    line.hpp \
+    circle.hpp \
+    Triangle.hpp
 
 FORMS += \
     mainwindow.ui

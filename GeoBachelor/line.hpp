@@ -15,7 +15,7 @@ class Line : public MathObject
     virtual void draw();
     virtual void translate(double xx, double yy);
 
-    Line(Point p1, Point p2); //creates a line passing through two points which correspond to the two arguments
+    Line(Point &p1, Point &p2); //creates a line passing through two points which correspond to the two arguments
     Line();
 
     //void semi_line(Point &p1, Point &p2); //creates a semi line from p1 and passing through p2
@@ -29,4 +29,6 @@ class Line : public MathObject
     Line parallel(Point p3); //draw the parallel to the line passing through p3
     
     Point intersection(Line B); //return the point where the two lines intersect
+
+    ~Line();
 };

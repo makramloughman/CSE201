@@ -8,36 +8,18 @@ class Polygone:public Item {
   private:
     int color [3];
     std::vector<point> Pointlist; 
-  
- /* Old version
-  
-  class NodeList {
-    public:
-      int data;
-      NodeList *next;
-
-      // create a single node with data d
-      // and optional next node
-      NodeList(int d,  NodeList* nxt = NULL);
-
-      // delete this node and all successor nodes
-      ~ NodeList();
-  };
-
-  class PointList {
-    private:
-    NodeList *first, *last;
-
-   public:
-    // create an empty list
-    PointList(); */
+    int size;
 
   public : 
     //create empty list
     Polygone();
-    //add points to the list
+    //create a polygone
+    Polygone(int k, vector<point> P);
+    //add points to the list afterwards
     void append(point);
-
+    
+    Polygone(int k, vector<point>);
+ 
     void changecolour(R,G,B);
     // changes the colour
 
@@ -50,8 +32,11 @@ class Polygone:public Item {
     // get the surface
     double surface();
   
+    // get the edge
+    <vect> edge();
+  
     // duplicate
-    duplicate();
+    void duplicate();
   
     // translate and extand included in segment
   
@@ -75,9 +60,9 @@ class RegularPolygone : public Polygone {
   double length(); //returns the length of a side
   float angle(); //returns the value of an angle
 
-  point centerofcircumscribed(); //returns the coordinates of the circumscribed circle
+  Point centergravity(); //returns the coordinates of the circumscribed circle
  
-  cirlce circumscribedcircle(); //draws and create the circumscribed circle
+  Cirlce circumscribedcircle(); //draws and create the circumscribed circle
 
-
+ 
 }

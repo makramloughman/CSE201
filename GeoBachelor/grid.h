@@ -36,7 +36,7 @@ public:
     void set_BackColor(QBrush b);
     double unit; //number of pixels correspondig to 1 natural unit (in our grid)
 
-    std::vector<MathObject> objects; //all the current objects
+    std::vector<MathObject*> objects; //all the current objects
 
 };
 

@@ -1,27 +1,32 @@
-#include circle.cpp
-#include math.h
-#include iostream.h
+#include <circle.hpp>
 // include files for class Point
 
-Circle:: Circle(Point p, double r)
+Circle:: Circle(Point &p, double r)
 {
-  center = p;
-  radius = r;
+  this->center = p;
+  this->r = r;
+}
+
+Circle::Circle(Point &center, Point x)
+{
+    this->center = center;
+    this->r = sqrt(pow(x.getx()-center.getx(),2)+pow(x.gety()-center.gety(),2));
 }
 
 Circle:: ~Circle()
 {
-  delete(p);
+    std::cout << "Destroying Circle( " << center.getx() << " , " << center.gety() << " , "<< r <<" )"<< std::endl;
+
 }
 
 double Circle:: getX()
 {
-  return p.getx();
+  return center.getx();
 }
 
 double Circle:: getY()
 {
-  return p.gety();
+  return center.gety();
 }
 
 double Circle:: getR()
@@ -31,14 +36,14 @@ double Circle:: getR()
 
 void Circle:: setX(double x)
 {
-  double y = p.gety();
-  Point* center = new Point(x, y);
+  double y = center.gety();
+  center = Point(x, y);
 }
 
 void Circle:: setY(double y)
 {
-  double x = p.getx();
-  Point* center = new Point(x,y);
+  double x = center.getx();
+  center = Point(x,y);
 }
 
 void Circle:: setR(double r)
@@ -54,23 +59,23 @@ void Circle:: movecenter(double x, double y)
 
 double Circle:: surface()
 {
-  return r*r*math.pi;
+  return r*r*M_PI;
 }
 
 double Circle:: perimeter()
 {
-  return 2*r*math.pi;
+  return 2*r*M_PI;
 }
-
-//Point Circle::intersection(Circle A, Line B){}//
 
 double Circle::diameter()
 {
   return 2*r;
 }
 
-Line Circle::tangent(Point M)
+std::vector<Line> Circle::tangent(Point M)
 {
+  std::vector<Line> l;
+
   double x1 = M.getx();
   double y1 = M.gety();
   double x0 = center.getx();
@@ -92,7 +97,8 @@ Line Circle::tangent(Point M)
       std::cout << "There is only one tangent line" << std::endl;
       double y = -m/(2 * n);
       double x = a * y + b;
-      return Line(Point(x,y), m);
+      Point h = Point(x,y);
+      l.push_back(Line(h, M));
     }
     else
     {
@@ -101,7 +107,12 @@ Line Circle::tangent(Point M)
       double yt2 = (-m + delta) / (2 * n);
       double xt1 = a * yt1 + b;
       double xt2 = a * yt2 + b;
-      return std::vector{Line(Point (xt1, yt1), M), Line(Point(xt2, yt2), M)};
+      std::vector<Line> l;
+      Point h1 = Point(xt1, yt1);
+      Point h2 = Point(xt2, yt2);
+      l.push_back(Line(h1, M));
+      l.push_back(Line(h2, M));
+      return l;
     }
     
   }
@@ -121,16 +132,23 @@ Line Circle::tangent(Point M)
       std::cout << "There is only one tangent line" << std::endl;
       double x = -m/(2 * n);
       double y = a * x + b;
-      return Line(Point(x,y), m);
+      Point h = Point(x,y);
+      l.push_back(Line(h, M));
+      return l;
     }
     else
     {
-      double delta = math.sqrt(m * m - 4 * n * p);
+      double delta = sqrt(m * m - 4 * n * p);
       double xt1 = (-m - delta) / (2 * n);
       double xt2 = (-m + delta )/ (2 * n);
       double yt1 = a * xt1 + b;
       double yt2 = a * xt2 + b;
-      return std::vector{Line(Point (xt1, yt1), M), Line(Point(xt2, yt2), M)};
+
+      Point h1 = Point(xt1, yt1);
+      Point h2 = Point(xt2, yt2);
+      l.push_back(Line(h1, M));
+      l.push_back(Line(h2, M));
+      return l;
     }
   }
   else

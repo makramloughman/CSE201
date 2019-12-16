@@ -97,9 +97,9 @@ void Point::symmetry_axisx(){
 }
 */
 
-double Point::distance(Point A, Point B)
+double Point::distance(Point A)
 {
-   return std::sqrt(std::pow(A.x-B.x, 2) + pow(A.y-B.y, 2));
+   return std::sqrt(std::pow(A.x-this->x, 2) + pow(A.y-this->y, 2));
 }
 
 
@@ -120,5 +120,5 @@ float angle_polarcoordinates(Point point)
 
 Point::~Point()
 {
-  std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
+    std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
 }

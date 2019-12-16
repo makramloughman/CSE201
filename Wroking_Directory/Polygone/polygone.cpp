@@ -2,26 +2,42 @@
 #iostream "Polygone.hpp"
 
 
-Polygone::Polygone(){
-	std::vector<point> Point;
+Polygone::Polygone(){              // create the polygone by selecting points on the grid
+	size = 0;
 }
 
-void Polygone::append(point) {
-// append points to the list
-	push_back(point);
+Polygone::Polygone(int k, vector<point> P){     // create the polygone by adding points to the list
+	size = k;
+	for(int i=0; i<size; i++) {
+		Pointlist.pushback(P[i]);
+	}
+}
+	
+void Polygone::append(point) {   // append points to the list afterwards
+	Pointlist.pushback(point);
 }
 
-Polygone::~Polygone()
-// delete the polygone
-{
-	delete(PointList)
-}
-
-double PointList::surface()
+double Polygone::surface()
 // get the surface
 {
-	double s= sum(PointList);
+	// double s= sum(PointList);
+	double s = 0;
+	for(int i=0;i<size;i++) s+=len[i];
 	return s;
+}
+
+<vect> Polygone::edges()
+// get the edges
+{
+	return Pointlist;
+}
+
+// duplicate
+void Polygone::duplicate(int k, vector<point> P) {
+	// TO CHECK
+	size = k;
+	for(int i=0; i<size; i++) {
+	Pointlist.pushback(P[i]);
 }
 
 void Polygone::hide()
@@ -30,11 +46,27 @@ void Polygone::hide()
 	this -> color = rgba(0,0,0,0.5);
 }
 
+// display the polygone
+void Polygone::display() {
+	this -> color = rgba(0,0,0);
+}
+
 void Polygone::changecolour(R,G,B)
   // changes colour
 {
 	this -> colour = rgba(R,G,B);
 }
+
+
+Polygone::~Polygone()
+// delete the polygone
+{
+	delete Point;
+}
+
+
+// REGULAR POLYGONES
+
 
  RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of points 
  {
@@ -45,9 +77,9 @@ void Polygone::changecolour(R,G,B)
 	
  }
 
- RegularPolygone::centerofcircumscribed(){
- 	segment s1 = createsegment(Pointlist[0] , Pointlist[1])
-	segement s2 = createsegment(Pointlist[1] , Pointlist[2])
+ Point RegularPolygone:: centergravity(){
+ 	segment s1 = Segment(Pointlist[0] , Pointlist[1])
+	segement s2 = Segment(Pointlist[1] , Pointlist[2])
 	 
 	m1 = this -> mediator(s1)
 	m2 = this -> mediator(s2)
@@ -55,16 +87,17 @@ void Polygone::changecolour(R,G,B)
 	return intersection(m1,m2) //need this
  }
 
- RegularPolygone::circumscribedcircle(){
+ Circle RegularPolygone::circumscribedcircle(){
 	 point c = centerofcircumscribed()
 	 double r = this->distance(c, Pointlist[0])
 	 return Circle(c, r)
  }
 
- RegularPolygone::length(){
+ double RegularPolygone::length(){
 	 return this->distance(Pointlist[0],Pointlist[1])
  }
 
- RegularPolygone::angle(){
-	 //noidea
+ float RegularPolygone::angle(){
+       A = Pointlist[0].angle(Pointlist[1],Pointlist[2])
+       return A
  }
