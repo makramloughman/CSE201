@@ -37,7 +37,8 @@ SOURCES += \
     container.cpp \
     general_functions.cpp \
     polygone.cpp \
-    regularpolygon.cpp
+    regularpolygon.cpp \
+    segment.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +53,8 @@ HEADERS += \
     container.h \
     general_functions.h \
     polygone.h \
-    regularpolygon.h
+    regularpolygon.h \
+    segment.h
 
 FORMS += \
     mainwindow.ui
