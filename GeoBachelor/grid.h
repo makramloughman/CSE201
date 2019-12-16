@@ -37,11 +37,14 @@ public:
     void set_BackColor(QBrush b);
     double unit; //number of pixels correspondig to 1 natural unit (in our grid)
 
-    Container obj; //all the current objects
+    std::vector<MathObject*> objects; //all the current objects
+    void set_xaxis_label();
+    void set_yaxis_label();
 
 };
 
 #endif // GRID_H
+
 
 /*
 class Grid {

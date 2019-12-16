@@ -94,14 +94,36 @@ void Grid::set_BackColor(QBrush b)
 }
 
 
+void Grid::set_xaxis_label()
+{
+
+    MainWindow* mainW = MainWindow::getInstance();
+
+    double w = mainW->getWidth_View();
+    double h = mainW->getHeight_View();
+    QPointF f = mainW->mapToMyScene(w-50,h-50);
+    QGraphicsTextItem* text=mainW->scene->addText("X");
+    text->setPos(f.x(), f.y());
+ }
+
+void Grid::set_yaxis_label(){
+    MainWindow* mainW = MainWindow::getInstance();
+
+    double w = mainW->getWidth_View();
+    double h = mainW->getHeight_View();
+    QPointF f = mainW->mapToMyScene(20,40);
+    QGraphicsTextItem* text=mainW->scene->addText("Y");
+    text->setPos(f.x(), f.y());
+
+
+}
+
+
+
+
+
 
 /*
-#include 'grid.hpp'
-
-class Grid{
-private:
-    double x_p;
-    double y_p;
 
     t=QTransform();
     //the color of the font should be initialized to white

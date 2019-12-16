@@ -712,6 +712,8 @@ void MainWindow::on_pushButton_clicked()
         setGrid(g);
         g->draw();
         g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
+        g->set_xaxis_label();
+        g->set_yaxis_label();
     }
 }
 
