@@ -31,7 +31,7 @@ void Grid::draw()
     double h = mainW->getHeight_View();
 
     // Add the vertical lines first
-    for (int x=0; x<=mainW->getWidth_View()+50; x+=50)
+    for (int x=x_p+unit; x<=mainW->getWidth_View()+unit; x+=unit)
     {
         QPointF p1 = QPointF(mainW -> mapToMyScene(x,0));
         QPointF p2 = QPointF(mainW -> mapToMyScene(x,h));
@@ -118,7 +118,13 @@ void Grid::set_yaxis_label(){
 
 }
 
-
+void Grid::move_grid(double dx, double dy){
+    MainWindow* mainW = MainWindow::getInstance();
+    this-> x_p+=dx;
+    this -> y_p+=dy;
+    mainW->Clear();
+    draw();
+}
 
 
 

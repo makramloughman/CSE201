@@ -7,7 +7,7 @@ class MathObject
 public:
     MathObject();
     virtual void draw();
-    virtual void translate(double x,double y);
+    virtual void translate(double dx,double dy);
 };
 
 #endif // MATHOBJECT_H

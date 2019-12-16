@@ -1,4 +1,4 @@
- #include "mainwindow.h"
+﻿ #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <point.hpp>
 
@@ -719,6 +719,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    /*
     std::cout<<typeid(mainGrid->obj.lines[0]).name()<<endl;
     std::cout<<typeid(Line).name()<<endl;
     std::vector<Point> in = intersection(*mainGrid->obj.circles[0],*mainGrid->obj.circles[1]);
@@ -728,5 +729,6 @@ void MainWindow::on_pushButton_2_clicked()
 
     drawPoint(f1);
     drawPoint(f2);
-
+    */
+    mainGrid->move_grid(33.5,-33.5);
 }

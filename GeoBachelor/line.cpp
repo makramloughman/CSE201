@@ -11,12 +11,12 @@ void Line::draw()
     mainW -> drawInfiniteLine(f1,f2); //Remark: We save data in Grid coordinates, so we need conversion
 }
 
-void Line::translate(double xx, double yy)
+void Line::translate(double dx, double dy)
 {
-    p1.setx(p1.getx()+xx);
-    p1.sety(p1.gety()+yy);
-    p2.setx(p2.getx()+xx);
-    p2.sety(p2.gety()+yy);
+    p1.setx(p1.getx()+dx);
+    p1.sety(p1.gety()+dy);
+    p2.setx(p2.getx()+dx);
+    p2.sety(p2.gety()+dy);
 
 }
 

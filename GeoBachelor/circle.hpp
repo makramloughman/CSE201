@@ -3,12 +3,30 @@
 #include <iostream>
 #include <point.hpp>
 #include <line.hpp>
+#include <mainwindow.h>
+#include <iostream>
+#include <QPalette>
+#include <QObject>
+#include <QGraphicsView>
+#include <QGraphicsLineItem>
+#include <vector>
+#include <QGraphicsScene>
+#include <cmath>
+#include <QGraphicsTextItem>
+#include <mathobject.h>
+#include <point.hpp>
+#include "ui_mainwindow.h"
+
+
 
 class Circle: public MathObject
 {
     private:
 
     public:
+        virtual void draw();
+        virtual void translate(double dx, double dy);
+
         Point center; //center of the circle
         double r; // radius of the circle
         Circle(Point& p, double r); //constructor

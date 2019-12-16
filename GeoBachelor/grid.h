@@ -41,6 +41,8 @@ public:
    Container obj; //all the current objects
     void set_xaxis_label();
     void set_yaxis_label();
+    void move_grid(double dx, double dy);
+
 
 };
 
