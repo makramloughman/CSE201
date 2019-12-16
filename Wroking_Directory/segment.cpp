@@ -1,6 +1,6 @@
-#include <iostream>
-#include <cmath>
-# define PI 3.14159265
+#include  <iostream>
+#include  <cmath>
+# define  PI 3.14159265
 using namespace std;
 
 Segment::Segment(Point _point1, Point _point2) {
@@ -17,26 +17,26 @@ void Segment::extand_shrink_right(float x, float y){
     p2.translate(x,y);
 };
 
-//};     //move right point while staying in same line to extand
+//};      //move right point while staying in same line to extand
 void Segment::extand_shrink_left(float x, float y){
     p1.translate(x,y);
-};    //move left point while staying in same line to extand
+};     //move left point while staying in same line to extand
 
 void Segment::rotate_around_p2(double degree){ // to fix
-    p1.angle_polarcoordinates()+= degree;
+    p1.angle_polarcoordinates()+=  degree;
 }; //rotate around p2 with some degree(could be negative)
 
 void Segment::rotate_around_p1(double degree){  // to fix
-    p2.angle_polarcoordinates()+= degree;
+    p2.angle_polarcoordinates()+=  degree;
 }; //rotate around p1 with some degree(could be negative)
 
 void moverightpoint(float x, float y, double degree){
     p2.translate(x,y);
-    p2.angle_polarcoordinates()+= degree;
+    p2.angle_polarcoordinates()+=  degree;
 }; //extand or shrink and then rotate (using previous methods)
 void moverightpoint(float x, float y, double degree){
     p2.translate(x,y);
-    p2.angle_polarcoordinates()+= degree;
+    p2.angle_polarcoordinates() += degree;
 };   //same
 
 void movesegment(float x, float y){
