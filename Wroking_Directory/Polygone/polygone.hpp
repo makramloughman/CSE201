@@ -5,12 +5,15 @@
 #include "circle.hpp"
 
 class Polygone {
-  private:
-    std::vector<double> Color;
+  public : 
+  
+    std::vector<double> Colour;
+    Colour.pushback(0);
+    Colour.pushback(0);
+    Colour.pushback(0);
     std::vector<point> Pointlist; 
     int size;
 
-  public : 
     //create empty list
     Polygone();
     //create a polygone
@@ -20,14 +23,14 @@ class Polygone {
     
     Polygone(int k, vector<point>);
  
-    void changecolour(R,G,B);
+    std::vector<double> changeColour(R,G,B);
     // changes the colour
 
     // display the polygone
-    void display();
+    std::vector<double> display();
 
     // hide the polygone
-    void hide();
+    std::vector<double> hide();
 
     // get the surface
     double surface();
@@ -48,11 +51,13 @@ class Polygone {
 };
 
 class RegularPolygone : public Polygone {
-  private :
-  int color[3];
-  std::vector<point> Pointlist;
-  
   public :
+  
+  std::vector<double> Colour;
+  Colour.pushback(0);
+  Colour.pushback(0);
+  Colour.pushback(0);
+  std::vector<point> Pointlist;
   
   RegularPolygone(); //empty regular polygone with empty vector of points 
   RegularPolygone(segment, number); //creates a regular polygone with given number of sides and a segment(two points, length)
