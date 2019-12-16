@@ -40,21 +40,23 @@ void Polygone::duplicate(int k, vector<point> P) {
 	Pointlist.pushback(P[i]);
 }
 
-void Polygone::hide()
+std::vector<double> Polygone::hide()
 // hide the polygone
 {
-	this -> color = rgba(0,0,0,0.5);
+	Colour.pushback(0.5);
 }
 
 // display the polygone
-void Polygone::display() {
-	this -> color = rgba(0,0,0);
+std::vector<double> Polygone::display() {
+	Colour.pushback(0);
 }
 
-void Polygone::changecolour(R,G,B)
+std::vector<double> Polygone::changeColour(R,G,B)
   // changes colour
 {
-	this -> colour = rgba(R,G,B);
+	Colour.pushback(R);
+	Colour.pushback(G);
+	Colour.pushback(B);
 }
 
 
