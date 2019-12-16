@@ -1,21 +1,16 @@
 #pragma once
-#include <math.h>
-#include <iostream>
+
 #include <point.hpp>
 #include <line.hpp>
-#include <mainwindow.h>
 #include <iostream>
-#include <QPalette>
-#include <QObject>
-#include <QGraphicsView>
-#include <QGraphicsLineItem>
+
 #include <vector>
-#include <QGraphicsScene>
+
 #include <cmath>
-#include <QGraphicsTextItem>
+
 #include <mathobject.h>
 #include <point.hpp>
-#include "ui_mainwindow.h"
+
 
 
 

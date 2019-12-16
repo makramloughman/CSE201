@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <cmath>
 #include "segment.h"
 #include "point.hpp"
@@ -66,3 +66,4 @@ Segment Segment::mediator(){
 
 
 }
+*/

@@ -124,6 +124,9 @@ void Grid::move_grid(double dx, double dy){
     this -> y_p+=dy;
     mainW->Clear();
     draw();
+    obj.circles[0]->translate(dx,dy);
+    obj.circles[0]->draw();
+
 }
 
 
