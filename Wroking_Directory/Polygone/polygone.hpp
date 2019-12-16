@@ -6,7 +6,7 @@
 
 class Polygone {
   private:
-    std::vector<double> Color;
+    std::vector<double> Colour;
     std::vector<point> Pointlist; 
     int size;
 
@@ -20,14 +20,14 @@ class Polygone {
     
     Polygone(int k, vector<point>);
  
-    void changecolour(R,G,B);
+    std::vector<double> changeColour(R,G,B);
     // changes the colour
 
     // display the polygone
-    void display();
+    std::vector<double> display();
 
     // hide the polygone
-    void hide();
+    std::vector<double> hide();
 
     // get the surface
     double surface();
