@@ -33,8 +33,8 @@ class MyView : public QGraphicsView
         bool triangle_chosen;
 
         bool polygon_chosen; //triangle, quadrilateral, more sided polygons...
-
         int n_polygon; // number of points of certain polygon that we have chosen
+
         int n_counter; //we will have many options, so this one counts the number of points we have chosen after clicking certain option
 };
 

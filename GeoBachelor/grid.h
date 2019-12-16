@@ -13,6 +13,7 @@
 #include <mathobject.h>
 #include <point.hpp>
 #include <container.h>
+#include <container.h>
 #pragma once
 
 class Grid {
@@ -37,7 +38,7 @@ public:
     void set_BackColor(QBrush b);
     double unit; //number of pixels correspondig to 1 natural unit (in our grid)
 
-    std::vector<MathObject*> objects; //all the current objects
+   Container obj; //all the current objects
     void set_xaxis_label();
     void set_yaxis_label();
 

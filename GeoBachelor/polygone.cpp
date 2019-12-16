@@ -1,108 +1,62 @@
 #include "polygone.h"
 
+void Polygone::draw()
+{
+
+}
+
+void Polygone::translate()
+{
+
+}
 
 Polygone::Polygone(){              // create the polygone by selecting points on the grid
     size = 0;
-    Colour.pushback(0);
-    Colour.pushback(0);
-    Colour.pushback(0);
+    Colour.push_back(0);
+    Colour.push_back(0);
+    Colour.push_back(0);
 }
 
-Polygone::Polygone(int k, vector<point> P){     // create the polygone by adding points to the list
-    size = k;
-    for(int i=0; i<size; i++) {
-        Pointlist.pushback(P[i]);
+Polygone::Polygone(int k, std::vector<Point> P)
+{     // create the polygone by adding points to the list
+    for(int i=0; i<k; i++)
+    {
+        Pointlist.push_back(P[i]);
     }
 }
 
-void Polygone::append(point) {   // append points to the list afterwards
-    Pointlist.pushback(point);
+void Polygone::append(Point p)
+{   // append points to the list afterwards
+    Pointlist.push_back(p);
 }
 
-double Polygone::surface()
-// get the surface
+std::vector<double> Polygone::changeColour(double R, double G, double B)
 {
-    // double s= sum(PointList);
-    double s = 0;
-    for(int i=0;i<size;i++) s+=len[i];
-    return s;
+    Colour = std::vector<double>{};
+    Colour.push_back(R);
+    Colour.push_back(G);
+    Colour.push_back(B);
 }
 
-std::vector<Segment> Polygone::edges()
+/*std::vector<Segment> Polygone::edges()
 // get the edges
 {
     return Pointlist;
 }
-
+*/
 // duplicate
-void Polygone::duplicate(int k, vector<point> P) {
-    // TO CHECK
-    size = k;
-    for(int i=0; i<size; i++) {
-    Pointlist.pushback(P[i]);
-}
 
 void Polygone::hide()
 // hide the polygone
 {
-    Colour.pushback(0.5);
+    Colour = std::vector<double>{};
+    Colour.push_back(0);
+    Colour.push_back(0);
+    Colour.push_back(0);
 }
-
-// display the polygone
-void Polygone::display() {
-    Colour.pop();
-}
-
-<double> Polygone::changeColour(R,G,B)
-  // changes colour
-{
-    Colour.pushback(R);
-    Colour.pushback(G);
-    Colour.pushback(B);
-}
-
 
 Polygone::~Polygone()
 // delete the polygone
 {
-    delete Point;
+
 }
-
-
-// REGULAR POLYGONES
-
-
- RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of points
- {
-  std::vector<point> Pointlist;
- }
-
- RegularPolygone::RegularPolygone(segment, number){
-    // to implement
-
- }
-
-RegularPolygone:: centergravity(){
-    segment s1 = Segment(Pointlist[0] , Pointlist[1])
-    segement s2 = Segment(Pointlist[1] , Pointlist[2])
-
-    m1 = this -> mediator(s1)
-    m2 = this -> mediator(s2)
-
-    return intersection(m1,m2) //need this
- }
-
- Circle RegularPolygone::circumscribedcircle(){
-     point c = centerofcircumscribed()
-     double r = this->distance(c, Pointlist[0])
-     return Circle(c, r)
- }
-
- double RegularPolygone::length(){
-     return this->distance(Pointlist[0],Pointlist[1])
- }
-
- float RegularPolygone::angle(){
-       A = Pointlist[0].angle(Pointlist[1],Pointlist[2])
-       return A
- }

@@ -3,26 +3,30 @@
 #include <string>
 #include <vector>
 //#include "segment.hpp"
+#include <point.hpp>
 #include "circle.hpp"
+#include <mathobject.h>
 
-class Polygone {
+class Polygone : public MathObject
+{
   public :
+
+    virtual void draw();
+    virtual void translate();
 
     std::vector<double> Colour;
 
-    std::vector<point> Pointlist;
+    std::vector<Point> Pointlist;
     int size;
 
     //create empty list
     Polygone();
     //create a polygone
-    Polygone(int k, vector<point> P);
+    Polygone(int k, std::vector<Point> P);
     //add points to the list afterwards
-    void append(point);
+    void append(Point p);
 
-    Polygone(int k, vector<point>);
-
-    std::vector<double> changeColour(R,G,B);
+    std::vector<double> changeColour(double R,double G,double B);
     // changes the colour
 
     // display the polygone
@@ -31,14 +35,8 @@ class Polygone {
     // hide the polygone
     void hide();
 
-    // get the surface
-    double surface();
-
     // get the edge
-    std::vector<Segment> edge();
-
-    // duplicate
-    void duplicate();
+    //std::vector<Segment> edge();
 
     // translate and extand included in segment
 
@@ -46,24 +44,6 @@ class Polygone {
     void trace();
 
     //delete the polygone
-    ~Polygone;
+    ~Polygone();
 };
 
-class RegularPolygone : public Polygone {
-  public :
-
-  std::vector<double> Colour;
-  std::vector<Point> Pointlist;
-
-  RegularPolygone(); //empty regular polygone with empty vector of points
-  RegularPolygone(segment, number); //creates a regular polygone with given number of sides and a segment(two points, length)
-
-  double length(); //returns the length of a side
-  float angle(); //returns the value of an angle
-
-  Point centergravity(); //returns the coordinates of the circumscribed circle
-
-  Cirlce circumscribedcircle(); //draws and create the circumscribed circle
-
-
-}

@@ -6,9 +6,11 @@
 #include <line.hpp>
 #include <cmath>
 #include <iostream>
+#include <circle.hpp>
 #include <vector>
 
-std::vector<Point> intersetion(Line l1, Line l2); //copied from Line.hpp
+std::vector<Point> intersection(Line l1, Line l2); //copied from Line.hpp
+std::vector<Point> intersection(Line line,Circle circle);
 
 
 #endif // GENERAL_FUNCTIONS_H
