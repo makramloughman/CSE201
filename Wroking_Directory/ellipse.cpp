@@ -103,7 +103,16 @@ double Ellipse:: surface()
 
 double Ellipse:: perimeter()
 {
-    //TO BE IMPLEMENTED
+    int i = 0;
+    int n = 100; // can be changed in order to change precision of the integral
+    double s = 0, theta;
+    double e = get_e();
+    for (i; i < n; i++)
+    {
+        theta = theta + i*pi/(2*n);
+        s += sqrt(1 - e*e*sin(theta)*sin(theta)) * pi / (2 * n);
+    }
+    return 4 * a * s;
 }
 
 double Ellipse:: get_b()
