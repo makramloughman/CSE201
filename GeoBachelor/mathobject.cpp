@@ -10,7 +10,7 @@ void MathObject::draw()
 
 }
 
-void MathObject::translate(double x, double y)
+void MathObject::translate(double dx, double dy)
 {
 
 }

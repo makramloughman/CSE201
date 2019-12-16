@@ -13,7 +13,7 @@ class Line : public MathObject
     Point p2;
 
     virtual void draw();
-    virtual void translate(double xx, double yy);
+    virtual void translate(double dx, double dy);
 
     Line(Point &p1, Point &p2); //creates a line passing through two points which correspond to the two arguments
     Line();

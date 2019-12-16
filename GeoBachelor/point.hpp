@@ -28,7 +28,7 @@ public :
     Point(QPointF p);
 
     virtual void draw();
-    virtual void translate(double c, double y); //moves the point in the window
+    virtual void translate(double dx, double dy); //moves the point in the window
 
     void clickpoint(); //creates a point where we click
 

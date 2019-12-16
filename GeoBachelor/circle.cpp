@@ -1,6 +1,19 @@
 #include <circle.hpp>
 // include files for class Point
 
+void Circle::draw()
+{
+    MainWindow* mainW = MainWindow::getInstance();
+    QPointF p = mainW->mapFromGridToScene(0,getR());
+    double rad = sqrt(p.x()*p.x(+p.y()*p.y()));
+    mainW->drawCircle(mainW->mapFromGridToScene(center.getx(),center.gety()),rad);
+}
+
+void Circle::translate(double dx, double dy){
+
+    center.translate(dx,dy);
+}
+
 Circle:: Circle(Point &p, double r)
 {
   this->center = p;

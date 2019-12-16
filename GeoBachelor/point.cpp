@@ -58,10 +58,10 @@ void Point::sety(double b){
     y = b;
 }
 
-void Point::translate(double a, double b) //virtual function from the class MathObject
+void Point::translate(double dx, double dy) //virtual function from the class MathObject
 {
-    x = x+a;
-    y = y+b;
+    x = x+dx;
+    y = y+dy;
 }
 
 double Point::getx(){
