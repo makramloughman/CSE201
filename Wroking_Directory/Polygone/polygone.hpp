@@ -4,9 +4,9 @@
 #include "segment.hpp"
 #include "circle.hpp"
 
-class Polygone:public Item {
+class Polygone {
   private:
-    int color [3];
+    std::vector<double> Color;
     std::vector<point> Pointlist; 
     int size;
 
@@ -33,7 +33,7 @@ class Polygone:public Item {
     double surface();
   
     // get the edge
-    <vect> edge();
+    std::vector<Segment> edge();
   
     // duplicate
     void duplicate();
@@ -45,7 +45,7 @@ class Polygone:public Item {
 
     //delete the polygone
     ~Polygone;
-}
+};
 
 class RegularPolygone : public Polygone {
   private :

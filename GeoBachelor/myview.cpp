@@ -60,8 +60,8 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
             Point *p1 = new Point(mainW->mapFromSceneToGrid(clickedP[0].x(),clickedP[0].y()));
 
-            mainW->mainGrid->objects.push_back(new Circle(*p1,Point(mainW->mapFromSceneToGrid(clickedP[1].x(),clickedP[1].y())))); //Figured out
-            mainW->mainGrid->objects.push_back(p1); //adding also the center of the circle (for suitable for translating)
+            mainW->mainGrid->obj.push(new Circle(*p1,Point(mainW->mapFromSceneToGrid(clickedP[1].x(),clickedP[1].y())))); //Figured out
+            mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
         }
     }
 
@@ -85,9 +85,9 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             Point* p1 = new Point(mainW->mapFromSceneToGrid(this->clickedP[0].x(),clickedP[0].y()));
             Point* p2 = new Point(mainW->mapFromViewToGrid(ev->x(),ev->y()));
             Line* p = new Line(*p1,*p2);
-            mainW -> mainGrid -> objects.push_back(p);
-            //mainW -> mainGrid -> objects.push_back(p1);
-            //mainW -> mainGrid -> objects.push_back(p2);
+            mainW -> mainGrid -> obj.push(p);
+            mainW -> mainGrid -> obj.push(p1);
+            mainW -> mainGrid -> obj.push(p2);
 
         }
     }
@@ -97,7 +97,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         this->point_chosen = false;
 
         QPointF help = mainW->mapFromViewToGrid(ev->x(),ev->y());
-        mainW->mainGrid->objects.push_back(new Point(help));
+        mainW->mainGrid->obj.push(new Point(help));
     }
     else if (this->polygon_chosen){
         if(this->n_counter == 0){

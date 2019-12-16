@@ -26,7 +26,7 @@ double Polygone::surface()
 	return s;
 }
 
-<vect> Polygone::edges()
+std::vector<Segment> Polygone::edges()
 // get the edges
 {
 	return Pointlist;

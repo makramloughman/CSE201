@@ -34,8 +34,8 @@ SOURCES += \
     line.cpp \
     circle.cpp \
     Triangle.cpp \
-    general_functions.cpp \
-    container.cpp
+    container.cpp \
+    general_functions.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +47,8 @@ HEADERS += \
     line.hpp \
     circle.hpp \
     Triangle.hpp \
-    container.h
+    container.h \
+    general_functions.h
 
 FORMS += \
     mainwindow.ui
