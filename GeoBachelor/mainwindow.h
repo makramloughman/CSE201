@@ -19,7 +19,7 @@
 #include <mathobject.h>
 #include <line.hpp>
 #include <circle.hpp>
-//#include <general_functions.cpp>
+#include <general_functions.h>
 #include <typeinfo>
 
 namespace Ui {
@@ -39,6 +39,7 @@ public:
     void drawLine(QPointF p1, QPointF p2);
     void drawLine(QPointF p1, QPointF p2, QPen pen);
     void drawPoint(QPointF p);
+    void drawPoint(Point p);
     void drawCircle(QPointF p,double r);
     void drawInfiniteLine(QPointF p1, QPointF p2);
     void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle

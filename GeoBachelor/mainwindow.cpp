@@ -334,6 +334,13 @@ void MainWindow::drawPoint(QPointF p)
                       QPen(Qt::blue), QBrush(Qt::SolidPattern));
 }
 
+void MainWindow::drawPoint(Point p)
+{
+    double rad = 3;
+    scene->addEllipse(p.getx()-rad, p.gety()-rad, rad*2.0, rad*2.0,
+                      QPen(Qt::blue), QBrush(Qt::SolidPattern));
+}
+
 void MainWindow::drawCircle(QPointF p, double r)
 {
     QPen myPen = QPen();
@@ -710,5 +717,11 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    std::cout<<typeid(mainGrid->obj.lines[0]).name()<<endl;
+    std::cout<<typeid(Line).name()<<endl;
+    std::vector<Point> in = intersetion(*mainGrid->obj.lines[0],*mainGrid->obj.lines[1]);
+    std::cout << in.size() << std::endl;
+    QPointF f = mapFromGridToScene(in[0].getx(),in[0].gety());
+    drawPoint(f);
 
 }

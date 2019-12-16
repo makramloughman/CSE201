@@ -1,11 +1,6 @@
-//#pragma once
-#include <point.hpp>
-//#include <line.hpp>
-#include <cmath>
-//#include <mainwindow.h>
-#include <iostream>
+#include <general_functions.h>
 
-std::vector<Point> inter_obj(Line l1, Line l2) //copied from Line.hpp
+std::vector<Point> intersetion(Line l1, Line l2)
 {
     std::vector<Point> vec;
     double a1 = l1.slope();
