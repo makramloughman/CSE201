@@ -1,3 +1,4 @@
+
 #include <general_functions.h>
 
 std::vector<Point> intersetion(Line l1, Line l2)

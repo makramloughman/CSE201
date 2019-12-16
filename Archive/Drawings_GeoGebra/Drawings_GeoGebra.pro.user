@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< Updated upstream:Archive/Drawings_GeoGebra/Drawings_GeoGebra.pro.user
 <!-- Written by QtCreator 4.5.2, 2019-12-08T10:14:26. -->
+=======
+<!-- Written by QtCreator 4.5.2, 2019-12-02T17:05:31. -->
+>>>>>>> Stashed changes:Drawings_GeoGebra/Drawings_GeoGebra.pro.user
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -304,7 +308,11 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Drawings_GeoGebra</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Drawings_GeoGebra2</value>
+<<<<<<< Updated upstream:Archive/Drawings_GeoGebra/Drawings_GeoGebra.pro.user
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/osboxes/Desktop/GeoGebra/Drawings_GeoGebra/Drawings_GeoGebra.pro</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/osboxes/CSE201/Drawings_GeoGebra/Drawings_GeoGebra.pro</value>
+>>>>>>> Stashed changes:Drawings_GeoGebra/Drawings_GeoGebra.pro.user
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">Drawings_GeoGebra.pro</value>
