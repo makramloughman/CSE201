@@ -1,5 +1,5 @@
 #include <general_functions.h>
-
+#include <segment.h>
 std::vector<Point> intersection(Line l1, Line l2)
 {
     std::vector<Point> vec;
@@ -85,6 +85,27 @@ std::vector<Point> intersection(Circle c1, Circle c2)
     return vec;
 }
 
+std::vector<Point> intersection(Segment segment1, Segment segment2)
+
+{
+    std::vector<Point> vec;
+    Line line1= Line( segment1.p1 , segment1.p2);
+    Line line2= Line( segment2.p1 , segment2.p2);
+
+
+    Point inter_point=intersection(line1,line2)[0];
+    double h1=(inter_point.getx()-segment1.p1.getx())/(segment1.p2.getx()-segment1.p1.getx());
+    double h2=(inter_point.gety()-segment1.p1.gety())/(segment1.p2.gety()-segment1.p1.gety());
+    double h3=(inter_point.getx()-segment2.p1.getx()/segment2.p2.getx()-segment2.p1.getx());
+    double h4=(inter_point.gety()-segment2.p1.gety()/segment2.p2.gety()-segment2.p1.gety());
+    if ((0<=h1<=1) && (0<=h2<=1) && (0<=h3<=1) && ((0<=h4<=1)))
+    {
+        vec.push_back(inter_point);
+    }
+
+    return vec;
+
+}
 double distance(Point p1, Point p2)
 {
     return sqrt(pow(p1.getx()-p2.getx(),2)+pow(p1.gety()-p2.gety(),2));

@@ -1,5 +1,8 @@
+<<<<<<< Updated upstream
 /*#ifndef SEGMENT_H
 #define SEGMENT_H
+=======
+>>>>>>> Stashed changes
 #include "point.hpp"
 #include "line.hpp"
 #pragma once
@@ -7,8 +10,9 @@ class Segment : public Line {
 
 public:
     //create endpoints of segment (point1 and point2)
-    Point p1 = Point(double x1, double y1);
-    Point p2 = Point(double x2, double y2);
+    Point p1;
+    Point p2;
+
 
     Segment(Point _point1, Point _point2);
     ~Segment();

@@ -32,11 +32,12 @@ void Segment::movesegment(float x, float y){
     p2.sety(p2.gety()+y);
 }    //move the segment keeping it parallel to where it was
 
+/*
 Segment Segment::point_symmetry(float a, float b){  //symmetry wrt a point
-    p1_sym = p1.symmetry_point(float a , float b);
-    p2_sym = p2.symmetry_point(float a , float b);
+    Point p1_sym = p1.symmetry_point(float a , float b);
+    Point p2_sym = p2.symmetry_point(float a , float b);
     return Segment(Point p1_sym,Point p2_sym);
-}
+}*/
 
 
 double Segment::getlength(){
@@ -56,7 +57,8 @@ Point Segment::midpoint(){
     float yp2 = p2.gety();
     float xm = (xp1+xp2)/2;
     float ym = (yp1+yp2)/2;
-    return Point(double xm, double ym);
+    Point p=Point(double xm, double ym);
+    return p;
 }
 
 Segment Segment::mediator(){
