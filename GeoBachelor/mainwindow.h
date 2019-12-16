@@ -43,7 +43,7 @@ public:
 
     //grid part => drawings
     Grid* mainGrid;
-    void drawCoordinateSystem(); //just using the functuons of the grid
+    void drawCoordinateSystem(); //just using the functions of the grid
     void setGrid(Grid* g); //seting the main grid
 
     //scene functions:
