@@ -721,7 +721,7 @@ void MainWindow::on_pushButton_2_clicked()
 {
     std::cout<<typeid(mainGrid->obj.lines[0]).name()<<endl;
     std::cout<<typeid(Line).name()<<endl;
-    std::vector<Point> in = intersection(*mainGrid->obj.lines[0],*mainGrid->obj.circles[0]);
+    std::vector<Point> in = intersection(*mainGrid->obj.circles[0],*mainGrid->obj.circles[1]);
     std::cout << in.size() << std::endl;
     QPointF f1 = mapFromGridToScene(in[0].getx(),in[0].gety());
     QPointF f2 = mapFromGridToScene(in[1].getx(),in[1].gety());

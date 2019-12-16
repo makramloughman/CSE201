@@ -50,3 +50,42 @@ std::vector<Point> intersection(Line line,Circle circle){
     return vec;
 
 }
+
+std::vector<Point> intersection(Circle circle, Line line)
+{
+    return intersection(line,circle);
+}
+
+std::vector<Point> intersection(Circle c1, Circle c2)
+{
+    double R = distance(c1.center,c2.center);
+    std::vector<Point> vec;
+    double r1 = c1.getR();
+    double r2 = c2.getR();
+    double x1 = c1.getX();
+    double y1 = c1.getY();
+    double x2 = c2.getX();
+    double y2 = c2.getY();
+    if (R<r1+r2)
+    {
+        double x  = (x2-x1)*(r1*r1-r2*r2)/(2*R*R) + (x1+x2)/2 + sqrt(2*(r1*r1+r2*r2)/(R*R)-pow((r1*r1-r2*r2),2)/pow(R,4)-1)*(y2-y1)/2;
+        double xx = (x2-x1)*(r1*r1-r2*r2)/(2*R*R) + (x1+x2)/2 - sqrt(2*(r1*r1+r2*r2)/(R*R)-pow((r1*r1-r2*r2),2)/pow(R,4)-1)*(y2-y1)/2;
+        double y  = (y2-y1)*(r1*r1-r2*r2)/(2*R*R) + (y1+y2)/2 + sqrt(2*(r1*r1+r2*r2)/(R*R)-pow((r1*r1-r2*r2),2)/pow(R,4)-1)*(x1-x2)/2;
+        double yy = (y2-y1)*(r1*r1-r2*r2)/(2*R*R) + (y1+y2)/2 - sqrt(2*(r1*r1+r2*r2)/(R*R)-pow((r1*r1-r2*r2),2)/pow(R,4)-1)*(x1-x2)/2;
+        vec.push_back(Point(x,y));
+        vec.push_back(Point(xx,yy));
+    }
+    else if (abs(R-r1+r2)<pow(10,-5))
+    {
+        double x  = (x2-x1)*(r1*r1-r2*r2)/(2*R*R) + (x1+x2)/2 + sqrt(2*(r1*r1+r2*r2)/(R*R)-pow((r1*r1-r2*r2),2)/pow(R,4)-1)*(y2-y1);
+        double y  = (y2-y1)*(r1*r1-r2*r2)/(2*R*R) + (y1+y2)/2 + sqrt(2*(r1*r1+r2*r2)/(R*R)-pow((r1*r1-r2*r2),2)/pow(R,4)-1)*(x1-x2);
+        vec.push_back(Point(x,y));
+    }
+
+    return vec;
+}
+
+double distance(Point p1, Point p2)
+{
+    return sqrt(pow(p1.getx()-p2.getx(),2)+pow(p1.gety()-p2.gety(),2));
+}

@@ -7,9 +7,10 @@
 class Circle: public MathObject
 {
     private:
+
+    public:
         Point center; //center of the circle
         double r; // radius of the circle
-    public:
         Circle(Point& p, double r); //constructor
         Circle(Point& center, Point x);
         ~Circle(); // destructor
