@@ -124,6 +124,10 @@ void Grid::move_grid(double dx, double dy){
     this -> y_p+=dy;
     mainW->Clear();
     draw();
+    //QPointF f = mainW->mapFromViewToGrid(dx,dy);
+    //obj.circles[0]->translate(f.x(),f.y());
+    //obj.circles[0]->draw();
+
 }
 
 

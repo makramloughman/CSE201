@@ -1,4 +1,4 @@
-#ifndef SEGMENT_H
+/*#ifndef SEGMENT_H
 #define SEGMENT_H
 =======
 >>>>>>> Stashed changes
@@ -48,3 +48,4 @@ public:
 
 
 };
+*/

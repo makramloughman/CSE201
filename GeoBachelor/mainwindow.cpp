@@ -349,6 +349,15 @@ void MainWindow::drawCircle(QPointF p, double r)
                       myPen);
 }
 
+void MainWindow::drawCircle(QPointF p1, QPointF p2)
+{
+    QPen myPen = QPen();
+    myPen.setWidth(1.5);
+    double r = sqrt(pow(p1.x()-p2.x(),2)+pow(p1.y()-p2.y(),2));
+    scene->addEllipse(p1.x()-r, p1.y()-r, r*2.0, r*2.0,
+                      myPen);
+}
+
 void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2)
 {
     //construct y = k*x + n

@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <cmath>
 #include "segment.h"
 #include "point.hpp"
@@ -37,7 +37,7 @@ Segment Segment::point_symmetry(float a, float b){  //symmetry wrt a point
     Point p1_sym = p1.symmetry_point(float a , float b);
     Point p2_sym = p2.symmetry_point(float a , float b);
     return Segment(Point p1_sym,Point p2_sym);
-}*/
+}
 
 
 double Segment::getlength(){
@@ -68,3 +68,4 @@ Segment Segment::mediator(){
 
 
 }
+*/

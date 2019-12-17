@@ -1,5 +1,11 @@
 #include <general_functions.h>
 #include <segment.h>
+
+double distance(Point p1, Point p2)
+{
+    return sqrt(pow(p1.getx()-p2.getx(),2)+pow(p1.gety()-p2.gety(),2));
+}
+
 std::vector<Point> intersection(Line l1, Line l2)
 {
     std::vector<Point> vec;
@@ -85,7 +91,7 @@ std::vector<Point> intersection(Circle c1, Circle c2)
     return vec;
 }
 
-std::vector<Point> intersection(Segment segment1, Segment segment2)
+/*std::vector<Point> intersection(Segment segment1, Segment segment2)
 
 {
     std::vector<Point> vec;
@@ -106,7 +112,5 @@ std::vector<Point> intersection(Segment segment1, Segment segment2)
     return vec;
 
 }
-double distance(Point p1, Point p2)
-{
-    return sqrt(pow(p1.getx()-p2.getx(),2)+pow(p1.gety()-p2.gety(),2));
-}
+
+*/
