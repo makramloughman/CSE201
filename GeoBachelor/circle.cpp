@@ -1,18 +1,12 @@
 #include <circle.hpp>
-#include <mainwindow.h>
-
 // include files for class Point
 
 void Circle::draw()
 {
     MainWindow* mainW = MainWindow::getInstance();
     QPointF p = mainW->mapFromGridToScene(0,getR());
-    double rad = sqrt(p.x()*p.x()+p.y()*p.y());
-    QPointF cen = mainW->mapFromGridToScene(center.getx(),center.gety()); //doesn't work?
-    std::cout << cen.x() << " "<<cen.y() << std::endl;
-    mainW->drawCircle(cen,rad);
-    std::cout << "Tangent does not exist" << std::endl;
-
+    double rad = sqrt(p.x()*p.x(+p.y()*p.y()));
+    mainW->drawCircle(mainW->mapFromGridToScene(center.getx(),center.gety()),rad);
 }
 
 void Circle::translate(double dx, double dy){
