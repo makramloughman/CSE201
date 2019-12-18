@@ -6,18 +6,15 @@
 void Line::draw()
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
-    QPointF f1 = mainW->mapFromGridToScene(p1.getx(),p1.gety());
-    QPointF f2 = mainW->mapFromGridToScene(p2.getx(),p2.gety());
-    mainW -> drawInfiniteLine(f1,f2); //Remark: We save data in Grid coordinates, so we need conversion
+    QPointF f1 = QPointF(p1.getx(),p1.gety());
+    QPointF f2 = QPointF(p2.getx(),p2.gety());
+    mainW -> drawInfiniteLine(f1,f2);
 }
 
 void Line::translate(double dx, double dy)
 {
-    p1.setx(p1.getx()+dx);
-    p1.sety(p1.gety()+dy);
-    p2.setx(p2.getx()+dx);
-    p2.sety(p2.gety()+dy);
-
+    p1.translate(dx,dy);
+    p2.translate(dx,dy);
 }
 
 Line::Line(Point &p1, Point &p2)

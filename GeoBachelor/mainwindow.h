@@ -42,7 +42,7 @@ public:
     void drawPoint(Point p);
     void drawCircle(QPointF p,double r);
     void drawCircle(QPointF p1, QPointF p2);
-    void drawInfiniteLine(QPointF p1, QPointF p2);
+    void drawInfiniteLine(QPointF p1, QPointF p2); //need it in ViewCoordinates!!!!!
     void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle
     void drawPolygon(std::vector<QPointF> points);
 

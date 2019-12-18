@@ -57,10 +57,10 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this->clickedP.clear();
             this->circle_chosen = false;
             this->n_counter =0;
-
-            Point *p1 = new Point(mainW->mapFromSceneToGrid(clickedP[0].x(),clickedP[0].y()));
-
-            mainW->mainGrid->obj.push(new Circle(*p1,Point(mainW->mapFromSceneToGrid(clickedP[1].x(),clickedP[1].y())))); //Figured out
+               //changed to view
+            Point *p1 = new Point(mainW->mapFromMyScene(clickedP[0].x(),clickedP[0].y()));
+                //changed to view
+            mainW->mainGrid->obj.push(new Circle(*p1,Point(mainW->mapFromMyScene(clickedP[1].x(),clickedP[1].y())))); //Figured out
             mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
         }
     }
@@ -81,9 +81,9 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this->clickedP.clear();
             this->inf_line_chosen = false;
             this->n_counter = 0;
-
-            Point* p1 = new Point(mainW->mapFromSceneToGrid(this->clickedP[0].x(),clickedP[0].y()));
-            Point* p2 = new Point(mainW->mapFromViewToGrid(ev->x(),ev->y()));
+            //changed to view instead of grid
+            Point* p1 = new Point(mainW->mapFromMyScene(this->clickedP[0].x(),clickedP[0].y()));
+            Point* p2 = new Point(ev->x(),ev->y());
             Line* p = new Line(*p1,*p2);
             mainW -> mainGrid -> obj.push(p);
             mainW -> mainGrid -> obj.push(p1);
@@ -95,10 +95,11 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         //User chose the feature to create a point using mouse
         mainW -> drawPoint(mapToScene(ev->x(),ev->y()));
         this->point_chosen = false;
-
-        QPointF help = mainW->mapFromViewToGrid(ev->x(),ev->y());
+            // changed to view (mapFromViewToGrid)
+        QPointF help = QPointF(ev->x(),ev->y());
         mainW->mainGrid->obj.push(new Point(help));
     }
+
     else if (this->polygon_chosen){
         if(this->n_counter == 0){
             this->n_counter++;

@@ -6,14 +6,12 @@
 void Circle::draw()
 {
     MainWindow* mainW = MainWindow::getInstance();
-    QPointF p = mainW->mapFromGridToScene(0,getR());
     QPointF help1 = QPointF(center.getx(),center.gety()+r);
-    QPointF help = mainW -> mapFromGridToScene(help1.x(),help1.y());
-    double rad = sqrt(pow(help.y()+center.gety(),2)+pow(help.x()-center.getx(),2));
-    QPointF cen = mainW->mapFromGridToScene(center.getx(),center.gety()); //doesn't work?
-    std::cout << cen.x() << " "<<cen.y() << std::endl;
+    QPointF help = mainW -> mapToMyScene(help1.x(),help1.y());
+    QPointF cen = mainW->mapToMyScene(center.getx(),center.gety()); //doesn't work?
+    mainW->drawPoint(cen);
     mainW->drawCircle(cen,help);
-    std::cout << "Tangent does not exist" << std::endl;
+
 }
 
 void Circle::translate(double dx, double dy){

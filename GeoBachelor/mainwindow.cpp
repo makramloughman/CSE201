@@ -358,7 +358,7 @@ void MainWindow::drawCircle(QPointF p1, QPointF p2)
                       myPen);
 }
 
-void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2)
+void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2) //inViewCoordinates
 {
     //construct y = k*x + n
     double slope = 0;
@@ -733,11 +733,13 @@ void MainWindow::on_pushButton_2_clicked()
     std::cout<<typeid(Line).name()<<endl;
     std::vector<Point> in = intersection(*mainGrid->obj.circles[0],*mainGrid->obj.circles[1]);
     std::cout << in.size() << std::endl;
-    QPointF f1 = mapFromGridToScene(in[0].getx(),in[0].gety());
-    QPointF f2 = mapFromGridToScene(in[1].getx(),in[1].gety());
+    QPointF f1 = mapToMyScene(in[0].getx(),in[0].gety());
+    QPointF f2 = mapToMyScene(in[1].getx(),in[1].gety());
 
     drawPoint(f1);
     drawPoint(f2);
     */
+
     mainGrid->move_grid(33.5,-33.5);
+    //drawCircle(QPointF(50,50),QPointF(100,100));
 }

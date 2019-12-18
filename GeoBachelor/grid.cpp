@@ -100,18 +100,14 @@ void Grid::set_xaxis_label()
     MainWindow* mainW = MainWindow::getInstance();
 
     double w = mainW->getWidth_View();
-    double h = mainW->getHeight_View();
-    QPointF f = mainW->mapToMyScene(w-50,h-50);
+    QPointF f = mainW->mapToMyScene(w-50,getY()+10);
     QGraphicsTextItem* text=mainW->scene->addText("X");
     text->setPos(f.x(), f.y());
  }
 
 void Grid::set_yaxis_label(){
     MainWindow* mainW = MainWindow::getInstance();
-
-    double w = mainW->getWidth_View();
-    double h = mainW->getHeight_View();
-    QPointF f = mainW->mapToMyScene(20,40);
+    QPointF f = mainW->mapToMyScene(getX()-30,10);
     QGraphicsTextItem* text=mainW->scene->addText("Y");
     text->setPos(f.x(), f.y());
 
@@ -124,10 +120,23 @@ void Grid::move_grid(double dx, double dy){
     this -> y_p+=dy;
     mainW->Clear();
     draw();
-    //QPointF f = mainW->mapFromViewToGrid(dx,dy);
-    //obj.circles[0]->translate(f.x(),f.y());
-    //obj.circles[0]->draw();
-
+    set_xaxis_label();
+    set_yaxis_label();
+    for(int i=0;i<obj.circles.size();i++)
+    {
+        obj.circles[i]->translate(dx,dy);
+        obj.circles[i]->draw();
+    }
+    for(int i=0;i<obj.points.size();i++)
+    {
+        obj.points[i]->translate(dx,dy);
+        obj.points[i]->draw();
+    }
+    for(int i=0;i<obj.lines.size();i++)
+    {
+        obj.lines[i]->translate(dx,dy);
+        obj.lines[i]->draw();
+    }
 }
 
 

@@ -33,7 +33,7 @@ Point::Point(QPointF p)
 void Point::draw() //virtual function from the class MathObject
 {
      MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
-     mainW -> drawPoint(mainW->mapFromGridToScene(this->x,this->y)); //Remark: We save data in Grid coordinates, so we need conversion
+     mainW -> drawPoint(mainW->mapToMyScene(this->x,this->y)); //Remark: We save data in Grid coordinates, so we need conversion
 }
 
 void Point::changecolour(double R,double G,double B){
