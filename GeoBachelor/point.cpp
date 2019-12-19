@@ -103,7 +103,6 @@ double Point::distance(Point A)
 }
 
 
-
 //gives the radius from polar coordinates of the point (r,theta)
 float radius_polarcoordinates(Point point)
 {
