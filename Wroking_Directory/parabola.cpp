@@ -51,3 +51,15 @@ Point Parabola:: vertex()
   double y = k * x + n;
   return Point( x + xf) / 2, (y+yf) / 2);
 }
+
+Line Parabola::tangent(point M){
+  double x0 = M.getx();
+  double y0 = M.gety();
+  double b1 = d.y_intercept();
+  double a1 = d.slope();
+  double distance1 = M.distance(M,f);
+  Line A = d.perpendicular(M);
+  Point Astar = A.intersection(d);
+  double distance2 = M.distance(M,Astar);
+  if (distance2 < distance1){
+    
