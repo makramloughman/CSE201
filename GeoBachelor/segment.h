@@ -1,11 +1,10 @@
-/*#ifndef SEGMENT_H
-#define SEGMENT_H
-=======
->>>>>>> Stashed changes
 #include "point.hpp"
 #include "line.hpp"
+#include <mathobject.h>
 #pragma once
-class Segment : public Line {
+
+class Segment : public MathObject
+{
 
 public:
     //create endpoints of segment (point1 and point2)
@@ -16,6 +15,9 @@ public:
     Segment(Point _point1, Point _point2);
     ~Segment();
 
+    virtual void translate(double dx, double dy);
+    virtual void draw();
+
     void polarcoordinates(); //gives polar coordinates of the point
 
     void display();         //displays segment
@@ -25,27 +27,25 @@ public:
     void hidepoints();      //hide the endpoint of the segment
 
 
-    void moverightpoint(); //extand or shrink and then rotate (using previous methods)
-    void moveleftpoint();  //same
+    void move_rightpoint(double x, double y); //extand or shrink and then rotate (using previous methods)
+    void move_leftpoint(double x, double y);  //same
 
-    void movesegment();    //move the segment keeping it parallel to where it was
+    //Point point_symmetry(Point p); //symmetry wrt a point
 
-    void point_symmetry(); //symmetry wrt a point
-
-    void getlength();      //get distance between endpoints
+    double getlength();      //get distance between endpoints
 
     void pointonsegment();     //creates point on segment
     void linethroughsegment(); //creates line passing through the segment
 
     void copy();               //copying segment
 
-    void perpendicular(int distance); //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
+    Line perpendicular(); //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
 
-    void midpoint();                  //give the midpoint of the segment
+    Point midpoint();                  //give the midpoint of the segment
 
-    void mediator();                  //creates the mediator(line)
+    Line mediator();                  //creates the mediator(line)
 
 
 
 };
-*/
+

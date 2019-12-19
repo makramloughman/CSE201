@@ -1,13 +1,29 @@
-/*#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 #include "segment.h"
 #include "point.hpp"
-#define PI 3.14159265
+#include <mainwindow.h>
+#define PI 3.141592653589
 using namespace std;
 
-Segment::Segment(Point _point1, Point _point2) {
+Segment::Segment(Point _point1, Point _point2)
+{
     this->p1 = _point1;
     this->p2 = _point2;
+}
+
+void Segment::translate(double dx, double dy)
+{
+    p1.translate(dx,dy);
+    p2.translate(dx,dy);
+}
+
+void Segment::draw()
+{
+    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    QPointF f1 = mainW -> mapToMyScene(p1.getx(),p1.gety());
+    QPointF f2 = mainW -> mapToMyScene(p2.getx(),p2.gety());
+    mainW -> drawLine(f1,f2);
 }
 
 void display();         //displays segment
@@ -15,57 +31,47 @@ void displyendpoints(); //displays segment with endpoints
 void hide();            //hide the segment
 void hidepoints();      //hide the endpoint of the segment
 
-void Segment::moverightpoint(float x, float y){
-    p2.setx(p2.getx()+x);
-    p2.sety(p2.gety()+y);
+void Segment::move_rightpoint(double x, double y){
+    p2.translate(x,y);
 }
 
-void Segment::moveleftpoint(float x, float y){
-    p1.setx(p1.getx()+x);
-    p1.sety(p1.gety()+y);
+void Segment::move_leftpoint(double x, double y){
+    p1.translate(x,y);
 }    //move left point while staying in same line to extand
-
-void Segment::movesegment(float x, float y){
-    p1.setx(p1.getx()+x);
-    p2.setx(p2.getx()+x);
-    p1.sety(p1.gety()+y);
-    p2.sety(p2.gety()+y);
-}    //move the segment keeping it parallel to where it was
-
 /*
-Segment Segment::point_symmetry(float a, float b){  //symmetry wrt a point
-    Point p1_sym = p1.symmetry_point(float a , float b);
-    Point p2_sym = p2.symmetry_point(float a , float b);
-    return Segment(Point p1_sym,Point p2_sym);
+Segment Segment::point_symmetry(double a, double b)
+{  //symmetry wrt a point
+    Point p1_sym = p1.symmetry_point(a, b);
+    Point p2_sym = p2.symmetry_point(a, b);
+    return Segment(p1_sym,p2_sym);
 }
-
+*/
 
 double Segment::getlength(){
-    float xp1 = p1.getx();
-    float yp1 = p1.gety();
-    float xp2 = p2.getx();
-    float yp2 = p2.gety();
+    double x1 = p1.getx();
+    double y1 = p1.gety();
+    double x2 = p2.getx();
+    double y2 = p2.gety();
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }      //get distance between endpoints
 
 
 
 Point Segment::midpoint(){
-    float xp1 = p1.getx();
-    float yp1 = p1.gety();
-    float xp2 = p2.getx();
-    float yp2 = p2.gety();
-    float xm = (xp1+xp2)/2;
-    float ym = (yp1+yp2)/2;
-    Point p=Point(double xm, double ym);
+    double xp1 = p1.getx();
+    double yp1 = p1.gety();
+    double xp2 = p2.getx();
+    double yp2 = p2.gety();
+    double xm = (xp1+xp2)/2;
+    double ym = (yp1+yp2)/2;
+    Point p = Point(xm,ym);
     return p;
 }
 
-Segment Segment::mediator(){
-    return Segment.perpendicular(float Segment.midpoint().getx() , float Segment.midpoint().getx(), float 0)
-}                    //creates the mediator(line)
-
-
-
+Line Segment::mediator()
+{
+    Line l =Line(p1,p2);
+    Point m = midpoint();
+    return l.perpendicular(m);
 }
-*/
+
