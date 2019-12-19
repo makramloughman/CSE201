@@ -717,7 +717,7 @@ void MainWindow::on_pushButton_clicked()
     if(!started)
     {
         this->started = true;
-        Grid* g = new Grid(50,this->getHeight_View()-50);
+        Grid* g = new Grid(50,this->getHeight_View()-50,25);
         setGrid(g);
         g->draw();
         g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
