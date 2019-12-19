@@ -1,7 +1,5 @@
 /*#ifndef SEGMENT_H
 #define SEGMENT_H
-=======
->>>>>>> Stashed changes
 #include "point.hpp"
 #include "line.hpp"
 #pragma once
@@ -48,4 +46,6 @@ public:
 
 
 };
+
+#endif
 */

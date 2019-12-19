@@ -1,4 +1,5 @@
-/*#include <iostream>
+/*
+#include <iostream>
 #include <cmath>
 #include "segment.h"
 #include "point.hpp"
@@ -32,7 +33,6 @@ void Segment::movesegment(float x, float y){
     p2.sety(p2.gety()+y);
 }    //move the segment keeping it parallel to where it was
 
-/*
 Segment Segment::point_symmetry(float a, float b){  //symmetry wrt a point
     Point p1_sym = p1.symmetry_point(float a , float b);
     Point p2_sym = p2.symmetry_point(float a , float b);
