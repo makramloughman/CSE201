@@ -17,6 +17,7 @@ class Hyperbola: public Item{
         Line tangent(Point M); // returns tangent lines from the point M
         Point focus1(); // returns one focus
         Point focus2(); // returns other focus
+        Point center(); // return center of the hyperbola
         double get_a();// returns the size of the semi-major axis
         double get_c(); //returns linear eccentricity of the hyperbola
         double get_e(); // returns eccentricity of the hyperbola
