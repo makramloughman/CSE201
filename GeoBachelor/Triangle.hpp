@@ -10,6 +10,9 @@ class Triangle: public  MathObject
     Point point2;
     Point point3;
     
+    int countpoints;
+    std::string name; 
+    std::string get_name(); //for the display
     
     public:
     Triangle(Point point1 , Point point2 , Point point3);
