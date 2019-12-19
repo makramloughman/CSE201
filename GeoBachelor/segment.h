@@ -1,3 +1,5 @@
+/*#ifndef SEGMENT_H
+#define SEGMENT_H
 #include "point.hpp"
 #include "line.hpp"
 #include <mathobject.h>
@@ -48,4 +50,7 @@ public:
 
 
 };
+
+#endif
+*/
 
