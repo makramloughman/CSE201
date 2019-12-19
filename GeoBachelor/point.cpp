@@ -18,8 +18,11 @@ std::string Point::get_name() {
 Point::Point(double x, double y){
     this->x = x;
     this->y = y;
+    
     std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    this-> name = s.at( countpoints % s.size() ); 
+    countpoints_2 = countpoints / 26;
+    this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); 
+    
     countpoints += 1; // add 1 to the counter
     color.push_back(0);
     color.push_back(0);
