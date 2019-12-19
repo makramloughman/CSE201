@@ -137,6 +137,17 @@ void Grid::move_grid(double dx, double dy){
         obj.lines[i]->translate(dx,dy);
         obj.lines[i]->draw();
     }
+    for(int i=0;i<obj.segments.size();i++)
+    {
+        obj.segments[i]->translate(dx,dy);
+        obj.segments[i]->draw();
+    }
+
+}
+
+void Grid::move_grid(QPointF to)
+{
+    move_grid(to.x()-x_p,to.y()-y_p);
 }
 
 

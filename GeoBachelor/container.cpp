@@ -25,4 +25,10 @@ void Container::push(Triangle *t)
     this->triangles.push_back(t);
 }
 
+void Container::push(Segment *s)
+{
+    this->segments.push_back(s);
+}
+
+
 

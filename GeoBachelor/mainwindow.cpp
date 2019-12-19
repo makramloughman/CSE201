@@ -500,8 +500,9 @@ QPointF MainWindow::mapFromGridToView(double x, double y)
 
 MainWindow *MainWindow::theWindow = nullptr; //declare static
 
-void MainWindow::Move(){
-    qDebug() << "MainWindow::Move()";
+void MainWindow::Move()
+{
+    ui->graphicsView-> move_grid_chosen = true;
 }
 
 void MainWindow::Select(){

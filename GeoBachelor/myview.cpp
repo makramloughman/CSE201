@@ -34,6 +34,16 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->drawPoint(this->clickedP[1]);
             mainW->drawPoint(this->clickedP[0]);
 
+            QPointF h = mainW-> mapFromMyScene(this->clickedP[0].x(),this->clickedP[0].y());
+
+            Point* p1 = new Point(h.x(),h.y());
+            Point* p2 = new Point(ev->x(),ev->y());
+
+            Segment* s = new Segment(*p1,*p2);
+            mainW->mainGrid->obj.push(s);
+            mainW->mainGrid->obj.push(p1);
+            mainW->mainGrid->obj.push(p2);
+
             this->clickedP.clear();
             this->segment_chosen = false;
             this->n_counter =0;
@@ -99,7 +109,6 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         QPointF help = QPointF(ev->x(),ev->y());
         mainW->mainGrid->obj.push(new Point(help));
     }
-
     else if (this->polygon_chosen){
         if(this->n_counter == 0){
             this->n_counter++;
@@ -127,5 +136,38 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 this->n_counter =0;
             }
         }
+    }
+
+    else if (this->move_grid_chosen)
+    {
+        this->move_grid_chosen = false;
+        this->move_grid_pressed = true;
+        last_clicked = QPointF(ev->x(),ev->y());
+
+    }
+}
+
+void MyView::mouseMoveEvent(QMouseEvent *ev)
+{
+    if(this->move_grid_pressed)
+    {
+        MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+        double dx = ev->x()-last_clicked.x();
+        double dy = ev->y()-last_clicked.y();
+        mainW ->mainGrid->move_grid(dx,dy);
+        last_clicked = QPointF(ev->x(),ev->y());
+    }
+}
+
+void MyView::mouseReleaseEvent(QMouseEvent *ev)
+{
+    if(!this->move_grid_chosen && this->move_grid_pressed)
+    {
+        MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+        this->move_grid_pressed = false;
+        double dx = ev->x()-last_clicked.x();
+        double dy = ev->y()-last_clicked.y();
+        mainW ->mainGrid->move_grid(dx,dy);
+        last_clicked = QPointF(0,0);
     }
 }

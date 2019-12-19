@@ -21,6 +21,7 @@
 #include <circle.hpp>
 #include <general_functions.h>
 #include <typeinfo>
+#include <string>
 
 namespace Ui {
 class MainWindow;
@@ -68,6 +69,7 @@ public:
     int getHeight_View();
     void setBackGroundColor_View(QBrush b);
 
+    std::vector<std::string> letters;
 
 public slots:
     void Move();

@@ -6,7 +6,7 @@
 #define PI 3.141592653589
 using namespace std;
 
-Segment::Segment(Point _point1, Point _point2)
+Segment::Segment(Point &_point1, Point &_point2)
 {
     this->p1 = _point1;
     this->p2 = _point2;

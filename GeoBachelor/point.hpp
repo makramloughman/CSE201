@@ -12,13 +12,14 @@ private:
     double x; 
     double y; 
 
-    std::string name; //name of the point (a letter)
     std::vector<double> color; // vector of size 3x1 corresponding to rgb
     int shape; // 0 for dot; 1 for circle; 2 for cross...
 
     //int namecolor [3] //color of the point's name
         
 public : 
+
+    std::string name; //name of the point (a letter)
 
     //Creates Point(0,0)
     Point();

@@ -8,6 +8,7 @@ public:
     MathObject();
     virtual void draw();
     virtual void translate(double dx,double dy);
+    bool in_personal_area();
 };
 
 #endif // MATHOBJECT_H

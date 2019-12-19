@@ -11,8 +11,7 @@ public:
     Point p1;
     Point p2;
 
-
-    Segment(Point _point1, Point _point2);
+    Segment(Point& _point1, Point& _point2);
     ~Segment();
 
     virtual void translate(double dx, double dy);
@@ -44,8 +43,6 @@ public:
     Point midpoint();                  //give the midpoint of the segment
 
     Line mediator();                  //creates the mediator(line)
-
-
 
 };
 
