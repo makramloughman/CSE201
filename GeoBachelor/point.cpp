@@ -6,13 +6,21 @@
 Point::Point() {
     this->x = 0.0;
     this->y = 0.0;
-    this->name = "O";
+    this->name = "";
+    this -> countpoints = 0;
 }
 
+std::string Point::get_name() {
+    return name;
+}
+
+// global variable (int countpoints)
 Point::Point(double x, double y){
     this->x = x;
     this->y = y;
-    this-> name = ""; //A...Z then A_1...Z_1 ... until A_n...Z_n
+    std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    this-> name = s.at( countpoints % s.size() ); 
+    countpoints += 1; // add 1 to the counter
     color.push_back(0);
     color.push_back(0);
     color.push_back(0);
@@ -23,7 +31,7 @@ Point::Point(QPointF p)
 {
     this->x = p.x();
     this->y = p.y();
-    this-> name = ""; //A...Z then A_1...Z_1 ... until A_n...Z_n
+    this-> name = ""; //A...Z then AA...AZ ... until ZA...ZZ
     color.push_back(0);
     color.push_back(0);
     color.push_back(0);
