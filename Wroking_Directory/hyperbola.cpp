@@ -79,7 +79,29 @@ Point Hyperbola:: focus1()
 
 Point Hyperbola:: focus2()
 {
-    //TO BE IMPLEMENTED
+    double x1 = getX1();
+    double x2 = getX2();
+    double y1 = getY1();
+    double y2 = getY2();
+    double a = sqrt(pow((x2-x1),2) + pow((y1-y2),2))/2;
+    double c = sqrt(a*a + b*b);
+    double k = (y2-y1)/(x2-x1);
+    double n = y1 - (k * x1);
+    double x01 = (-sqrt(a*a*k*k + a*a -2*a*c*k*k - 2*a*c + c*c*k*k + c*c -k*k*x2*x2 - 2*k*n*x2 + 2*y2*n*k - n*n + 2*n*y2 - y2*y2) - k*n + k*y2 + x2 ) / (1 + k*k);
+    double x02 = (sqrt(a*a*k*k + a*a -2*a*c*k*k - 2*a*c + c*c*k*k + c*c -k*k*x2*x2 - 2*k*n*x2 + 2*y2*n*k - n*n + 2*n*y2 - y2*y2) - k*n + k*y2 + x2 ) / (1 + k*k);
+    double y01 = k * x01 + n;
+    double y02 = k * x02 + n;
+	
+    if (sqrt(pow((x01-x1),2) + pow((y01-y1),2)) > sqrt(pow((x02-x1),2) + pow((y02-y1),2)))
+	{
+	    std::cout << "first focus is ( " << x01 << ", " << y01 << " )" << std::endl;
+            return Point(x01, y01);
+	}
+    else
+	{
+	    std::cout << "first focus is ( " << x02 << ", " << y02 << " )" << std::endl;
+            return Point(x02, y02);
+	}
 }
 
 double Hyperbola:: get_a()
