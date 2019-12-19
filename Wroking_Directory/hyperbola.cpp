@@ -104,6 +104,11 @@ Point Hyperbola:: focus2()
 	}
 }
 
+Point Hyperbola:: center()
+{
+    return Point((getX1() + getX2())/2, (getY1() + getY2())/2 );
+}
+
 double Hyperbola:: get_a()
 {
     double x1 = getX1();
@@ -137,5 +142,19 @@ Line Hyperbola:: minoraxis()
 
 Line Hyperbola:: asymptotes()
 {
-    //TO BE IMPLEMENTED
+    double a = get_a();
+    double k1 = b/a; 
+    double k2 = -b/a;
+    Point c = center();
+    double xc = c.getx();
+    double yc = c.gety();
+    double n1 = yc - k1 * xc;
+    double n2 = yc - k2 * xc;
+    double x1 = xc - 1;
+    double y1 = k1 * x1 + n1;
+    double x2 = xc - 1;
+    double y2 = k2 * x2 + n2;
+    Line l1 = Line(Point(x1,y1), center);
+    Line l2 = Line(Point(x2,y2), center);
+    return std::vector{l1, l2};
 }
