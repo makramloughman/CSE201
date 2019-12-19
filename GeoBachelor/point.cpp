@@ -20,8 +20,10 @@ Point::Point(double x, double y){
     this->y = y;
     
     std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    countpoints_2 = countpoints / 26;
-    this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); 
+    if (countpoints >= 26) {
+        countpoints_2 = (countpoints / 26) - 1;
+        this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
+    else { this->name = s.at( countpoints % s.size() ); }
     
     countpoints += 1; // add 1 to the counter
     color.push_back(0);
