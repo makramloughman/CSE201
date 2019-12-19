@@ -96,9 +96,10 @@ public slots:
     void AngleBisector();
     void Tangent();
 
-    void Polygon();
+    void Triangle();
+    void Square();
+    void Rectangle();
     void RegularPolygon();
-
     void CircleCPT();
     void CircleCRT();
 
@@ -166,7 +167,9 @@ private:
     QMenu* SpecialLineMenu;
     DropDownToolButton* SpecialLineButton;
 
-    QAction* PolygonAction;
+    QAction* TriangleAction;
+    QAction* SquareAction;
+    QAction* RectangleAction;
     QAction* RegularPolygonAction;
     QMenu* PolygonMenu;
     DropDownToolButton* PolygonButton;

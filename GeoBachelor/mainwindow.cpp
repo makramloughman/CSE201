@@ -45,7 +45,9 @@ void MainWindow::createActions(){
     AngleBisectorAction = new QAction("Angle Bisector", this);
     TangentAction = new QAction("Tangent", this);
 
-    PolygonAction = new QAction("Polygon", this);
+    TriangleAction = new QAction("Triangle", this);
+    SquareAction = new QAction("Square", this);
+    RectangleAction = new QAction("Rectangle", this);
     RegularPolygonAction = new QAction("Regular Polygon", this);
 
     CircleCPTAction = new QAction("Circle with Center through Point", this);
@@ -92,7 +94,9 @@ void MainWindow::createActions(){
     AngleBisectorAction->setIcon(QIcon(":/images/angularbisector.png"));
     TangentAction->setIcon(QIcon(":/images/tangent.png"));
 
-    PolygonAction->setIcon(QIcon(":/images/polygon.png"));
+    TriangleAction->setIcon(QIcon(":/images/polygon.png"));
+    SquareAction->setIcon(QIcon(":/images/square.png"));
+    RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
     RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
 
     CircleCPTAction->setIcon(QIcon(":/images/circle2.png"));
@@ -139,7 +143,9 @@ void MainWindow::createActions(){
     QObject::connect(AngleBisectorAction, SIGNAL(triggered()), this, SLOT(AngleBisector()));
     QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
 
-    QObject::connect(PolygonAction, SIGNAL(triggered()), this, SLOT(Polygon()));
+    QObject::connect(TriangleAction, SIGNAL(triggered()), this, SLOT(Triangle()));
+    QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
+    QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
     QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
 
     QObject::connect(CircleCPTAction, SIGNAL(triggered()), this, SLOT(CircleCPT()));
@@ -193,7 +199,9 @@ void MainWindow::createMenus(){
     SpecialLineMenu->addAction(TangentAction);
 
     PolygonMenu = new QMenu;
-    PolygonMenu->addAction(PolygonAction);
+    PolygonMenu->addAction(TriangleAction);
+    PolygonMenu->addAction(SquareAction);
+    PolygonMenu->addAction(RectangleAction);
     PolygonMenu->addAction(RegularPolygonAction);
 
     CircleMenu = new QMenu;
@@ -253,7 +261,7 @@ void MainWindow::createToolButtons(){
 
     PolygonButton = new DropDownToolButton;
     PolygonButton->setMenu(PolygonMenu);
-    PolygonButton->setDefaultAction(PolygonAction);
+    PolygonButton->setDefaultAction(TriangleAction);
     PolygonButton->setMinimumHeight(32);
     PolygonButton->setMinimumWidth(44);
     PolygonButton->setIconSize(QSize(32,32));
@@ -582,8 +590,16 @@ void MainWindow::Tangent(){
     qDebug() << "MainWindow::Tangent()";
 }
 
-void MainWindow::Polygon(){
-    qDebug() << "MainWindow::Polygon()";
+void MainWindow::Triangle(){
+    qDebug() << "MainWindow::Triangle()";
+}
+
+void MainWindow::Square(){
+    qDebug() << "MainWindow::Square()";
+}
+
+void MainWindow::Rectangle(){
+    qDebug() << "MainWindow::Rectangle()";
 }
 
 void MainWindow::RegularPolygon(){
@@ -681,7 +697,9 @@ MainWindow::~MainWindow()
     delete TangentAction;
     delete SpecialLineMenu;
     delete SpecialLineButton;
-    delete PolygonAction;
+    delete TriangleAction;
+    delete SquareAction;
+    delete RectangleAction;
     delete RegularPolygonAction;
     delete PolygonMenu;
     delete PolygonButton;
