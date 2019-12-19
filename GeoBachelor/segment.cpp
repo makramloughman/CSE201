@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 #include <cmath>
 #include "segment.h"
@@ -39,18 +38,12 @@ void Segment::move_rightpoint(double x, double y){
 void Segment::move_leftpoint(double x, double y){
     p1.translate(x,y);
 }    //move left point while staying in same line to extand
-
-void Segment::movesegment(float x, float y){
-    p1.setx(p1.getx()+x);
-    p2.setx(p2.getx()+x);
-    p1.sety(p1.gety()+y);
-    p2.sety(p2.gety()+y);
-}    //move the segment keeping it parallel to where it was
-
-Segment Segment::point_symmetry(float a, float b){  //symmetry wrt a point
-    Point p1_sym = p1.symmetry_point(float a , float b);
-    Point p2_sym = p2.symmetry_point(float a , float b);
-    return Segment(Point p1_sym,Point p2_sym);
+/*
+Segment Segment::point_symmetry(double a, double b)
+{  //symmetry wrt a point
+    Point p1_sym = p1.symmetry_point(a, b);
+    Point p2_sym = p2.symmetry_point(a, b);
+    return Segment(p1_sym,p2_sym);
 }
 */
 
