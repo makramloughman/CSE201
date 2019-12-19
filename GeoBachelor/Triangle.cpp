@@ -8,6 +8,14 @@ Triangle::Triangle(Point point1 ,Point point2 ,Point point3)
     this->point1 = point1;
     this->point2 = point2;
     this->point3 = point3;
+    
+    // function to make global
+    std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    if (countpoints >= 26) {
+        countpoints_2 = (countpoints / 26) - 1;
+        this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
+    else { this->name = s.at( countpoints % s.size() ); }
+    countpoints += 1; // add 1 to the counter
 } 
 
 Triangle:: ~Triangle()
