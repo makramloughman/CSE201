@@ -12,6 +12,9 @@
 class Circle: public MathObject
 {
     private:
+        int countpoints;
+        std::string name; 
+        std::string get_name(); //for the display
 
     public:
         virtual void draw();
