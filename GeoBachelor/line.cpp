@@ -3,6 +3,7 @@
 #include <line.hpp>
 #include <mainwindow.h>
 
+
 void Line::draw()
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
@@ -21,6 +22,14 @@ Line::Line(Point &p1, Point &p2)
 {
     this->p1 = p1;
     this->p2 = p2;
+    
+    // function to make global
+    std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    if (countpoints >= 26) {
+        countpoints_2 = (countpoints / 26) - 1;
+        this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
+    else { this->name = s.at( countpoints % s.size() ); }
+    countpoints += 1; // add 1 to the counter
 }
 
 
