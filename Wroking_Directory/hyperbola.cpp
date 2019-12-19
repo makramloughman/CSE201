@@ -127,12 +127,12 @@ double Hyperbola:: get_e()
 
 Line Hyperbola:: majoraxis()
 {
-    //TO BE IMPLEMENTED
+    return Line(v1, v2);
 }
 
 Line Hyperbola:: minoraxis()
 {
-    //TO BE IMPLEMENTED
+    return majoraxis().perpendicular((getX1() + getX2())/2, (getY1() + getY2())/2);
 }
 
 Line Hyperbola:: asymptotes()
