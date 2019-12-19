@@ -406,6 +406,18 @@ void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2) //inViewCoordinates
     }
 }
 
+void MainWindow::drawInfiniteLine(Point p1, Point p2)
+{
+    QPointF f1 = QPointF(p1.getx(),p1.gety());
+    QPointF f2 = QPointF(p2.getx(),p2.gety());
+    drawInfiniteLine(f1,f2);
+}
+
+void MainWindow::drawInfiniteLine(Line l)
+{
+    drawInfiniteLine(l.p1,l.p2);
+}
+
 void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
 {
     std::vector<QPointF> ps;
@@ -514,7 +526,7 @@ void MainWindow::Move()
 }
 
 void MainWindow::Select(){
-    qDebug() << "MainWindow::Select()";
+    ui->graphicsView->select_object_chosen = true;
 }
 
 void MainWindow::Point_()
@@ -758,7 +770,14 @@ void MainWindow::on_pushButton_2_clicked()
     drawPoint(f1);
     drawPoint(f2);
     */
+    Circle c= (*mainGrid->obj.circles[0]);
+    Point p = (*mainGrid->obj.points[1]);
+    std::vector<Line> in = c.tangent(p);
 
-    mainGrid->move_grid(33.5,-33.5);
+    std::cout<<in.size()<<endl;
+    drawInfiniteLine(in[0]);
+    drawInfiniteLine(in[1]);
+
+    //mainGrid->move_grid(33.5,-33.5);
     //drawCircle(QPointF(50,50),QPointF(100,100));
 }

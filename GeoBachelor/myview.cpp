@@ -11,6 +11,9 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
     this->n_polygon = 0; //no polygon chosen
+    this->move_grid_chosen = false;
+    this->move_grid_pressed = false;
+    this->select_object_chosen = false;
 }
 
 void MyView::mousePressEvent(QMouseEvent *ev)
@@ -70,7 +73,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                //changed to view
             Point *p1 = new Point(mainW->mapFromMyScene(clickedP[0].x(),clickedP[0].y()));
                 //changed to view
-            mainW->mainGrid->obj.push(new Circle(*p1,Point(mainW->mapFromMyScene(clickedP[1].x(),clickedP[1].y())))); //Figured out
+            mainW->mainGrid->obj.push(new Circle(*p1,Point(ev->x(),ev->y()))); //Figured out
             mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
         }
     }
@@ -144,6 +147,22 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         this->move_grid_pressed = true;
         last_clicked = QPointF(ev->x(),ev->y());
 
+    }
+
+    else if (this->select_object_chosen)
+    {
+        this->select_object_chosen = false;
+
+        bool b = false;
+        for(int i=0;i<mainW->mainGrid->obj.circles.size();i++)
+        {
+            bool b = mainW->mainGrid->obj.circles[i]->in_personal_area(ev->x(),ev->y());
+            if(b)
+            {
+
+            }
+
+        }
     }
 }
 
