@@ -11,23 +11,19 @@ class Point : public MathObject
 private:
     double x; 
     double y; 
-
-    std::vector<double> color; // vector of size 3x1 corresponding to rgb
+    std::vector<double> colour; // vector of size 3x1 corresponding to rgb
     int shape; // 0 for dot; 1 for circle; 2 for cross...
-    
-    //int namecolor [3] //color of the point's name
         
 public : 
-
+    int countpoints;
     std::string name; 
-    void set_name(int i);   //transform int to letter
     std::string get_name(); //for the display
 
     //Creates Point(0,0)
     Point();
 
     //Creates a Point with given coordinates
-    Point(double x, double y); 
+    Point(double x, double y, int i); 
     Point(QPointF p);
 
     virtual void draw();
