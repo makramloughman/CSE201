@@ -37,5 +37,7 @@
         <file>images/translatebyvector.png</file>
         <file>images/vector.png</file>
         <file>images/vectorfrompoint.png</file>
+        <file>images/square.png</file>
+        <file>images/rectangle.png</file>
     </qresource>
 </RCC>
