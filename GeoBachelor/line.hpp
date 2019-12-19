@@ -11,6 +11,10 @@ class Line : public MathObject
   
     Point p1;
     Point p2;
+    
+    int countpoints;
+    std::string name; 
+    std::string get_name(); //for the display
 
     virtual void draw();
     virtual void translate(double dx, double dy);
