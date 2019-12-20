@@ -19,6 +19,7 @@
 #include <mathobject.h>
 #include <line.hpp>
 #include <circle.hpp>
+#include <segment.h>
 #include <general_functions.h>
 #include <typeinfo>
 #include <string>
@@ -126,6 +127,8 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;

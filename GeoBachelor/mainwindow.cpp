@@ -763,15 +763,19 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    /*
-    std::cout<<typeid(mainGrid->obj.lines[0]).name()<<endl;
-    std::cout<<typeid(Line).name()<<endl;
-    std::vector<Point> in = intersection(*mainGrid->obj.circles[0],*mainGrid->obj.circles[1]);
+    std::cout<<"you entered this button"<<endl;
+    std::cout<<typeid(mainGrid->obj.segments[0]).name()<<endl;
+    std::cout<<typeid(mainGrid->obj.circles[0]).name()<<endl;
+    //std::cout<<typeid(Segment()).name()<<endl;
+
+
+    std::vector<Point> in = intersection(*mainGrid->obj.segments[0],*mainGrid->obj.circles[0]);
     std::cout << in.size() << std::endl;
     QPointF f1 = mapToMyScene(in[0].getx(),in[0].gety());
     QPointF f2 = mapToMyScene(in[1].getx(),in[1].gety());
 
     drawPoint(f1);
+
     drawPoint(f2);
     */
     Circle c= (*mainGrid->obj.circles[0]);
@@ -785,3 +789,4 @@ void MainWindow::on_pushButton_2_clicked()
     //mainGrid->move_grid(33.5,-33.5);
     //drawCircle(QPointF(50,50),QPointF(100,100));
 }
+

@@ -91,7 +91,7 @@ std::vector<Point> intersection(Circle c1, Circle c2)
     return vec;
 }
 
-/*std::vector<Point> intersection(Segment segment1, Segment segment2)
+std::vector<Point> intersection(Segment segment1, Segment segment2)
 
 {
     std::vector<Point> vec;
@@ -110,7 +110,58 @@ std::vector<Point> intersection(Circle c1, Circle c2)
     }
 
     return vec;
+}
+
+
+std::vector<Point> interesection(Line line ,Segment segment){
+    std::vector<Point> vec;
+
+    Line linebis= Line( segment.p1 , segment.p2);
+    Point interpoint= intersection(line ,linebis)[0];
+
+    double h1=interpoint.getx()-segment.p1.getx()/segment.p2.getx()-segment.p1.getx();
+    double h2=interpoint.gety()-segment.p1.gety()/segment.p2.gety()-segment.p1.gety();
+    if (((0<=h1<=1) && (0<=h2<=1)))
+    {
+        vec.push_back(interpoint);
+    }
+    return vec;
+}
+
+std::vector<Point> intersection(Segment segment,Line line)
+{
+    return interesection(line,segment);
+}
+
+std::vector<Point> intersection(Circle circle,Segment segment){
+
+    std::vector<Point> vec;
+
+    Line line= Line( segment.p1 , segment.p2);
+    Point interpoint= intersection(line , circle)[0];
+    Point interpoint2= intersection(line,circle)[1];
+    double h1=(interpoint.getx()-segment.p1.getx())/(segment.p2.getx()-segment.p1.getx());
+    double h2=(interpoint.gety()-segment.p1.gety()/segment.p2.gety()-segment.p1.gety());
+    double h3=(interpoint2.getx()-segment.p1.getx())/(segment.p2.getx()-segment.p1.getx());
+    double h4=(interpoint2.gety()-segment.p1.gety()/segment.p2.gety()-segment.p1.gety());
+    if ((0<=h1<=1) && (0<=h2<=1) )
+    {
+        vec.push_back(interpoint);
+
+    }
+
+    if ((0<=h3<=1) &&(0<=h4<=1))
+    {
+        vec.push_back(interpoint2);
+    }
+
+
+    return vec;
 
 }
 
-*/
+std::vector<Point> intersection(Segment segment, Circle circle)
+{
+    return intersection(circle,segment);
+}
+
