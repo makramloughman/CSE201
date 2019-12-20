@@ -80,3 +80,8 @@ Line Segment::mediator()
     return l.perpendicular(m);
 }
 
+Segment::~Segment()
+{
+    std::cout << "Destroying Segment" << std::endl;
+}
+
