@@ -522,15 +522,19 @@ MainWindow *MainWindow::theWindow = nullptr; //declare static
 
 void MainWindow::Move()
 {
+    ui->graphicsView->refresh_indicators();
     ui->graphicsView-> move_grid_chosen = true;
 }
 
-void MainWindow::Select(){
+void MainWindow::Select()
+{
+    ui->graphicsView->refresh_indicators();
     ui->graphicsView->select_object_chosen = true;
 }
 
 void MainWindow::Point_()
 {
+    ui->graphicsView->refresh_indicators();
     ui->graphicsView->point_chosen = true;
 }
 

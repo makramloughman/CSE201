@@ -18,6 +18,11 @@ void Line::translate(double dx, double dy)
     p2.translate(dx,dy);
 }
 
+bool Line::in_personal_area(double x, double y)
+{
+    return false;
+}
+
 Line::Line(Point &p1, Point &p2)
 {
     this->p1 = p1;
@@ -25,11 +30,13 @@ Line::Line(Point &p1, Point &p2)
     
     // function to make global
     std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    /*
     if (countpoints >= 26) {
         countpoints_2 = (countpoints / 26) - 1;
         this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
     else { this->name = s.at( countpoints % s.size() ); }
     countpoints += 1; // add 1 to the counter
+    */
 }
 
 

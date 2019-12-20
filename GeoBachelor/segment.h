@@ -16,6 +16,7 @@ public:
 
     virtual void translate(double dx, double dy);
     virtual void draw();
+    virtual bool in_personal_area(double x, double y);
 
     void polarcoordinates(); //gives polar coordinates of the point
 

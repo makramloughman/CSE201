@@ -12,7 +12,8 @@ class Polygone : public MathObject
   public :
 
     virtual void draw();
-    virtual void translate();
+    virtual void translate(double dx, double dy);
+    virtual bool in_personal_area(double x, double y);
 
     std::vector<double> Colour;
 

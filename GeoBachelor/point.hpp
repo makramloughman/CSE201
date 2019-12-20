@@ -11,7 +11,7 @@ class Point : public MathObject
 private:
     double x; 
     double y; 
-    std::vector<double> colour; // vector of size 3x1 corresponding to rgb
+    std::vector<double> color; // vector of size 3x1 corresponding to rgb
     int shape; // 0 for dot; 1 for circle; 2 for cross...
         
 public : 
@@ -24,10 +24,12 @@ public :
 
     //Creates a Point with given coordinates
     Point(double x, double y, int i); 
+    Point(double x, double y);
     Point(QPointF p);
 
     virtual void draw();
     virtual void translate(double dx, double dy); //moves the point in the window
+    virtual bool in_personal_area(double x, double y);
 
     void clickpoint(); //creates a point where we click
 

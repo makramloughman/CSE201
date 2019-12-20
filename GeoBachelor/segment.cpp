@@ -26,6 +26,11 @@ void Segment::draw()
     mainW -> drawLine(f1,f2);
 }
 
+bool Segment::in_personal_area(double x, double y)
+{
+    return false;
+}
+
 void display();         //displays segment
 void displyendpoints(); //displays segment with endpoints
 void hide();            //hide the segment

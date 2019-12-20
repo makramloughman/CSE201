@@ -38,14 +38,16 @@ class MyView : public QGraphicsView
 
         bool move_grid_chosen;
         bool move_grid_pressed; //I chose to move grid and I pressed
+        bool move_grid_released;
         QPointF last_clicked;
 
         bool select_object_chosen;
 
         bool polygon_chosen; //triangle, quadrilateral, more sided polygons...
         int n_polygon; // number of points of certain polygon that we have chosen
-
         int n_counter; //we will have many options, so this one counts the number of points we have chosen after clicking certain option
+
+        void refresh_indicators();
 
 
 };

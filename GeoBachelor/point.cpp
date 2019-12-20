@@ -10,21 +10,28 @@ Point::Point() {
     this -> countpoints = 0;
 }
 
+Point::Point(double x, double y, int i)
+{
+    Point(x,y);
+}
+
 std::string Point::get_name() {
     return name;
 }
 
 // global variable (int countpoints)
-Point::Point(double x, double y){
+Point::Point(double x, double y)
+{
     this->x = x;
     this->y = y;
-    
+    /*
     std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     if (countpoints >= 26) {
-        countpoints_2 = (countpoints / 26) - 1;
+        double countpoints_2 = (countpoints / 26) - 1;
         this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
     else { this->name = s.at( countpoints % s.size() ); }
-    
+    */
+
     countpoints += 1; // add 1 to the counter
     color.push_back(0);
     color.push_back(0);
@@ -75,6 +82,11 @@ void Point::translate(double dx, double dy) //virtual function from the class Ma
 {
     x = x+dx;
     y = y+dy;
+}
+
+bool Point::in_personal_area(double x, double y)
+{
+    return false;
 }
 
 double Point::getx(){

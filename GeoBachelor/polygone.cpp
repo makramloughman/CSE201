@@ -5,7 +5,12 @@ void Polygone::draw()
 
 }
 
-void Polygone::translate()
+bool Polygone::in_personal_area(double x, double y)
+{
+    return false;
+}
+
+void Polygone::translate(double dx, double dy)
 {
 
 }

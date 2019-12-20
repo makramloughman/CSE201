@@ -14,6 +14,10 @@ class Triangle: public  MathObject
     std::string name; 
     std::string get_name(); //for the display
     
+    virtual void draw();
+    virtual void translate(double dx, double dy);
+    virtual bool in_personal_area(double x, double y);
+
     public:
     Triangle(Point point1 , Point point2 , Point point3);
     ~Triangle();
