@@ -770,23 +770,18 @@ void MainWindow::on_pushButton_2_clicked()
 
 
     std::vector<Point> in = intersection(*mainGrid->obj.segments[0],*mainGrid->obj.circles[0]);
+
     std::cout << in.size() << std::endl;
+    if (in.size()==0)
+    {
+        std::cout<<"no intersection was found"<<endl;
+    }
     QPointF f1 = mapToMyScene(in[0].getx(),in[0].gety());
     QPointF f2 = mapToMyScene(in[1].getx(),in[1].gety());
-
     drawPoint(f1);
-
     drawPoint(f2);
-    */
-    Circle c= (*mainGrid->obj.circles[0]);
-    Point p = (*mainGrid->obj.points[1]);
-    std::vector<Line> in = c.tangent(p);
 
-    std::cout<<in.size()<<endl;
-    drawInfiniteLine(in[0]);
-    drawInfiniteLine(in[1]);
 
-    //mainGrid->move_grid(33.5,-33.5);
-    //drawCircle(QPointF(50,50),QPointF(100,100));
+
 }
 
