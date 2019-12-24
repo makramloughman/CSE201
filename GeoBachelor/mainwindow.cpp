@@ -430,12 +430,15 @@ void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
     MainWindow::drawPolygon(ps);
 }
 
-/*void MainWindow::drawRectangle(QPointF p1, QPointF p3)
+void MainWindow::drawRectangle(std::vector<QPointF> points)
 {
-   QPointF l=(mainW->mapToMyScene(point1.getx(),point1.gety()))
-   QpointF q
-   MainWindow::drawLine()
-}*/
+    //QPointF p2 = ui->graphicsView->mapToScene(points[1].getx(), points[0].gety());
+    //QPointF p4= ui->graphicsView->mapToScene(points[0].getx(),points[1].gety());
+    //MainWindow::drawLine(points[0],p2);
+    //MainWindow::drawLine(p2,points[1]);
+    //MainWindow::drawLine(points[1],p4);
+    //MainWindow::drawLine(p4,points[0]);
+}
 
 void MainWindow::drawPolygon(std::vector<QPointF> points)
 {
