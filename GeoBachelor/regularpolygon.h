@@ -25,7 +25,7 @@ class RegularPolygone : public Polygone {
   Point centergravity(); //returns the coordinates of the circumscribed circle
 
   Circle circumscribedcircle(); //draws and create the circumscribed circle
-
+  ~RegularPolygone();
 
 };
 

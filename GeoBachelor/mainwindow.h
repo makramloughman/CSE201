@@ -23,6 +23,7 @@
 #include <general_functions.h>
 #include <typeinfo>
 #include <string>
+#include <polygone.h>
 
 namespace Ui {
 class MainWindow;
@@ -108,6 +109,7 @@ public slots:
     void Square();
     void Rectangle();
     void RegularPolygon();
+    void Polygon();
     void CircleCPT();
     void CircleCRT();
 
@@ -181,6 +183,7 @@ private:
     QAction* SquareAction;
     QAction* RectangleAction;
     QAction* RegularPolygonAction;
+    QAction* PolygonAction;
     QMenu* PolygonMenu;
     DropDownToolButton* PolygonButton;
 

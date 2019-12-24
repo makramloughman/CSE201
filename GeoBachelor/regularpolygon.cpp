@@ -78,4 +78,8 @@ Circle RegularPolygone::circumscribedcircle(){
     return Circle(c, r);
 }
 
-
+RegularPolygone::~RegularPolygone()
+// delete the regularpolygone
+{
+    std::cout << "Destroying RegularPolygone" << std::endl;
+}

@@ -1,7 +1,22 @@
 #include "polygone.h"
-
+#include <mainwindow.h>
 void Polygone::draw()
 {
+
+    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    if(this->selected)
+    {
+        mainW->SetPen(3,Qt::blue);
+    }
+
+    int i;
+    std::vector<QPointF> help;
+    for (i=0; i<size; i++){
+    help.push_back(mainW->mapToMyScene(Pointlist[i].getx(),Pointlist[i].gety()));
+    }
+    mainW->drawPolygon(help);
+
+    mainW->ResetPen();
 
 }
 
@@ -12,6 +27,10 @@ bool Polygone::in_personal_area(double x, double y)
 
 void Polygone::translate(double dx, double dy)
 {
+    int i;
+    for (i=0; i<size ;i++){
+        Pointlist[i].translate(dx,dy);
+    }
 
 }
 

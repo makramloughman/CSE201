@@ -52,6 +52,7 @@ void MainWindow::createActions(){
     TriangleAction = new QAction("Triangle", this);
     SquareAction = new QAction("Square", this);
     RectangleAction = new QAction("Rectangle", this);
+    PolygonAction=new QAction("Polygon",this);
     RegularPolygonAction = new QAction("Regular Polygon", this);
 
     CircleCPTAction = new QAction("Circle with Center through Point", this);
@@ -102,6 +103,7 @@ void MainWindow::createActions(){
     SquareAction->setIcon(QIcon(":/images/square.png"));
     RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
     RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
+    PolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
 
     CircleCPTAction->setIcon(QIcon(":/images/circle2.png"));
     CircleCRTAction->setIcon(QIcon(":/images/circlepointradius.png"));
@@ -151,6 +153,7 @@ void MainWindow::createActions(){
     QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
     QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
     QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
+    QObject::connect(PolygonAction, SIGNAL(triggered()),this,SLOT(Polygon()));
 
     QObject::connect(CircleCPTAction, SIGNAL(triggered()), this, SLOT(CircleCPT()));
     QObject::connect(CircleCRTAction, SIGNAL(triggered()), this, SLOT(CircleCRT()));
@@ -206,7 +209,9 @@ void MainWindow::createMenus(){
     PolygonMenu->addAction(TriangleAction);
     PolygonMenu->addAction(SquareAction);
     PolygonMenu->addAction(RectangleAction);
+    PolygonMenu->addAction(PolygonAction);
     PolygonMenu->addAction(RegularPolygonAction);
+
 
     CircleMenu = new QMenu;
     CircleMenu->addAction(CircleCPTAction);
@@ -636,6 +641,10 @@ void MainWindow::RegularPolygon(){
     qDebug() << "MainWindow::RegularPolygon()";
 }
 
+void MainWindow::Polygon(){
+    qDebug() <<"MainWindow::Polygon()";
+}
+
 void MainWindow::CircleCPT(){
     ui->graphicsView->circle_chosen = true;
 }
@@ -731,6 +740,7 @@ MainWindow::~MainWindow()
     delete SquareAction;
     delete RectangleAction;
     delete RegularPolygonAction;
+    delete PolygonAction;
     delete PolygonMenu;
     delete PolygonButton;
     delete CircleCPTAction;
