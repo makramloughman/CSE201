@@ -677,10 +677,9 @@ void MainWindow::Square(){
     qDebug() << "MainWindow::Square()";
 }
 
-void MainWindow::Rectangle(){
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->polygon_chosen = true;
-    ui->graphicsView->n_polygon = 2;
+void MainWindow::Rectangle()
+{
+    qDebug() << "MainWindow::Rectangle()";
 }
 
 void MainWindow::RegularPolygon(){
@@ -696,7 +695,8 @@ void MainWindow::CircleCPT(){
 }
 
 void MainWindow::CircleCRT(){
-    qDebug() << "MainWindow::CircleCRT()";
+    ui->graphicsView->circle_chosen_with_radius = true;
+
 }
 
 void MainWindow::Ellipse(){

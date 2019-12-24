@@ -116,9 +116,7 @@ std::vector<Line> Circle::tangent(Point M)
     double b = center.gety();
     double del = pow(xp-a,2)+pow(yp-b,2)-pow(r,2);
 
-    std::cout<<xp<<" "<<yp<<" "<<a<<" "<<b<<" "<<r<<endl;
-
-    if (pow(10,-5)<del)
+    if (pow(10,-5)<del) //point outside the circle
     {
         double x1 = (r*r*(xp-a)+r*(yp-b)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + a;
         double y1 = (r*r*(yp-b)-r*(xp-a)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + b;
@@ -131,95 +129,16 @@ std::vector<Line> Circle::tangent(Point M)
         l.push_back(l1);
         l.push_back(l2);
     }
-    else if (pow(10,-5)>del>0)
+    else if (pow(10,-5)>del>0) //point on circle
     {
-        double x1 = (r*r*(xp-a)+r*(yp-b)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + a;
-        double y1 = (r*r*(yp-a)-r*(xp-b)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + b;
+        Line l1 = Line(center,M);
+        double m = -1/l1.slope();
+        double x1 = M.getx()-20;
+        double y1 = M.gety()+m*(x1-M.getx());
         Point p = Point(x1,y1);
-        Line l1 = Line(p,M);
-        l.push_back(l1);
+        Line l2 = Line(p,M);
+        l.push_back(l2);
     }
 
-    return l;
-  /*
-  double x1 = M.getx();
-  double y1 = M.gety();
-  double x0 = center.getx();
-  double y0 = center.gety();
-  double d = (x0 -x1) * (x0 - x1) + (y0 -y1) * (y0-y1);
-  if (x0 != x1)
-  {
-    double b = (d - 2 * r + y0*y0 - y1*y1 + x0*x0 - x1*x1) / (2*(x0 -x1));
-    double a = (y1 -y0) / (x0 - x1);
-    double n = a * a + 1;
-    double m = 2 * a * (b - x0) - 2 * y0;
-    double p = (b - x0) * (b -x0) + y0 * y0 - r * r;
-    if (m*m - 4 * n * p < 0)
-    {
-      std::cout << "Tangent line does not exist" << std::endl;
-    }
-    else if (m*m - 4 * n * p == 0)
-    {
-      std::cout << "There is only one tangent line" << std::endl;
-      double y = -m/(2 * n);
-      double x = a * y + b;
-      Point h = Point(x,y);
-      l.push_back(Line(h, M));
-    }
-    else
-    {
-      double delta = sqrt(m * m - 4 * n * p);
-      double yt1 = (-m - delta) / (2 * n);
-      double yt2 = (-m + delta) / (2 * n);
-      double xt1 = a * yt1 + b;
-      double xt2 = a * yt2 + b;
-      std::vector<Line> l;
-      Point h1 = Point(xt1, yt1);
-      Point h2 = Point(xt2, yt2);
-      l.push_back(Line(h1, M));
-      l.push_back(Line(h2, M));
-      return l;
-    }
-    
-  }
-  else if (y1 != y0)
-  {
-    double b = (d - 2 * r + y0*y0 - y1*y1) / (2*(y0 -y1));
-    double a = 0;
-    double n = a * a + 1;
-    double m = 2 * a * (b - y0) - 2 * x0;
-    double p = (b - y0) * (b -y0) + x0 * x0 - r * r;
-    if (m*m - 4 * n * p < 0)
-    {
-      std::cout << "Tangent line does not exist" << std::endl;
-    }
-    else if (m*m - 4 * n * p == 0)
-    {
-      std::cout << "There is only one tangent line" << std::endl;
-      double x = -m/(2 * n);
-      double y = a * x + b;
-      Point h = Point(x,y);
-      l.push_back(Line(h, M));
-      return l;
-    }
-    else
-    {
-      double delta = sqrt(m * m - 4 * n * p);
-      double xt1 = (-m - delta) / (2 * n);
-      double xt2 = (-m + delta )/ (2 * n);
-      double yt1 = a * xt1 + b;
-      double yt2 = a * xt2 + b;
-
-      Point h1 = Point(xt1, yt1);
-      Point h2 = Point(xt2, yt2);
-      l.push_back(Line(h1, M));
-      l.push_back(Line(h2, M));
-      return l;
-    }
-  }
-  else
-  {
-    std::cout << "Tangent does not exist" << std::endl;
-  }
-    */
+    return l; //it is empty if point is inside the circle
 }

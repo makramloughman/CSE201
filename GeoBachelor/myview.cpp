@@ -12,6 +12,7 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
     this->n_counter = 0; //zero points selected
     this->n_polygon = 0; //no polygon chosen
     this->select_object_chosen = false;
+    this->circle_chosen_with_radius = false;
 
     this->move_grid_chosen = true;
     this->move_grid_pressed = false;
@@ -49,6 +50,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->mainGrid->obj.push(p1);
             mainW->mainGrid->obj.push(p2);
 
+            mainW->mainGrid->refresh_grid();
             refresh_indicators();
             this-> move_grid_chosen = true;
         }
@@ -73,10 +75,40 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->mainGrid->obj.push(new Circle(*p1,Point(ev->x(),ev->y()))); //Figured out
             mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
 
+            mainW->mainGrid->refresh_grid();
             refresh_indicators();
             this-> move_grid_chosen = true;
         }
     }
+
+    else if (circle_chosen_with_radius)
+    {
+        if(this->n_counter==0){
+            this->n_counter++;
+            this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
+            mainW->drawPoint(this->clickedP[0]);
+        }
+        else if (this->n_counter==1)
+        {
+            this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
+            double r = sqrt(pow(clickedP[0].x()-clickedP[1].x(),2)+pow(clickedP[0].y()-clickedP[1].y(),2));
+            mainW->drawCircle(clickedP[0],r);
+
+               //changed to view
+            Point *p1 = new Point(mainW->mapFromMyScene(clickedP[0].x(),clickedP[0].y()));
+            Point *p2 = new Point(ev->x(),ev->y());
+            //changed to view
+            mainW->mainGrid->obj.push(new Circle(*p1,Point(ev->x(),ev->y()))); //Figured out
+            mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
+            mainW->mainGrid->obj.push(p2);
+            mainW->mainGrid->obj.push(new Segment(*p1,*p2));
+
+            mainW->mainGrid->refresh_grid();
+            refresh_indicators();
+            this-> move_grid_chosen = true;
+        }
+    }
+
     else if (this->inf_line_chosen)
     {
         if(this->n_counter==0){
@@ -100,6 +132,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW -> mainGrid -> obj.push(p1);
             mainW -> mainGrid -> obj.push(p2);
 
+            mainW->mainGrid->refresh_grid();
             refresh_indicators();
             this-> move_grid_chosen = true;
 
@@ -114,6 +147,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         refresh_indicators();
         this-> move_grid_chosen = true;
     }
+
     else if (this->polygon_chosen){
         if(this->n_counter == 0){
             this->n_counter++;
@@ -154,6 +188,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
                 }
 
+                mainW->mainGrid->refresh_grid();
                 refresh_indicators();
                 this-> move_grid_chosen = true;
             }
@@ -221,4 +256,5 @@ void MyView::refresh_indicators()
     this->move_grid_pressed = false;
     this->select_object_chosen = false;
     this->move_grid_released = true;
+    this->circle_chosen_with_radius = false;
 }

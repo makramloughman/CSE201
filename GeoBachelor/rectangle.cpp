@@ -54,8 +54,6 @@ void Rectangle::draw()
         mainW->SetPen(3,Qt::blue);
     }
 
-
-
     std::vector<QPointF> help;
     help.push_back(mainW->mapToMyScene(p1.getx(),p1.gety()));
     help.push_back(mainW->mapToMyScene(p3.getx(),p3.gety()));

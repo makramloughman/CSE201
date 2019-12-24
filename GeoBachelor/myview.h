@@ -33,7 +33,10 @@ class MyView : public QGraphicsView
         std::vector<QPointF> clickedP;
         bool point_chosen;
         bool segment_chosen;
+
         bool circle_chosen;
+        bool circle_chosen_with_radius;
+
         bool inf_line_chosen;
 
         bool move_grid_chosen;
