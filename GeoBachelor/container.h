@@ -30,7 +30,9 @@ public:
 
     void move_refresh(double dx, double dy);
     void refresh();
-    bool find_personal_and_store(Container &c,double x, double y);
+    bool find_personal_and_store(Container &c,double x, double y); //also make AN object selected if possible
+
+    void deselect();
 
     std::vector<bool> non_empty_tags(); //check which ones are non-empty => we need this for intersections
 

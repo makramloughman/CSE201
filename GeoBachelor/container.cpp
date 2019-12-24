@@ -130,6 +130,30 @@ bool Container::find_personal_and_store(Container &c, double x, double y)
     return false;
 }
 
+void Container::deselect()
+{
+    for(int i=0;i<circles.size();i++)
+    {
+        circles[i]->selected = false;
+    }
+    for(int i=0;i<points.size();i++)
+    {
+        points[i]->selected = false;
+    }
+    for(int i=0;i<lines.size();i++)
+    {
+        lines[i]->selected = false;
+    }
+    for(int i=0;i<segments.size();i++)
+    {
+        segments[i]->selected = false;
+    }
+    for(int i=0;i<triangles.size();i++)
+    {
+        triangles[i]->selected = false;
+    }
+}
+
 std::vector<bool> Container::non_empty_tags()
 {
     std::vector<bool> tags;
