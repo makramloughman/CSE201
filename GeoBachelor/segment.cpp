@@ -86,6 +86,11 @@ Line Segment::mediator()
     return l.perpendicular(m);
 }
 
+Line Segment::perpendicular(Point p){
+    Line l1=Line(p1,p2);
+    return l1.perpendicular(p);
+}
+
 Segment::~Segment()
 {
     //std::cout << "Destroying Segment" << std::endl;

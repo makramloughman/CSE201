@@ -150,6 +150,7 @@ float angle_polarcoordinates(Point point)
     return theta;
 }
 
+
 Point::~Point()
 {
     //std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;

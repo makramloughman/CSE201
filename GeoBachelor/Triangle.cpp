@@ -129,34 +129,50 @@ double Triangle::getHeight3(){
     return (2*getArea())/d3;
 }
 
-/*Segment getBaricentre1(){
-    Segment s=Segment(Point point2,Point point3);
-    Point m=s.midpoint();
-    Segment l=Segment(Point m,Point 1);
-    return l
+Segment Triangle::Baricenter1(){
+    Segment seg=Segment(point2, point3);
+    Point m=seg.midpoint();
+    return Segment( m, point1);
 }
 
-Segment getBaricentre2(){
-    Segment s=Segment(Point point1,Point point3);
+Segment Triangle::Baricenter2(){
+    Segment s=Segment(point1,point3);
     Point m=s.midpoint();
-    Segment l=Segment(Point m,Point 2);
-    return l
+    return Segment(m, point2);
 }
-Segment getBaricentre1(){
-    Segment s=Segment(Point point1,Point point2);
+
+Segment Triangle::Baricenter3(){
+    Segment s=Segment(point1,point2);
     Point m=s.midpoint();
-    Segment l=Segment(Point m,Point 3);
-    return l
+    return Segment(m, point3);
 }
-*/
-/*
+
+
 Point Triangle::getCenterofgravity(){
-
-    return static *Inter::intersection(getBaricentre1,getBaricentre2);
+    Segment seg1=Baricenter1();
+    Segment seg2=Baricenter2();
+    return intersection(seg1,seg2)[0];
 
 }
 
-Point orthocenter{
-    
+Point Triangle::getOrthocenter(){
+    Segment s1=Segment(point1,point2);
+    Segment s2=Segment(point2,point3);
+    Point m1=s1.midpoint();
+    Point m2=s2.midpoint();
+    Line per_s1=s1.perpendicular(m1);
+    Line per_s2=s2.perpendicular(m2);
+    return intersection(per_s1,per_s2)[0];
 }
-*/
+
+Circle Triangle::Circumscribedcercle(){
+    Point o=getOrthocenter();
+    double r=distance(o,point1);
+    return Circle(o,r);
+}
+
+Circle Triangle::getInscribedcercle(){
+    Point o=getCenterofgravity();
+    double r=(2*getArea())/getPerimeter();
+    return Circle(o,r);
+}

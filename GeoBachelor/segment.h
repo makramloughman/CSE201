@@ -39,7 +39,7 @@ public:
 
     void copy();               //copying segment
 
-    Line perpendicular(); //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
+    Line perpendicular(Point p); //creates the perpendicular at a distance d from _point1 (should be less then length of segment)
 
     Point midpoint();                  //give the midpoint of the segment
 

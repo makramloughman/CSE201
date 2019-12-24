@@ -1,6 +1,8 @@
 #pragma once
 #include <point.hpp>
 #include <circle.hpp>
+#include <segment.h>
+#include <general_functions.h>
 
 class Triangle: public  MathObject
 {
@@ -22,7 +24,8 @@ class Triangle: public  MathObject
     virtual void draw();
     virtual void translate(double dx, double dy);
     virtual bool in_personal_area(double x, double y);
-
+    Segment Baricenter2();
+    Segment Baricenter3();
     double getArea();//
     double getHeight1();
     double getHeight2();
@@ -31,9 +34,10 @@ class Triangle: public  MathObject
     bool equilateral();
     bool rectangle();
     bool isocele();
-    //Segment getBaricentre1(); CHANGE LATER
+    Segment Baricenter1();
     Point getCenterofgravity();//
     Point getOrthocenter();//
     Circle Circumscribedcercle();//
     Circle getInscribedcercle();//
+
 };
