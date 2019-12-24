@@ -6,7 +6,7 @@
 #define PI 3.141592653589
 using namespace std;
 
-Segment::Segment(Point &_point1, Point &_point2)
+Segment::Segment(Point &_point1, Point &_point2) : MathObject()
 {
     this->p1 = _point1;
     this->p2 = _point2;
@@ -21,9 +21,15 @@ void Segment::translate(double dx, double dy)
 void Segment::draw()
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    if(this->selected)
+    {
+        mainW->SetPen(3,Qt::blue);
+    }
     QPointF f1 = mainW -> mapToMyScene(p1.getx(),p1.gety());
     QPointF f2 = mainW -> mapToMyScene(p2.getx(),p2.gety());
     mainW -> drawLine(f1,f2);
+
+    mainW->ResetPen();
 }
 
 bool Segment::in_personal_area(double x, double y)
@@ -82,6 +88,6 @@ Line Segment::mediator()
 
 Segment::~Segment()
 {
-    std::cout << "Destroying Segment" << std::endl;
+    //std::cout << "Destroying Segment" << std::endl;
 }
 

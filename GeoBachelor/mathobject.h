@@ -9,6 +9,8 @@ public:
     virtual void draw();
     virtual void translate(double dx,double dy);
     virtual bool in_personal_area(double x, double y);
+    virtual ~MathObject();
+    bool selected;
 };
 
 #endif // MATHOBJECT_H

@@ -54,7 +54,8 @@ HEADERS += \
     general_functions.h \
     polygone.h \
     regularpolygon.h \
-    segment.h
+    segment.h \
+    help.h
 
 FORMS += \
     mainwindow.ui

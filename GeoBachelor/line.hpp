@@ -35,5 +35,5 @@ class Line : public MathObject
     
     Point intersection(Line B); //return the point where the two lines intersect
 
-    ~Line();
+    virtual ~Line();
 };

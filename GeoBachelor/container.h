@@ -14,18 +14,27 @@ class Container
 {
 public:
     Container();
+
     void push(Point* p);
     void push(Line* l);
     void push(Circle* c);
     void push(Triangle* t);
     void push(Segment* s);
 
-    std::vector<Point*> points;
-    std::vector<Line*> lines;
-    std::vector<Circle*> circles;
-    std::vector<Triangle*> triangles;
-    std::vector<Segment*> segments;
+    std::vector<Point*> points; //tag of points is 0
+    std::vector<Line*> lines; //tag of lines is 1
+    std::vector<Circle*> circles; //tag of circles is 2
+    std::vector<Segment*> segments; //tag of segments is 3
+    std::vector<Triangle*> triangles; //tag of triangles is 4
+    int number_of_bins; //it is 5 here => points,lines,circles,segments,triangles
 
+    void move_refresh(double dx, double dy);
+    void refresh();
+    bool find_personal_and_store(Container &c,double x, double y);
+
+    std::vector<bool> non_empty_tags(); //check which ones are non-empty => we need this for intersections
+
+    int size();
 private:
 
 

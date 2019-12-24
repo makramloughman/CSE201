@@ -122,27 +122,7 @@ void Grid::move_grid(double dx, double dy){
     draw();
     set_xaxis_label();
     set_yaxis_label();
-    for(int i=0;i<obj.circles.size();i++)
-    {
-        obj.circles[i]->translate(dx,dy);
-        obj.circles[i]->draw();
-    }
-    for(int i=0;i<obj.points.size();i++)
-    {
-        obj.points[i]->translate(dx,dy);
-        obj.points[i]->draw();
-    }
-    for(int i=0;i<obj.lines.size();i++)
-    {
-        obj.lines[i]->translate(dx,dy);
-        obj.lines[i]->draw();
-    }
-    for(int i=0;i<obj.segments.size();i++)
-    {
-        obj.segments[i]->translate(dx,dy);
-        obj.segments[i]->draw();
-    }
-
+    obj.move_refresh(dx,dy);
 }
 
 void Grid::move_grid(QPointF to)

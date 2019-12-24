@@ -2,15 +2,30 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
+#include <mainwindow.h>
 
 void Triangle::draw()
 {
+    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    if(this->selected)
+    {
+        mainW->SetPen(3,Qt::blue);
+    }
 
+    std::vector<QPointF> help;
+    help.push_back(mainW->mapToMyScene(point1.getx(),point1.gety()));
+    help.push_back(mainW->mapToMyScene(point2.getx(),point2.gety()));
+    help.push_back(mainW->mapToMyScene(point3.getx(),point3.gety()));
+    mainW->drawPolygon(help);
+
+    mainW->ResetPen();
 }
 
 void Triangle::translate(double dx, double dy)
 {
-
+    point1.translate(dx,dy);
+    point2.translate(dx,dy);
+    point3.translate(dx,dy);
 }
 
 bool Triangle::in_personal_area(double x, double y)
@@ -18,7 +33,7 @@ bool Triangle::in_personal_area(double x, double y)
     return false;
 }
 
-Triangle::Triangle(Point point1 ,Point point2 ,Point point3)
+Triangle::Triangle(Point point1 ,Point point2 ,Point point3) : MathObject()
 {
     this->point1 = point1;
     this->point2 = point2;
@@ -33,7 +48,14 @@ Triangle::Triangle(Point point1 ,Point point2 ,Point point3)
     else { this->name = s.at( countpoints % s.size() ); }
     countpoints += 1; // add 1 to the counter
     */
-} 
+}
+
+Triangle::Triangle(std::vector<QPointF> p)
+{
+    this->point1=p[0];
+    this->point2=p[1];
+    this->point3=p[2];
+}
 
 Triangle:: ~Triangle()
 {

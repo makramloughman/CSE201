@@ -7,9 +7,16 @@
 void Line::draw()
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    if(this->selected)
+    {
+        mainW->SetPen(3,Qt::blue);
+    }
+
     QPointF f1 = QPointF(p1.getx(),p1.gety());
     QPointF f2 = QPointF(p2.getx(),p2.gety());
     mainW -> drawInfiniteLine(f1,f2);
+
+    mainW->ResetPen();
 }
 
 void Line::translate(double dx, double dy)
@@ -23,7 +30,7 @@ bool Line::in_personal_area(double x, double y)
     return false;
 }
 
-Line::Line(Point &p1, Point &p2)
+Line::Line(Point &p1, Point &p2) :MathObject()
 {
     this->p1 = p1;
     this->p2 = p2;
@@ -40,11 +47,12 @@ Line::Line(Point &p1, Point &p2)
 }
 
 
-Line::Line()
+Line::Line() :MathObject()
 {
     this->p1 = Point();
     this->p2 = Point();
 }
+
   
 double Line::slope(){
   double slope = 0;
@@ -111,5 +119,5 @@ Point Line::intersection(Line B){
 
 Line::~Line()
 {
-    std::cout << "Destroying Line" << std::endl;
+    //std::cout << "Destroying Line" << std::endl;
 }

@@ -6,12 +6,18 @@
 void Circle::draw()
 {
     MainWindow* mainW = MainWindow::getInstance();
+    if(this->selected)
+    {
+        mainW->SetPen(3,Qt::blue);
+    }
+
     QPointF help1 = QPointF(center.getx(),center.gety()+r);
     QPointF help = mainW -> mapToMyScene(help1.x(),help1.y());
     QPointF cen = mainW->mapToMyScene(center.getx(),center.gety()); //doesn't work?
     mainW->drawPoint(cen);
     mainW->drawCircle(cen,help);
 
+    mainW->ResetPen();
 }
 
 void Circle::translate(double dx, double dy){
@@ -29,13 +35,13 @@ bool Circle::in_personal_area(double x, double y)
     return false;
 }
 
-Circle:: Circle(Point &p, double r)
+Circle:: Circle(Point &p, double r) : MathObject()
 {
   this->center = p;
   this->r = r;
 }
 
-Circle::Circle(Point &center, Point x)
+Circle::Circle(Point &center, Point x) : MathObject()
 {
     this->center = center;
     this->r = sqrt(pow(x.getx()-center.getx(),2)+pow(x.gety()-center.gety(),2));

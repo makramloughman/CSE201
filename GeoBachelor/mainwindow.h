@@ -35,8 +35,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    QGraphicsScene* scene;
     static MainWindow* getInstance();
+
+    QGraphicsScene* scene;
+    QPen myPen; //Pen we are drawing with
+    void SetPen(double width, QColor c);
+    void ResetPen();
+
     void drawLine(QLineF l);
     void drawLine(QPointF p1, QPointF p2);
     void drawLine(QPointF p1, QPointF p2, QPen pen);
@@ -208,6 +213,7 @@ private:
     QAction* ClearAction;
     QMenu* GeneralMenu;
     DropDownToolButton* GeneralButton;
+
 };
 
 #endif // MAINWINDOW_H

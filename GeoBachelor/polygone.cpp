@@ -15,14 +15,15 @@ void Polygone::translate(double dx, double dy)
 
 }
 
-Polygone::Polygone(){              // create the polygone by selecting points on the grid
+Polygone::Polygone() : MathObject()
+{              // create the polygone by selecting points on the grid
     size = 0;
     Colour.push_back(0);
     Colour.push_back(0);
     Colour.push_back(0);
 }
 
-Polygone::Polygone(int k, std::vector<Point> P)
+Polygone::Polygone(int k, std::vector<Point> P) : MathObject()
 {     // create the polygone by adding points to the list
     for(int i=0; i<k; i++)
     {

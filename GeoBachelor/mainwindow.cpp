@@ -1,6 +1,8 @@
 ﻿ #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <point.hpp>
+#include <help.h>
+#include <memory>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     createToolBars();
     this->started = false;
 
+    QPen myPen = QPen();
+    myPen.setWidth(1.5);
 }
 
 void MainWindow::createActions(){
@@ -318,10 +322,7 @@ void MainWindow::createToolBars(){
 
 void MainWindow::drawLine(QLineF l)
 {
-    QPen myPen = QPen();
-    myPen.setWidth(1.5);
     scene->addLine(l, myPen);
-
 }
 
 void MainWindow::drawLine(QPointF p1, QPointF p2)
@@ -339,28 +340,24 @@ void MainWindow::drawPoint(QPointF p)
 {
     double rad = 3;
     scene->addEllipse(p.x()-rad, p.y()-rad, rad*2.0, rad*2.0,
-                      QPen(Qt::blue), QBrush(Qt::SolidPattern));
+                      myPen, QBrush(Qt::SolidPattern));
 }
 
 void MainWindow::drawPoint(Point p)
 {
     double rad = 3;
     scene->addEllipse(p.getx()-rad, p.gety()-rad, rad*2.0, rad*2.0,
-                      QPen(Qt::blue), QBrush(Qt::SolidPattern));
+                      myPen, QBrush(Qt::SolidPattern));
 }
 
 void MainWindow::drawCircle(QPointF p, double r)
 {
-    QPen myPen = QPen();
-    myPen.setWidth(1.5);
     scene->addEllipse(p.x()-r, p.y()-r, r*2.0, r*2.0,
                       myPen);
 }
 
 void MainWindow::drawCircle(QPointF p1, QPointF p2)
 {
-    QPen myPen = QPen();
-    myPen.setWidth(1.5);
     double r = sqrt(pow(p1.x()-p2.x(),2)+pow(p1.y()-p2.y(),2));
     scene->addEllipse(p1.x()-r, p1.y()-r, r*2.0, r*2.0,
                       myPen);
@@ -451,6 +448,18 @@ void MainWindow::setGrid(Grid* g)
 MainWindow* MainWindow:: getInstance()
 {
     return theWindow;
+}
+
+void MainWindow::SetPen(double width, QColor c)
+{
+    myPen.setWidth(width);
+    myPen.setColor(c);
+}
+
+void MainWindow::ResetPen()
+{
+    myPen = QPen();
+    myPen.setWidth(1.5);
 }
 
 void MainWindow::drawScene()
@@ -563,10 +572,12 @@ void MainWindow::Roots(){
 }
 
 void MainWindow::Line_(){
+    ui->graphicsView->refresh_indicators();
     ui->graphicsView->inf_line_chosen = true;
 }
 
 void MainWindow::Segment(){
+    ui->graphicsView->refresh_indicators();
     ui->graphicsView->segment_chosen = true;
 }
 
@@ -606,8 +617,11 @@ void MainWindow::Tangent(){
     qDebug() << "MainWindow::Tangent()";
 }
 
-void MainWindow::Triangle(){
-    qDebug() << "MainWindow::Triangle()";
+void MainWindow::Triangle()
+{
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->polygon_chosen = true;
+    ui->graphicsView->n_polygon = 3;
 }
 
 void MainWindow::Square(){
@@ -764,9 +778,31 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     std::cout<<"you entered this button"<<endl;
-    std::cout<<typeid(mainGrid->obj.segments[0]).name()<<endl;
-    std::cout<<typeid(mainGrid->obj.circles[0]).name()<<endl;
-    //std::cout<<typeid(Segment()).name()<<endl;
+    //std::cout<<typeid(mainGrid->obj.segments[0]).name()<<endl;
+    //std::cout<<typeid(mainGrid->obj.circles[0]).name()<<endl;
+
+    /*std::vector<MathObject*> v;
+    Line* x = new Line();
+    v.push_back(x);
+    std::cout<<typeid(*x).name()<<endl;
+    std::cout<<typeid(*v[0]).name()<<endl;*/
+    /*Line* a = new Line();
+    std::unique_ptr<Line> p(a);
+    std::cout<<typeid(p).name()<<endl;
+    std::vector<std::unique_ptr<MathObject>> v;
+    v.push_back(std::move(p));
+    std::cout<<typeid(v[0]).name()<<endl;
+    std::cout<<maxx(*v[0],*v[0])<<endl;*/
+
+    MathObject* a = new Line();
+    MathObject** b = &a;
+    std::vector<MathObject**> v;
+    v.push_back(b);
+    std::cout<<typeid(**v[0]).name()<<endl;
+    //std::cout<<maxx(**v[0],**v[0])<<endl;
+
+
+    /*//std::cout<<typeid(Segment()).name()<<endl;
 
 
     std::vector<Point> in = intersection(*mainGrid->obj.segments[0],*mainGrid->obj.circles[0]);
@@ -780,8 +816,6 @@ void MainWindow::on_pushButton_2_clicked()
     QPointF f2 = mapToMyScene(in[1].getx(),in[1].gety());
     drawPoint(f1);
     drawPoint(f2);
-
-
-
+    */
 }
 

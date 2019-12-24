@@ -3,16 +3,18 @@
 #include "point.hpp"
 #include <mainwindow.h>
 
-Point::Point() {
+Point::Point() : MathObject()
+{
     this->x = 0.0;
     this->y = 0.0;
     this->name = "";
     this -> countpoints = 0;
 }
 
-Point::Point(double x, double y, int i)
+Point::Point(double x, double y, int i) : MathObject()
 {
-    Point(x,y);
+    this->x = x;
+    this->y = y;
 }
 
 std::string Point::get_name() {
@@ -53,7 +55,13 @@ Point::Point(QPointF p)
 void Point::draw() //virtual function from the class MathObject
 {
      MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+     if(this->selected)
+     {
+         mainW->SetPen(3,Qt::blue);
+     }
      mainW -> drawPoint(mainW->mapToMyScene(this->x,this->y)); //Remark: We save data in Grid coordinates, so we need conversion
+
+     mainW->ResetPen();
 }
 
 void Point::changecolour(double R,double G,double B){
@@ -144,5 +152,5 @@ float angle_polarcoordinates(Point point)
 
 Point::~Point()
 {
-    std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
+    //std::cout << "Destroying Point( " << x << " , " << y << " )" << std::endl;
 }

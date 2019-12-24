@@ -11,9 +11,10 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
     this->n_polygon = 0; //no polygon chosen
+    this->select_object_chosen = false;
+
     this->move_grid_chosen = true;
     this->move_grid_pressed = false;
-    this->select_object_chosen = false;
     this->move_grid_released = true;
 }
 
@@ -52,7 +53,6 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this-> move_grid_chosen = true;
         }
     }
-
     else if (this->circle_chosen)
     {
         if(this->n_counter==0){
@@ -77,7 +77,6 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this-> move_grid_chosen = true;
         }
     }
-
     else if (this->inf_line_chosen)
     {
         if(this->n_counter==0){
@@ -120,6 +119,10 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this->n_counter++;
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
             mainW->drawPoint(this->clickedP[0]);
+
+            Point* p = new Point(ev->x(),ev->y());
+            mainW->mainGrid->obj.push(p);
+
         }
         else if (this->n_counter<=n_polygon-1){
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
@@ -129,12 +132,27 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->drawPoint(this->clickedP[n_counter-1]);
             mainW->drawPoint(this->clickedP[n_counter-2]);
 
+            Point* p = new Point(ev->x(),ev->y());
+            mainW->mainGrid->obj.push(p);
+
             if(n_counter==n_polygon)
             {
                 QLineF line(this->clickedP[n_counter-1],this->clickedP[0]);
                 mainW->drawLine(line);
                 for (int i=0;i<n_counter;i++)
-                    mainW->drawPoint(clickedP[i]);
+                mainW->drawPoint(clickedP[i]);
+
+                std::vector<QPointF> help; //transfering back to View coordinates
+                for(int i=0;i<n_counter;i++)
+                {
+                    help.push_back(mainW->mapFromMyScene(clickedP[i].x(),clickedP[i].y()));
+                }
+
+                if (n_polygon==3)
+                {
+                    mainW->mainGrid->obj.push(new Triangle(help));
+
+                }
 
                 refresh_indicators();
                 this-> move_grid_chosen = true;
@@ -144,7 +162,6 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
     else if (this->move_grid_chosen)
     {
-        //this->move_grid_chosen = false;
         this->move_grid_pressed = true;
         this->move_grid_released= false;
         last_clicked = QPointF(ev->x(),ev->y());
@@ -153,17 +170,13 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
     else if (this->select_object_chosen)
     {
-        this->select_object_chosen = false;
-
-        bool b = false;
-        for(int i=0;i<mainW->mainGrid->obj.circles.size();i++)
+        bool b = mainW->mainGrid->obj.find_personal_and_store(chosen_objects,ev->x(),ev->y());
+        if(b)
         {
-            bool b = mainW->mainGrid->obj.circles[i]->in_personal_area(ev->x(),ev->y());
-            if(b)
-            {
-
-            }
-
+           mainW->mainGrid->obj.refresh();
+           refresh_indicators();
+           this-> move_grid_chosen = true;
+           cout<<chosen_objects.size()<<endl;
         }
     }
 }

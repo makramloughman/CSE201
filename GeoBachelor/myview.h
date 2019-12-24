@@ -15,6 +15,7 @@
 #include <line.hpp>
 #include <circle.hpp>
 #include <mathobject.h>
+#include <container.h>
 
 using namespace std;
 
@@ -34,7 +35,6 @@ class MyView : public QGraphicsView
         bool segment_chosen;
         bool circle_chosen;
         bool inf_line_chosen;
-        bool triangle_chosen;
 
         bool move_grid_chosen;
         bool move_grid_pressed; //I chose to move grid and I pressed
@@ -42,9 +42,11 @@ class MyView : public QGraphicsView
         QPointF last_clicked;
 
         bool select_object_chosen;
+        Container chosen_objects;
 
         bool polygon_chosen; //triangle, quadrilateral, more sided polygons...
         int n_polygon; // number of points of certain polygon that we have chosen
+
         int n_counter; //we will have many options, so this one counts the number of points we have chosen after clicking certain option
 
         void refresh_indicators();
