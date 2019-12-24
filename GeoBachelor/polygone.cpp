@@ -64,5 +64,5 @@ void Polygone::hide()
 Polygone::~Polygone()
 // delete the polygone
 {
-
+    std::cout << "Destroying Polygone" << std::endl;
 }
