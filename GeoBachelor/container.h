@@ -37,6 +37,8 @@ public:
     std::vector<bool> non_empty_tags(); //check which ones are non-empty => we need this for intersections
 
     int size();
+
+    void empty_bins();
 private:
 
 

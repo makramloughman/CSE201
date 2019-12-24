@@ -602,8 +602,24 @@ void MainWindow::VectorFromPoint(){
     qDebug() << "MainWindow::VectorFromPoint()";
 }
 
-void MainWindow::PerpendicularLine(){
-    qDebug() << "MainWindow::PerpendicularLine()";
+void MainWindow::PerpendicularLine()
+{
+    if(ui->graphicsView->chosen_objects.lines.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        //Line l = ui->graphicsView->chosen_objects.lines[0]->perpendicular( *ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        //mainGrid->obj.push(&l);
+        mainGrid->obj.deselect();
+        mainGrid->move_grid(0,0);
+        cout<<mainGrid->obj.lines.size()<<endl;
+        cout<<mainGrid->obj.points.size()<<endl;
+        cout<<mainGrid->obj.size()<<endl;
+        cout<<ui->graphicsView->chosen_objects.size()<<endl;
+
+
+    }
 }
 
 void MainWindow::ParallelLine(){

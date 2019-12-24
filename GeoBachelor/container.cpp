@@ -37,11 +37,6 @@ void Container::move_refresh(double dx, double dy)
         circles[i]->translate(dx,dy);
         circles[i]->draw();
     }
-    for(int i=0;i<points.size();i++)
-    {
-        points[i]->translate(dx,dy);
-        points[i]->draw();
-    }
     for(int i=0;i<lines.size();i++)
     {
         lines[i]->translate(dx,dy);
@@ -57,7 +52,11 @@ void Container::move_refresh(double dx, double dy)
         triangles[i]->translate(dx,dy);
         triangles[i]->draw();
     }
-
+    for(int i=0;i<points.size();i++) //ORDER MATTERS
+    {
+        points[i]->translate(dx,dy);
+        points[i]->draw();
+    }
 }
 
 void Container::refresh()
@@ -207,6 +206,15 @@ std::vector<bool> Container::non_empty_tags()
 int Container::size()
 {
     return circles.size()+points.size()+lines.size()+segments.size()+triangles.size();
+}
+
+void Container::empty_bins()
+{
+    points.clear(); //tag of points is 0
+    lines.clear();//tag of lines is 1
+    circles.clear();//tag of circles is 2
+    segments.clear(); //tag of segments is 3
+    triangles.clear(); //tag of triangles is 4
 }
 
 

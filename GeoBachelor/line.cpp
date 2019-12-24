@@ -2,7 +2,7 @@
 #include <cmath>
 #include <line.hpp>
 #include <mainwindow.h>
-
+#include <general_functions.h>
 
 void Line::draw()
 {
@@ -27,6 +27,12 @@ void Line::translate(double dx, double dy)
 
 bool Line::in_personal_area(double x, double y)
 {
+    Point norm = normal(Point(x,y));
+    double d = distance(norm,Point(x,y));
+    if (d<=5)
+    {
+        return true;
+    }
     return false;
 }
 
@@ -115,6 +121,12 @@ Point Line::intersection(Line B){
   double ystar = a1 * xstar + b1;
   Point pstar(xstar, ystar);
   return pstar;
+}
+
+Point Line::normal(Point p)
+{
+    Line l = perpendicular(p);
+    return intersection(l);
 }
 
 Line::~Line()

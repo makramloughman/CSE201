@@ -94,6 +94,11 @@ void Point::translate(double dx, double dy) //virtual function from the class Ma
 
 bool Point::in_personal_area(double x, double y)
 {
+    double ro = distance(Point(x,y));
+    if (ro<5)
+    {
+        return true;
+    }
     return false;
 }
 

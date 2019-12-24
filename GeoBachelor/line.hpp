@@ -35,5 +35,7 @@ class Line : public MathObject
     
     Point intersection(Line B); //return the point where the two lines intersect
 
+    Point normal(Point p); //we find normal line from some points
+
     virtual ~Line();
 };
