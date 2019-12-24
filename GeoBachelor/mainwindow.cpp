@@ -3,6 +3,7 @@
 #include <point.hpp>
 #include <help.h>
 #include <memory>
+#include "rectangle.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -429,6 +430,13 @@ void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
     MainWindow::drawPolygon(ps);
 }
 
+/*void MainWindow::drawRectangle(QPointF p1, QPointF p3)
+{
+   QPointF l=(mainW->mapToMyScene(point1.getx(),point1.gety()))
+   QpointF q
+   MainWindow::drawLine()
+}*/
+
 void MainWindow::drawPolygon(std::vector<QPointF> points)
 {
     int n = points.size();
@@ -634,7 +642,9 @@ void MainWindow::Square(){
 }
 
 void MainWindow::Rectangle(){
-    qDebug() << "MainWindow::Rectangle()";
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->polygon_chosen = true;
+    ui->graphicsView->n_polygon = 2;
 }
 
 void MainWindow::RegularPolygon(){

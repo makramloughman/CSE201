@@ -24,17 +24,22 @@ class Triangle: public  MathObject
     virtual void draw();
     virtual void translate(double dx, double dy);
     virtual bool in_personal_area(double x, double y);
+
     Segment Baricenter2();
     Segment Baricenter3();
+    Segment Baricenter1();
+
     double getArea();//
     double getHeight1();
     double getHeight2();
     double getHeight3();//
     double getPerimeter(); //
     bool equilateral();
+
     bool rectangle();
     bool isocele();
-    Segment Baricenter1();
+
+
     Point getCenterofgravity();//
     Point getOrthocenter();//
     Circle Circumscribedcercle();//
