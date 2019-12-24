@@ -54,13 +54,13 @@ void Rectangle::draw()
         mainW->SetPen(3,Qt::blue);
     }
 
-    Point p2=get_p2();
-    Point p4=get_p4();
+
+
     std::vector<QPointF> help;
     help.push_back(mainW->mapToMyScene(p1.getx(),p1.gety()));
-    help.push_back(mainW->mapToMyScene(p2.getx(),p2.gety()));
     help.push_back(mainW->mapToMyScene(p3.getx(),p3.gety()));
-    help.push_back(mainW->mapToMyScene(p4.getx(),p4.gety()));
+    help.push_back(mainW->mapToMyScene(p3.getx(),p1.gety()));
+    help.push_back(mainW->mapToMyScene(p1.getx(),p3.gety()));
     mainW->drawPolygon(help);
 
     mainW->ResetPen();

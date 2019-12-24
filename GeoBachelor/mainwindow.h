@@ -55,7 +55,7 @@ public:
     void drawInfiniteLine(Point p1, Point p2); //need it in ViewCoordinates!!!!!
     void drawInfiniteLine(Line l); //need it in ViewCoordinates!!!!!
     void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle
-    void drawRectangle(Point p1,Point p3);
+    void drawRectangle(std::vector<QPointF> points);
     void drawPolygon(std::vector<QPointF> points);
 
     //grid part => drawings
