@@ -130,6 +130,11 @@ void Grid::move_grid(QPointF to)
     move_grid(to.x()-x_p,to.y()-y_p);
 }
 
+void Grid::refresh_grid()
+{
+    move_grid(0,0);
+}
+
 
 
 

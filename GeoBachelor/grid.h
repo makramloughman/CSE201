@@ -43,7 +43,7 @@ public:
     void set_yaxis_label();
     void move_grid(double dx, double dy);
     void move_grid(QPointF to);
-
+    void refresh_grid();
 
 };
 

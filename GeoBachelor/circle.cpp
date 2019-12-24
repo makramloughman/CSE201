@@ -118,7 +118,7 @@ std::vector<Line> Circle::tangent(Point M)
 
     std::cout<<xp<<" "<<yp<<" "<<a<<" "<<b<<" "<<r<<endl;
 
-    if (del>0)
+    if (pow(10,-5)<del)
     {
         double x1 = (r*r*(xp-a)+r*(yp-b)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + a;
         double y1 = (r*r*(yp-b)-r*(xp-a)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + b;
@@ -131,7 +131,7 @@ std::vector<Line> Circle::tangent(Point M)
         l.push_back(l1);
         l.push_back(l2);
     }
-    else if (del==0)
+    else if (pow(10,-5)>del>0)
     {
         double x1 = (r*r*(xp-a)+r*(yp-b)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + a;
         double y1 = (r*r*(yp-a)-r*(xp-b)*sqrt(del))/(pow(xp-a,2)+pow(yp-b,2)) + b;

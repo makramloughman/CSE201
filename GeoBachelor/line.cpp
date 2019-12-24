@@ -36,7 +36,7 @@ bool Line::in_personal_area(double x, double y)
     return false;
 }
 
-Line::Line(Point &p1, Point &p2) :MathObject()
+Line::Line(Point &p1, Point &p2) : MathObject()
 {
     this->p1 = p1;
     this->p2 = p2;
@@ -74,7 +74,10 @@ double Line::slope(){
   {
      slope = pow(10,20); //something big => for vertical lines
   }
-
+  if (slope==0)
+  {
+      slope = pow(10,-5);
+  }
   return slope;
 }
 
@@ -92,13 +95,36 @@ Line Line::perpendicular(Point p3){
   double b1 = this->y_intercept();
   double x0 = p3.getx();
   double y0 = p3.gety();
-  double b2 = y0 + (1/a)*x0; //the equation of the perpendicular line is now y = -(1/a) + b2
-  double xstar = (b2 - b1)/(a + (1/a));
-  double ystar = -(1/a)*xstar + b2;;
-  Point pstar = Point(xstar, ystar);
-  Line per = Line(pstar, p3);
-  return per;
+  double dist = distance(p3,Point(x0,a*x0+b1));
+
+  if(dist<pow(10,-5)) //if point is on line
+  {
+    Point p =Point(x0-20, (20-x0)/a+y0+x0/a);
+    Line l = Line(p,p3);
+    return l;
   }
+  else if(a!=0 && a<pow(10,5)) //normal line
+  {
+    double b2 = y0 + (1/a)*x0; //the equation of the perpendicular line is now y = -(1/a) + b2
+    double xstar = (b2 - b1)/(a + (1/a));
+    double ystar = -(1/a)*xstar + b2;;
+    Point pstar = Point(xstar, ystar);
+    Line per = Line(pstar, p3);
+    return per;
+  }
+  else if (a>pow(10,5)) //vertical line
+  {
+      Point pstar = Point(p1.getx(),p3.gety());
+      Line l =Line(pstar,p3);
+      return l;
+  }
+  else
+  {
+      Point pstar = Point(p3.getx(),p1.gety());
+      Line l = Line(pstar,p3);
+      return l;
+  }
+}
 
 Line Line::parallel(Point p3)
 {
@@ -110,9 +136,10 @@ Line Line::parallel(Point p3)
   Point pstar(x, y);
   Line par = Line(pstar, p3);
   return par;
-  }
+}
 
-Point Line::intersection(Line B){
+Point Line::intersection(Line B)
+{
   double a1 = this->slope();
   double a2 = B.slope();
   double b1 = this->y_intercept();

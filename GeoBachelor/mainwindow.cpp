@@ -614,24 +614,29 @@ void MainWindow::PerpendicularLine()
 {
     if(ui->graphicsView->chosen_objects.lines.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
     {
-        //Line l = ui->graphicsView->chosen_objects.lines[0]->perpendicular( *ui->graphicsView->chosen_objects.points[0]);
+        Line l = ui->graphicsView->chosen_objects.lines[0]->perpendicular( *ui->graphicsView->chosen_objects.points[0]);
         ui->graphicsView->chosen_objects.empty_bins();
         ui->graphicsView->refresh_indicators();
         ui->graphicsView->move_grid_chosen = true;
-        //mainGrid->obj.push(&l);
+        mainGrid->obj.push(new Line(l.p1,l.p2));
+        mainGrid->obj.push(new Point(l.p1.getx(),l.p1.gety()));
         mainGrid->obj.deselect();
-        mainGrid->move_grid(0,0);
-        cout<<mainGrid->obj.lines.size()<<endl;
-        cout<<mainGrid->obj.points.size()<<endl;
-        cout<<mainGrid->obj.size()<<endl;
-        cout<<ui->graphicsView->chosen_objects.size()<<endl;
-
-
+        mainGrid->refresh_grid();
     }
 }
 
 void MainWindow::ParallelLine(){
-    qDebug() << "MainWindow::ParallelLine()";
+    if(ui->graphicsView->chosen_objects.lines.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        Line l = ui->graphicsView->chosen_objects.lines[0]->parallel(*ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.push(new Line(l.p1,l.p2));
+        mainGrid->obj.push(new Point(l.p1.getx(),l.p1.gety()));
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::PerpendicularBisector(){
@@ -643,8 +648,20 @@ void MainWindow::AngleBisector(){
 }
 
 void MainWindow::Tangent(){
-    qDebug() << "MainWindow::Tangent()";
-}
+    if(ui->graphicsView->chosen_objects.circles.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        std::vector<Line> l = ui->graphicsView->chosen_objects.circles[0]->tangent(*ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        for(uint i=0;i<l.size();i++)
+        {
+            mainGrid->obj.push(new Line(l[i].p1,l[i].p2));
+            mainGrid->obj.push(new Point(l[i].p1.getx(),l[i].p1.gety()));
+        }
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }}
 
 void MainWindow::Triangle()
 {
