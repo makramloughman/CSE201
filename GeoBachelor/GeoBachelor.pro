@@ -38,7 +38,8 @@ SOURCES += \
     general_functions.cpp \
     polygone.cpp \
     regularpolygon.cpp \
-    segment.cpp
+    segment.cpp \
+    rectangle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +56,8 @@ HEADERS += \
     polygone.h \
     regularpolygon.h \
     segment.h \
-    help.h
+    help.h \
+    rectangle.h
 
 FORMS += \
     mainwindow.ui
