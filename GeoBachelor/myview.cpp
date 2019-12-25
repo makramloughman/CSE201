@@ -39,7 +39,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         else if (this->n_counter==1)
         {
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
-            QLineF line(this->clickedP[0],this->clickedP[1]);
+            QLineF line = QLineF(this->clickedP[0],this->clickedP[1]);
             mainW->drawLine(line);
             mainW->drawPoint(this->clickedP[1]);
             mainW->drawPoint(this->clickedP[0]);
@@ -57,7 +57,8 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->mainGrid->refresh_grid();
             refresh_indicators();
             this-> move_grid_chosen = true;
-        }
+
+    }
     }
     else if (this->circle_chosen)
     {

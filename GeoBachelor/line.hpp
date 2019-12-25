@@ -37,5 +37,7 @@ class Line : public MathObject
 
     Point normal(Point p); //we find normal line from some points
 
+    std::vector<Point> reflection(Point p);
+
     virtual ~Line();
 };

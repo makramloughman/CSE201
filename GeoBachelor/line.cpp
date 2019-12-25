@@ -131,8 +131,8 @@ Line Line::parallel(Point p3)
   double a = this->slope();
   double x0 = p3.getx();
   double y0 = p3.gety();
-  double x = x0 + 1;
-  double y = y0 + a;
+  double x = x0 - 20;
+  double y = y0 - 20*a;
   Point pstar(x, y);
   Line par = Line(pstar, p3);
   return par;
@@ -154,6 +154,24 @@ Point Line::normal(Point p)
 {
     Line l = perpendicular(p);
     return intersection(l);
+}
+
+std::vector<Point> Line::reflection(Point p)
+{
+    double m = this->slope();
+    double b = this->y_intercept();
+    double x = p.getx();
+    double y = p.gety();
+    double dist = distance(p,Point(x,m*x+b));
+    std::vector<Point> refl;
+    if(dist>pow(10,-5))
+    {
+        double u = ((1-m*m)*x+2*m*y-2*m*b)/(1+m*m);
+        double v = ((m*m-1)*y+2*m*x+2*b)/(1+m*m);
+        Point* help = new Point(u,v);
+        refl.push_back(*help);
+    }
+    return refl;
 }
 
 Line::~Line()

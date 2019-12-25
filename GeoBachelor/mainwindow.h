@@ -96,7 +96,7 @@ public slots:
     void Roots();
 
     void Line_();
-    void Segment();
+    void Segment_();
     void Ray();
     void Polyline();
     void Vector();
@@ -108,7 +108,7 @@ public slots:
     void AngleBisector();
     void Tangent();
 
-    void Triangle();
+    void Triangle_();
     void Square();
     void Rectangle();
     void RegularPolygon();

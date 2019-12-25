@@ -1,7 +1,6 @@
-﻿ #include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <point.hpp>
-#include <help.h>
 #include <memory>
 #include "rectangle.h"
 
@@ -138,7 +137,7 @@ void MainWindow::createActions(){
     QObject::connect(RootsAction, SIGNAL(triggered()), this, SLOT(Roots()));
 
     QObject::connect(LineAction, SIGNAL(triggered()), this, SLOT(Line_()));
-    QObject::connect(SegmentAction, SIGNAL(triggered()), this, SLOT(Segment()));
+    QObject::connect(SegmentAction, SIGNAL(triggered()), this, SLOT(Segment_()));
     QObject::connect(RayAction, SIGNAL(triggered()), this, SLOT(Ray()));
     QObject::connect(PolylineAction, SIGNAL(triggered()), this, SLOT(Polyline()));
     QObject::connect(VectorAction, SIGNAL(triggered()), this, SLOT(Vector()));
@@ -150,7 +149,7 @@ void MainWindow::createActions(){
     QObject::connect(AngleBisectorAction, SIGNAL(triggered()), this, SLOT(AngleBisector()));
     QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
 
-    QObject::connect(TriangleAction, SIGNAL(triggered()), this, SLOT(Triangle()));
+    QObject::connect(TriangleAction, SIGNAL(triggered()), this, SLOT(Triangle_()));
     QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
     QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
     QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
@@ -430,16 +429,6 @@ void MainWindow::drawTriangle(QPointF p1, QPointF p2, QPointF p3)
     MainWindow::drawPolygon(ps);
 }
 
-void MainWindow::drawRectangle(std::vector<QPointF> points)
-{
-    //QPointF p2 = ui->graphicsView->mapToScene(points[1].getx(), points[0].gety());
-    //QPointF p4= ui->graphicsView->mapToScene(points[0].getx(),points[1].gety());
-    //MainWindow::drawLine(points[0],p2);
-    //MainWindow::drawLine(p2,points[1]);
-    //MainWindow::drawLine(points[1],p4);
-    //MainWindow::drawLine(p4,points[0]);
-}
-
 void MainWindow::drawPolygon(std::vector<QPointF> points)
 {
     int n = points.size();
@@ -469,7 +458,7 @@ MainWindow* MainWindow:: getInstance()
 void MainWindow::setStarted()
 {
 
-    Grid* g = new Grid(50,this->getHeight_View()-50,25);
+    Grid* g = new Grid(50,this->getHeight_View()-50,35);
     this->setGrid(g);
 
     ui->graphicsView->refresh_indicators();
@@ -608,14 +597,47 @@ void MainWindow::Roots(){
     qDebug() << "MainWindow::Roots()";
 }
 
-void MainWindow::Line_(){
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->inf_line_chosen = true;
+void MainWindow::Line_()
+{
+    if(ui->graphicsView->chosen_objects.size()==2 && ui->graphicsView->chosen_objects.points.size()==2)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        Line* s = new Line(*p1,*p2);
+        mainGrid->obj.push(s);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+    else
+    {
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->inf_line_chosen = true;
+    }
 }
 
-void MainWindow::Segment(){
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->segment_chosen = true;
+void MainWindow::Segment_()
+{
+    if(ui->graphicsView->chosen_objects.size()==2 && ui->graphicsView->chosen_objects.points.size()==2)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        Segment* s = new Segment(*p1,*p2);
+        mainGrid->obj.push(s);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+    else
+    {
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->segment_chosen = true;
+    }
+
 }
 
 void MainWindow::Ray(){
@@ -675,7 +697,8 @@ void MainWindow::PerpendicularBisector(){
         mainGrid->obj.push(new Point(l.p2.getx(),l.p2.gety()));
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
-    }}
+    }
+}
 
 void MainWindow::AngleBisector(){
     qDebug() << "MainWindow::AngleBisector()";
@@ -698,11 +721,27 @@ void MainWindow::Tangent(){
     }
 }
 
-void MainWindow::Triangle()
+void MainWindow::Triangle_()
 {
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->polygon_chosen = true;
-    ui->graphicsView->n_polygon = 3;
+    if(ui->graphicsView->chosen_objects.size()==3 && ui->graphicsView->chosen_objects.points.size()==3)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        Point* p3 = new Point(ui->graphicsView->chosen_objects.points[2]->getx(),ui->graphicsView->chosen_objects.points[2]->gety());
+        Triangle* s = new Triangle(*p1,*p2,*p3);
+        mainGrid->obj.push(s);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+    else
+    {
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->polygon_chosen = true;
+        ui->graphicsView->n_polygon = 3;
+    }
 }
 
 void MainWindow::Square(){
@@ -722,8 +761,24 @@ void MainWindow::Polygon(){
     qDebug() <<"MainWindow::Polygon()";
 }
 
-void MainWindow::CircleCPT(){
-    ui->graphicsView->circle_chosen = true;
+void MainWindow::CircleCPT()
+{
+    if(ui->graphicsView->chosen_objects.size()==2 && ui->graphicsView->chosen_objects.points.size()==2)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        Circle* s = new Circle(*p1,*p2);
+        mainGrid->obj.push(s);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+    else
+    {
+        ui->graphicsView->circle_chosen = true;
+    }
 }
 
 void MainWindow::CircleCRT(){
@@ -763,8 +818,21 @@ void MainWindow::Relation(){
     qDebug() << "MainWindow::Relation()";
 }
 
-void MainWindow::LineSymmetry(){
-    qDebug() << "MainWindow::LineSymmetry()";
+void MainWindow::LineSymmetry()
+{
+    if(ui->graphicsView->chosen_objects.lines.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        std::vector<Point> l = ui->graphicsView->chosen_objects.lines[0]->reflection(*ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        for(uint i=0;i<l.size();i++)
+        {
+            mainGrid->obj.push(new Point(l[i].getx(),l[i].gety()));
+        }
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::PointSymmetry(){
