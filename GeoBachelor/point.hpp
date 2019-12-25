@@ -51,7 +51,7 @@ public :
 
     void display_trace(); //display the trace when the point is translate
     
-    void symmetry_point(Point A, Point B); //it creates the symmetric point of A wtr to B
+    Point symmetry_point(Point A); //it creates the symmetric point of A wtr to B
     void symmetry_axisy(); //creates the symmetric point with respect to the y axis
     void symmetry_axisx(); //creates the symmetric point with respect to the y axis
 

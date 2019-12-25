@@ -835,8 +835,18 @@ void MainWindow::LineSymmetry()
     }
 }
 
-void MainWindow::PointSymmetry(){
-    qDebug() << "MainWindow::PointSymmetry()";
+void MainWindow::PointSymmetry()
+{
+    if(ui->graphicsView->chosen_objects.points.size()==2)
+    {
+        Point p = ui->graphicsView->chosen_objects.points[0]->symmetry_point(*ui->graphicsView->chosen_objects.points[1]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.push(new Point(p.getx(),p.gety()));
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::Translate(){

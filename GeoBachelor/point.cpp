@@ -78,6 +78,12 @@ void Point::hide(){
     //this-> namecolor = rgba(0,0,0.5);
 }
 
+Point Point::symmetry_point(Point A)
+{
+    Point p=Point(2*A.getx()-getx(),2*A.gety()-gety());
+    return p;
+}
+
 void Point::setx(double a){
     this->x = a;
 }
