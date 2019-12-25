@@ -38,6 +38,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     static MainWindow* getInstance();
+    void setStarted();
 
     QGraphicsScene* scene;
     QPen myPen; //Pen we are drawing with

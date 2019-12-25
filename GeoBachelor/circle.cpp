@@ -129,7 +129,7 @@ std::vector<Line> Circle::tangent(Point M)
         l.push_back(l1);
         l.push_back(l2);
     }
-    else if (pow(10,-5)>del>0) //point on circle
+    else if (pow(10,-5)>del && del>=0) //point on circle
     {
         Line l1 = Line(center,M);
         double m = -1/l1.slope();

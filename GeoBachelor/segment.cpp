@@ -34,7 +34,14 @@ void Segment::draw()
 
 bool Segment::in_personal_area(double x, double y)
 {
-    return false;
+    Line* l = new Line(p1,p2);
+    double mx = min(p1.getx(),p2.getx());
+    double Mx = p1.getx()+p2.getx()-mx;
+    double my = min(p1.gety(),p2.gety());
+    double My = p1.gety()+p2.gety()-my;
+    if (l->in_personal_area(x,y) && x<Mx+3 && x>mx-3 && y<My+3 && y>my-3)
+        return true;
+   return false;
 }
 
 void display();         //displays segment

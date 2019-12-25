@@ -466,6 +466,21 @@ MainWindow* MainWindow:: getInstance()
     return theWindow;
 }
 
+void MainWindow::setStarted()
+{
+
+    Grid* g = new Grid(50,this->getHeight_View()-50,25);
+    this->setGrid(g);
+
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->move_grid_chosen=true;
+
+    g->draw();
+    g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
+    g->set_xaxis_label();
+    g->set_yaxis_label();
+}
+
 void MainWindow::SetPen(double width, QColor c)
 {
     myPen.setWidth(width);
@@ -548,13 +563,19 @@ MainWindow *MainWindow::theWindow = nullptr; //declare static
 void MainWindow::Move()
 {
     ui->graphicsView->refresh_indicators();
+    ui->graphicsView->chosen_objects.empty_bins();
     ui->graphicsView-> move_grid_chosen = true;
+    mainGrid->obj.deselect();
+    mainGrid->refresh_grid();
+
 }
 
 void MainWindow::Select()
 {
     ui->graphicsView->refresh_indicators();
     ui->graphicsView->select_object_chosen = true;
+    ui->graphicsView->move_grid_chosen = true;
+
 }
 
 void MainWindow::Point_()
@@ -643,8 +664,18 @@ void MainWindow::ParallelLine(){
 }
 
 void MainWindow::PerpendicularBisector(){
-    qDebug() << "MainWindow::PerpendicularBisector()";
-}
+    if(ui->graphicsView->chosen_objects.segments.size()==1)
+    {
+        Line l = ui->graphicsView->chosen_objects.segments[0]->mediator();
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.push(new Line(l.p1,l.p2));
+        mainGrid->obj.push(new Point(l.p1.getx(),l.p1.gety()));
+        mainGrid->obj.push(new Point(l.p2.getx(),l.p2.gety()));
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }}
 
 void MainWindow::AngleBisector(){
     qDebug() << "MainWindow::AngleBisector()";
@@ -664,7 +695,8 @@ void MainWindow::Tangent(){
         }
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
-    }}
+    }
+}
 
 void MainWindow::Triangle()
 {
@@ -743,8 +775,10 @@ void MainWindow::Translate(){
     qDebug() << "MainWindow::Translate()";
 }
 
-void MainWindow::Delete(){
-    qDebug() << "MainWindow::Delete()";
+void MainWindow::Delete()
+{
+    mainGrid->obj.cleanFrom(ui->graphicsView->chosen_objects);
+    mainGrid->refresh_grid();
 }
 
 void MainWindow::Clear(){
@@ -821,13 +855,7 @@ void MainWindow::on_pushButton_clicked()
 {
     if(!started)
     {
-        this->started = true;
-        Grid* g = new Grid(50,this->getHeight_View()-50,25);
-        setGrid(g);
-        g->draw();
-        g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
-        g->set_xaxis_label();
-        g->set_yaxis_label();
+        setStarted();
     }
 }
 

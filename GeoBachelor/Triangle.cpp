@@ -30,6 +30,11 @@ void Triangle::translate(double dx, double dy)
 
 bool Triangle::in_personal_area(double x, double y)
 {
+    Segment* s1 = new Segment(point1,point2);
+    Segment* s2 = new Segment(point2,point3);
+    Segment* s3 = new Segment(point3,point1);
+    if (s1->in_personal_area(x,y) || s2->in_personal_area(x,y) || s3->in_personal_area(x,y))
+        return true;
     return false;
 }
 

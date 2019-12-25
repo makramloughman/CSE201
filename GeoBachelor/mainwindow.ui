@@ -20,7 +20,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,1">
+   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0">
     <item>
      <widget class="QPushButton" name="pushButton">
       <property name="text">
@@ -93,6 +93,9 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
    </layout>
+   <zorder>pushButton_2</zorder>
+   <zorder>splitter</zorder>
+   <zorder>pushButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

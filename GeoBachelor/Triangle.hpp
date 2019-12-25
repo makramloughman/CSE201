@@ -8,15 +8,15 @@ class Triangle: public  MathObject
 {
     private:
     //creates points for triangle
-    Point point1;
-    Point point2;
-    Point point3;
     
     int countpoints;
     std::string name; 
     std::string get_name(); //for the display
 
     public:
+    Point point1;
+    Point point2;
+    Point point3;
     Triangle(Point point1 , Point point2 , Point point3);
     Triangle(std::vector<QPointF> p);
     ~Triangle();

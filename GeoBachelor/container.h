@@ -12,6 +12,10 @@
 
 class Container
 {
+private:
+
+    bool matching(Point p1, Point p2);
+
 public:
     Container();
 
@@ -20,6 +24,17 @@ public:
     void push(Circle* c);
     void push(Triangle* t);
     void push(Segment* s);
+
+    void remove(Point p);
+    void remove(Point* p);
+    void remove(Line l);
+    void remove(Line* l);
+    void remove(Circle c);
+    void remove(Circle* c);
+    void remove(Triangle t);
+    void remove(Triangle* t);
+    void remove(Segment s);
+    void remove(Segment* s);
 
     std::vector<Point*> points; //tag of points is 0
     std::vector<Line*> lines; //tag of lines is 1
@@ -33,12 +48,10 @@ public:
     bool find_personal_and_store(Container &c,double x, double y); //also make AN object selected if possible
 
     void deselect();
-
-    std::vector<bool> non_empty_tags(); //check which ones are non-empty => we need this for intersections
-
     int size();
 
     void empty_bins();
+    void cleanFrom(Container &c);
 private:
 
 

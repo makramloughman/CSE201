@@ -5,13 +5,17 @@
 MyView::MyView(QWidget *parent) : QGraphicsView(parent)
 {
     this->point_chosen = false; //no segment chosen
+
     this->segment_chosen = false; //no segment chosen
-    this->circle_chosen = false; //no circe chosem
     this->inf_line_chosen = false; //no infinite line chosen
+
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
     this->n_polygon = 0; //no polygon chosen
+
     this->select_object_chosen = false;
+
+    this->circle_chosen = false; //no circe chosem
     this->circle_chosen_with_radius = false;
 
     this->move_grid_chosen = true;
@@ -194,6 +198,23 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             }
         }
     }
+    else if (this->select_object_chosen)
+    {
+        bool b = mainW->mainGrid->obj.find_personal_and_store(chosen_objects,ev->x(),ev->y());
+        if(b)
+        {
+           mainW->mainGrid->obj.refresh();
+           std::cout<<chosen_objects.size()<<std::endl;
+        }
+
+        if (this->move_grid_chosen)
+            {
+                this->move_grid_pressed = true;
+                this->move_grid_released= false;
+                last_clicked = QPointF(ev->x(),ev->y());
+            }
+    }
+
 
     else if (this->move_grid_chosen)
     {
@@ -201,18 +222,6 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         this->move_grid_released= false;
         last_clicked = QPointF(ev->x(),ev->y());
 
-    }
-
-    else if (this->select_object_chosen)
-    {
-        bool b = mainW->mainGrid->obj.find_personal_and_store(chosen_objects,ev->x(),ev->y());
-        if(b)
-        {
-           mainW->mainGrid->obj.refresh();
-           refresh_indicators();
-           this-> move_grid_chosen = true;
-           cout<<chosen_objects.size()<<endl;
-        }
     }
 }
 
@@ -245,16 +254,22 @@ void MyView::mouseReleaseEvent(QMouseEvent *ev)
 void MyView::refresh_indicators()
 {
     this->clickedP.clear();
+
     this->point_chosen = false; //no segment chosen
+
     this->segment_chosen = false; //no segment chosen
-    this->circle_chosen = false; //no circe chosem
     this->inf_line_chosen = false; //no infinite line chosen
+
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
     this->n_polygon = 0; //no polygon chosen
+
+    this->select_object_chosen = false;
+
+    this->circle_chosen = false; //no circe chosem
+    this->circle_chosen_with_radius = false;
+
     this->move_grid_chosen = false;
     this->move_grid_pressed = false;
-    this->select_object_chosen = false;
     this->move_grid_released = true;
-    this->circle_chosen_with_radius = false;
 }
