@@ -39,7 +39,9 @@ SOURCES += \
     polygone.cpp \
     regularpolygon.cpp \
     segment.cpp \
-    rectangle.cpp
+    rectangle.cpp \
+    angle.cpp \
+    vector.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,7 +59,9 @@ HEADERS += \
     regularpolygon.h \
     segment.h \
     help.h \
-    rectangle.h
+    rectangle.h \
+    angle.h \
+    vector.h
 
 FORMS += \
     mainwindow.ui
