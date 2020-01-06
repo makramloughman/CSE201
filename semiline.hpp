@@ -2,7 +2,7 @@
 #include <mathobject.h>
 #include <point.hpp>
 
-class Line : public MathObject
+class SemiLine : public MathObject
 {
   
   private:
@@ -15,18 +15,16 @@ class Line : public MathObject
     virtual void draw();
     virtual void translate(double xx, double yy);
 
-    Line(Point p1, Point p2); //creates a line passing through two points which correspond to the two arguments
-    Line();
-
-    //void semi_line(Point &p1, Point &p2); //creates a semi line from p1 and passing through p2
+    SemiLine(Point p1, Point p2); //creates a semiline starting from the first point and going through the second point
+    SemiLine();
   
-    double slope(); //computes the slope of the line
+    double slope(); //computes the slope of the semiline
     
     double y_intercept(); //computes the intercept of the line with the origin
   
-    Line perpendicular(Point p3);//create the perpendicular to the line passing through p3
+    SemiLine perpendicular(Point p3);//create the perpendicular to the SemiLine sarting by the point on the Semiline and passing through p3
   
-    Line parallel(Point p3); //draw the parallel to the line passing through p3
+    SemiLine parallel(Point p3); //draw the parallel to the semiline passing through p3, semiline starts at the same x as the semiline
     
-    Point intersection(Line B); //return the point where the two lines intersect
+    Point intersection(SemiLine B); //return the point where the two semilines intersect
 };
