@@ -28,10 +28,37 @@ SemiLine::SemiLine(Point p1, Point p2)
  
 double SemiLine::slope(){
   double slope;
-  double x1 = p1.getx();
-  double x2 = p2.getx();
-  double y1 = p1.gety();
-  double y2 = p2.gety();
-  slope = (y2 - y1) / (x2 - x1);
-  return slope;
+  Line* l = new Line(p1, p2);
+  return l->slope();
 }
+
+double SemiLine::y_intercept(){
+  Line* l = new Line(p1, p2)
+  return l->y_intercept();
+}
+
+SemiLine SemiLine::perpendicular(Point p3){
+  Line* l = new Line(p1, p2)
+  }
+
+Line Line::parallel(Point p3){
+  double a = this->slope();
+  double x0 = p3.getx();
+  double y0 = p3.gety();
+  double x = x0 + 1;
+  double y = y0 + a;
+  Point pstar(x, y);
+  Line par = Line(pstar, p3);
+  return par;
+  }
+
+Point Line::intersection(Line B){
+  double a1 = this->slope();
+  double a2 = B.slope();
+  double b1 = this->y_intercept();
+  double b2 = B.y_intercept();
+  double xstar = (b1 - b2)/(a2 - a1);
+  double ystar = a1 * xstar + b1;
+  Point pstar(xstar, ystar);
+  return pstar;
+  }
