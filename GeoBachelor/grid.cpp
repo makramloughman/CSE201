@@ -1,5 +1,8 @@
 #include "grid.h"
-#include <mainwindow.h>
+#include "mainwindow.h"
+#include <QResizeEvent>
+#include <QWidget>
+#include <QDebug>
 
 Grid::Grid(double x, double y)
 {
@@ -96,7 +99,6 @@ void Grid::set_BackColor(QBrush b)
 
 void Grid::set_xaxis_label()
 {
-
     MainWindow* mainW = MainWindow::getInstance();
 
     double w = mainW->getWidth_View();
@@ -110,15 +112,13 @@ void Grid::set_yaxis_label(){
     QPointF f = mainW->mapToMyScene(getX()-30,10);
     QGraphicsTextItem* text=mainW->scene->addText("Y");
     text->setPos(f.x(), f.y());
-
-
 }
 
 void Grid::move_grid(double dx, double dy){
     MainWindow* mainW = MainWindow::getInstance();
     this-> x_p+=dx;
     this -> y_p+=dy;
-    mainW->Clear();
+    mainW->clearScene();
     draw();
     set_xaxis_label();
     set_yaxis_label();
@@ -134,9 +134,6 @@ void Grid::refresh_grid()
 {
     move_grid(0,0);
 }
-
-
-
 
 /*
 

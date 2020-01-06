@@ -33,7 +33,6 @@ SOURCES += \
     point.cpp \
     line.cpp \
     circle.cpp \
-    Triangle.cpp \
     container.cpp \
     general_functions.cpp \
     polygone.cpp \
@@ -41,7 +40,8 @@ SOURCES += \
     segment.cpp \
     rectangle.cpp \
     angle.cpp \
-    vector.cpp
+    vector.cpp \
+    triangle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +52,6 @@ HEADERS += \
     point.hpp \
     line.hpp \
     circle.hpp \
-    Triangle.hpp \
     container.h \
     general_functions.h \
     polygone.h \
@@ -61,7 +60,8 @@ HEADERS += \
     help.h \
     rectangle.h \
     angle.h \
-    vector.h
+    vector.h \
+    triangle.hpp
 
 FORMS += \
     mainwindow.ui

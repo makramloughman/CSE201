@@ -1,14 +1,12 @@
 #pragma once
-#include <mathobject.h>
-#include <point.hpp>
+#include "mathobject.h"
+#include "point.hpp"
 
 class Line : public MathObject
 {
-  
   private:
 
   public:
-  
     Point p1;
     Point p2;
     

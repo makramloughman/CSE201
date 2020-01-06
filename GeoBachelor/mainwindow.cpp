@@ -1,8 +1,11 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <point.hpp>
-#include <memory>
+#include "point.hpp"
 #include "rectangle.h"
+#include <memory>
+#include <QResizeEvent>
+#include <QDebug>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -309,9 +312,21 @@ void MainWindow::createToolButtons(){
     GeneralButton->setMinimumHeight(32);
     GeneralButton->setMinimumWidth(44);
     GeneralButton->setIconSize(QSize(32,32));
+
+    PushButton = new QPushButton("Start");
+    // PushButton->setMinimumWidth(32);
+    PushButton->setMinimumHeight(39);
+    QObject::connect(PushButton, SIGNAL(clicked()), this, SLOT(PushButton_clicked()));
+
+    PushButton2 = new QPushButton("Debug");
+    // PushButton2->setMinimumWidth(32);
+    PushButton2->setMinimumHeight(39);
+    QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton2_clicked()));
 }
 
 void MainWindow::createToolBars(){
+    ui->horizontalLayout_2->addWidget(PushButton);
+    ui->horizontalLayout_2->addWidget(PushButton2);
     ui->horizontalLayout_2->addWidget(MouseButton);
     ui->horizontalLayout_2->addWidget(PointButton);
     ui->horizontalLayout_2->addWidget(LineButton);
@@ -368,22 +383,20 @@ void MainWindow::drawCircle(QPointF p1, QPointF p2)
                       myPen);
 }
 
-void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2) //inViewCoordinates
+void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2) // in ViewCoordinates
 {
-    //construct y = k*x + n
+    // construct y = k*x + n
     double slope = 0;
     double term = 0;
     if (p1.x()!=p2.x()){
-        slope = (p1.y()-p2.y())/(p1.x()-p2.x()); //k
-        term = (p1.y() - slope * p1.x()); //n
+        slope = (p1.y()-p2.y())/(p1.x()-p2.x()); // k
+        term = (p1.y() - slope * p1.x()); // n
     }
 
+    // now, we create two points on the edges of the form
+    // WE ARE ASSUMING SLOPE != 0
 
-
-    //now, we create two points on the edges of the form
-    //WE ARE ASSUMING SLOPE!=0
-
-    int y0 = 0; //at this y-coordinate is the first point
+    int y0 = 0; // at this y-coordinate is the first point
     int y1 = ui->graphicsView->height();
     int x1 = ui->graphicsView->width();
 
@@ -457,17 +470,16 @@ MainWindow* MainWindow:: getInstance()
 
 void MainWindow::setStarted()
 {
-
     Grid* g = new Grid(50,this->getHeight_View()-50,35);
     this->setGrid(g);
 
     ui->graphicsView->refresh_indicators();
     ui->graphicsView->move_grid_chosen=true;
 
-    g->draw();
-    g->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
-    g->set_xaxis_label();
-    g->set_yaxis_label();
+    this->mainGrid->draw();
+    this->mainGrid->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
+    this->mainGrid->set_xaxis_label();
+    this->mainGrid->set_yaxis_label();
 }
 
 void MainWindow::SetPen(double width, QColor c)
@@ -486,6 +498,7 @@ void MainWindow::drawScene()
 {
     scene->addRect(scene->sceneRect());
 }
+
 void MainWindow::clearScene()
 {
     scene->clear();
@@ -493,14 +506,12 @@ void MainWindow::clearScene()
 
 QPointF MainWindow::mapFromGridToScene(double x, double y)
 {
-    //naya to implement
     QPointF p =mapFromGridToView(x,y);
     return mapToMyScene(p.x(),p.y());
 }
 
 QPointF MainWindow::mapFromSceneToGrid(double x, double y)
 {
-    //Naya to implement
     QPointF p = mapFromMyScene(x,y);
     return mapFromViewToGrid(p.x(),p.y());
 }
@@ -532,7 +543,6 @@ QPointF MainWindow::mapFromMyScene(double x, double y)
 
 QPointF MainWindow::mapFromViewToGrid(double x, double y)
 {
-    //Naya to implement
     double x_g =(x - mainGrid-> getX())/ mainGrid->unit;
     double y_g = (mainGrid-> getY()-y)/ mainGrid->unit;
 
@@ -541,7 +551,6 @@ QPointF MainWindow::mapFromViewToGrid(double x, double y)
 
 QPointF MainWindow::mapFromGridToView(double x, double y)
 {
-    //Naya to implement
     double x_v = (x*mainGrid->unit + mainGrid-> getX());
     double y_v = (-y*mainGrid->unit + mainGrid-> getY());
     return QPointF(x_v,y_v);
@@ -556,7 +565,6 @@ void MainWindow::Move()
     ui->graphicsView-> move_grid_chosen = true;
     mainGrid->obj.deselect();
     mainGrid->refresh_grid();
-
 }
 
 void MainWindow::Select()
@@ -564,7 +572,6 @@ void MainWindow::Select()
     ui->graphicsView->refresh_indicators();
     ui->graphicsView->select_object_chosen = true;
     ui->graphicsView->move_grid_chosen = true;
-
 }
 
 void MainWindow::Point_()
@@ -857,10 +864,17 @@ void MainWindow::Delete()
 {
     mainGrid->obj.cleanFrom(ui->graphicsView->chosen_objects);
     mainGrid->refresh_grid();
+    PushButton2_clicked();
 }
 
 void MainWindow::Clear(){
+    mainGrid->obj.empty_bins();
     scene->clear();
+    mainGrid->draw();
+    mainGrid->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
+    mainGrid->set_xaxis_label();
+    mainGrid->set_yaxis_label();
+    PushButton2_clicked();
 }
 
 MainWindow::~MainWindow()
@@ -926,58 +940,128 @@ MainWindow::~MainWindow()
     delete ClearAction;
     delete GeneralMenu;
     delete GeneralButton;
-
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+    qDebug() << event->size();
+    QMainWindow::resizeEvent(event);
+    // this->mainGrid->move_grid(0,0);
+}
+
+void MainWindow::PushButton_clicked()
 {
     if(!started)
     {
+        scene->clear();
         setStarted();
     }
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::PushButton2_clicked()
 {
-    std::cout<<"you entered this button"<<endl;
-    //std::cout<<typeid(mainGrid->obj.segments[0]).name()<<endl;
-    //std::cout<<typeid(mainGrid->obj.circles[0]).name()<<endl;
+    int count = 0;
+    ui->listWidget->clear();
 
-    /*std::vector<MathObject*> v;
-    Line* x = new Line();
-    v.push_back(x);
-    std::cout<<typeid(*x).name()<<endl;
-    std::cout<<typeid(*v[0]).name()<<endl;*/
-    /*Line* a = new Line();
-    std::unique_ptr<Line> p(a);
-    std::cout<<typeid(p).name()<<endl;
-    std::vector<std::unique_ptr<MathObject>> v;
-    v.push_back(std::move(p));
-    std::cout<<typeid(v[0]).name()<<endl;
-    std::cout<<maxx(*v[0],*v[0])<<endl;*/
-
-    MathObject* a = new Line();
-    MathObject** b = &a;
-    std::vector<MathObject**> v;
-    v.push_back(b);
-    std::cout<<typeid(**v[0]).name()<<endl;
-    //std::cout<<maxx(**v[0],**v[0])<<endl;
-
-
-    /*//std::cout<<typeid(Segment()).name()<<endl;
-
-
-    std::vector<Point> in = intersection(*mainGrid->obj.segments[0],*mainGrid->obj.circles[0]);
-
-    std::cout << in.size() << std::endl;
-    if (in.size()==0)
+    unsigned size = mainGrid->obj.points.size();
+    Point* curr = 0;
+    for (unsigned i = 0; i < size; i++)
     {
-        std::cout<<"no intersection was found"<<endl;
+        curr = mainGrid->obj.points[i];
+        if (curr != NULL)
+        {
+            QString text = tr("Point:  (%1,%2)").arg(curr->getxt()).arg(curr->getyt());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+        count++;
     }
-    QPointF f1 = mapToMyScene(in[0].getx(),in[0].gety());
-    QPointF f2 = mapToMyScene(in[1].getx(),in[1].gety());
-    drawPoint(f1);
-    drawPoint(f2);
-    */
-}
 
+    if (size > 0)
+    {
+        QString text = "";
+        QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+        item->setData(Qt::UserRole,count);
+        count++;
+    }
+
+    unsigned size2 = mainGrid->obj.lines.size();
+    Line* curr2 = 0;
+    for (unsigned i = 0 ; i < size2; i++)
+    {
+        curr2 = mainGrid->obj.lines[i];
+        if (curr2 != NULL)
+        {
+            QString text = tr("Line:  y = %1 x + %2").arg(curr2->slope()).arg(curr2->y_intercept());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,count);
+        }
+        count++;
+    }
+
+    if (size2 > 0)
+    {
+        QString text2 = "";
+        QListWidgetItem *item2 = new QListWidgetItem(text2,ui->listWidget);
+        item2->setData(Qt::UserRole,count);
+        count++;
+    }
+
+    unsigned size3 = mainGrid->obj.segments.size();
+    Segment* curr3 = 0;
+    for (unsigned i = 0 ; i < size3; i++)
+    {
+        curr3 = mainGrid->obj.segments[i];
+        if (curr3 != NULL)
+        {
+            QString text = tr("Segment:  (%1,%2) \n                     (%3,%4)").arg(curr3->p1.getxt()).arg(curr3->p1.getyt()).arg(curr3->p2.getxt()).arg(curr3->p2.getyt());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,count);
+        }
+        count++;
+    }
+
+    if (size3 > 0)
+    {
+        QString text3 = "";
+        QListWidgetItem *item3 = new QListWidgetItem(text3,ui->listWidget);
+        item3->setData(Qt::UserRole,count);
+        count++;
+    }
+
+    unsigned size4 = mainGrid->obj.circles.size();
+    Circle* curr4 = 0;
+    for (unsigned i = 0 ; i < size4; i++)
+    {
+        curr4 = mainGrid->obj.circles[i];
+        if (curr4 != NULL)
+        {
+            QString text = tr("Circle:  center = (%1,%2) \n              radius = %3").arg(curr4->center.getxt()).arg(curr4->center.getyt()).arg(curr4->r_t);
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,count);
+        }
+        count++;
+    }
+
+    if (size4 > 0)
+    {
+        QString text4 = "";
+        QListWidgetItem *item4 = new QListWidgetItem(text4,ui->listWidget);
+        item4->setData(Qt::UserRole,count);
+        count++;
+    }
+
+    unsigned size5 = mainGrid->obj.triangles.size();
+    Triangle* curr5 = 0;
+    for (unsigned i = 0 ; i < size5; i++)
+    {
+        curr5 = mainGrid->obj.triangles[i];
+        if (curr5 != NULL)
+        {
+            QString text = tr("Triangle:  (%1,%2) \n                   (%3,%4) \n                   (%5,%6)").arg(curr5->point1.getxt()).arg(curr5->point1.getyt()).arg(curr5->point2.getxt()).arg(curr5->point2.getyt()).arg(curr5->point3.getxt()).arg(curr5->point3.getyt());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,count);
+        }
+        count++;
+    }
+}

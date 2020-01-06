@@ -26,6 +26,9 @@ Point::Point(double x, double y)
 {
     this->x = x;
     this->y = y;
+    MainWindow* mainW = MainWindow::getInstance();
+    this->x_t = (x - mainW->mainGrid->getX()) / mainW->mainGrid->unit;
+    this->y_t = (mainW->mainGrid->getY() - y) / mainW->mainGrid->unit;
     /*
     std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     if (countpoints >= 26) {
@@ -45,6 +48,9 @@ Point::Point(QPointF p)
 {
     this->x = p.x();
     this->y = p.y();
+    MainWindow* mainW = MainWindow::getInstance();
+    this->x_t = (this->x - mainW->mainGrid->getX()) / mainW->mainGrid->unit;
+    this->y_t = (mainW->mainGrid->getY() - this->y) / mainW->mainGrid->unit;
     this-> name = ""; //A...Z then AA...AZ ... until ZA...ZZ
     color.push_back(0);
     color.push_back(0);
@@ -116,6 +122,13 @@ double Point::gety(){
     return y;
 }
 
+double Point::getxt(){
+    return x_t;
+}
+
+double Point::getyt(){
+    return y_t;
+}
 
 void Point::givename(std::string n){
     name = n;

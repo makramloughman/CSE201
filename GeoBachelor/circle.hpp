@@ -1,13 +1,12 @@
 #pragma once
 #include <math.h>
 #include <iostream>
-#include <point.hpp>
-#include <line.hpp>
+#include "point.hpp"
+#include "line.hpp"
 #include <iostream>
 #include <vector>
-#include <mathobject.h>
-#include <point.hpp>
-
+#include "mathobject.h"
+#include "point.hpp"
 
 class Circle: public MathObject
 {
@@ -23,6 +22,7 @@ class Circle: public MathObject
 
         Point center; //center of the circle
         double r; // radius of the circle
+        double r_t;
         Circle(Point& p, double r); //constructor
         Circle(Point& center, Point x);
         ~Circle(); // destructor

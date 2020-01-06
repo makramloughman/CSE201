@@ -3,6 +3,7 @@
 
 #pragma once
 #include <QMainWindow>
+#include <QResizeEvent>
 #include <QAction>
 #include <QMenu>
 #include <QToolBar>
@@ -14,17 +15,19 @@
 #include <QGraphicsScene>
 #include <iostream>
 #include <vector>
-#include <grid.h>
-#include <point.hpp>
-#include <mathobject.h>
-#include <line.hpp>
-#include <circle.hpp>
-#include <segment.h>
-#include <general_functions.h>
+#include "grid.h"
+#include "point.hpp"
+#include "mathobject.h"
+#include "line.hpp"
+#include "circle.hpp"
+#include "segment.h"
+#include "general_functions.h"
+#include "polygone.h"
+#include "rectangle.h"
 #include <typeinfo>
 #include <string>
-#include <polygone.h>
-#include <rectangle.h>
+#include <QResizeEvent>
+#include <QPushButton>
 
 namespace Ui {
 class MainWindow;
@@ -133,12 +136,11 @@ public slots:
     void Delete();
     void Clear();
 
-private slots:
-    void on_pushButton_clicked();
+    void PushButton_clicked();
+    void PushButton2_clicked();
 
-    void on_pushButton_2_clicked();
-
-
+protected:
+    void resizeEvent(QResizeEvent* event);
 
 private:
     Ui::MainWindow *ui;
@@ -220,6 +222,8 @@ private:
     QMenu* GeneralMenu;
     DropDownToolButton* GeneralButton;
 
+    QPushButton* PushButton;
+    QPushButton* PushButton2;
 };
 
 #endif // MAINWINDOW_H

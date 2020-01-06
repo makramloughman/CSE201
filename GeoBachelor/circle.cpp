@@ -37,14 +37,18 @@ bool Circle::in_personal_area(double x, double y)
 
 Circle:: Circle(Point &p, double r) : MathObject()
 {
-  this->center = p;
-  this->r = r;
+    this->center = p;
+    this->r = r;
+    MainWindow* mainW = MainWindow::getInstance();
+    this->r_t = r / mainW->mainGrid->unit;
 }
 
 Circle::Circle(Point &center, Point x) : MathObject()
 {
     this->center = center;
     this->r = sqrt(pow(x.getx()-center.getx(),2)+pow(x.gety()-center.gety(),2));
+    MainWindow* mainW = MainWindow::getInstance();
+    this->r_t = this->r / mainW->mainGrid->unit;
 }
 
 Circle:: ~Circle()

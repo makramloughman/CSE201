@@ -10,10 +10,10 @@
 #include <QGraphicsScene>
 #include <cmath>
 #include <QGraphicsTextItem>
-#include <mathobject.h>
-#include <point.hpp>
-#include <container.h>
-#include <container.h>
+#include "mathobject.h"
+#include "point.hpp"
+#include "container.h"
+#include <QResizeEvent>
 #pragma once
 
 class Grid {
@@ -25,7 +25,6 @@ private:
     double y_p;
 
 public:
-
     //we should have a function that allows the user to use diffrent types of grids
     //as he was styling his own sheet
 
@@ -44,11 +43,9 @@ public:
     void move_grid(double dx, double dy);
     void move_grid(QPointF to);
     void refresh_grid();
-
 };
 
 #endif // GRID_H
-
 
 /*
 class Grid {

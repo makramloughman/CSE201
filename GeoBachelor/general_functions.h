@@ -2,13 +2,13 @@
 #define GENERAL_FUNCTIONS_H
 
 #pragma once
-#include <point.hpp>
-#include <line.hpp>
+#include "point.hpp"
+#include "line.hpp"
 #include <cmath>
 #include <iostream>
-#include <circle.hpp>
+#include "circle.hpp"
 #include <vector>
-#include <segment.h>
+#include "segment.h"
 #include <algorithm>
 
 double distance(Point p1, Point p2);

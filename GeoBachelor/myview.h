@@ -10,12 +10,12 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <grid.h>
-#include <point.hpp>
-#include <line.hpp>
-#include <circle.hpp>
-#include <mathobject.h>
-#include <container.h>
+#include "grid.h"
+#include "point.hpp"
+#include "line.hpp"
+#include "circle.hpp"
+#include "mathobject.h"
+#include "container.h"
 
 using namespace std;
 
@@ -53,8 +53,6 @@ class MyView : public QGraphicsView
         int n_counter; //we will have many options, so this one counts the number of points we have chosen after clicking certain option
 
         void refresh_indicators();
-
-
 };
 
 #endif // MYVIEW_H

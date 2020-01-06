@@ -3,14 +3,13 @@
 #include <string>
 #include <vector>
 //#include "segment.hpp"
-#include <point.hpp>
+#include "point.hpp"
 #include "circle.hpp"
-#include <mathobject.h>
+#include "mathobject.h"
 
 class Polygone : public MathObject
 {
   public :
-
     virtual void draw();
     virtual void translate(double dx, double dy);
     virtual bool in_personal_area(double x, double y);
