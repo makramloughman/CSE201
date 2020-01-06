@@ -40,7 +40,7 @@ Line::Line(Point &p1, Point &p2) : MathObject()
 {
     this->p1 = p1;
     this->p2 = p2;
-    
+
     // function to make global
     std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     /*
@@ -59,13 +59,13 @@ Line::Line() :MathObject()
     this->p2 = Point();
 }
 
-  
+
 double Line::slope(){
   double slope = 0;
-  double x1 = p1.getxt();
-  double x2 = p2.getxt();
-  double y1 = p1.getyt();
-  double y2 = p2.getyt();
+  double x1 = p1.getx();
+  double x2 = p2.getx();
+  double y1 = p1.gety();
+  double y2 = p2.gety();
   if (x1!=x2)
   {
      slope = (y2 - y1) / (x2 - x1);
@@ -84,8 +84,8 @@ double Line::slope(){
 double Line::y_intercept(){
   double y_intercept;
   double a = this->slope();
-  double x1 = p1.getxt();
-  double y1 = p1.getyt();
+  double x1 = p1.getx();
+  double y1 = p1.gety();
   y_intercept = y1 - a*x1;
   return y_intercept;
 }
