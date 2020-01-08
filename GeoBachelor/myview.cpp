@@ -34,6 +34,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this->n_counter++;
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
             mainW->drawPoint(this->clickedP[0]);
+
         }
 
         else if (this->n_counter==1)
@@ -53,6 +54,10 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->mainGrid->obj.push(s);
             mainW->mainGrid->obj.push(p1);
             mainW->mainGrid->obj.push(p2);
+
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
+            mainW->mainGrid->obj.points[m-2]->drawName(m-2);
 
             mainW->mainGrid->refresh_grid();
             refresh_indicators();
@@ -80,6 +85,8 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 //changed to view
             mainW->mainGrid->obj.push(new Circle(*p1,Point(ev->x(),ev->y()))); //Figured out
             mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
 
             mainW->mainGrid->refresh_grid();
             refresh_indicators();
@@ -110,6 +117,10 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->mainGrid->obj.push(p2);
             mainW->mainGrid->obj.push(new Segment(*p1,*p2));
 
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
+            mainW->mainGrid->obj.points[m-2]->drawName(m-2);
+
             mainW->mainGrid->refresh_grid();
             refresh_indicators();
             this-> move_grid_chosen = true;
@@ -139,6 +150,10 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW -> mainGrid -> obj.push(p1);
             mainW -> mainGrid -> obj.push(p2);
 
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
+            mainW->mainGrid->obj.points[m-2]->drawName(m-2);
+
             mainW->mainGrid->refresh_grid();
             refresh_indicators();
             this->move_grid_chosen = true;
@@ -150,6 +165,9 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         mainW -> drawPoint(mapToScene(ev->x(),ev->y()));
         QPointF help = QPointF(ev->x(),ev->y());
         mainW->mainGrid->obj.push(new Point(help));
+
+        int m = mainW->mainGrid->obj.points.size();
+        mainW->mainGrid->obj.points[m-1]->drawName(m-1);
 
         refresh_indicators();
         this-> move_grid_chosen = true;
@@ -164,6 +182,9 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             Point* p = new Point(ev->x(),ev->y());
             mainW->mainGrid->obj.push(p);
 
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
+
         }
         else if (this->n_counter<=n_polygon-1){
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
@@ -175,6 +196,9 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
             Point* p = new Point(ev->x(),ev->y());
             mainW->mainGrid->obj.push(p);
+
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
 
             if(n_counter==n_polygon)
             {

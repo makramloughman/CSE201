@@ -162,10 +162,11 @@ void Container::move_refresh(double dx, double dy)
         triangles[i]->translate(dx,dy);
         triangles[i]->draw();
     }
-    for(uint i=0;i<points.size();i++) //ORDER MATTERS
+    for(int i=0;i<points.size();i++) //ORDER MATTERS
     {
         points[i]->translate(dx,dy);
         points[i]->draw();
+        points[i]->drawName(i);
     }
 }
 

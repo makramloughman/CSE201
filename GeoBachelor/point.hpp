@@ -32,6 +32,8 @@ class Point : public MathObject
         virtual void translate(double dx, double dy); //moves the point in the window
         virtual bool in_personal_area(double x, double y);
 
+        void drawName(int i);
+
         void clickpoint(); //creates a point where we click
 
         void display(); //displays the point in the window

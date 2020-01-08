@@ -452,6 +452,12 @@ void MainWindow::drawPolygon(std::vector<QPointF> points)
     MainWindow::drawLine(points[0],points[n-1]);
 }
 
+void MainWindow::drawText(QString text, double x, double y)
+{
+    QGraphicsSimpleTextItem* text1=scene->addSimpleText(text);
+    text1->setPos(mapToMyScene(x,y));
+}
+
 
 void MainWindow::drawCoordinateSystem()
 {

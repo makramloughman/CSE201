@@ -55,31 +55,6 @@ void Polygone::append(Point p)
     Pointlist.push_back(p);
 }
 
-std::vector<double> Polygone::changeColour(double R, double G, double B)
-{
-    Colour = std::vector<double>{};
-    Colour.push_back(R);
-    Colour.push_back(G);
-    Colour.push_back(B);
-}
-
-/*std::vector<Segment> Polygone::edges()
-// get the edges
-{
-    return Pointlist;
-}
-*/
-// duplicate
-
-void Polygone::hide()
-// hide the polygone
-{
-    Colour = std::vector<double>{};
-    Colour.push_back(0);
-    Colour.push_back(0);
-    Colour.push_back(0);
-}
-
 Polygone::~Polygone()
 // delete the polygone
 {

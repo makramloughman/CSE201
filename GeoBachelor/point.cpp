@@ -29,13 +29,6 @@ Point::Point(double x, double y)
     MainWindow* mainW = MainWindow::getInstance();
     this->x_t = (x - mainW->mainGrid->getX()) / mainW->mainGrid->unit;
     this->y_t = (mainW->mainGrid->getY() - y) / mainW->mainGrid->unit;
-    /*
-    std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    if (countpoints >= 26) {
-        double countpoints_2 = (countpoints / 26) - 1;
-        this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
-    else { this->name = s.at( countpoints % s.size() ); }
-    */
 
     countpoints += 1; // add 1 to the counter
     color.push_back(0);
@@ -80,8 +73,6 @@ void Point::hide(){
     color.push_back(0);
     color.push_back(0);
     color.push_back(0.5);
-
-    //this-> namecolor = rgba(0,0,0.5);
 }
 
 Point Point::symmetry_point(Point A)
@@ -112,6 +103,14 @@ bool Point::in_personal_area(double x, double y)
         return true;
     }
     return false;
+}
+
+void Point::drawName(int i)
+{
+    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    std::string str = "P"+std::to_string(i);
+    QString q = QString::fromLocal8Bit(str.c_str());
+    mainW->drawText(q,this->x+5,this->y-5); //Remark: We save data in Grid coordinates, so we need conversion
 }
 
 double Point::getx(){

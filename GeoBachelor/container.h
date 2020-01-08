@@ -10,6 +10,7 @@
 #include "triangle.hpp"
 #include "segment.h"
 #include <general_functions.h>
+#include <regularpolygon.h>
 
 class Container
 {
@@ -41,6 +42,7 @@ class Container
         std::vector<Circle*> circles;
         std::vector<Segment*> segments;
         std::vector<Triangle*> triangles;
+        std::vector<RegularPolygone*> polygones;
         int number_of_bins; //it is 5 here => points,lines,circles,segments,triangles
 
         void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid

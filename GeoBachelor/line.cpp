@@ -99,7 +99,7 @@ Line Line::perpendicular(Point p3){
 
   if(dist<pow(10,-5)) //if point is on line
   {
-    Point p =Point(x0-20, (20-x0)/a+y0+x0/a);
+    Point p =Point(x0-50, (50-x0)/a+y0+x0/a);
     Line l = Line(p,p3);
     return l;
   }
@@ -131,8 +131,8 @@ Line Line::parallel(Point p3)
   double a = this->slope();
   double x0 = p3.getx();
   double y0 = p3.gety();
-  double x = x0 - 20;
-  double y = y0 - 20*a;
+  double x = x0 - 50;
+  double y = y0 - 50*a;
   Point pstar(x, y);
   Line par = Line(pstar, p3);
   return par;
