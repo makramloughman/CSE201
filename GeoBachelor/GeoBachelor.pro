@@ -61,7 +61,8 @@ HEADERS += \
     rectangle.h \
     angle.h \
     vector.h \
-    triangle.hpp
+    triangle.hpp \
+    parabola.hpp
 
 FORMS += \
     mainwindow.ui
