@@ -359,5 +359,99 @@ void Container::cleanFrom(Container &c)
     }
 }
 
+std::vector<Point *> Container::IntersectObjects()
+{
+    std::vector<Point*> vec;
+
+    //firstly, add the segments from triangles:
+    for(int i=0;i<triangles.size();i++)
+    {
+        push(new Segment(triangles[i]->point1,triangles[i]->point2));
+        push(new Segment(triangles[i]->point2,triangles[i]->point3));
+        push(new Segment(triangles[i]->point1,triangles[i]->point3));
+    }
+
+    for(uint i=0;i<lines.size();i++)
+    {
+        for (uint j=i+1;j<lines.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*lines[i],*lines[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                vec.push_back(help[k]);
+            }
+        }
+    }
+
+    for(uint i=0;i<segments.size();i++)
+    {
+        for (uint j=i+1;j<segments.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*segments[i],*segments[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                vec.push_back(help[k]);
+            }
+        }
+    }
+
+    for(uint i=0;i<circles.size();i++)
+    {
+        for (uint j=i+1;j<circles.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*circles[i],*circles[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                vec.push_back(help[k]);
+            }
+        }
+    }
+
+    for(uint i=0;i<lines.size();i++)
+    {
+        for (uint j=0;j<segments.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*lines[i],*segments[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                vec.push_back(help[k]);
+            }
+        }
+    }
+
+    for(uint i=0;i<lines.size();i++)
+    {
+        for (uint j=0;j<circles.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*lines[i],*circles[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                vec.push_back(help[k]);
+            }
+        }
+    }
+
+    for(uint i=0;i<segments.size();i++)
+    {
+        for (uint j=0;j<circles.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*segments[i],*circles[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                vec.push_back(help[k]);
+            }
+        }
+    }
+
+    empty_bins();
+    return vec;
+}
+
 
 

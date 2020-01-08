@@ -12,14 +12,14 @@
 #include <algorithm>
 
 double distance(Point p1, Point p2);
-std::vector<Point> intersection(Line l1, Line l2); //copied from Line.hpp
-std::vector<Point> intersection(Line line,Circle circle);
-std::vector<Point> intersection(Circle circle,Line line);
-std::vector<Point> intersection(Circle c1,Circle c2);
-std::vector<Point> intersection(Segment segment1, Segment segment2);
-std::vector<Point> intersection(Line line ,Segment segment);
-std::vector<Point> intersection(Segment segment,Line line);
-std::vector<Point> intersection(Circle circle,Segment segment);
-std::vector<Point> intersection(Segment segment, Circle circle);
+std::vector<Point*> intersection(Line l1, Line l2); //copied from Line.hpp
+std::vector<Point*> intersection(Line line,Circle circle);
+std::vector<Point*> intersection(Circle circle,Line line);
+std::vector<Point*> intersection(Circle c1,Circle c2);
+std::vector<Point*> intersection(Segment segment1, Segment segment2);
+std::vector<Point*> intersection(Line line ,Segment segment);
+std::vector<Point*> intersection(Segment segment,Line line);
+std::vector<Point*> intersection(Circle circle,Segment segment);
+std::vector<Point*> intersection(Segment segment, Circle circle);
 
 #endif // GENERAL_FUNCTIONS_H

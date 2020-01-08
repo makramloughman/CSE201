@@ -24,3 +24,5 @@ MathObject::~MathObject()
 {
 
 }
+
+

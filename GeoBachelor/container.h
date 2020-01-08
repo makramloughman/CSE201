@@ -9,6 +9,7 @@
 #include "circle.hpp"
 #include "triangle.hpp"
 #include "segment.h"
+#include <general_functions.h>
 
 class Container
 {
@@ -35,22 +36,24 @@ class Container
         void remove(Segment s);
         void remove(Segment* s);
 
-        std::vector<Point*> points; //tag of points is 0
-        std::vector<Line*> lines; //tag of lines is 1
-        std::vector<Circle*> circles; //tag of circles is 2
-        std::vector<Segment*> segments; //tag of segments is 3
-        std::vector<Triangle*> triangles; //tag of triangles is 4
+        std::vector<Point*> points;
+        std::vector<Line*> lines;
+        std::vector<Circle*> circles;
+        std::vector<Segment*> segments;
+        std::vector<Triangle*> triangles;
         int number_of_bins; //it is 5 here => points,lines,circles,segments,triangles
 
-        void move_refresh(double dx, double dy);
-        void refresh();
+        void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid
+        void refresh(); //some refresh related to graphics
         bool find_personal_and_store(Container &c,double x, double y); //also make AN object selected if possible
 
-        void deselect();
-        int size();
+        void deselect(); //deselect all the objects
+        int size(); //return the size
 
-        void empty_bins();
-        void cleanFrom(Container &c);
+        void empty_bins(); //clean the entire container
+        void cleanFrom(Container &c); //remove all the elemnts which are in c
+
+        std::vector<Point*> IntersectObjects(); //this will give intersections between ALL the objects and the clean the Container
 };
 
 #endif // CONTAINER_H

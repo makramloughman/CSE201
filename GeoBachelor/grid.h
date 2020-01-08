@@ -17,7 +17,6 @@
 #pragma once
 
 class Grid {
-//private functions below represent the default initialisation of the grid
 private:
     //x_p and y_p represent the coordinates of the center of the grid
     //with respect to the coordinate system of the gris that is set by default.

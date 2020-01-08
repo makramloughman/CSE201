@@ -156,7 +156,7 @@ Segment Triangle::Baricenter3(){
 Point Triangle::getCenterofgravity(){
     Segment seg1=Baricenter1();
     Segment seg2=Baricenter2();
-    return intersection(seg1,seg2)[0];
+    return *intersection(seg1,seg2)[0];
 
 }
 
@@ -167,7 +167,7 @@ Point Triangle::getOrthocenter(){
     Point m2=s2.midpoint();
     Line per_s1=s1.perpendicular(m1);
     Line per_s2=s2.perpendicular(m2);
-    return intersection(per_s1,per_s2)[0];
+    return *intersection(per_s1,per_s2)[0];
 }
 
 Circle Triangle::Circumscribedcercle(){

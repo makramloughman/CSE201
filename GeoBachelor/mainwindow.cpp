@@ -584,8 +584,18 @@ void MainWindow::PointOnObject(){
     qDebug() << "MainWindow::PointOnObject()";
 }
 
-void MainWindow::Intersection(){
-    qDebug() << "MainWindow::Intersection()";
+void MainWindow::Intersection()
+{
+    //We have intersections only between segments,lines and circles, so, it's not a big problem
+
+    std::vector<Point*> vec;
+    vec = ui->graphicsView->chosen_objects.IntersectObjects();
+    for(uint i=0;i<vec.size();i++)
+    {
+        mainGrid->obj.push(vec[i]);
+    }
+    mainGrid->obj.deselect();
+    mainGrid->refresh_grid();
 }
 
 void MainWindow::MidPoint(){
@@ -788,9 +798,9 @@ void MainWindow::CircleCPT()
     }
 }
 
-void MainWindow::CircleCRT(){
+void MainWindow::CircleCRT()
+{
     ui->graphicsView->circle_chosen_with_radius = true;
-
 }
 
 void MainWindow::Ellipse(){

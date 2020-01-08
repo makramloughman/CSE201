@@ -69,7 +69,7 @@ Point RegularPolygone:: centergravity(){
    Line m2=s2.mediator();
 
 
-   return intersection(m1,m2)[0];
+   return *intersection(m1,m2)[0];
 }
 
 Circle RegularPolygone::circumscribedcircle(){
