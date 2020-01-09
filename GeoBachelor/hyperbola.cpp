@@ -137,7 +137,7 @@ Line Hyperbola:: majoraxis()
 
 Line Hyperbola:: minoraxis()
 {
-    return majoraxis().perpendicular((getX1() + getX2())/2, (getY1() + getY2())/2);
+    return majoraxis().perpendicular(Point((getX1() + getX2())/2, (getY1() + getY2())/2));
 }
 
 Line Hyperbola:: asymptotes()
