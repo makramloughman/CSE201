@@ -16,10 +16,10 @@ Ellipse:: ~Ellipse()
    std::cout << "Deleting an ellipse with focal points f1 = ( "<< getX1() << ", "<< getY1() <<" ) and f2 = (" << getX2() << ", "<< getY2() <<" )"<< std::endl;
 }
 
-void Ellipse::draw() // TO BE IMPLEMENTED
+/*void Ellipse::draw() // TO BE IMPLEMENTED
 {
-   pass;
 }
+*/
 
 void Ellipse::translate(double dx, double dy){
 
@@ -27,17 +27,18 @@ void Ellipse::translate(double dx, double dy){
     f2.translate(dx,dy);
 }
 
-bool Ellipse::in_personal_area(double x, double y) //TO BE IMPLEMENTED
+/*bool Ellipse::in_personal_area(double x, double y) //TO BE IMPLEMENTED
 {
-    pass;
-    /*double ro = distance(Point(x,y),center);
+    THIS IS CODE FOR CIRCLE!!!
+    double ro = distance(Point(x,y),center);
     if (ro>r-5 && ro<r+5)
     {
         return true;
     }
     return false;
-    */
+    
 }
+*/
 
 Point Ellipse:: getF1()
 {
