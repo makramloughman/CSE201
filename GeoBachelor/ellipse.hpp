@@ -4,6 +4,7 @@
 // include files for point and line
 #include "point.hpp"
 #include "line.hpp"
+#include <vector>
 
 class Ellipse: public MathObject{
     private:
@@ -19,7 +20,7 @@ class Ellipse: public MathObject{
         double getY1(); // gives y coordinate of the first focal point
         double getX2(); // gives x coordinate of the second focal point
         double getY2(); // gives y coordinate of the second focal point
-        Line tangent(Point M); // returns tangent lines from the point M
+        std::vector<Line> tangent(Point M); // returns tangent lines from the point M
         double surface(); //returns surface of the ellipse
         double perimeter(); // returns perimeter of the ellipse - note that there is no exact formula for this, so numerical solution will be implemented 
         double get_b();// returns the size of the semi-minor axis
