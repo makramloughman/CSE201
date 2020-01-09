@@ -1,5 +1,6 @@
-#include hyperbola.hpp
-#include math.h
+#pragma once
+#include "hyperbola.hpp"
+#include <math.h>
 
 Hyperbola:: Hyperbola(Point v1, Point v2, double b)
 {
@@ -10,8 +11,7 @@ Hyperbola:: Hyperbola(Point v1, Point v2, double b)
 
 Hyperbola:: ~Hyperbola()
 {
-    delete(v1);
-    delete(v2);
+    std::cout << "Deleting a hyperbola with vertex points v1 = ( "<< getX1() << ", "<< getY1() <<" ) and v2 = (" << getX2() << ", "<< getY2() <<" )"<< std::endl;
 }
 
 Point Hyperbola:: getV1()
