@@ -41,7 +41,8 @@ SOURCES += \
     rectangle.cpp \
     angle.cpp \
     vector.cpp \
-    triangle.cpp
+    triangle.cpp \
+    parabola.cpp
 
 HEADERS += \
         mainwindow.h \
