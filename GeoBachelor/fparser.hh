@@ -19,8 +19,6 @@
 #endif
 
 #ifdef _MSC_VER
-// Visual Studio's warning about missing definitions for the explicit
-// FunctionParserBase instantiations is irrelevant here.
 #pragma warning(disable : 4661)
 #endif
 

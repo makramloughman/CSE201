@@ -29,6 +29,7 @@
 #include <QResizeEvent>
 #include <QPushButton>
 #include <QFont>
+#include <functions.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -152,6 +153,10 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_3_pressed();
+
+    void on_pushButton_3_clicked(bool checked);
 
 private:
     Ui::MainWindow *ui;

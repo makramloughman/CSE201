@@ -44,7 +44,10 @@ SOURCES += \
     triangle.cpp \
     parabola.cpp \
     ellipse.cpp \
-    hyperbola.cpp
+    hyperbola.cpp \
+    fparser.cc \
+    fpoptimizer.cc \
+    functions.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -67,7 +70,10 @@ HEADERS += \
     triangle.hpp \
     parabola.hpp \
     ellipse.hpp \ 
-    hyperbola.hpp
+    hyperbola.hpp \
+    fparser.hh \
+    fpconfig.hh \
+    functions.hpp
 
 FORMS += \
     mainwindow.ui

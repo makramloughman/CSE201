@@ -1107,3 +1107,15 @@ void MainWindow::on_pushButton_2_clicked()
     mainGrid->obj.deselect();
     mainGrid->refresh_grid();
 }
+
+void MainWindow::on_pushButton_3_pressed()
+{
+
+}
+
+void MainWindow::on_pushButton_3_clicked(bool checked)
+{
+    Functions *f=new Functions("x^2");
+    f->draw();
+    mainGrid->obj.push(f);
+}

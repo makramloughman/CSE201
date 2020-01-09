@@ -12,7 +12,7 @@
 #include <general_functions.h>
 #include <regularpolygon.h>
 #include <polygone.h>
-
+#include <functions.hpp>
 
 class Container
 {
@@ -29,6 +29,7 @@ class Container
         void push(Segment* s);
         void push(Polygone* p);
         void push(RegularPolygone* rp);
+        void push(Functions* f);
 
         void remove(Point p);
         void remove(Point* p);
@@ -44,6 +45,8 @@ class Container
         void remove(Polygone p);
         void remove(RegularPolygone* rp);
         void remove(RegularPolygone rp);
+        void remove(Functions* f);
+        void remove(Functions f);
 
         std::vector<Point*> points;
         std::vector<Line*> lines;
@@ -52,6 +55,7 @@ class Container
         std::vector<Triangle*> triangles;
         std::vector<Polygone*> polygones;
         std::vector<RegularPolygone*> r_polygones;
+        std::vector<Functions*> functions;
         int number_of_bins; //it is 5 here => points,lines,circles,segments,triangles
 
         void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid
