@@ -9,6 +9,10 @@ class Hyperbola: public MathObject{
         Point v2; // coordinates of the second vertex
         double b; // size of semi-minor axis
     public:
+        virtual void draw();
+        virtual void translate(double dx, double dy);
+        virtual bool in_personal_area(double x, double y);
+    
         Hyperbola(Point f1, Point f2, double a); // constructor
         ~Hyperbola(); // destructor
         Point getV1(); // gives coordinates of the first vertex
