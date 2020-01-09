@@ -168,7 +168,7 @@ Line Hyperbola:: minoraxis()
 }
 
 //CHECK THIS ONE!!!
-/*std::vector<Line> Hyperbola:: asymptotes()
+std::vector<Line> Hyperbola:: asymptotes()
 {
     std::vector<Line> l;
     double a = get_a();
@@ -183,11 +183,13 @@ Line Hyperbola:: minoraxis()
     double y1 = k1 * x1 + n1;
     double x2 = xc - 1;
     double y2 = k2 * x2 + n2;
-    Line l1 = Line(Point(x1,y1), Point(xc,yc));
-    Line l2 = Line(Point(x2,y2), Point(xc,yc));
+    Point p1= Point(x1,y1);
+    Point p2= Point(x2,y2);
+    Line l1 = Line(p1, c);
+    Line l2 = Line(p2, c);
     l.push_back(l1);
     l.push_back(l2);
     return l;
 }
-*/
+
 
