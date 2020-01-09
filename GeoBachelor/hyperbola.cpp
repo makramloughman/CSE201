@@ -155,8 +155,8 @@ std::vector<Line> Hyperbola:: asymptotes()
     double y1 = k1 * x1 + n1;
     double x2 = xc - 1;
     double y2 = k2 * x2 + n2;
-    Line l1 = Line(Point(x1,y1), c);
-    Line l2 = Line(Point(x2,y2), c);
+    Line l1 = Line(Point(x1,y1), center());
+    Line l2 = Line(Point(x2,y2), center());
     l.push_back(l1);
     l.push_back(l2);
     return l;
