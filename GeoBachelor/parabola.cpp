@@ -7,8 +7,7 @@ Parabola:: Parabola(Point f, Line d)
 
 Parabola:: ~Parabola()
 {
-  delete(focus);
-  delete(directrix);
+      std::cout << "Destroying Parabola: focus: ( " << focus.getx() << " , " << focus.gety() << " ), directrix: y =  "<< directrix.slope() << * x + " << directrix.y_intercept() << std::endl;
 }
 
 Point Parabola:: getF()
@@ -33,7 +32,7 @@ Line Parabola:: getD()
 
 Line Parabola:: symmetric()
 {
-  return directrix.perpendicular(f);
+  return directrix.perpendicular(focus);
 }
 
 Line Parabola:: tangent(Point M)
@@ -45,14 +44,14 @@ Point Parabola:: vertex()
 {
   double xf = getX();
   double yf = getY();
-  double k = d.slope();
-  double n = d.y_intercept();
+  double k = directrix.slope();
+  double n = directrix.y_intercept();
   double x = (-n + yf + xf/k) / (k + 1/k);
   double y = k * x + n;
-  return Point( x + xf) / 2, (y+yf) / 2);
+  return Point( (x + xf) / 2, (y+yf) / 2);
 }
 
-Line Parabola::tangent(point M){
+Line Parabola::tangent(Point M){
   double x0 = M.getx();
   double y0 = M.gety();
   double b1 = d.y_intercept();
