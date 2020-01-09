@@ -17,8 +17,6 @@ class Hyperbola: public MathObject{
         Hyperbola(Point f1, Point f2, double a); // constructor
         ~Hyperbola(); // destructor
 
-        virtual void draw();
-
 
         Point getV1(); // gives coordinates of the first vertex
         Point getV2(); // gives coordinates of the second vertex
