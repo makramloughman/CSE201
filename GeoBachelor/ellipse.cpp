@@ -114,7 +114,7 @@ std::vector<Line> Ellipse:: tangent(Point M)
 double Ellipse:: surface()
 {
     double b = get_b();
-    return math.pi * a * b;
+    return M_PI * a * b;
 }
 
 double Ellipse:: perimeter()
@@ -134,7 +134,7 @@ double Ellipse:: perimeter()
 double Ellipse:: get_b()
 {
     double c = get_c();
-    return math.sqrt(a*a - c*c);
+    return sqrt(a*a - c*c);
 }
 
 double Ellipse:: get_c()
@@ -143,7 +143,7 @@ double Ellipse:: get_c()
     double y1 = getY1();
     double x2 = getX2();
     double y2 = getY2();
-    return math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
 double Ellipse:: get_e()
