@@ -35,11 +35,6 @@ Line Parabola:: symmetric()
   return directrix.perpendicular(focus);
 }
 
-Line Parabola:: tangent(Point M)
-{
-  //TO BE IMPLEMENTED
-}
-
 Point Parabola:: vertex()
 {
   double xf = getX();
