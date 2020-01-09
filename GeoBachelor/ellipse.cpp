@@ -1,6 +1,7 @@
 #include <ellipse.hpp>
 #include <math.h>
 #include <iostream>
+#include <vector>
 
 Ellipse:: Ellipse(Point f1, Point f2, double a)
 {
@@ -59,7 +60,7 @@ Line Ellipse:: tangent(Point M)
   	std::cout << "There is only one tangent and it is y = " << k << " * x + " << n << std::endl;
     double xt1 = xm - 1;
     double yt1 = k * xt1 + n;
-    return std::vector{Line(Point (xt1, yt1), M)}
+    return std::vector{Line(Point (xt1, yt1), M)};
   }
   else if (((a == x0 - xm) || (a == xm - x0)) && (x0 - xm) * (y0 - ym) != 0)
   {
@@ -71,7 +72,7 @@ Line Ellipse:: tangent(Point M)
     double xt1 = xm - 1;
     double yt1 = k * xt1 + n; 
     double yt2 = ym + 1;
-    return std::vector{Line(Point (xt1, yt1), M), Line(Point(xm, yt2), M)}
+    return std::vector{Line(Point (xt1, yt1), M), Line(Point(xm, yt2), M)};
   }
   else if(a * a - x0 * x0 + 2 * x0 * xm - xm * xm != 0)
   {
@@ -87,7 +88,7 @@ Line Ellipse:: tangent(Point M)
     double xt1 = xm - 1;
     double yt1 = k1 * xt1 + n1; 
     double yt2 = k2 * xt1 + n2;
-    return std::vector{Line(Point (xt1, yt1), M), Line(Point(xt1, yt2), M)}
+    return std::vector{Line(Point (xt1, yt1), M), Line(Point(xt1, yt2), M)};
   }
   else
   {
@@ -98,7 +99,7 @@ Line Ellipse:: tangent(Point M)
 double Ellipse:: surface()
 {
     double b = get_b()
-    return math.pi * a * b
+    return math.pi * a * b;
 }
 
 double Ellipse:: perimeter()
