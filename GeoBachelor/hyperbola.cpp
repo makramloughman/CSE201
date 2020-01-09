@@ -115,19 +115,19 @@ double Hyperbola:: get_a()
     double y1 = getY1();
     double x2 = getX2();
     double y2 = getY2();
-    return math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
 double Hyperbola:: get_c()
 {
     double a = get_a();
-    return math.sqrt(a * a + b * b);
+    return sqrt(a * a + b * b);
 }
 
 double Hyperbola:: get_e()
 {
     double a = get_a();
-    return math.sqrt(1 + b*b/(a*a));
+    return sqrt(1 + b*b/(a*a));
 }
 
 Line Hyperbola:: majoraxis()
