@@ -18,7 +18,7 @@ class Container
 {
     private:
         bool matching(Point p1, Point p2);
-
+        bool check_if_in(Point p);
     public:
         Container();
 

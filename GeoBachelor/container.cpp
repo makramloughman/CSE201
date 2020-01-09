@@ -6,6 +6,20 @@ bool Container::matching(Point p1, Point p2)
     return (p1.getx()==p2.getx() && p1.gety()==p2.gety());
 }
 
+bool Container::check_if_in(Point p)
+{
+    for(uint i=0; i<points.size();i++)
+    {
+        if(p.in_personal_area(points[i]->getx(),points[i]->gety()))
+        {
+            return true;
+        }
+
+    }
+    return false;
+}
+
+
 Container::Container()
 {
     this->number_of_bins = 7;
@@ -550,32 +564,31 @@ void Container::zoom(double coef, double c_x, double c_y)
 std::vector<Point *> Container::IntersectObjects()
 {
     std::vector<Point*> vec;
-    Container special_segments;
 
     //firstly, add the segments from triangles:
     for(uint i=0;i<triangles.size();i++)
     {
-        special_segments.push(new Segment(triangles[i]->point1,triangles[i]->point2));
-        special_segments.push(new Segment(triangles[i]->point2,triangles[i]->point3));
-        special_segments.push(new Segment(triangles[i]->point1,triangles[i]->point3));
+        push(new Segment(triangles[i]->point1,triangles[i]->point2));
+        push(new Segment(triangles[i]->point2,triangles[i]->point3));
+        push(new Segment(triangles[i]->point1,triangles[i]->point3));
     }
 
     for(uint i = 0;i<polygones.size();i++)
     {
         for(uint j=0;j<polygones[i]->Pointlist.size()-1;j++)
         {
-            special_segments.push(new Segment(polygones[i]->Pointlist[j],polygones[i]->Pointlist[j+1]));
+            push(new Segment(polygones[i]->Pointlist[j],polygones[i]->Pointlist[j+1]));
         }
-        special_segments.push(new Segment(polygones[i]->Pointlist[0],polygones[i]->Pointlist[polygones[i]->Pointlist.size()-1]));
+        push(new Segment(polygones[i]->Pointlist[0],polygones[i]->Pointlist[polygones[i]->Pointlist.size()-1]));
     }
 
     for(uint i = 0;i<r_polygones.size();i++)
     {
         for(uint j=0;j<r_polygones[i]->Pointlist.size()-1;j++)
         {
-            special_segments.push(new Segment(r_polygones[i]->Pointlist[j],r_polygones[i]->Pointlist[j+1]));
+            push(new Segment(r_polygones[i]->Pointlist[j],r_polygones[i]->Pointlist[j+1]));
         }
-        special_segments.push(new Segment(r_polygones[i]->Pointlist[0],r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1]));
+        push(new Segment(r_polygones[i]->Pointlist[0],r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1]));
     }
 
     for(uint i=0;i<lines.size();i++)
@@ -586,7 +599,10 @@ std::vector<Point *> Container::IntersectObjects()
             help = intersection(*lines[i],*lines[j]);
             for(uint k=0;k<help.size();k++)
             {
-                vec.push_back(help[k]);
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
             }
         }
     }
@@ -599,7 +615,10 @@ std::vector<Point *> Container::IntersectObjects()
             help = intersection(*segments[i],*segments[j]);
             for(uint k=0;k<help.size();k++)
             {
-                vec.push_back(help[k]);
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
             }
         }
     }
@@ -612,7 +631,10 @@ std::vector<Point *> Container::IntersectObjects()
             help = intersection(*circles[i],*circles[j]);
             for(uint k=0;k<help.size();k++)
             {
-                vec.push_back(help[k]);
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
             }
         }
     }
@@ -625,7 +647,10 @@ std::vector<Point *> Container::IntersectObjects()
             help = intersection(*lines[i],*segments[j]);
             for(uint k=0;k<help.size();k++)
             {
-                vec.push_back(help[k]);
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
             }
         }
     }
@@ -638,7 +663,10 @@ std::vector<Point *> Container::IntersectObjects()
             help = intersection(*lines[i],*circles[j]);
             for(uint k=0;k<help.size();k++)
             {
-                vec.push_back(help[k]);
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
             }
         }
     }
@@ -651,40 +679,13 @@ std::vector<Point *> Container::IntersectObjects()
             help = intersection(*segments[i],*circles[j]);
             for(uint k=0;k<help.size();k++)
             {
-                vec.push_back(help[k]);
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
             }
         }
     }
-
-    //now, special segments (to avoid additional points):
-
-    for(uint i=0;i<special_segments.size();i++)
-    {
-        for (uint j=0;j<circles.size();j++)
-        {
-            std::vector<Point*> help;
-            help = intersection(*special_segments.segments[i],*circles[j]);
-            for(uint k=0;k<help.size();k++)
-            {
-                vec.push_back(help[k]);
-            }
-        }
-    }
-
-    for(uint i=0;i<lines.size();i++)
-    {
-        for (int j=0;j<special_segments.size();j++)
-        {
-            std::vector<Point*> help;
-            help = intersection(*lines[i],*special_segments.segments[j]);
-            for(uint k=0;k<help.size();k++)
-            {
-                vec.push_back(help[k]);
-            }
-        }
-    }
-
-    special_segments.empty_bins();
     empty_bins();
     return vec;
 }
