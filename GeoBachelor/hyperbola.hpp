@@ -26,5 +26,5 @@ class Hyperbola: public MathObject{
         double get_e(); // returns eccentricity of the hyperbola
         Line majoraxis(); // returns major axis of the hyperbola
         Line minoraxis(); //returns minor axis of the hyperbola
-        Line asymptotes(); // returns asymtotes of the hyperbola
+        std::vector<Line> asymptotes(); // returns asymtotes of the hyperbola
 };
