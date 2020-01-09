@@ -1081,3 +1081,27 @@ void MainWindow::PushButton2_clicked()
         count++;
     }
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    clearScene();
+    mainGrid->zoom(1.5);
+    mainGrid->obj.zoom(1.5,mainGrid->getX(),mainGrid->getY());
+    ui->graphicsView->chosen_objects.empty_bins();
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->move_grid_chosen = true;
+    mainGrid->obj.deselect();
+    mainGrid->refresh_grid();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    clearScene();
+    mainGrid->zoom(1/1.5);
+    mainGrid->obj.zoom(1/1.5,mainGrid->getX(),mainGrid->getY());
+    ui->graphicsView->chosen_objects.empty_bins();
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->move_grid_chosen = true;
+    mainGrid->obj.deselect();
+    mainGrid->refresh_grid();
+}

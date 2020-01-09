@@ -42,6 +42,8 @@ public:
     void move_grid(double dx, double dy);
     void move_grid(QPointF to);
     void refresh_grid();
+
+    void zoom(double coef);
 };
 
 #endif // GRID_H

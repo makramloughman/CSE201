@@ -38,6 +38,13 @@ bool Triangle::in_personal_area(double x, double y)
     return false;
 }
 
+void Triangle::zoom(double coef, double c_x, double c_y)
+{
+    this->point1.zoom(coef,c_x,c_y);
+    this->point2.zoom(coef,c_x,c_y);
+    this->point3.zoom(coef,c_x,c_y);
+}
+
 Triangle::Triangle(Point point1 ,Point point2 ,Point point3) : MathObject()
 {
     this->point1 = point1;

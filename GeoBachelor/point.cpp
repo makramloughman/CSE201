@@ -105,6 +105,13 @@ bool Point::in_personal_area(double x, double y)
     return false;
 }
 
+void Point::zoom(double coef, double c_x, double c_y)
+{
+    setx((getx()-c_x)*coef+c_x);
+    sety((gety()-c_y)*coef+c_y);
+
+}
+
 void Point::drawName(int i)
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have

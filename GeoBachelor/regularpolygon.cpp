@@ -15,7 +15,6 @@ RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of
 
 RegularPolygone::RegularPolygone(Segment segment, int n)
 {
-
     int i;
     double s=segment.getlength();
     size=n;

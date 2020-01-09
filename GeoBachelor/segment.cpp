@@ -41,7 +41,13 @@ bool Segment::in_personal_area(double x, double y)
     double My = p1.gety()+p2.gety()-my;
     if (l->in_personal_area(x,y) && x<Mx+3 && x>mx-3 && y<My+3 && y>my-3)
         return true;
-   return false;
+    return false;
+}
+
+void Segment::zoom(double coef, double c_x, double c_y)
+{
+    this->p1.zoom(coef,c_x,c_y);
+    this->p2.zoom(coef,c_x,c_y);
 }
 
 void display();         //displays segment

@@ -135,6 +135,11 @@ void Grid::refresh_grid()
     move_grid(0,0);
 }
 
+void Grid::zoom(double coef)
+{
+    this->unit = this->unit*coef;
+}
+
 /*
 
     t=QTransform();

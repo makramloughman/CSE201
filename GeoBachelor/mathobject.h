@@ -10,6 +10,7 @@ public:
     virtual void translate(double dx,double dy);
     virtual bool in_personal_area(double x, double y);
     virtual ~MathObject();
+    virtual void zoom(double coef,double c_x, double c_y);
     bool selected;
 };
 

@@ -360,6 +360,30 @@ void Container::cleanFrom(Container &c)
     }
 }
 
+void Container::zoom(double coef, double c_x, double c_y)
+{
+    for(uint i=0;i<circles.size();i++)
+    {
+        circles[i]->zoom(coef,c_x,c_y);
+    }
+    for(uint i=0;i<points.size();i++)
+    {
+        points[i]->zoom(coef,c_x,c_y);
+    }
+    for(uint i=0;i<lines.size();i++)
+    {
+        lines[i]->zoom(coef,c_x,c_y);
+    }
+    for(uint i=0;i<segments.size();i++)
+    {
+        segments[i]->zoom(coef,c_x,c_y);
+    }
+    for(uint i=0;i<triangles.size();i++)
+    {
+        triangles[i]->zoom(coef,c_x,c_y);
+    }
+}
+
 std::vector<Point *> Container::IntersectObjects()
 {
     std::vector<Point*> vec;

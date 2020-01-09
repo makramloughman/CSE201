@@ -55,6 +55,8 @@ class Container
         void empty_bins(); //clean the entire container
         void cleanFrom(Container &c); //remove all the elemnts which are in c
 
+        void zoom(double coef, double c_x, double c_y);
+
         std::vector<Point*> IntersectObjects(); //this will give intersections between ALL the objects and the clean the Container
 };
 

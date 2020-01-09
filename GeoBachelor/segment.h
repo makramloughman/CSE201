@@ -16,6 +16,7 @@ class Segment : public MathObject
         virtual void translate(double dx, double dy);
         virtual void draw();
         virtual bool in_personal_area(double x, double y);
+        virtual void zoom(double coef, double c_x, double c_y);
 
         void polarcoordinates(); //gives polar coordinates of the point
 

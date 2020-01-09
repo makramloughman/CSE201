@@ -35,6 +35,13 @@ bool Circle::in_personal_area(double x, double y)
     return false;
 }
 
+void Circle::zoom(double coef, double c_x, double c_y)
+{
+    this->r*=coef;
+    this->center.setx((this->center.getx()-c_x)*coef+c_x);
+    this->center.sety((this->center.gety()-c_y)*coef+c_y);
+}
+
 Circle:: Circle(Point &p, double r) : MathObject()
 {
     this->center = p;

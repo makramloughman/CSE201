@@ -67,6 +67,7 @@ public:
 
     void drawText(QString text,double x, double y); //text given in View coordinates
 
+
     //grid part => drawings
     Grid* mainGrid;
     void drawCoordinateSystem(); //just using the functions of the grid
@@ -146,6 +147,11 @@ public slots:
 
 protected:
     void resizeEvent(QResizeEvent* event);
+
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;

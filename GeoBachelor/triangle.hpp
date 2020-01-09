@@ -23,6 +23,7 @@ class Triangle: public MathObject
         virtual void draw();
         virtual void translate(double dx, double dy);
         virtual bool in_personal_area(double x, double y);
+        virtual void zoom(double coef, double c_x, double c_y);
 
         Segment Baricenter2();
         Segment Baricenter3();

@@ -36,6 +36,12 @@ bool Line::in_personal_area(double x, double y)
     return false;
 }
 
+void Line::zoom(double coef, double c_x, double c_y)
+{
+    this->p1.zoom(coef,c_x,c_y);
+    this->p2.zoom(coef,c_x,c_y);
+}
+
 Line::Line(Point &p1, Point &p2) : MathObject()
 {
     this->p1 = p1;
