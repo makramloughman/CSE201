@@ -1,3 +1,4 @@
+#pragma once
 #include <ellipse.hpp>
 #include <math.h>
 #include <iostream>
@@ -76,7 +77,7 @@ std::vector<Line> Ellipse:: tangent(Point M)
     double yt1 = k * xt1 + n; 
     double yt2 = ym + 1;
     Point p1 = Point(xt1, yt1);
-    Point p2 = Point(xt2, yt2);
+    Point p2 = Point(xt1, yt2);
     Line l1 = Line(p1,M);
     Line l2 = Line(p2,M);
     l.push_back(l1);
@@ -97,7 +98,7 @@ std::vector<Line> Ellipse:: tangent(Point M)
     double yt1 = k1 * xt1 + n1; 
     double yt2 = k2 * xt1 + n2;
     Point p1 = Point(xt1, yt1);
-    Point p2 = Point(xt2, yt2);
+    Point p2 = Point(xt1, yt2);
     Line l1 = Line(p1,M);
     Line l2 = Line(p2,M);
     l.push_back(l1);
