@@ -22,9 +22,9 @@ class SemiLine : public MathObject
     
     double y_intercept(); //computes the intercept of the line with the origin
   
-    SemiLine perpendicular(Point p3);//create the perpendicular to the SemiLine sarting by the point on the Semiline and passing through p3
+    SemiLine perpendicular(Point p3);//create the perpendicular to the SemiLine passing through p3
   
-    SemiLine parallel(Point p3); //draw the parallel to the semiline passing through p3, semiline starts at the same x as the semiline
+    SemiLine parallel(Point p3); //draw the parallel to the semiline passing through p3
     
     Point intersection(SemiLine B); //return the point where the two semilines intersect
 };
