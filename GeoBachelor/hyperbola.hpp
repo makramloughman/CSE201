@@ -1,6 +1,6 @@
 #pragma once
 // include files for point and line
-#inlcude "point.hpp"
+#include "point.hpp"
 #include "line.hpp"
 
 class Hyperbola: public MathObject{
