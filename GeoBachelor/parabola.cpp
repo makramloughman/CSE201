@@ -1,5 +1,5 @@
 # include <parabola.hpp>
-Parabola:: Parabola(Point f, Line d)
+Parabola:: Parabola(Point f, Line d) : MathObject()
 {
   focus = f;
   directrix = d;
