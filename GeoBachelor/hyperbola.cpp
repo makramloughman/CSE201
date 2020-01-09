@@ -140,7 +140,8 @@ Line Hyperbola:: minoraxis()
     return majoraxis().perpendicular(Point((getX1() + getX2())/2, (getY1() + getY2())/2));
 }
 
-std::vector<Line> Hyperbola:: asymptotes()
+//CHECK THIS ONE!!!
+/*std::vector<Line> Hyperbola:: asymptotes()
 {
     std::vector<Line> l;
     double a = get_a();
@@ -161,3 +162,5 @@ std::vector<Line> Hyperbola:: asymptotes()
     l.push_back(l2);
     return l;
 }
+*/
+
