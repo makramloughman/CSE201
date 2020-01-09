@@ -8,10 +8,10 @@
 Class Vector : public Segment {
   public:
   
-    void setStart(); //sets the starting point
+    void setStart();  //sets the starting point
   
-    void setEnd(); //sets the destination
+    void setEnd();  //sets the destination
   
-    void setDirection();  //arrow pointing from start to end
+    void setDirection();   //arrow pointing from start to end
 };
   
