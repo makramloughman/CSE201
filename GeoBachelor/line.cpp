@@ -9,27 +9,27 @@ void Line::draw()
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
     if(this->selected)
     {
-        mainW->SetPen(3,Qt::blue);
+        mainW->SetPen(3 , Qt::blue);
     }
 
-    QPointF f1 = QPointF(p1.getx(),p1.gety());
-    QPointF f2 = QPointF(p2.getx(),p2.gety());
-    mainW -> drawInfiniteLine(f1,f2);
+    QPointF f1 = QPointF( p1.getx() , p1.gety() );
+    QPointF f2 = QPointF(p2.getx() ,p2.gety() );
+    mainW -> drawInfiniteLine(f1, f2);
 
     mainW->ResetPen();
 }
 
 void Line::translate(double dx, double dy)
 {
-    p1.translate(dx,dy);
-    p2.translate(dx,dy);
+    p1.translate(dx, dy);
+    p2.translate(dx, dy);
 }
 
 bool Line::in_personal_area(double x, double y)
 {
-    Point norm = normal(Point(x,y));
-    double d = distance(norm,Point(x,y));
-    if (d<=5)
+    Point norm = normal(Point(x, y));
+    double d = distance(norm,Point(x, y));
+    if (d <= 5)
     {
         return true;
     }
@@ -103,7 +103,7 @@ Line Line::perpendicular(Point p3){
     Line l = Line(p,p3);
     return l;
   }
-  else if(a!=0 && a<pow(10,5)) //normal line
+  else if(a != 0 && a<pow(10,5)) //normal line
   {
     double b2 = y0 + (1/a)*x0; //the equation of the perpendicular line is now y = -(1/a) + b2
     double xstar = (b2 - b1)/(a + (1/a));
@@ -112,7 +112,7 @@ Line Line::perpendicular(Point p3){
     Line per = Line(pstar, p3);
     return per;
   }
-  else if (a>pow(10,5)) //vertical line
+  else if (a > pow(10, 5)) //vertical line
   {
       Point pstar = Point(p1.getx(),p3.gety());
       Line l =Line(pstar,p3);
@@ -164,7 +164,7 @@ std::vector<Point> Line::reflection(Point p)
     double y = p.gety();
     double dist = distance(p,Point(x,m*x+b));
     std::vector<Point> refl;
-    if(dist>pow(10,-5))
+    if(dist > pow(10, -5))
     {
         double u = ((1-m*m)*x+2*m*y-2*m*b)/(1+m*m);
         double v = ((m*m-1)*y+2*m*x+2*b)/(1+m*m);
