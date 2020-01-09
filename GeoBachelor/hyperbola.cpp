@@ -36,11 +36,6 @@ Hyperbola:: ~Hyperbola()
     std::cout << "Deleting a hyperbola with vertex points v1 = ( "<< getX1() << ", "<< getY1() <<" ) and v2 = (" << getX2() << ", "<< getY2() <<" )"<< std::endl;
 }
 
-void Hyperbola::draw()
-{
-
-}
-
 Point Hyperbola:: getV1()
 {
     return v1;
