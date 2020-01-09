@@ -768,7 +768,9 @@ void MainWindow::Triangle_()
 }
 
 void MainWindow::Square(){
-    qDebug() << "MainWindow::Square()";
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->polygon_chosen = true;
+    ui->graphicsView->n_polygon = 4;
 }
 
 void MainWindow::Rectangle()

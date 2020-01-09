@@ -11,6 +11,8 @@
 #include "segment.h"
 #include <general_functions.h>
 #include <regularpolygon.h>
+#include <polygone.h>
+
 
 class Container
 {
@@ -25,6 +27,8 @@ class Container
         void push(Circle* c);
         void push(Triangle* t);
         void push(Segment* s);
+        void push(Polygone* p);
+        void push(RegularPolygone* rp);
 
         void remove(Point p);
         void remove(Point* p);
@@ -36,13 +40,18 @@ class Container
         void remove(Triangle* t);
         void remove(Segment s);
         void remove(Segment* s);
+        void remove(Polygone* p);
+        void remove(Polygone p);
+        void remove(RegularPolygone* rp);
+        void remove(RegularPolygone rp);
 
         std::vector<Point*> points;
         std::vector<Line*> lines;
         std::vector<Circle*> circles;
         std::vector<Segment*> segments;
         std::vector<Triangle*> triangles;
-        std::vector<RegularPolygone*> polygones;
+        std::vector<Polygone*> polygones;
+        std::vector<RegularPolygone*> r_polygones;
         int number_of_bins; //it is 5 here => points,lines,circles,segments,triangles
 
         void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid

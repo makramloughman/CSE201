@@ -8,10 +8,8 @@ void Polygone::draw()
     {
         mainW->SetPen(3,Qt::blue);
     }
-
-    int i;
     std::vector<QPointF> help;
-    for (i=0; i<size; i++){
+    for (uint i=0; i<Pointlist.size(); i++){
     help.push_back(mainW->mapToMyScene(Pointlist[i].getx(),Pointlist[i].gety()));
     }
     mainW->drawPolygon(help);
@@ -22,13 +20,29 @@ void Polygone::draw()
 
 bool Polygone::in_personal_area(double x, double y)
 {
+    for(uint i=0;i<Pointlist.size()-1;i++)
+    {
+        Segment* s = new Segment(Pointlist[i],Pointlist[i+1]);
+        if(s->in_personal_area(x,y))
+            return true;
+    }
+    Segment* s = new Segment(Pointlist[0],Pointlist[Pointlist.size()-1]);
+    if(s->in_personal_area(x,y))
+        return true;
     return false;
+}
+
+void Polygone::zoom(double coef, double c_x, double c_y)
+{
+    for(uint i=0;i<Pointlist.size();i++)
+    {
+        Pointlist[i].zoom(coef,c_x,c_y);
+    }
 }
 
 void Polygone::translate(double dx, double dy)
 {
-    int i;
-    for (i=0; i<size ;i++){
+    for (uint i=0; i<Pointlist.size() ;i++){
         Pointlist[i].translate(dx,dy);
     }
 
@@ -42,11 +56,11 @@ Polygone::Polygone() : MathObject()
     Colour.push_back(0);
 }
 
-Polygone::Polygone(int k, std::vector<Point> P) : MathObject()
+Polygone::Polygone(int k, std::vector<Point*> P) : MathObject()
 {     // create the polygone by adding points to the list
     for(int i=0; i<k; i++)
     {
-        Pointlist.push_back(P[i]);
+        Pointlist.push_back(*P[i]);
     }
 }
 

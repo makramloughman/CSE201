@@ -13,6 +13,7 @@ class Polygone : public MathObject
     virtual void draw();
     virtual void translate(double dx, double dy);
     virtual bool in_personal_area(double x, double y);
+    virtual void zoom(double coef, double c_x, double c_y);
 
     std::vector<double> Colour;
 
@@ -22,7 +23,7 @@ class Polygone : public MathObject
     //create empty list
     Polygone();
     //create a polygone
-    Polygone(int k, std::vector<Point> P);
+    Polygone(int k, std::vector<Point *> P);
     //add points to the list afterwards
     void append(Point p);
 

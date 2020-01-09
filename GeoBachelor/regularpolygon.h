@@ -10,7 +10,6 @@ class RegularPolygone : public Polygone
 {
     public :
         std::vector<double> Colour;
-        std::vector<Point> Pointlist;
 
         RegularPolygone(); //empty regular polygone with empty vector of points
         RegularPolygone(Segment segment, int n); //creates a regular polygone with given number of sides and a segment(two points, length)

@@ -173,7 +173,8 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         this-> move_grid_chosen = true;
         mainW->PushButton2_clicked();
     }
-    else if (this->polygon_chosen){
+    else if (this->polygon_chosen)
+    {
         if(this->n_counter == 0){
             this->n_counter++;
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
@@ -199,13 +200,13 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
             int m = mainW->mainGrid->obj.points.size();
             mainW->mainGrid->obj.points[m-1]->drawName(m-1);
-
-            if(n_counter==n_polygon)
+        }
+        if(n_counter==n_polygon)
             {
                 QLineF line(this->clickedP[n_counter-1],this->clickedP[0]);
                 mainW->drawLine(line);
                 for (int i=0;i<n_counter;i++)
-                mainW->drawPoint(clickedP[i]);
+                    mainW->drawPoint(clickedP[i]);
 
                 std::vector<QPointF> help; //transfering back to View coordinates
                 for(int i=0;i<n_counter;i++)
@@ -216,6 +217,20 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 if (n_polygon==3)
                 {
                     mainW->mainGrid->obj.push(new Triangle(help));
+                    mainW->PushButton2_clicked();
+                }
+                else
+                {
+                    std::vector<Point*> h;
+                    for(uint k=0; k<help.size();k++)
+                    {
+                        h.push_back(new Point(help[k].x(),help[k].y()));
+                    }
+                    mainW->mainGrid->obj.push(new Polygone(h.size(),h));
+                    std::cout<<mainW->mainGrid->obj.polygones.size()<<endl;
+                    std::cout<<mainW->mainGrid->obj.points.size()<<endl;
+                    std::cout<<n_counter<<endl;
+                    std::cout<<h.size()<<endl;
 
                 }
 
@@ -223,9 +238,8 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 refresh_indicators();
                 this-> move_grid_chosen = true;
             }
-        }
-        mainW->PushButton2_clicked();
     }
+
     else if (this->select_object_chosen)
     {
         bool b = mainW->mainGrid->obj.find_personal_and_store(chosen_objects,ev->x(),ev->y());
