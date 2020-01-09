@@ -125,8 +125,8 @@ double Ellipse:: perimeter()
     double e = get_e();
     for (i; i < n; i++)
     {
-        theta = theta + i*pi/(2*n);
-        s += sqrt(1 - e*e*sin(theta)*sin(theta)) * pi / (2 * n);
+        theta = theta + i*M_PI/(2*n);
+        s += sqrt(1 - e*e*sin(theta)*sin(theta)) * M_PI / (2 * n);
     }
     return 4 * a * s;
 }
