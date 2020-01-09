@@ -23,16 +23,16 @@ void Triangle::draw()
 
 void Triangle::translate(double dx, double dy)
 {
-    point1.translate(dx,dy);
-    point2.translate(dx,dy);
-    point3.translate(dx,dy);
+    point1.translate(dx, dy);
+    point2.translate(dx, dy);
+    point3.translate(dx, dy);
 }
 
 bool Triangle::in_personal_area(double x, double y)
 {
-    Segment* s1 = new Segment(point1,point2);
-    Segment* s2 = new Segment(point2,point3);
-    Segment* s3 = new Segment(point3,point1);
+    Segment* s1 = new Segment(point1, point2);
+    Segment* s2 = new Segment(point2, point3);
+    Segment* s3 = new Segment(point3, point1);
     if (s1->in_personal_area(x,y) || s2->in_personal_area(x,y) || s3->in_personal_area(x,y))
         return true;
     return false;
@@ -86,7 +86,7 @@ double Triangle::getPerimeter(){
     double d1 = point1.distance(point2);
     double d2 = point2.distance(point3);
     double d3 = point1.distance(point3);
-    return d1+d2+d3;
+    return d1 + d2 + d3;
 }
 
 bool Triangle::isocele(){
