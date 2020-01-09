@@ -7,7 +7,7 @@ Parabola:: Parabola(Point f, Line d)
 
 Parabola:: ~Parabola()
 {
-      std::cout << "Destroying Parabola: focus: ( " << focus.getx() << " , " << focus.gety() << " ), directrix: y =  "<< directrix.slope() << * x + " << directrix.y_intercept() << std::endl;
+      std::cout << "Destroying Parabola: focus: ( " << focus.getx() << " , " << focus.gety() << " ), directrix: y =  "<< directrix.slope() << "* x + " << directrix.y_intercept() << std::endl;
 }
 
 Point Parabola:: getF()
