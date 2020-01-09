@@ -1,4 +1,27 @@
 # include "parabola.hpp"
+
+void Parabola::draw() // TO BE IMPLEMENTED
+{
+}
+
+
+void Ellipse::translate(double dx, double dy){
+
+    focus.translate(dx,dy);
+    directrix.translate(dx,dy);
+}
+
+bool Parabola::in_personal_area(double x, double y) //TO BE IMPLEMENTED
+{/*
+    THIS IS CODE FOR CIRCLE!!!
+    double ro = distance(Point(x,y),center);
+    if (ro>r-5 && ro<r+5)
+    {
+        return true;
+    }
+    return false;
+  */  
+}
 Parabola:: Parabola(Point f, Line d) : MathObject()
 {
   focus = f;
