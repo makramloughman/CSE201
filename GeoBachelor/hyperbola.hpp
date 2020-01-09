@@ -1,6 +1,9 @@
 #pragma once
 // include files for point and line
-class Hyperbola: public Item{
+#inlcude "point.hpp"
+#include "line.hpp"
+
+class Hyperbola: public MathObject{
     private:
         Point v1; // coordinates of the first vertex
         Point v2; // coordinates of the second vertex
