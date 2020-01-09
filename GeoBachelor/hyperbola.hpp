@@ -9,7 +9,7 @@ class Hyperbola: public MathObject{
         Point v2; // coordinates of the second vertex
         double b; // size of semi-minor axis
     public:
-        Hyperbola(Point f1, Point f2m double a); // constructor
+        Hyperbola(Point f1, Point f2, double a); // constructor
         ~Hyperbola(); // destructor
         Point getV1(); // gives coordinates of the first vertex
         Point getV2(); // gives coordinates of the second vertex
