@@ -5,7 +5,7 @@ void Parabola::draw() // TO BE IMPLEMENTED
 }
 
 
-void Ellipse::translate(double dx, double dy){
+void Parabola::translate(double dx, double dy){
 
     focus.translate(dx,dy);
     directrix.translate(dx,dy);
