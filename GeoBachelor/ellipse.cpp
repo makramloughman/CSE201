@@ -45,7 +45,7 @@ double Ellipse:: getY2()
     return f2.gety();
 }
 
-Line Ellipse:: tangent(Point M)
+std::vector<Line> Ellipse:: tangent(Point M)
 {
   std::vector<Line> l;
   double b = get_b();
