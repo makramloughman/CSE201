@@ -43,7 +43,8 @@ SOURCES += \
     vector.cpp \
     triangle.cpp \
     parabola.cpp \
-    ellipse.cpp
+    ellipse.cpp \
+    hyperbola.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -65,7 +66,8 @@ HEADERS += \
     vector.h \
     triangle.hpp \
     parabola.hpp \
-    ellipse.hpp
+    ellipse.hpp \ 
+    hyperbola.hpp
 
 FORMS += \
     mainwindow.ui
