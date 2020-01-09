@@ -78,7 +78,7 @@ double Line::slope(){
   }
   else
   {
-     slope = pow(10,20); //something big => for vertical lines
+     slope = pow(10,20); //something big => for vertical lines, here we deal with the case where the slope tends to be infinite
   }
   if (slope==0)
   {
