@@ -2,6 +2,29 @@
 #include "hyperbola.hpp"
 #include <math.h>
 
+void Hyperbola::draw() // TO BE IMPLEMENTED
+{
+}
+
+
+void Hyperbola::translate(double dx, double dy){
+
+    v1.translate(dx,dy);
+    v2.translate(dx,dy);
+}
+
+bool Hyperbola::in_personal_area(double x, double y) //TO BE IMPLEMENTED
+{/*
+    THIS IS CODE FOR CIRCLE!!!
+    double ro = distance(Point(x,y),center);
+    if (ro>r-5 && ro<r+5)
+    {
+        return true;
+    }
+    return false;
+  */  
+}
+
 Hyperbola:: Hyperbola(Point v1, Point v2, double b)
 {
     (*this).v1 = v1;
