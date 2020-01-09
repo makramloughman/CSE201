@@ -39,7 +39,7 @@ double SemiLine::y_intercept(){
 
 SemiLine SemiLine::perpendicular(Point p3){
   Line* l = new Line(p1, p2);
-  return l->perpendicular(p3);
+  return l->perpendicular( p3 );
   }
 
 SemiLine SemiLine::parallel(Point p3){
