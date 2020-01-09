@@ -132,6 +132,15 @@ std::vector<Line> Circle::tangent(Point M)
         Line l2 = Line(p2,M);
         l.push_back(l1);
         l.push_back(l2);
+        std::cout << "There are two tangents:" << std::endl;
+        if (l1.y_intercept() >= 0)
+            std::cout << "y = " << l1.slope() << " * x + "<< l1.y_intercept() << std::endl;
+        else
+            std::cout << "y = " << l1.slope() << " * x  "<< l1.y_intercept() << std::endl;
+        if (l2.y_intercept() >= 0)
+            std::cout << "y = " << l2.slope() << " * x + "<< l2.y_intercept() << std::endl;
+        else
+            std::cout << "y = " << l2.slope() << " * x  "<< l2.y_intercept() << std::endl;
     }
     else if (pow(10,-5)>del && del>=0) //point on circle
     {
@@ -142,6 +151,10 @@ std::vector<Line> Circle::tangent(Point M)
         Point p = Point(x1,y1);
         Line l2 = Line(p,M);
         l.push_back(l2);
+        if (l2.y_intercept() >= 0)
+            std::cout << "y = " << l2.slope() << " * x + "<< l2.y_intercept() << std::endl;
+        else
+            std::cout << "y = " << l2.slope() << " * x  "<< l2.y_intercept() << std::endl;
     }
 
     return l; //it is empty if point is inside the circle
