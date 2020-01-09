@@ -1,6 +1,10 @@
 #pragma once
 //include files for point and line
-class Parabola: public Item{
+#include "line.hpp"
+#include "point.hpp"
+
+class Parabola: public MathObject
+{
     private:
         Point focus; // the focus of the parablaola
         Line directrix; // the directrix of the parabola
