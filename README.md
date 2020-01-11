@@ -23,6 +23,8 @@ git clone https://github.com/makramloughman/CSE201.git
 
 ![Preview](/GeoBachelor/images/bx21.png)
 
+![Preview](/GeoBachelor/images/bx21(2).png)
+
 ## Authors
 
 - Bogdan Raonic, bogdanraonic, team leader
