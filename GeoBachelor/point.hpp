@@ -62,6 +62,7 @@ class Point : public MathObject
         void symmetry_axisx(); //creates the symmetric point with respect to the y axis
 
         double distance(Point A); //gives the distance between two points
+        double distanceg(Point A); //gives the distance between two points in grid coordinates
         double angle(Point A, Point B, Point C); //gives the angle between three points
         float radius_polarcoordinates(); //gives the radius from polar coordinates of the point (r,theta)
         float angle_polarcoordinates(); //gives the angle from polar coordinates of the point (r,theta)

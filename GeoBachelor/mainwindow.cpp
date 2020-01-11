@@ -53,11 +53,16 @@ void MainWindow::createActions(){
     AngleBisectorAction = new QAction("Angle Bisector", this);
     TangentAction = new QAction("Tangent", this);
 
-    TriangleAction = new QAction("Triangle", this);
+    RegularPolygonAction = new QAction("Regular Polygon", this);
+    PolygonAction = new QAction("Polygon",this);
     SquareAction = new QAction("Square", this);
     RectangleAction = new QAction("Rectangle", this);
-    PolygonAction=new QAction("Polygon",this);
-    RegularPolygonAction = new QAction("Regular Polygon", this);
+
+    TriangleAction = new QAction("Triangle", this);
+    InscribedCircleAction = new QAction("Inscribed Circle", this);
+    CircumscribedCricleAction = new QAction("Circumscribed Circle", this);
+    OrthoCenterAction = new QAction("Orthocenter", this);
+    CenterOfGravityAction = new QAction("Center of Gravity", this);
 
     CircleCPTAction = new QAction("Circle with Center through Point", this);
     CircleCRTAction = new QAction("Circle: Center and Radius", this);
@@ -103,11 +108,16 @@ void MainWindow::createActions(){
     AngleBisectorAction->setIcon(QIcon(":/images/angularbisector.png"));
     TangentAction->setIcon(QIcon(":/images/tangent.png"));
 
-    TriangleAction->setIcon(QIcon(":/images/polygon.png"));
-    SquareAction->setIcon(QIcon(":/images/square.png"));
-    RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
     RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
     PolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
+    SquareAction->setIcon(QIcon(":/images/square.png"));
+    RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
+
+    TriangleAction->setIcon(QIcon(":/images/polygon.png"));
+    InscribedCircleAction->setIcon(QIcon(":/images/xxx.png"));
+    CircumscribedCricleAction->setIcon(QIcon(":/images/xxx.png"));
+    OrthoCenterAction->setIcon(QIcon(":/images/xxx.png"));
+    CenterOfGravityAction->setIcon(QIcon(":/images/xxx.png"));
 
     CircleCPTAction->setIcon(QIcon(":/images/circle2.png"));
     CircleCRTAction->setIcon(QIcon(":/images/circlepointradius.png"));
@@ -127,7 +137,7 @@ void MainWindow::createActions(){
     TranslateAction->setIcon(QIcon(":/images/translatebyvector.png"));
 
     DeleteAction->setIcon(QIcon(":/images/delete.png"));
-    ClearAction->setIcon(QIcon(":/images/xxx.png"));
+    ClearAction->setIcon(QIcon(":/images/clear.png"));
 
     QObject::connect(MoveAction, SIGNAL(triggered()), this, SLOT(Move()));
     QObject::connect(SelectAction, SIGNAL(triggered()), this, SLOT(Select()));
@@ -153,11 +163,16 @@ void MainWindow::createActions(){
     QObject::connect(AngleBisectorAction, SIGNAL(triggered()), this, SLOT(AngleBisector()));
     QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
 
-    QObject::connect(TriangleAction, SIGNAL(triggered()), this, SLOT(Triangle_()));
-    QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
-    QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
     QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
     QObject::connect(PolygonAction, SIGNAL(triggered()),this,SLOT(Polygon()));
+    QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
+    QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
+
+    QObject::connect(TriangleAction, SIGNAL(triggered()), this, SLOT(Triangle_()));
+    QObject::connect(InscribedCircleAction, SIGNAL(triggered()), this, SLOT(InscribedCircle()));
+    QObject::connect(CircumscribedCricleAction, SIGNAL(triggered()), this, SLOT(CircumscribedCricle()));
+    QObject::connect(OrthoCenterAction, SIGNAL(triggered()), this, SLOT(OrthoCenter()));
+    QObject::connect(CenterOfGravityAction, SIGNAL(triggered()), this, SLOT(CenterOfGravity()));
 
     QObject::connect(CircleCPTAction, SIGNAL(triggered()), this, SLOT(CircleCPT()));
     QObject::connect(CircleCRTAction, SIGNAL(triggered()), this, SLOT(CircleCRT()));
@@ -210,12 +225,17 @@ void MainWindow::createMenus(){
     SpecialLineMenu->addAction(TangentAction);
 
     PolygonMenu = new QMenu;
-    PolygonMenu->addAction(TriangleAction);
+    PolygonMenu->addAction(RegularPolygonAction);
+    PolygonMenu->addAction(PolygonAction);
     PolygonMenu->addAction(SquareAction);
     PolygonMenu->addAction(RectangleAction);
-    PolygonMenu->addAction(PolygonAction);
-    PolygonMenu->addAction(RegularPolygonAction);
 
+    TriangleFunctionsMenu = new QMenu;
+    TriangleFunctionsMenu->addAction(TriangleAction);
+    TriangleFunctionsMenu->addAction(InscribedCircleAction);
+    TriangleFunctionsMenu->addAction(CircumscribedCricleAction);
+    TriangleFunctionsMenu->addAction(OrthoCenterAction);
+    TriangleFunctionsMenu->addAction(CenterOfGravityAction);
 
     CircleMenu = new QMenu;
     CircleMenu->addAction(CircleCPTAction);
@@ -274,10 +294,17 @@ void MainWindow::createToolButtons(){
 
     PolygonButton = new DropDownToolButton;
     PolygonButton->setMenu(PolygonMenu);
-    PolygonButton->setDefaultAction(TriangleAction);
+    PolygonButton->setDefaultAction(PolygonAction);
     PolygonButton->setMinimumHeight(32);
     PolygonButton->setMinimumWidth(44);
     PolygonButton->setIconSize(QSize(32,32));
+
+    TriangleFunctionsButton = new DropDownToolButton;
+    TriangleFunctionsButton->setMenu(TriangleFunctionsMenu);
+    TriangleFunctionsButton->setDefaultAction(TriangleAction);
+    TriangleFunctionsButton->setMinimumHeight(32);
+    TriangleFunctionsButton->setMinimumWidth(44);
+    TriangleFunctionsButton->setIconSize(QSize(32,32));
 
     CircleButton = new DropDownToolButton;
     CircleButton->setMenu(CircleMenu);
@@ -314,21 +341,10 @@ void MainWindow::createToolButtons(){
     GeneralButton->setMinimumWidth(44);
     GeneralButton->setIconSize(QSize(32,32));
 
-    // PushButton = new QPushButton("Start");
-    // PushButton->setMinimumWidth(32);
-    // PushButton->setMinimumHeight(39);
-    // QObject::connect(PushButton, SIGNAL(clicked()), this, SLOT(createGrid()));
-
     PushButton2 = new QPushButton("Debug");
     PushButton2->setMinimumWidth(32);
     PushButton2->setMinimumHeight(39);
     QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton3_clicked()));
-
-    QObject::connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(LineEditReturn()));
-    QShortcut* shortcut = new QShortcut(QKeySequence(Qt::Key_Delete), ui->listWidget);
-    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(DeleteItem()));
-    QShortcut* shortcut2 = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->listWidget);
-    QObject::connect(shortcut2, SIGNAL(activated()), this, SLOT(DeleteItem()));
 }
 
 void MainWindow::createToolBars(){
@@ -338,6 +354,7 @@ void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addWidget(LineButton);
     ui->horizontalLayout_2->addWidget(SpecialLineButton);
     ui->horizontalLayout_2->addWidget(PolygonButton);
+    ui->horizontalLayout_2->addWidget(TriangleFunctionsButton);
     ui->horizontalLayout_2->addWidget(CircleButton);
     ui->horizontalLayout_2->addWidget(ConicButton);
     ui->horizontalLayout_2->addWidget(MeasurementButton);
@@ -352,6 +369,12 @@ void MainWindow::createGrid()
     scene->clear();
     setStarted();
     ItemsDisplay();
+
+    QObject::connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(LineEditReturn()));
+    QShortcut* shortcut = new QShortcut(QKeySequence(Qt::Key_Delete), ui->listWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(DeleteItem()));
+    QShortcut* shortcut2 = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->listWidget);
+    QObject::connect(shortcut2, SIGNAL(activated()), this, SLOT(DeleteItem()));
 }
 
 void MainWindow::setStarted()
@@ -398,7 +421,15 @@ void MainWindow::ItemsDisplay()
         curr2 = mainGrid->obj.lines[i];
         if (curr2 != NULL)
         {
-            QString text = tr("Line:  y = %1 x + %2").arg(curr2->slope_g()).arg(curr2->y_intercept_g());
+            QString text;
+            if (curr2->y_intercept_g() >= 0)
+            {
+                text = tr("Line:  y = %1 x + %2").arg(curr2->slope_g()).arg(curr2->y_intercept_g());
+            }
+            else
+            {
+                text = tr("Line:  y = %1 x - %2").arg(curr2->slope_g()).arg(abs(curr2->y_intercept_g()));
+            }
             QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
             item->setData(Qt::UserRole,i);
         }
@@ -484,13 +515,26 @@ void MainWindow::ItemsDisplay()
 
 void MainWindow::LineEditReturn()
 {
-    QString function_tmp = ui->lineEdit->text();
-    std::string function = function_tmp.toUtf8().constData();
-    Functions *f = new Functions(function);
-    f->draw();
-    mainGrid->obj.push(f);
-    ItemsDisplay();
-    ui->lineEdit->clear();
+    QString input_tmp = ui->lineEdit->text();
+    std::string input = input_tmp.toUtf8().constData();
+    std::cout << input.substr(0,5) << std::endl;
+    if (input.substr(0,5) == "Point")
+    {
+        int first_parenthesis = input.find("(");
+        int comma = input.find(",", first_parenthesis+1);
+        int second_parenthesis = input.find(")", comma+1);
+        double x_g = std::stod(input.substr(first_parenthesis+1,comma));
+        double y_g = std::stod(input.substr(comma+1,second_parenthesis));
+        std::cout << x_g << y_g << std::endl;
+    }
+    else
+    {
+        Functions *f = new Functions(input);
+        f->draw();
+        mainGrid->obj.push(f);
+        ItemsDisplay();
+        ui->lineEdit->clear();
+    }
 }
 
 void MainWindow::DeleteItem()
@@ -1091,8 +1135,29 @@ void MainWindow::PointSymmetry()
     ItemsDisplay();
 }
 
-void MainWindow::Translate(){
+void MainWindow::Translate()
+{
     qDebug() << "MainWindow::Translate()";
+}
+
+void MainWindow::InscribedCircle()
+{
+    qDebug() << "MainWindow::InscribedCircle()";
+}
+
+void MainWindow::CircumscribedCricle()
+{
+    qDebug() << "MainWindow::CircumscribedCircle()";
+}
+
+void MainWindow::OrthoCenter()
+{
+    qDebug() << "MainWindow::OrthoCenter()";
+}
+
+void MainWindow::CenterOfGravity()
+{
+    qDebug() << "MainWindow::CenterOfGravity()";
 }
 
 void MainWindow::Delete()
@@ -1115,6 +1180,7 @@ void MainWindow::Clear(){
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete scene;
     delete MoveAction;
     delete SelectAction;
     delete MouseMenu;
@@ -1143,13 +1209,19 @@ MainWindow::~MainWindow()
     delete TangentAction;
     delete SpecialLineMenu;
     delete SpecialLineButton;
-    delete TriangleAction;
-    delete SquareAction;
-    delete RectangleAction;
     delete RegularPolygonAction;
     delete PolygonAction;
+    delete SquareAction;
+    delete RectangleAction;
     delete PolygonMenu;
     delete PolygonButton;
+    delete TriangleAction;
+    delete InscribedCircleAction;
+    delete CircumscribedCricleAction;
+    delete OrthoCenterAction;
+    delete CenterOfGravityAction;
+    delete TriangleFunctionsMenu;
+    delete TriangleFunctionsButton;
     delete CircleCPTAction;
     delete CircleCRTAction;
     delete CircleMenu;
@@ -1175,6 +1247,7 @@ MainWindow::~MainWindow()
     delete ClearAction;
     delete GeneralMenu;
     delete GeneralButton;
+    delete PushButton2;
 }
 
 void MainWindow::PushButton3_clicked()

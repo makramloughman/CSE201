@@ -172,6 +172,11 @@ double Point::distance(Point A)
    return std::sqrt(std::pow(A.x-this->x, 2) + pow(A.y-this->y, 2));
 }
 
+double Point::distanceg(Point A)
+{
+   return std::sqrt(std::pow(A.x_g-this->x_g, 2) + pow(A.y_g-this->y_g, 2));
+}
+
 
 //gives the radius from polar coordinates of the point (r,theta)
 float radius_polarcoordinates(Point point)

@@ -39,5 +39,6 @@
         <file>images/vectorfrompoint.png</file>
         <file>images/square.png</file>
         <file>images/rectangle.png</file>
+        <file>images/clear.png</file>
     </qresource>
 </RCC>

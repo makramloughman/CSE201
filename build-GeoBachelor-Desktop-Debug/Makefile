@@ -483,6 +483,7 @@ qrc_resources.cpp: ../GeoBachelor/resources.qrc \
 		../GeoBachelor/images/delete.png \
 		../GeoBachelor/images/angularbisector.png \
 		../GeoBachelor/images/ray.png \
+		../GeoBachelor/images/clear.png \
 		../GeoBachelor/images/polyline.png \
 		../GeoBachelor/images/hyperbola3.png \
 		../GeoBachelor/images/rectangle.png
@@ -507,11 +508,11 @@ moc_mainwindow.cpp: ../GeoBachelor/dropdowntoolbutton.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h \
 		../GeoBachelor/mainwindow.h \
 		moc_predefs.h \
@@ -540,11 +541,11 @@ ui_mainwindow.h: ../GeoBachelor/mainwindow.ui \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
-		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp
+		../GeoBachelor/fparser.hh
 	/usr/lib/qt5/bin/uic ../GeoBachelor/mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -568,11 +569,11 @@ main.o: ../GeoBachelor/main.cpp ../GeoBachelor/mainwindow.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../GeoBachelor/main.cpp
 
@@ -587,11 +588,11 @@ mainwindow.o: ../GeoBachelor/mainwindow.cpp ../GeoBachelor/mainwindow.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h \
 		ui_mainwindow.h \
 		../GeoBachelor/myview.h
@@ -610,11 +611,11 @@ myview.o: ../GeoBachelor/myview.cpp ../GeoBachelor/myview.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/mainwindow.h \
 		../GeoBachelor/dropdowntoolbutton.h \
 		../GeoBachelor/rectangle.h \
@@ -630,11 +631,11 @@ grid.o: ../GeoBachelor/grid.cpp ../GeoBachelor/grid.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/mainwindow.h \
 		../GeoBachelor/dropdowntoolbutton.h \
 		../GeoBachelor/rectangle.h
@@ -654,11 +655,11 @@ point.o: ../GeoBachelor/point.cpp ../GeoBachelor/point.hpp \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o point.o ../GeoBachelor/point.cpp
 
@@ -673,11 +674,11 @@ line.o: ../GeoBachelor/line.cpp ../GeoBachelor/line.hpp \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o line.o ../GeoBachelor/line.cpp
 
@@ -692,11 +693,11 @@ circle.o: ../GeoBachelor/circle.cpp ../GeoBachelor/circle.hpp \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o circle.o ../GeoBachelor/circle.cpp
 
@@ -708,11 +709,11 @@ container.o: ../GeoBachelor/container.cpp ../GeoBachelor/container.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
-		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp
+		../GeoBachelor/fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o container.o ../GeoBachelor/container.cpp
 
 general_functions.o: ../GeoBachelor/general_functions.cpp ../GeoBachelor/general_functions.h \
@@ -720,7 +721,8 @@ general_functions.o: ../GeoBachelor/general_functions.cpp ../GeoBachelor/general
 		../GeoBachelor/mathobject.h \
 		../GeoBachelor/line.hpp \
 		../GeoBachelor/circle.hpp \
-		../GeoBachelor/segment.h
+		../GeoBachelor/segment.h \
+		../GeoBachelor/ellipse.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o general_functions.o ../GeoBachelor/general_functions.cpp
 
 polygone.o: ../GeoBachelor/polygone.cpp ../GeoBachelor/polygone.h \
@@ -735,10 +737,10 @@ polygone.o: ../GeoBachelor/polygone.cpp ../GeoBachelor/polygone.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o polygone.o ../GeoBachelor/polygone.cpp
 
@@ -748,6 +750,7 @@ regularpolygon.o: ../GeoBachelor/regularpolygon.cpp ../GeoBachelor/general_funct
 		../GeoBachelor/line.hpp \
 		../GeoBachelor/circle.hpp \
 		../GeoBachelor/segment.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o regularpolygon.o ../GeoBachelor/regularpolygon.cpp
@@ -763,11 +766,11 @@ segment.o: ../GeoBachelor/segment.cpp ../GeoBachelor/segment.h \
 		../GeoBachelor/circle.hpp \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o segment.o ../GeoBachelor/segment.cpp
 
@@ -778,6 +781,7 @@ rectangle.o: ../GeoBachelor/rectangle.cpp ../GeoBachelor/rectangle.h \
 		../GeoBachelor/line.hpp \
 		../GeoBachelor/general_functions.h \
 		../GeoBachelor/circle.hpp \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/mainwindow.h \
 		../GeoBachelor/dropdowntoolbutton.h \
 		../GeoBachelor/grid.h \
@@ -786,8 +790,7 @@ rectangle.o: ../GeoBachelor/rectangle.cpp ../GeoBachelor/rectangle.h \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
-		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp
+		../GeoBachelor/fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rectangle.o ../GeoBachelor/rectangle.cpp
 
 angle.o: ../GeoBachelor/angle.cpp ../GeoBachelor/angle.h \
@@ -802,11 +805,11 @@ angle.o: ../GeoBachelor/angle.cpp ../GeoBachelor/angle.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o angle.o ../GeoBachelor/angle.cpp
 
@@ -824,6 +827,7 @@ triangle.o: ../GeoBachelor/triangle.cpp ../GeoBachelor/triangle.hpp \
 		../GeoBachelor/line.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/mainwindow.h \
 		../GeoBachelor/dropdowntoolbutton.h \
 		../GeoBachelor/grid.h \
@@ -832,7 +836,6 @@ triangle.o: ../GeoBachelor/triangle.cpp ../GeoBachelor/triangle.hpp \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o triangle.o ../GeoBachelor/triangle.cpp
 
@@ -897,11 +900,11 @@ functions.o: ../GeoBachelor/functions.cpp ../GeoBachelor/mainwindow.h \
 		../GeoBachelor/triangle.hpp \
 		../GeoBachelor/segment.h \
 		../GeoBachelor/general_functions.h \
+		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/regularpolygon.h \
 		../GeoBachelor/polygone.h \
 		../GeoBachelor/functions.hpp \
 		../GeoBachelor/fparser.hh \
-		../GeoBachelor/ellipse.hpp \
 		../GeoBachelor/rectangle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o functions.o ../GeoBachelor/functions.cpp
 

@@ -71,7 +71,6 @@ public:
 
     void drawText(QString text,double x, double y); //text given in View coordinates
 
-
     //grid part => drawings
     Grid* mainGrid;
     void drawCoordinateSystem(); //just using the functions of the grid
@@ -143,6 +142,11 @@ public slots:
     void PointSymmetry();
     void Translate();
 
+    void InscribedCircle();
+    void CircumscribedCricle();
+    void OrthoCenter();
+    void CenterOfGravity();
+
     void Delete();
     void Clear();
 
@@ -195,13 +199,20 @@ private:
     QMenu* SpecialLineMenu;
     DropDownToolButton* SpecialLineButton;
 
-    QAction* TriangleAction;
-    QAction* SquareAction;
-    QAction* RectangleAction;
     QAction* RegularPolygonAction;
     QAction* PolygonAction;
+    QAction* SquareAction;
+    QAction* RectangleAction;
     QMenu* PolygonMenu;
     DropDownToolButton* PolygonButton;
+
+    QAction* TriangleAction;
+    QAction* InscribedCircleAction;
+    QAction* CircumscribedCricleAction;
+    QAction* OrthoCenterAction;
+    QAction* CenterOfGravityAction;
+    QMenu* TriangleFunctionsMenu;
+    DropDownToolButton* TriangleFunctionsButton;
 
     QAction* CircleCPTAction; // center through point tool
     QAction* CircleCRTAction; // center and radius
@@ -233,7 +244,6 @@ private:
     QMenu* GeneralMenu;
     DropDownToolButton* GeneralButton;
 
-    QPushButton* PushButton;
     QPushButton* PushButton2;
 };
 

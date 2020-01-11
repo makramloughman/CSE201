@@ -343,7 +343,7 @@ void MyView::wheelEvent(QWheelEvent *event)
         MainWindow* mainW = MainWindow::getInstance();
 
         double angle = event->angleDelta().y();
-        double factor = qPow(1.0015, angle);
+        double factor = qPow(1.0002, angle);
 
         mainW->clearScene();
         mainW->mainGrid->zoom(factor);
