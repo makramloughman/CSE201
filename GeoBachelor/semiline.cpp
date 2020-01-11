@@ -1,7 +1,5 @@
-#include <iostream>
-#include <cmath>
-#include <line.hpp>
 #include <mainwindow.h>
+#include <semiline.hpp>
 
 void SemiLine::draw()
 {
@@ -37,17 +35,17 @@ double SemiLine::y_intercept(){
   return l->y_intercept();
 }
 
-SemiLine SemiLine::perpendicular(Point p3){
+Line SemiLine::perpendicular(Point p3){
   Line* l = new Line(p1, p2);
   return l->perpendicular( p3 );
   }
 
-SemiLine SemiLine::parallel(Point p3){
+Line SemiLine::parallel(Point p3){
   Line* l = new Line(p1, p2);
   return l->parallel(p3);
   }
 
 Point SemiLine::intersection(Line B){
   Line* l = new Line(p1, p2);
-  return l->intersection(Line B);
+  return l->intersection(B);
   }

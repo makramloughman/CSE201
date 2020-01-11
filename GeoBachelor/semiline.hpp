@@ -1,6 +1,9 @@
 #pragma once
 #include <mathobject.h>
 #include <point.hpp>
+#include <iostream>
+#include <cmath>
+#include <line.hpp>
 
 class SemiLine : public MathObject
 {
@@ -22,9 +25,9 @@ class SemiLine : public MathObject
     
     double y_intercept(); //computes the intercept of the line with the origin
   
-    SemiLine perpendicular(Point p3);//create the perpendicular to the SemiLine passing through p3
+    Line perpendicular(Point p3);//create the perpendicular to the SemiLine passing through p3
   
-    SemiLine parallel(Point p3); //draw the parallel to the semiline passing through p3
+    Line parallel(Point p3); //draw the parallel to the semiline passing through p3
     
-    Point intersection(SemiLine B); //return the point where the two semilines intersect
+    Point intersection(Line B); //return the point where the two semilines intersect
 };
