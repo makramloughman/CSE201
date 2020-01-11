@@ -10,6 +10,7 @@
 #include <vector>
 #include "segment.h"
 #include <algorithm>
+#include <ellipse.hpp>
 
 double distance(Point p1, Point p2);
 std::vector<Point*> intersection(Line l1, Line l2); //copied from Line.hpp
@@ -21,5 +22,6 @@ std::vector<Point*> intersection(Line line ,Segment segment);
 std::vector<Point*> intersection(Segment segment,Line line);
 std::vector<Point*> intersection(Circle circle,Segment segment);
 std::vector<Point*> intersection(Segment segment, Circle circle);
+std::vector<Point *> intersection(Ellipse e, Line l);
 
 #endif // GENERAL_FUNCTIONS_H

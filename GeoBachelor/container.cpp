@@ -798,6 +798,22 @@ std::vector<Point *> Container::IntersectObjects()
         }
     }
 
+    for(uint i=0;i<lines.size();i++)
+    {
+        for (uint j=0;j<ellipses.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*ellipses[i],*lines[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
+            }
+        }
+    }
+
     for(uint i=0;i<segments.size();i++)
     {
         for (uint j=0;j<circles.size();j++)

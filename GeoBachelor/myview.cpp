@@ -1,6 +1,7 @@
 ﻿#include "myview.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <general_functions.h>
 
 MyView::MyView(QWidget *parent) : QGraphicsView(parent)
 {
@@ -17,6 +18,7 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
 
     this->circle_chosen = false; //no circe chosem
     this->circle_chosen_with_radius = false;
+    this->ellipse_chosen = false;
 
     this->move_grid_chosen = true;
     this->move_grid_pressed = false;
@@ -187,7 +189,8 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             mainW->mainGrid->obj.points[m-1]->drawName(m-1);
 
         }
-        else if (this->n_counter<=n_polygon-1){
+        else if (this->n_counter<=n_polygon-1)
+        {
             this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
             QLineF line(this->clickedP[n_counter],this->clickedP[n_counter-1]);
             this->n_counter++;
@@ -238,6 +241,46 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 refresh_indicators();
                 this-> move_grid_chosen = true;
             }
+    }
+
+    else if(ellipse_chosen)
+    {
+        if(this->n_counter==0)
+        {
+            this->n_counter++;
+            this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
+            mainW->drawPoint(this->clickedP[n_counter-1]);
+        }
+        else if(this->n_counter==1)
+        {
+            this->n_counter++;
+            Point *p = new Point(mainW->mapFromMyScene(clickedP[0].x(),clickedP[0].y()));
+            this->clickedP.push_back(mapToScene(ev->x(),p->gety()));
+            mainW->drawPoint(this->clickedP[n_counter-1]);
+        }
+        else
+        {
+            //changed to view
+            Point *p1 = new Point(mainW->mapFromMyScene(clickedP[0].x(),clickedP[0].y()));
+            Point *p2 = new Point(mainW->mapFromMyScene(clickedP[1].x(),clickedP[1].y()));
+            Point *p3 = new Point(ev->x(),p1->gety());
+
+
+            double a = abs((p1->getx()+p2->getx())/2-p3->getx());
+
+            mainW->mainGrid->obj.push(new Ellipse(p1,p2,a)); //Figured out
+            mainW->mainGrid->obj.push(p1); //adding also the center of the circle (for suitable for translating)
+            mainW->mainGrid->obj.push(p2);
+            mainW->mainGrid->obj.push(p3);
+
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
+            mainW->mainGrid->obj.points[m-2]->drawName(m-2);
+
+            mainW->mainGrid->refresh_grid();
+            refresh_indicators();
+            this-> move_grid_chosen = true;
+        }
     }
 
     else if (this->select_object_chosen)
@@ -330,6 +373,7 @@ void MyView::refresh_indicators()
 
     this->circle_chosen = false; //no circe chosem
     this->circle_chosen_with_radius = false;
+    this->ellipse_chosen = false;
 
     this->move_grid_chosen = false;
     this->move_grid_pressed = false;

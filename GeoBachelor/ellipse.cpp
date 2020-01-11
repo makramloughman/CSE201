@@ -17,6 +17,8 @@ void Ellipse::draw() // TO BE IMPLEMENTED
     double rx = a;
     double ry = get_b();
     Point* cen = new Point((f1.getx()+f2.getx())/2,(f1.gety()+f2.gety())/2);
+    cen->setx(cen->getx()-rx);
+    cen->sety(cen->gety()-ry);
     mainW-> drawEllipse(*cen,rx,ry);
     mainW->ResetPen();
 
@@ -33,10 +35,9 @@ bool Ellipse::in_personal_area(double x, double y) //TO BE IMPLEMENTED
 {
     Point* cen = new Point((f1.getx()+f2.getx())/2.0000001,(f1.gety()+f2.gety())/2.0000001);
     double b = get_b();
-    double y1 = b*b*(1-pow(x-cen->getx(),2)/(a*a))+cen->gety();
-    double y2 = -b*b*(1-pow(x-cen->getx(),2)/(a*a))+cen->gety();
+    double y1 = abs(pow(cen->getx()-x,2)/(a*a)+pow(cen->gety()-y,2)/(b*b)-1);
 
-    if (1<0.2)
+    if (y1<0.05)
     {
         return true;
     }
@@ -207,4 +208,10 @@ Line Ellipse:: majoraxis()
 Line Ellipse:: minoraxis()
 {
     return majoraxis().perpendicular(Point(    (getX1()+getX2())/2  , (getY2() + getY1())/2  ));
+}
+
+Point Ellipse::center()
+{
+    Point* cen = new Point((f1.getx()+f2.getx())/2,(f1.gety()+f2.gety())/2);
+    return *cen;
 }

@@ -657,7 +657,7 @@ void MainWindow::drawPolygon(std::vector<QPointF> points)
 void MainWindow::drawEllipse(Point p, double rx, double ry)
 {
     QPointF f = mapToMyScene(p.getx(),p.gety());
-    scene->addEllipse(f.x(),f.y(),rx,ry,myPen);
+    scene->addEllipse(f.x(),f.y(),2*rx,2*ry,myPen);
 }
 
 void MainWindow::drawText(QString text, double x, double y)
@@ -938,6 +938,21 @@ void MainWindow::Tangent(){
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    else if(ui->graphicsView->chosen_objects.ellipses.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        std::vector<Line> l = ui->graphicsView->chosen_objects.ellipses[0]->tangent(*ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        for(uint i=0;i<l.size();i++)
+        {
+            mainGrid->obj.push(new Line(l[i].p1,l[i].p2));
+            std::vector<Point*> v = intersection(*ui->graphicsView->chosen_objects.ellipses[0],l[i]);
+            mainGrid->obj.push(new Point(v[0]->getx(),v[0]->gety()));
+        }
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
     ItemsDisplay();
 }
 
@@ -1010,8 +1025,9 @@ void MainWindow::CircleCRT()
     ui->graphicsView->circle_chosen_with_radius = true;
 }
 
-void MainWindow::Ellipse_(){
-    qDebug() << "MainWindow::Ellipse()";
+void MainWindow::Ellipse_()
+{
+     ui->graphicsView->ellipse_chosen = true;
 }
 
 void MainWindow::Parabola(){
@@ -1170,6 +1186,7 @@ void MainWindow::PushButton3_clicked()
     Point p = Point(0,0);
     std::vector<Line> v = e->tangent(p);
     v[0].draw();
+    v[1].draw();
     e->draw();
     mainGrid->obj.push(e);
     //mainGrid->refresh_grid();

@@ -1,3 +1,4 @@
+/*
 #ifndef HELP_H
 #define HELP_H
 
@@ -24,3 +25,4 @@ template<> int maxx<Container,Container>(Container a, Container b)
 
 }
 #endif // HELP_H
+*/
