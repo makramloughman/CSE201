@@ -21,7 +21,7 @@ git clone https://github.com/makramloughman/CSE201.git
 
 ### Screenshot
 
-![Preview](/GeoBachelor/images/GeoBachelor.png)
+![Preview](/GeoBachelor/images/bx21.png)
 
 ## Authors
 
