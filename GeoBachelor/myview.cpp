@@ -288,8 +288,28 @@ void MyView::mouseReleaseEvent(QMouseEvent *ev)
         this->move_grid_released = true;
         double dx = ev->x()-last_clicked.x();
         double dy = ev->y()-last_clicked.y();
-        mainW ->mainGrid->move_grid(dx,dy);
+        mainW->mainGrid->move_grid(dx,dy);
         last_clicked = QPointF(0,0);
+    }
+}
+
+void MyView::wheelEvent(QWheelEvent *event)
+{
+    if (event->modifiers() & Qt::ControlModifier)
+    {
+        MainWindow* mainW = MainWindow::getInstance();
+
+        double angle = event->angleDelta().y();
+        double factor = qPow(1.0015, angle);
+
+        mainW->clearScene();
+        mainW->mainGrid->zoom(factor);
+        mainW->mainGrid->obj.zoom(factor,mainW->mainGrid->getX(),mainW->mainGrid->getY());
+        mainW->ui->graphicsView->chosen_objects.empty_bins();
+        mainW->ui->graphicsView->refresh_indicators();
+        mainW->ui->graphicsView->move_grid_chosen = true;
+        mainW->mainGrid->obj.deselect();
+        mainW->mainGrid->refresh_grid();
     }
 }
 

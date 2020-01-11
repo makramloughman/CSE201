@@ -322,7 +322,7 @@ void MainWindow::createToolButtons(){
     PushButton2 = new QPushButton("Debug");
     PushButton2->setMinimumWidth(32);
     PushButton2->setMinimumHeight(39);
-    QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton3_clicked(bool checked)));
+    QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton3_clicked()));
 
     QObject::connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(LineEditReturn()));
     QShortcut* shortcut = new QShortcut(QKeySequence(Qt::Key_Delete), ui->listWidget);
@@ -333,7 +333,6 @@ void MainWindow::createToolButtons(){
 
 void MainWindow::createToolBars(){
     // ui->horizontalLayout_2->addWidget(PushButton);
-    ui->horizontalLayout_2->addWidget(PushButton2);
     ui->horizontalLayout_2->addWidget(MouseButton);
     ui->horizontalLayout_2->addWidget(PointButton);
     ui->horizontalLayout_2->addWidget(LineButton);
@@ -344,6 +343,7 @@ void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addWidget(MeasurementButton);
     ui->horizontalLayout_2->addWidget(TransformationButton);
     ui->horizontalLayout_2->addWidget(GeneralButton);
+    ui->horizontalLayout_2->addWidget(PushButton2);
     ui->horizontalLayout_2->addStretch();
 }
 
@@ -1161,31 +1161,7 @@ MainWindow::~MainWindow()
     delete GeneralButton;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    clearScene();
-    mainGrid->zoom(1.5);
-    mainGrid->obj.zoom(1.5,mainGrid->getX(),mainGrid->getY());
-    ui->graphicsView->chosen_objects.empty_bins();
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->move_grid_chosen = true;
-    mainGrid->obj.deselect();
-    mainGrid->refresh_grid();
-}
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    clearScene();
-    mainGrid->zoom(1/1.5);
-    mainGrid->obj.zoom(1/1.5,mainGrid->getX(),mainGrid->getY());
-    ui->graphicsView->chosen_objects.empty_bins();
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->move_grid_chosen = true;
-    mainGrid->obj.deselect();
-    mainGrid->refresh_grid();
-}
-
-void MainWindow::PushButton3_clicked(bool checked)
+void MainWindow::PushButton3_clicked()
 {
     //drawEllipse(QPointF(150,100),100,50);
     Point* p1 = new Point(150.0,100.0);

@@ -29,6 +29,7 @@ class MyView : public QGraphicsView
         void mousePressEvent(QMouseEvent *ev);
         void mouseMoveEvent(QMouseEvent *ev);
         void mouseReleaseEvent(QMouseEvent *ev);
+        void wheelEvent(QWheelEvent *event);
 
         std::vector<QPointF> clickedP;
         bool point_chosen;
