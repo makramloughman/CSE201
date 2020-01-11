@@ -246,7 +246,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         if(b)
         {
            mainW->mainGrid->obj.refresh();
-           std::cout<<chosen_objects.size()<<std::endl;
+           //std::cout<<chosen_objects.size()<<std::endl;
         }
 
         if (this->move_grid_chosen)

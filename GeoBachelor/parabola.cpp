@@ -2,6 +2,7 @@
 
 void Parabola::draw() // TO BE IMPLEMENTED
 {
+
 }
 
 

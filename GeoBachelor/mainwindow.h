@@ -30,6 +30,7 @@
 #include <QPushButton>
 #include <QFont>
 #include <functions.hpp>
+#include <ellipse.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -65,6 +66,7 @@ public:
     void drawTriangle(QPointF p1, QPointF p2, QPointF p3); // it's the same as polygone, but we also want to have an oportunity just to draw a triangle
     void drawRectangle(std::vector<QPointF> points);
     void drawPolygon(std::vector<QPointF> points);
+    void drawEllipse(Point p, double rx, double ry); //in View coordinates
 
     void drawText(QString text,double x, double y); //text given in View coordinates
 
@@ -126,7 +128,7 @@ public slots:
     void CircleCPT();
     void CircleCRT();
 
-    void Ellipse();
+    void Ellipse_();
     void Parabola();
     void Hyperbola();
 

@@ -3,10 +3,23 @@
 #include <math.h>
 #include <iostream>
 #include <vector>
-
+#include <mainwindow.h>
+#include <general_functions.h>
 
 void Ellipse::draw() // TO BE IMPLEMENTED
 {
+    MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
+    if(this->selected)
+    {
+        mainW->SetPen(3 , Qt::blue);
+    }
+
+    double rx = a;
+    double ry = get_b();
+    Point* cen = new Point((f1.getx()+f2.getx())/2,(f1.gety()+f2.gety())/2);
+    mainW-> drawEllipse(*cen,rx,ry);
+    mainW->ResetPen();
+
 }
 
 
@@ -17,22 +30,31 @@ void Ellipse::translate(double dx, double dy){
 }
 
 bool Ellipse::in_personal_area(double x, double y) //TO BE IMPLEMENTED
-{/*
-    THIS IS CODE FOR CIRCLE!!!
-    double ro = distance(Point(x,y),center);
-    if (ro>r-5 && ro<r+5)
+{
+    Point* cen = new Point((f1.getx()+f2.getx())/2.0000001,(f1.gety()+f2.gety())/2.0000001);
+    double b = get_b();
+    double y1 = b*b*(1-pow(x-cen->getx(),2)/(a*a))+cen->gety();
+    double y2 = -b*b*(1-pow(x-cen->getx(),2)/(a*a))+cen->gety();
+
+    if (1<0.2)
     {
         return true;
     }
     return false;
-  */  
+}
+
+void Ellipse::zoom(double coef, double c_x, double c_y)
+{
+    a*=coef;
+    f1.zoom(coef,c_x,c_y);
+    f2.zoom(coef,c_x,c_y);
 }
 
 
-Ellipse:: Ellipse(Point f1, Point f2, double a)
+Ellipse:: Ellipse(Point *f1, Point *f2, double a)
 {
-    (*this).f1 = f1;
-    (*this).f2 = f2;
+    (*this).f1 = *f1;
+    (*this).f2 = *f2;
     (*this).a = a;
 }
 
@@ -80,7 +102,7 @@ std::vector<Line> Ellipse:: tangent(Point M)
   double xm = M.getx();
   double ym = M.gety();
   double z = xm*xm / (a*a) + ym*ym / (b*b);
-  if ((0.99999999 < z) && (z < 1.00000001))
+  if ((0.999 < z) && (z < 1.001))
   {
   	double k =  (- x0*y0 + y0*xm + x0*ym - ym*xm) / (a*a) ; 
   	double n = ym - k * xm;

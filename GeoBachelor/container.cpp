@@ -65,6 +65,11 @@ void Container::push(Functions *f)
     functions.push_back(f);
 }
 
+void Container::push(Ellipse *e)
+{
+    ellipses.push_back(e);
+}
+
 void Container::remove(Point p)
 {
     std::vector<int> pos;
@@ -244,6 +249,27 @@ void Container::remove(Functions f)
     }
 }
 
+void Container::remove(Ellipse *e)
+{
+    remove(*e);
+}
+
+void Container::remove(Ellipse e)
+{
+    std::vector<int> pos;
+    for (uint i=0;i<ellipses.size();i++)
+    {
+        if(matching(ellipses[i]->f1,e.f1)&&matching(ellipses[i]->f2,e.f2)&&ellipses[i]->a==e.a)
+        {
+            pos.push_back(i);
+        }
+    }
+    for (uint i=0;i<pos.size();i++)
+    {
+        ellipses.erase(ellipses.begin()+pos[i]-i);
+    }
+}
+
 void Container::remove(Functions *f)
 {
     remove(*f);
@@ -283,6 +309,12 @@ void Container::move_refresh(double dx, double dy)
     {
         r_polygones[i]->translate(dx,dy);
         r_polygones[i]->draw();
+    }
+
+    for(uint i=0;i<ellipses.size();i++)
+    {
+        ellipses[i]->translate(dx,dy);
+        ellipses[i]->draw();
     }
 
     for(uint i=0;i<functions.size();i++)
@@ -459,6 +491,24 @@ bool Container::find_personal_and_store(Container &c, double x, double y)
         }
     }
 
+    for(uint i=0;i<ellipses.size();i++)
+    {
+        bool b =ellipses[i] -> in_personal_area(x,y);
+        if(b)
+        {
+            if (!ellipses[i]->selected)
+            {
+                c.push(ellipses[i]); //POINTER, PAY ATTENTION
+                ellipses[i]->selected = true;
+            }
+            else
+            {
+                c.remove(ellipses[i]);
+                ellipses[i]->selected = false;
+            }
+            return true;
+        }
+    }
 
     return false;
 }
@@ -497,11 +547,15 @@ void Container::deselect()
     {
         functions[i]->selected = false;
     }
+    for(uint i=0;i<ellipses.size();i++)
+    {
+        ellipses[i]->selected = false;
+    }
 }
 
 int Container::size()
 {
-    return circles.size()+points.size()+lines.size()+segments.size()+triangles.size()+polygones.size()+r_polygones.size()+functions.size();
+    return circles.size()+points.size()+lines.size()+segments.size()+triangles.size()+polygones.size()+r_polygones.size()+functions.size()+ellipses.size();
 }
 
 void Container::empty_bins()
@@ -514,6 +568,7 @@ void Container::empty_bins()
     polygones.clear();
     r_polygones.clear();
     functions.clear();
+    ellipses.clear();
 }
 
 void Container::cleanFrom(Container &c)
@@ -582,6 +637,12 @@ void Container::cleanFrom(Container &c)
         remove(c.functions[i]);
     }
 
+    n = c.ellipses.size();
+    for(uint i=0;i<n;i++)
+    {
+        remove(c.ellipses[i]);
+    }
+
     n=c.points.size();
     for(uint i=0;i<n;i++)
     {
@@ -619,6 +680,10 @@ void Container::zoom(double coef, double c_x, double c_y)
     for(uint i=0;i<r_polygones.size();i++)
     {
         r_polygones[i]->zoom(coef,c_x,c_y);
+    }
+    for(uint i=0;i<ellipses.size();i++)
+    {
+        ellipses[i]->zoom(coef,c_x,c_y);
     }
 
 }
