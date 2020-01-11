@@ -64,7 +64,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             this-> move_grid_chosen = true;
 
         }
-        mainW->PushButton2_clicked();
+        mainW->ItemsDisplay();
     }
     else if (this->circle_chosen)
     {
@@ -92,7 +92,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             refresh_indicators();
             this-> move_grid_chosen = true;
         }
-        mainW->PushButton2_clicked();
+        mainW->ItemsDisplay();
     }
 
     else if (circle_chosen_with_radius)
@@ -158,7 +158,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             refresh_indicators();
             this->move_grid_chosen = true;
         }
-        mainW->PushButton2_clicked();
+        mainW->ItemsDisplay();
     }
     else if (this->point_chosen)
     {
@@ -171,7 +171,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
         refresh_indicators();
         this-> move_grid_chosen = true;
-        mainW->PushButton2_clicked();
+        mainW->ItemsDisplay();
     }
     else if (this->polygon_chosen)
     {
@@ -217,7 +217,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 if (n_polygon==3)
                 {
                     mainW->mainGrid->obj.push(new Triangle(help));
-                    mainW->PushButton2_clicked();
+                    mainW->ItemsDisplay();
                 }
                 else
                 {

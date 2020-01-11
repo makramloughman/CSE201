@@ -143,30 +143,26 @@ public slots:
     void Delete();
     void Clear();
 
-    void PushButton_clicked();
-    void PushButton2_clicked();
+    void ItemsDisplay();
+    void LineEditReturn();
+    void DeleteItem();
 
 protected:
     void resizeEvent(QResizeEvent* event);
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
-    void on_pushButton_3_pressed();
-
-    void on_pushButton_3_clicked(bool checked);
 
 private:
     Ui::MainWindow *ui;
     static MainWindow *theWindow;
-    bool started; //if the user clicked start button
 
     void createActions();
     void createMenus();
     void createToolBars();
     void createToolButtons();
+    void createGrid();
 
     QAction* MoveAction;
     QAction* SelectAction;

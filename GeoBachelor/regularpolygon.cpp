@@ -3,7 +3,6 @@
 #include <cmath>
 #define _USE_MATH_DEFINES
 
-
 RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of points
 {
     size = 0;
@@ -11,7 +10,6 @@ RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of
     Colour.push_back(0);
     Colour.push_back(0);
 }
-
 
 RegularPolygone::RegularPolygone(Segment segment, int n)
 {
@@ -23,10 +21,7 @@ RegularPolygone::RegularPolygone(Segment segment, int n)
 
         Point vertice=Point(radius*cos(2*M_PI*i/n),radius*sin(2*M_PI*i/n));
         Pointlist.push_back(vertice);
-
     }
-
-
 }
 
 double RegularPolygone::angle(){
@@ -58,8 +53,6 @@ double RegularPolygone::Area(){
     return (P*A)/2;
 }
 
-
-
 Point RegularPolygone:: centergravity(){
    Segment s1 = Segment(Pointlist[0] , Pointlist[1]);
    Segment s2 = Segment(Pointlist[1] , Pointlist[2]);
@@ -67,8 +60,7 @@ Point RegularPolygone:: centergravity(){
    Line m1=s1.mediator();
    Line m2=s2.mediator();
 
-
-   return *intersection(m1,m2)[0];
+   // return intersection(m1,m2)[0]; not working!!
 }
 
 Circle RegularPolygone::circumscribedcircle(){

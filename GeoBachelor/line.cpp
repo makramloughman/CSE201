@@ -65,95 +65,124 @@ Line::Line() :MathObject()
     this->p2 = Point();
 }
 
-
 double Line::slope(){
-  double slope = 0;
-  double x1 = p1.getx();
-  double x2 = p2.getx();
-  double y1 = p1.gety();
-  double y2 = p2.gety();
-  if (x1!=x2)
-  {
-     slope = (y2 - y1) / (x2 - x1);
-  }
-  else
-  {
-     slope = pow(10,20); //something big => for vertical lines, here we deal with the case where the slope tends to be infinite
-  }
-  if (slope==0)
-  {
-      slope = pow(10,-5);
-  }
-  return slope;
+    double slope = 0;
+    double x1 = p1.getx();
+    double x2 = p2.getx();
+    double y1 = p1.gety();
+    double y2 = p2.gety();
+    if (x1!=x2)
+    {
+        slope = (y2 - y1) / (x2 - x1);
+    }
+    else
+    {
+        slope = pow(10,20); //something big => for vertical lines
+    }
+    if (slope==0)
+    {
+        slope = pow(10,-5);
+    }
+    return slope;
+}
+
+double Line::slope_g(){
+    double slope = 0;
+    double x1 = p1.getxg();
+    double x2 = p2.getxg();
+    double y1 = p1.getyg();
+    double y2 = p2.getyg();
+    if (x1!=x2)
+    {
+        slope = (y2 - y1) / (x2 - x1);
+    }
+    else
+    {
+        slope = pow(10,20); //something big => for vertical lines
+    }
+    if (slope==0)
+    {
+        slope = pow(10,-5);
+    }
+    return slope;
 }
 
 double Line::y_intercept(){
-  double y_intercept;
-  double a = this->slope();
-  double x1 = p1.getx();
-  double y1 = p1.gety();
-  y_intercept = y1 - a*x1;
-  return y_intercept;
+    double y_intercept;
+    double a = this->slope();
+    double x1 = p1.getx();
+    double y1 = p1.gety();
+    y_intercept = y1 - a*x1;
+    return y_intercept;
+}
+
+double Line::y_intercept_g(){
+    double y_intercept;
+    double a = this->slope_g();
+    double x1 = p1.getxg();
+    double y1 = p1.getyg();
+    y_intercept = y1 - a*x1;
+    return y_intercept;
 }
 
 Line Line::perpendicular(Point p3){
-  double a = this->slope();
-  double b1 = this->y_intercept();
-  double x0 = p3.getx();
-  double y0 = p3.gety();
-  double dist = distance(p3,Point(x0,a*x0+b1));
+    double a = this->slope();
+    double b1 = this->y_intercept();
+    double x0 = p3.getx();
+    double y0 = p3.gety();
+    double dist = distance(p3,Point(x0,a*x0+b1));
 
-  if(dist<pow(10,-5)) //if point is on line
-  {
-    Point p =Point(x0-50, (50-x0)/a+y0+x0/a);
-    Line l = Line(p,p3);
-    return l;
-  }
-  else if(a != 0 && a<pow(10,5)) //normal line
-  {
-    double b2 = y0 + (1/a)*x0; //the equation of the perpendicular line is now y = -(1/a) + b2
-    double xstar = (b2 - b1)/(a + (1/a));
-    double ystar = -(1/a)*xstar + b2;;
-    Point pstar = Point(xstar, ystar);
-    Line per = Line(pstar, p3);
+    if(dist<pow(10,-5)) //if point is on line
+    {
+        Point p =Point(x0-20, (20-x0)/a+y0+x0/a);
+        Line l = Line(p,p3);
+        return l;
+    }
+    else if(a!=0 && a<pow(10,5)) //normal line
+    {
+        double b2 = y0 + (1/a)*x0; //the equation of the perpendicular line is now y = -(1/a) + b2
+        double xstar = (b2 - b1)/(a + (1/a));
+        double ystar = -(1/a)*xstar + b2;;
+        Point pstar = Point(xstar, ystar);
+        Line per = Line(pstar, p3);
     return per;
-  }
-  else if (a > pow(10, 5)) //vertical line
-  {
-      Point pstar = Point(p1.getx(),p3.gety());
-      Line l =Line(pstar,p3);
-      return l;
-  }
-  else
-  {
-      Point pstar = Point(p3.getx(),p1.gety());
-      Line l = Line(pstar,p3);
-      return l;
-  }
+    }
+    else if (a>pow(10,5)) //vertical line
+    {
+        Point pstar = Point(p1.getx(),p3.gety());
+        Line l =Line(pstar,p3);
+        return l;
+    }
+    else
+    {
+        Point pstar = Point(p3.getx(),p1.gety());
+        Line l = Line(pstar,p3);
+        return l;
+    }
 }
 
 Line Line::parallel(Point p3)
 {
-  double a = this->slope();
-  double x0 = p3.getx();
-  double y0 = p3.gety();
-  double x = x0 - 50;
-  double y = y0 - 50*a;
-  Point pstar(x, y);
-  Line par = Line(pstar, p3);
-  return par;
+    double a = this->slope();
+    double x0 = p3.getx();
+    double y0 = p3.gety();
+    double x = x0 - 20;
+    double y = y0 - 20*a;
+    Point pstar(x, y);
+    Line par = Line(pstar, p3);
+    return par;
 }
 
 Point Line::intersection(Line B)
 {
-  double a1 = this->slope();
-  double a2 = B.slope();
-  double b1 = this->y_intercept();
-  double b2 = B.y_intercept();
-  double xstar = (b1 - b2)/(a2 - a1);
-  double ystar = a1 * xstar + b1;
-  Point pstar(xstar, ystar);
-  return pstar;
+    double a1 = this->slope();
+    double a2 = B.slope();
+    double b1 = this->y_intercept();
+    double b2 = B.y_intercept();
+    double xstar = (b1 - b2)/(a2 - a1);
+    double ystar = a1 * xstar + b1;
+    Point pstar(xstar, ystar);
+    return pstar;
 }
 
 Point Line::normal(Point p)

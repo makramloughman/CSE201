@@ -25,8 +25,10 @@ class Line : public MathObject
     //void semi_line(Point &p1, Point &p2); //creates a semi line from p1 and passing through p2
   
     double slope(); //computes the slope of the line
+    double slope_g(); //computes the slope of the line in gird coordinates
     
     double y_intercept(); //computes the intercept of the line with the origin
+    double y_intercept_g(); //computes the intercept of the line with the origin in gird coordinates
   
     Line perpendicular(Point p3);//create the perpendicular to the line passing through p3
   

@@ -10,8 +10,8 @@ class Point : public MathObject
     private:
         double x;
         double y;
-        double x_t; // theoretical x
-        double y_t; // theoretical y
+        double x_g; // grid coordinate x
+        double y_g; // grid coordinate y
         std::vector<double> color; // vector of size 3x1 corresponding to rgb
         int shape; // 0 for dot; 1 for circle; 2 for cross...
 
@@ -45,8 +45,8 @@ class Point : public MathObject
 
         double getx(); //gives the x coordinate
         double gety(); //gives the y coordinate
-        double getxt(); //gives the x_t coordinate
-        double getyt(); //gives the y_t coordinate
+        double getxg(); //gives the x_g coordinate
+        double getyg(); //gives the y_g coordinate
 
         void givename(std::string n); //changes the name of the point
         void hidename(); //hides the name but not the point

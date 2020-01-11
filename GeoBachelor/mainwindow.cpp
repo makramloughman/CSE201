@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     createMenus();
     createToolButtons();
     createToolBars();
-    this->started = false;
+    createGrid();
 
     QPen myPen = QPen();
     myPen.setWidth(1.5);
@@ -313,20 +313,26 @@ void MainWindow::createToolButtons(){
     GeneralButton->setMinimumWidth(44);
     GeneralButton->setIconSize(QSize(32,32));
 
-    PushButton = new QPushButton("Start");
+    // PushButton = new QPushButton("Start");
     // PushButton->setMinimumWidth(32);
-    PushButton->setMinimumHeight(39);
-    QObject::connect(PushButton, SIGNAL(clicked()), this, SLOT(PushButton_clicked()));
+    // PushButton->setMinimumHeight(39);
+    // QObject::connect(PushButton, SIGNAL(clicked()), this, SLOT(createGrid()));
 
-    PushButton2 = new QPushButton("Debug");
+    // PushButton2 = new QPushButton("Debug");
     // PushButton2->setMinimumWidth(32);
-    PushButton2->setMinimumHeight(39);
-    QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton2_clicked()));
+    // PushButton2->setMinimumHeight(39);
+    // QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton2_clicked()));
+
+    QObject::connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(LineEditReturn()));
+    QShortcut* shortcut = new QShortcut(QKeySequence(Qt::Key_Delete), ui->listWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(DeleteItem()));
+    QShortcut* shortcut2 = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->listWidget);
+    QObject::connect(shortcut2, SIGNAL(activated()), this, SLOT(DeleteItem()));
 }
 
 void MainWindow::createToolBars(){
-    ui->horizontalLayout_2->addWidget(PushButton);
-    ui->horizontalLayout_2->addWidget(PushButton2);
+    // ui->horizontalLayout_2->addWidget(PushButton);
+    // ui->horizontalLayout_2->addWidget(PushButton2);
     ui->horizontalLayout_2->addWidget(MouseButton);
     ui->horizontalLayout_2->addWidget(PointButton);
     ui->horizontalLayout_2->addWidget(LineButton);
@@ -338,6 +344,201 @@ void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addWidget(TransformationButton);
     ui->horizontalLayout_2->addWidget(GeneralButton);
     ui->horizontalLayout_2->addStretch();
+}
+
+void MainWindow::createGrid()
+{
+    scene->clear();
+    setStarted();
+    ItemsDisplay();
+}
+
+void MainWindow::setStarted()
+{
+    Grid* g = new Grid(50,this->getHeight_View()-50,35);
+    this->setGrid(g);
+
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->move_grid_chosen=true;
+
+    this->mainGrid->draw();
+    this->mainGrid->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
+    this->mainGrid->set_xaxis_label();
+    this->mainGrid->set_yaxis_label();
+}
+
+void MainWindow::ItemsDisplay()
+{
+    ui->listWidget->clear();
+
+    unsigned size = mainGrid->obj.points.size();
+    Point* curr = 0;
+    for (unsigned i = 0; i < size; i++)
+    {
+        curr = mainGrid->obj.points[i];
+        if (curr != NULL)
+        {
+            QString text = tr("Point:  (%1,%2)").arg(curr->getxg()).arg(curr->getyg());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size > 0)
+    {
+        QString text = "";
+        QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+    }
+
+    unsigned size2 = mainGrid->obj.lines.size();
+    Line* curr2 = 0;
+    for (unsigned i = 0 ; i < size2; i++)
+    {
+        curr2 = mainGrid->obj.lines[i];
+        if (curr2 != NULL)
+        {
+            QString text = tr("Line:  y = %1 x + %2").arg(curr2->slope_g()).arg(curr2->y_intercept_g());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size2 > 0)
+    {
+        QString text2 = "";
+        QListWidgetItem *item2 = new QListWidgetItem(text2,ui->listWidget);
+    }
+
+    unsigned size3 = mainGrid->obj.segments.size();
+    Segment* curr3 = 0;
+    for (unsigned i = 0 ; i < size3; i++)
+    {
+        curr3 = mainGrid->obj.segments[i];
+        if (curr3 != NULL)
+        {
+            QString text = tr("Segment:  (%1,%2) \n                     (%3,%4)").arg(curr3->p1.getxg()).arg(curr3->p1.getyg()).arg(curr3->p2.getxg()).arg(curr3->p2.getyg());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size3 > 0)
+    {
+        QString text3 = "";
+        QListWidgetItem *item3 = new QListWidgetItem(text3,ui->listWidget);
+    }
+
+    unsigned size4 = mainGrid->obj.circles.size();
+    Circle* curr4 = 0;
+    for (unsigned i = 0 ; i < size4; i++)
+    {
+        curr4 = mainGrid->obj.circles[i];
+        if (curr4 != NULL)
+        {
+            QString text = tr("Circle:  center = (%1,%2) \n              radius = %3").arg(curr4->center.getxg()).arg(curr4->center.getyg()).arg(curr4->r_t);
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size4 > 0)
+    {
+        QString text4 = "";
+        QListWidgetItem *item4 = new QListWidgetItem(text4,ui->listWidget);
+    }
+
+    unsigned size5 = mainGrid->obj.triangles.size();
+    Triangle* curr5 = 0;
+    for (unsigned i = 0 ; i < size5; i++)
+    {
+        curr5 = mainGrid->obj.triangles[i];
+        if (curr5 != NULL)
+        {
+            QString text = tr("Triangle:  (%1,%2) \n                   (%3,%4) \n                   (%5,%6)").arg(curr5->point1.getxg()).arg(curr5->point1.getyg()).arg(curr5->point2.getxg()).arg(curr5->point2.getyg()).arg(curr5->point3.getxg()).arg(curr5->point3.getyg());
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size5 > 0)
+    {
+        QString text5 = "";
+        QListWidgetItem *item5 = new QListWidgetItem(text5,ui->listWidget);
+    }
+
+    unsigned size6 = mainGrid->obj.functions.size();
+    Functions* curr6 = 0;
+    for (unsigned i = 0 ; i < size6; i++)
+    {
+        curr6 = mainGrid->obj.functions[i];
+        if (curr6 != NULL)
+        {
+            QString function = QString::fromStdString(curr6->expression);
+            QString text = tr("Function:  %1").arg(function);
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+}
+
+void MainWindow::LineEditReturn()
+{
+    QString function_tmp = ui->lineEdit->text();
+    std::string function = function_tmp.toUtf8().constData();
+    Functions *f = new Functions(function);
+    f->draw();
+    mainGrid->obj.push(f);
+    ItemsDisplay();
+    ui->lineEdit->clear();
+}
+
+void MainWindow::DeleteItem()
+{
+    QString item = ui->listWidget->currentItem()->text();
+    int number = ui->listWidget->currentItem()->data(Qt::UserRole).toInt();
+    if (item[0] == "P")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.points[number]);
+        mainGrid->obj.points[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "L")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.lines[number]);
+        mainGrid->obj.lines[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "S")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.segments[number]);
+        mainGrid->obj.segments[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "C")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.circles[number]);
+        mainGrid->obj.circles[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "T")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.triangles[number]);
+        mainGrid->obj.triangles[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "F")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.functions[number]);
+        mainGrid->obj.functions[number]->selected = true;
+        Delete();
+    }
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+    // qDebug() << event->size();
+    QMainWindow::resizeEvent(event);
+    this->mainGrid->move_grid(50-mainGrid->getX(),this->getHeight_View()-50-mainGrid->getY());
 }
 
 void MainWindow::drawLine(QLineF l)
@@ -458,7 +659,6 @@ void MainWindow::drawText(QString text, double x, double y)
     text1->setPos(mapToMyScene(x,y));
 }
 
-
 void MainWindow::drawCoordinateSystem()
 {
     this->mainGrid->draw();
@@ -472,20 +672,6 @@ void MainWindow::setGrid(Grid* g)
 MainWindow* MainWindow:: getInstance()
 {
     return theWindow;
-}
-
-void MainWindow::setStarted()
-{
-    Grid* g = new Grid(50,this->getHeight_View()-50,35);
-    this->setGrid(g);
-
-    ui->graphicsView->refresh_indicators();
-    ui->graphicsView->move_grid_chosen=true;
-
-    this->mainGrid->draw();
-    this->mainGrid->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
-    this->mainGrid->set_xaxis_label();
-    this->mainGrid->set_yaxis_label();
 }
 
 void MainWindow::SetPen(double width, QColor c)
@@ -562,7 +748,7 @@ QPointF MainWindow::mapFromGridToView(double x, double y)
     return QPointF(x_v,y_v);
 }
 
-MainWindow *MainWindow::theWindow = nullptr; //declare static
+MainWindow *MainWindow::theWindow = nullptr; // declare static
 
 void MainWindow::Move()
 {
@@ -593,7 +779,6 @@ void MainWindow::PointOnObject(){
 void MainWindow::Intersection()
 {
     //We have intersections only between segments,lines and circles, so, it's not a big problem
-
     std::vector<Point*> vec;
     vec = ui->graphicsView->chosen_objects.IntersectObjects();
     for(uint i=0;i<vec.size();i++)
@@ -639,6 +824,7 @@ void MainWindow::Line_()
         ui->graphicsView->refresh_indicators();
         ui->graphicsView->inf_line_chosen = true;
     }
+    ItemsDisplay();
 }
 
 void MainWindow::Segment_()
@@ -660,7 +846,7 @@ void MainWindow::Segment_()
         ui->graphicsView->refresh_indicators();
         ui->graphicsView->segment_chosen = true;
     }
-
+    ItemsDisplay();
 }
 
 void MainWindow::Ray(){
@@ -692,6 +878,7 @@ void MainWindow::PerpendicularLine()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::ParallelLine(){
@@ -706,6 +893,7 @@ void MainWindow::ParallelLine(){
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::PerpendicularBisector(){
@@ -721,6 +909,7 @@ void MainWindow::PerpendicularBisector(){
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::AngleBisector(){
@@ -742,6 +931,7 @@ void MainWindow::Tangent(){
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::Triangle_()
@@ -765,6 +955,7 @@ void MainWindow::Triangle_()
         ui->graphicsView->polygon_chosen = true;
         ui->graphicsView->n_polygon = 3;
     }
+    ItemsDisplay();
 }
 
 void MainWindow::Square(){
@@ -804,6 +995,7 @@ void MainWindow::CircleCPT()
     {
         ui->graphicsView->circle_chosen = true;
     }
+    ItemsDisplay();
 }
 
 void MainWindow::CircleCRT()
@@ -858,6 +1050,7 @@ void MainWindow::LineSymmetry()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::PointSymmetry()
@@ -872,6 +1065,7 @@ void MainWindow::PointSymmetry()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::Translate(){
@@ -882,7 +1076,7 @@ void MainWindow::Delete()
 {
     mainGrid->obj.cleanFrom(ui->graphicsView->chosen_objects);
     mainGrid->refresh_grid();
-    PushButton2_clicked();
+    ItemsDisplay();
 }
 
 void MainWindow::Clear(){
@@ -892,7 +1086,7 @@ void MainWindow::Clear(){
     mainGrid->set_BackColor(QBrush(Qt::white, Qt::SolidPattern));
     mainGrid->set_xaxis_label();
     mainGrid->set_yaxis_label();
-    PushButton2_clicked();
+    ItemsDisplay();
 }
 
 MainWindow::~MainWindow()
@@ -960,130 +1154,6 @@ MainWindow::~MainWindow()
     delete GeneralButton;
 }
 
-void MainWindow::resizeEvent(QResizeEvent* event)
-{
-    qDebug() << event->size();
-    QMainWindow::resizeEvent(event);
-    // this->mainGrid->move_grid(0,0);
-}
-
-void MainWindow::PushButton_clicked()
-{
-    if(!started)
-    {
-        scene->clear();
-        setStarted();
-    }
-}
-
-void MainWindow::PushButton2_clicked()
-{
-    int count = 0;
-    ui->listWidget->clear();
-
-    unsigned size = mainGrid->obj.points.size();
-    Point* curr = 0;
-    for (unsigned i = 0; i < size; i++)
-    {
-        curr = mainGrid->obj.points[i];
-        if (curr != NULL)
-        {
-            QString text = tr("Point:  (%1,%2)").arg(curr->getxt()).arg(curr->getyt());
-            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
-            item->setData(Qt::UserRole,i);
-        }
-        count++;
-    }
-
-    if (size > 0)
-    {
-        QString text = "";
-        QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
-        item->setData(Qt::UserRole,count);
-        count++;
-    }
-
-    unsigned size2 = mainGrid->obj.lines.size();
-    Line* curr2 = 0;
-    for (unsigned i = 0 ; i < size2; i++)
-    {
-        curr2 = mainGrid->obj.lines[i];
-        if (curr2 != NULL)
-        {
-            QString text = tr("Line:  y = %1 x + %2").arg(curr2->slope()).arg(curr2->y_intercept());
-            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
-            item->setData(Qt::UserRole,count);
-        }
-        count++;
-    }
-
-    if (size2 > 0)
-    {
-        QString text2 = "";
-        QListWidgetItem *item2 = new QListWidgetItem(text2,ui->listWidget);
-        item2->setData(Qt::UserRole,count);
-        count++;
-    }
-
-    unsigned size3 = mainGrid->obj.segments.size();
-    Segment* curr3 = 0;
-    for (unsigned i = 0 ; i < size3; i++)
-    {
-        curr3 = mainGrid->obj.segments[i];
-        if (curr3 != NULL)
-        {
-            QString text = tr("Segment:  (%1,%2) \n                     (%3,%4)").arg(curr3->p1.getxt()).arg(curr3->p1.getyt()).arg(curr3->p2.getxt()).arg(curr3->p2.getyt());
-            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
-            item->setData(Qt::UserRole,count);
-        }
-        count++;
-    }
-
-    if (size3 > 0)
-    {
-        QString text3 = "";
-        QListWidgetItem *item3 = new QListWidgetItem(text3,ui->listWidget);
-        item3->setData(Qt::UserRole,count);
-        count++;
-    }
-
-    unsigned size4 = mainGrid->obj.circles.size();
-    Circle* curr4 = 0;
-    for (unsigned i = 0 ; i < size4; i++)
-    {
-        curr4 = mainGrid->obj.circles[i];
-        if (curr4 != NULL)
-        {
-            QString text = tr("Circle:  center = (%1,%2) \n              radius = %3").arg(curr4->center.getxt()).arg(curr4->center.getyt()).arg(curr4->r_t);
-            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
-            item->setData(Qt::UserRole,count);
-        }
-        count++;
-    }
-
-    if (size4 > 0)
-    {
-        QString text4 = "";
-        QListWidgetItem *item4 = new QListWidgetItem(text4,ui->listWidget);
-        item4->setData(Qt::UserRole,count);
-        count++;
-    }
-
-    unsigned size5 = mainGrid->obj.triangles.size();
-    Triangle* curr5 = 0;
-    for (unsigned i = 0 ; i < size5; i++)
-    {
-        curr5 = mainGrid->obj.triangles[i];
-        if (curr5 != NULL)
-        {
-            QString text = tr("Triangle:  (%1,%2) \n                   (%3,%4) \n                   (%5,%6)").arg(curr5->point1.getxt()).arg(curr5->point1.getyt()).arg(curr5->point2.getxt()).arg(curr5->point2.getyt()).arg(curr5->point3.getxt()).arg(curr5->point3.getyt());
-            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
-            item->setData(Qt::UserRole,count);
-        }
-        count++;
-    }
-}
-
 void MainWindow::on_pushButton_clicked()
 {
     clearScene();
@@ -1106,16 +1176,4 @@ void MainWindow::on_pushButton_2_clicked()
     ui->graphicsView->move_grid_chosen = true;
     mainGrid->obj.deselect();
     mainGrid->refresh_grid();
-}
-
-void MainWindow::on_pushButton_3_pressed()
-{
-
-}
-
-void MainWindow::on_pushButton_3_clicked(bool checked)
-{
-    Functions *f=new Functions("x^2");
-    f->draw();
-    mainGrid->obj.push(f);
 }
