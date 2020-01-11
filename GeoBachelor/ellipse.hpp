@@ -8,15 +8,17 @@
 
 class Ellipse: public MathObject{
     private:
+    public:
         Point f1; // coordinates of one focal point
         Point f2; // coordinates of the second focal point
         double a; // size of semi-major axis
-    public:
+
         virtual void draw();
         virtual void translate(double dx, double dy);
         virtual bool in_personal_area(double x, double y);
-    
-        Ellipse(Point f1, Point f2, double a); // constructor
+        virtual void zoom(double coef, double c_x, double c_y);
+
+        Ellipse(Point* f1, Point* f2, double a); // constructor
         ~Ellipse(); //destructor
         Point getF1(); // gives coordinates of the first focal point
         Point getF2(); // gives coordinates of the second focal point

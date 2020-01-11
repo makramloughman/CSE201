@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QPushButton>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -161,7 +162,7 @@ void MainWindow::createActions(){
     QObject::connect(CircleCPTAction, SIGNAL(triggered()), this, SLOT(CircleCPT()));
     QObject::connect(CircleCRTAction, SIGNAL(triggered()), this, SLOT(CircleCRT()));
 
-    QObject::connect(EllipseAction, SIGNAL(triggered()), this, SLOT(Ellipse()));
+    QObject::connect(EllipseAction, SIGNAL(triggered()), this, SLOT(Ellipse_()));
     QObject::connect(ParabolaAction, SIGNAL(triggered()), this, SLOT(Parabola()));
     QObject::connect(HyperbolaAction, SIGNAL(triggered()), this, SLOT(Hyperbola()));
 
@@ -450,6 +451,12 @@ void MainWindow::drawPolygon(std::vector<QPointF> points)
         MainWindow::drawLine(points[i],points[i+1]);
     }
     MainWindow::drawLine(points[0],points[n-1]);
+}
+
+void MainWindow::drawEllipse(Point p, double rx, double ry)
+{
+    QPointF f = mapToMyScene(p.getx(),p.gety());
+    scene->addEllipse(f.x(),f.y(),rx,ry,myPen);
 }
 
 void MainWindow::drawText(QString text, double x, double y)
@@ -811,7 +818,7 @@ void MainWindow::CircleCRT()
     ui->graphicsView->circle_chosen_with_radius = true;
 }
 
-void MainWindow::Ellipse(){
+void MainWindow::Ellipse_(){
     qDebug() << "MainWindow::Ellipse()";
 }
 
@@ -1115,7 +1122,14 @@ void MainWindow::on_pushButton_3_pressed()
 
 void MainWindow::on_pushButton_3_clicked(bool checked)
 {
-    Functions *f=new Functions("x^2");
-    f->draw();
-    mainGrid->obj.push(f);
+    //drawEllipse(QPointF(150,100),100,50);
+    Point* p1 = new Point(150.0,100.0);
+    Point* p2 = new Point(200.0,100.0);
+    Ellipse* e = new Ellipse(p1,p2,100.0);
+    Point p = Point(0,0);
+    std::vector<Line> v = e->tangent(p);
+    v[0].draw();
+    e->draw();
+    mainGrid->obj.push(e);
+    //mainGrid->refresh_grid();
 }

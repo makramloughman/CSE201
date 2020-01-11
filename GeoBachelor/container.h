@@ -13,6 +13,7 @@
 #include <regularpolygon.h>
 #include <polygone.h>
 #include <functions.hpp>
+#include <ellipse.hpp>
 
 class Container
 {
@@ -30,6 +31,7 @@ class Container
         void push(Polygone* p);
         void push(RegularPolygone* rp);
         void push(Functions* f);
+        void push(Ellipse* e);
 
         void remove(Point p);
         void remove(Point* p);
@@ -47,6 +49,8 @@ class Container
         void remove(RegularPolygone rp);
         void remove(Functions* f);
         void remove(Functions f);
+        void remove(Ellipse* e);
+        void remove(Ellipse e);
 
         std::vector<Point*> points;
         std::vector<Line*> lines;
@@ -56,7 +60,8 @@ class Container
         std::vector<Polygone*> polygones;
         std::vector<RegularPolygone*> r_polygones;
         std::vector<Functions*> functions;
-        int number_of_bins; //it is 5 here => points,lines,circles,segments,triangles
+        std::vector<Ellipse*> ellipses;
+        int number_of_bins;
 
         void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid
         void refresh(); //some refresh related to graphics
