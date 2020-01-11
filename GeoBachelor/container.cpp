@@ -10,7 +10,7 @@ bool Container::check_if_in(Point p)
 {
     for(uint i=0; i<points.size();i++)
     {
-        if(p.in_personal_area(points[i]->getx(),points[i]->gety()))
+        if (distance(*points[i],p)<5)
         {
             return true;
         }
