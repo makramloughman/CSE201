@@ -47,7 +47,8 @@ SOURCES += \
     hyperbola.cpp \
     fparser.cc \
     fpoptimizer.cc \
-    functions.cpp
+    functions.cpp \
+    semiline.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -73,7 +74,8 @@ HEADERS += \
     hyperbola.hpp \
     fparser.hh \
     fpconfig.hh \
-    functions.hpp
+    functions.hpp \
+    semiline.hpp
 
 FORMS += \
     mainwindow.ui
