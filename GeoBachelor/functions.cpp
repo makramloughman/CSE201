@@ -51,7 +51,7 @@ void Functions::draw()
 
 void Functions::translate(double dx, double dy)
 {
-
+    //no need for implemention
 }
 
 bool Functions::in_personal_area(double x, double y)
@@ -61,6 +61,6 @@ bool Functions::in_personal_area(double x, double y)
 
 void Functions::zoom(double coef, double x, double y)
 {
-
+    //no need for implementation
 }
 

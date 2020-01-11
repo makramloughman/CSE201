@@ -205,3 +205,33 @@ std::vector<Point*> intersection(Segment segment, Circle circle)
     return intersection(circle,segment);
 }
 
+
+std::vector<Point *> intersection(Ellipse e, Line l)
+{
+    double b = e.get_b();
+    double a = e.a;
+    double m = l.slope();
+    double c = l.y_intercept();
+    Point cen = e.center();
+    double k = cen.gety();
+    double h = cen.getx();
+    double phi = c-k;
+    double mu = c+m*h;
+    double disc1 = b*b+a*a*m*m-2*m*phi*h-phi*phi-m*m*h*h;
+    double disc2 = b*b+a*a*m*m+2*mu*k-k*k-mu*mu;
+
+
+    std::vector<Point*> v;
+    if(disc1>=-0.0002 && disc2>=-0.0002)
+    {
+        disc1 = abs(disc1);
+        disc2 = abs(disc2);
+        double x1 = (b*b*h-a*a*m*phi+a*b*sqrt(disc1))/(b*b+a*a*m*m);
+        double y1 = (b*b*mu+a*a*m*m*k+a*b*m*sqrt(disc2))/(b*b+a*a*m*m);
+        double x2 = (b*b*h-a*a*m*phi-a*b*sqrt(disc1))/(b*b+a*a*m*m);
+        double y2 = (b*b*mu+a*a*m*m*k-a*b*m*sqrt(disc2))/(b*b+a*a*m*m);
+        v.push_back(new Point(x1,y1));
+        v.push_back(new Point(x2,y2));
+    }
+    return v;
+}

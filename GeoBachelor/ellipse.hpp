@@ -34,4 +34,5 @@ class Ellipse: public MathObject{
         double get_e(); // returns eccentricity of the ellipse
         Line majoraxis(); // returns major axis of the ellipse
         Line minoraxis(); //returns minor axis of the ellipse
+        Point center();
 };

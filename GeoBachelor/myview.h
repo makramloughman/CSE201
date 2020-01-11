@@ -37,6 +37,7 @@ class MyView : public QGraphicsView
 
         bool circle_chosen;
         bool circle_chosen_with_radius;
+        bool ellipse_chosen;
 
         bool inf_line_chosen;
 
