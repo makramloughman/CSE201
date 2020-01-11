@@ -65,8 +65,9 @@ double RegularPolygone::Area(){
 
 
 Circle RegularPolygone::circumscribedcircle(){
-    Point c=centergravity();
-    double r=distance(c,Pointlist[0]);
+    Point c=center;
+    double r=c.distanceg(p1);
+    
     return Circle(c, r);
 }
 

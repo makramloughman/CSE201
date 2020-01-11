@@ -22,4 +22,6 @@ class Angle : public MathObject
 
         double get_angle_radian();
         double get_angle_degree();
+       /* double bisector();*/
+
 };

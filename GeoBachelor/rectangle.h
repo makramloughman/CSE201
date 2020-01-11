@@ -9,6 +9,7 @@ class Rectangle: public  MathObject
     private:
         //create point for rectangle
         Point p1;
+        Point p2;
         Point p3;
 
         int countpoints;
@@ -16,7 +17,7 @@ class Rectangle: public  MathObject
         std::string get_name(); //for the display
 
     public:
-        Rectangle(Point p1 , Point p3 );
+        Rectangle(Point p1 , Point p2 , Point p3 );
         Rectangle(std::vector<QPointF> p);
         ~Rectangle();
 

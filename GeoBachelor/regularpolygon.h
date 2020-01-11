@@ -9,6 +9,9 @@
 class RegularPolygone : public Polygone
 {
     public :
+        Point center;
+        Point p1;
+        int n;
         std::vector<double> Colour;
 
         RegularPolygone(); //empty regular polygone with empty vector of points
