@@ -43,3 +43,14 @@ double Angle::get_angle_degree()
 
     return angleDeg;
 }
+/*
+double Angle::bisector()
+{
+    Point p1_new=Point(p1.getx()-m.getx(),p1.gety()-m.gety());
+    Point p2_new=Point(p3.getx()-m.getx(),p3.getx()-m.gety());
+
+    double OA=atan((p1.gety()-m.gety())/(p1.getx()-m.getx()));
+    double OB=atan(p3.gety()-m.gety()/p3.getx()-m.getx());
+    double O=acos((p1_new*p2_new)/(sqrt(((p1_new.getx())**2+(p1_new.gety())**2))*(sqrt(((p2_new.getx())**2+(p2_new.gety())**2)))));
+    double Q=min(OA,OB)+O/2;
+}*/

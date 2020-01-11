@@ -1,5 +1,6 @@
 #include"general_functions.h"
 #include "regularpolygon.h"
+#include <mainwindow.h>
 #include <cmath>
 #define _USE_MATH_DEFINES
 
@@ -11,15 +12,24 @@ RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of
     Colour.push_back(0);
 }
 
-RegularPolygone::RegularPolygone(Segment segment, int n)
+RegularPolygone::RegularPolygone(Point center, Point p1, int n)
+/* n is the number of segment */
 {
+    MainWindow* mainW = MainWindow::getInstance();
     int i;
-    double s=segment.getlength();
+    double x=center.getxg();
+    double y=center.getyg();
     size=n;
-    double radius=s/2*sin(180/n);
+    double radius=center.distanceg(p1);
+    double angle=2*M_PI/size;
     for(i=0; i<n ;i++){
 
-        Point vertice=Point(radius*cos(2*M_PI*i/n),radius*sin(2*M_PI*i/n));
+        double ag=x+radius*cos(2*M_PI*i/n);
+        double bg=y+radius*sin(2*M_PI*i/n);
+        double a=ag*mainW->mainGrid->unit+mainW->mainGrid->getX();
+        double b=mainW->mainGrid->getY()-bg*mainW->mainGrid->unit;
+
+        Point vertice=Point(a,b);
         Pointlist.push_back(vertice);
     }
 }
@@ -53,15 +63,6 @@ double RegularPolygone::Area(){
     return (P*A)/2;
 }
 
-Point RegularPolygone:: centergravity(){
-   Segment s1 = Segment(Pointlist[0] , Pointlist[1]);
-   Segment s2 = Segment(Pointlist[1] , Pointlist[2]);
-
-   Line m1=s1.mediator();
-   Line m2=s2.mediator();
-
-   // return intersection(m1,m2)[0]; not working!!
-}
 
 Circle RegularPolygone::circumscribedcircle(){
     Point c=centergravity();
