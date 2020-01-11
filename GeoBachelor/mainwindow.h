@@ -148,6 +148,7 @@ public slots:
     void ItemsDisplay();
     void LineEditReturn();
     void DeleteItem();
+    void PushButton3_clicked(bool checked);
 
 protected:
     void resizeEvent(QResizeEvent* event);

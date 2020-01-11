@@ -319,10 +319,10 @@ void MainWindow::createToolButtons(){
     // PushButton->setMinimumHeight(39);
     // QObject::connect(PushButton, SIGNAL(clicked()), this, SLOT(createGrid()));
 
-    // PushButton2 = new QPushButton("Debug");
-    // PushButton2->setMinimumWidth(32);
-    // PushButton2->setMinimumHeight(39);
-    // QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton2_clicked()));
+    PushButton2 = new QPushButton("Debug");
+    PushButton2->setMinimumWidth(32);
+    PushButton2->setMinimumHeight(39);
+    QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton3_clicked(bool checked)));
 
     QObject::connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(LineEditReturn()));
     QShortcut* shortcut = new QShortcut(QKeySequence(Qt::Key_Delete), ui->listWidget);
@@ -333,7 +333,7 @@ void MainWindow::createToolButtons(){
 
 void MainWindow::createToolBars(){
     // ui->horizontalLayout_2->addWidget(PushButton);
-    // ui->horizontalLayout_2->addWidget(PushButton2);
+    ui->horizontalLayout_2->addWidget(PushButton2);
     ui->horizontalLayout_2->addWidget(MouseButton);
     ui->horizontalLayout_2->addWidget(PointButton);
     ui->horizontalLayout_2->addWidget(LineButton);
@@ -1184,15 +1184,8 @@ void MainWindow::on_pushButton_2_clicked()
     mainGrid->obj.deselect();
     mainGrid->refresh_grid();
 }
-<<<<<<< HEAD
-=======
 
-void MainWindow::on_pushButton_3_pressed()
-{
-
-}
-
-void MainWindow::on_pushButton_3_clicked(bool checked)
+void MainWindow::PushButton3_clicked(bool checked)
 {
     //drawEllipse(QPointF(150,100),100,50);
     Point* p1 = new Point(150.0,100.0);
@@ -1205,4 +1198,3 @@ void MainWindow::on_pushButton_3_clicked(bool checked)
     mainGrid->obj.push(e);
     //mainGrid->refresh_grid();
 }
->>>>>>> master
