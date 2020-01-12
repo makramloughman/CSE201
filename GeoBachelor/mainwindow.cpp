@@ -575,7 +575,7 @@ void MainWindow::LineEditReturn()
             double y2 = mainGrid->getY() - y2_g * mainGrid->unit;
             double n = std::stod(input.substr(last_comma+1,last-last_comma-1));
 
-            RegularPolygone* p = new RegularPolygone(Point(x1,y1),Point(x2,y2), n);
+            RegularPolygone* p = new RegularPolygone(Point(x1,y1),Point(x2,y2),n);
             for(int i=0;i<p->size;i++)
             {
                 mainGrid->obj.push(new Point(p->Pointlist[i].getx(),p->Pointlist[i].gety()));
@@ -589,11 +589,54 @@ void MainWindow::LineEditReturn()
         }
         else
         {
-            Functions *f = new Functions(input);
-            f->draw();
-            mainGrid->obj.push(f);
-            ItemsDisplay();
-            ui->lineEdit->clear();
+            if (input.substr(0,8) == "triangle")
+            {
+                int first_parenthesis = input.find("(");
+                int p1_first_parenthesis = input.find("(", first_parenthesis+1);
+                int p1_comma = input.find(",", p1_first_parenthesis+1);
+                int p1_second_parenthesis = input.find(")", p1_comma+1);
+                int p2_first_parenthesis = input.find("(",p1_second_parenthesis+1);
+                int p2_comma = input.find(",", p2_first_parenthesis+1);
+                int p2_second_parenthesis = input.find(")", p2_comma+1);
+                int p3_first_parenthesis = input.find("(",p2_second_parenthesis+1);
+                int p3_comma = input.find(",", p3_first_parenthesis+1);
+                int p3_second_parenthesis = input.find(")", p3_comma+1);
+
+                double x1_g = std::stod(input.substr(p1_first_parenthesis+1,p1_comma-p1_first_parenthesis-1));
+                double y1_g = std::stod(input.substr(p1_comma+1,p1_second_parenthesis-p1_comma-1));
+                double x2_g = std::stod(input.substr(p2_first_parenthesis+1,p2_comma-p2_first_parenthesis-1));
+                double y2_g = std::stod(input.substr(p2_comma+1,p2_second_parenthesis-p2_comma-1));
+                double x3_g = std::stod(input.substr(p3_first_parenthesis+1,p3_comma-p3_first_parenthesis-1));
+                double y3_g = std::stod(input.substr(p3_comma+1,p3_second_parenthesis-p3_comma-1));
+                double x1 = x1_g * mainGrid->unit + mainGrid->getX();
+                double y1 = mainGrid->getY() - y1_g * mainGrid->unit;
+                double x2 = x2_g * mainGrid->unit + mainGrid->getX();
+                double y2 = mainGrid->getY() - y2_g * mainGrid->unit;
+                double x3 = x3_g * mainGrid->unit + mainGrid->getX();
+                double y3 = mainGrid->getY() - y3_g * mainGrid->unit;
+
+                Triangle* t = new Triangle(Point(x1,y1),Point(x2,y2),Point(x3,y3));
+                mainGrid->obj.push(new Point(t->point1.getx(),t->point1.gety()));
+                mainGrid->obj.push(new Point(t->point2.getx(),t->point2.gety()));
+                mainGrid->obj.push(new Point(t->point3.getx(),t->point3.gety()));
+                mainGrid->obj.push(t);
+                mainGrid->refresh_grid();
+                ui->graphicsView->refresh_indicators();
+                ui->graphicsView->move_grid_chosen = true;
+                ui->lineEdit->clear();
+                ItemsDisplay();
+            }
+            else
+            {
+                Functions *f = new Functions(input);
+                if (f != NULL)
+                {
+                    f->draw();
+                    mainGrid->obj.push(f);
+                    ItemsDisplay();
+                    ui->lineEdit->clear();
+                }
+            }
         }
     }
 }
@@ -1315,10 +1358,10 @@ void MainWindow::PointSymmetry()
     ItemsDisplay();
 }
 
-void MainWindow::Translate()
+/*void MainWindow::Translate()
 {
     qDebug() << "MainWindow::Translate()";
-}
+}*/
 
 void MainWindow::InscribedCircle()
 {
@@ -1342,6 +1385,7 @@ void MainWindow::InscribedCircle()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::CircumscribedCricle()
@@ -1358,6 +1402,7 @@ void MainWindow::CircumscribedCricle()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::OrthoCenter()
@@ -1377,6 +1422,7 @@ void MainWindow::OrthoCenter()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
 }
 
 void MainWindow::CenterOfGravity()
@@ -1395,7 +1441,9 @@ void MainWindow::CenterOfGravity()
         ui->graphicsView->move_grid_chosen = true;
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
-    }}
+    }
+    ItemsDisplay();
+}
 
 void MainWindow::Delete()
 {

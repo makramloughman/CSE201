@@ -680,7 +680,7 @@ void Container::cleanFrom(Container &c)
         remove(c.polygones[0]);
         for(uint j=0;j<c.polygones[i]->Pointlist.size();j++)
         {
-            c.remove(c.polygones[i]->Pointlist[j]);
+            remove(c.polygones[i]->Pointlist[j]);
         }
         c.remove(c.polygones[0]);
     }
@@ -691,7 +691,7 @@ void Container::cleanFrom(Container &c)
         remove(c.r_polygones[0]);
         for(uint j=0;j<c.r_polygones[i]->Pointlist.size();j++)
         {
-            c.remove(c.r_polygones[i]->Pointlist[j]);
+            remove(c.r_polygones[i]->Pointlist[j]);
         }
         c.remove(c.r_polygones[0]);
     }

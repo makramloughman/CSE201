@@ -142,7 +142,7 @@ public slots:
 
     void LineSymmetry();
     void PointSymmetry();
-    void Translate();
+    // void Translate();
 
     void InscribedCircle();
     void CircumscribedCricle();
