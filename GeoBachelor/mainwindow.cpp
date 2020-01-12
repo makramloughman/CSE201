@@ -340,11 +340,6 @@ void MainWindow::createToolButtons(){
     GeneralButton->setMinimumHeight(32);
     GeneralButton->setMinimumWidth(44);
     GeneralButton->setIconSize(QSize(32,32));
-
-    PushButton2 = new QPushButton("Debug");
-    PushButton2->setMinimumWidth(32);
-    PushButton2->setMinimumHeight(39);
-    QObject::connect(PushButton2, SIGNAL(clicked()), this, SLOT(PushButton3_clicked()));
 }
 
 void MainWindow::createToolBars(){
@@ -360,7 +355,6 @@ void MainWindow::createToolBars(){
     // ui->horizontalLayout_2->addWidget(MeasurementButton);
     ui->horizontalLayout_2->addWidget(TransformationButton);
     ui->horizontalLayout_2->addWidget(GeneralButton);
-    ui->horizontalLayout_2->addWidget(PushButton2);
     ui->horizontalLayout_2->addStretch();
 }
 
@@ -1490,10 +1484,4 @@ MainWindow::~MainWindow()
     delete ClearAction;
     delete GeneralMenu;
     delete GeneralButton;
-    delete PushButton2;
-}
-
-void MainWindow::PushButton3_clicked()
-{
-
 }

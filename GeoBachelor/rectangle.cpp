@@ -16,20 +16,6 @@ Rectangle::Rectangle(Point p1 ,Point p2 ,Point p3 ) : MathObject()
         this->p3 = p3;
         this->p4 = getlastpoint();
     }
-
-
-
-
-
-    // function to make global
-    /*
-    std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    if (countpoints >= 26) {
-        countpoints_2 = (countpoints / 26) - 1;
-        this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
-    else { this->name = s.at( countpoints % s.size() ); }
-    countpoints += 1; // add 1 to the counter
-    */
 }
 
 
@@ -41,9 +27,7 @@ Rectangle::Rectangle(std::vector<QPointF> p)
         this->p2 = p[1];
         this->p3 = p[2];
         this->p4 = getlastpoint();
-    }
-
-    
+    } 
 }
 
 Rectangle:: ~Rectangle()
@@ -77,12 +61,7 @@ Segment Rectangle::diagonale()
     if  ((sqrt(d3)==sqrt(d2)+sqrt(d1)))
     {
         return Segment(p1,p3);
-
     }
-
-
-
-
 }
 
 bool Rectangle::Verifier(Point p1,Point p2,Point p3)
@@ -143,10 +122,6 @@ Point Rectangle::getlastpoint()
         {
            return Point(hp,fp)  ;
         }
-
-
-
-
 }
 
 void Rectangle::draw()

@@ -2,7 +2,6 @@
 
 void Parabola::draw() // TO BE IMPLEMENTED
 {
-
 }
 
 
@@ -13,15 +12,7 @@ void Parabola::translate(double dx, double dy){
 }
 
 bool Parabola::in_personal_area(double x, double y) //TO BE IMPLEMENTED
-{/*
-    THIS IS CODE FOR CIRCLE!!!
-    double ro = distance(Point(x,y),center);
-    if (ro>r-5 && ro<r+5)
-    {
-        return true;
-    }
-    return false;
-  */  
+{
 }
 Parabola:: Parabola(Point f, Line d) : MathObject()
 {
@@ -31,7 +22,6 @@ Parabola:: Parabola(Point f, Line d) : MathObject()
 
 Parabola:: ~Parabola()
 {
-      std::cout << "Destroying Parabola: focus: ( " << focus.getx() << " , " << focus.gety() << " ), directrix: y =  "<< directrix.slope() << "* x + " << directrix.y_intercept() << std::endl;
 }
 
 Point Parabola:: getF()

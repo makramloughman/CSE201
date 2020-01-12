@@ -155,7 +155,6 @@ public slots:
     void ItemsDisplay();
     void LineEditReturn();
     void DeleteItem();
-    void PushButton3_clicked();
 
 protected:
     void resizeEvent(QResizeEvent* event);
@@ -245,8 +244,6 @@ private:
     QAction* ClearAction;
     QMenu* GeneralMenu;
     DropDownToolButton* GeneralButton;
-
-    QPushButton* PushButton2;
 };
 
 #endif // MAINWINDOW_H

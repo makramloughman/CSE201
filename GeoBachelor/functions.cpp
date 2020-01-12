@@ -23,13 +23,6 @@ void Functions::draw()
     FunctionParser fp;
     fp.Parse(expression, "x");
     double values[n+1];
-    //store the values computed by the function
-    /*
-    for ( int i = p1.x();i<=p2.x();i=i+delta)
-    {
-        double variables[1] = {i};
-        double values[] = fp.Eval(variables);
-        */
 
     for (int i =0; i <= n; i=i+1)
     {

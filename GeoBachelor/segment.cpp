@@ -62,14 +62,6 @@ void Segment::move_rightpoint(double x, double y){
 void Segment::move_leftpoint(double x, double y){
     p1.translate(x,y);
 }    //move left point while staying in same line to extand
-/*
-Segment Segment::point_symmetry(double a, double b)
-{  //symmetry wrt a point
-    Point p1_sym = p1.symmetry_point(a, b);
-    Point p2_sym = p2.symmetry_point(a, b);
-    return Segment(p1_sym,p2_sym);
-}
-*/
 
 double Segment::getlength(){
     double x1 = p1.getx();
@@ -106,6 +98,5 @@ Line Segment::perpendicular(Point p){
 
 Segment::~Segment()
 {
-    //std::cout << "Destroying Segment" << std::endl;
 }
 

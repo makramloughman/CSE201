@@ -39,8 +39,6 @@ SOURCES += \
     regularpolygon.cpp \
     segment.cpp \
     rectangle.cpp \
-    angle.cpp \
-    vector.cpp \
     triangle.cpp \
     parabola.cpp \
     ellipse.cpp \
@@ -64,10 +62,7 @@ HEADERS += \
     polygone.h \
     regularpolygon.h \
     segment.h \
-    help.h \
     rectangle.h \
-    angle.h \
-    vector.h \
     triangle.hpp \
     parabola.hpp \
     ellipse.hpp \ 

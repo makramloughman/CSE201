@@ -46,16 +46,6 @@ Line::Line(Point &p1, Point &p2) : MathObject()
 {
     this->p1 = p1;
     this->p2 = p2;
-
-    // function to make global
-    std::string s("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    /*
-    if (countpoints >= 26) {
-        countpoints_2 = (countpoints / 26) - 1;
-        this -> name = s.at( countpoints_2 % s.size() ) + s.at( countpoints % s.size() ); }
-    else { this->name = s.at( countpoints % s.size() ); }
-    countpoints += 1; // add 1 to the counter
-    */
 }
 
 
@@ -211,5 +201,4 @@ std::vector<Point> Line::reflection(Point p)
 
 Line::~Line()
 {
-    //std::cout << "Destroying Line" << std::endl;
 }

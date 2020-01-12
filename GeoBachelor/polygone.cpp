@@ -72,5 +72,4 @@ void Polygone::append(Point p)
 Polygone::~Polygone()
 // delete the polygone
 {
-    std::cout << "Destroying Polygone" << std::endl;
 }
