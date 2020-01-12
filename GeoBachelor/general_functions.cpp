@@ -235,3 +235,48 @@ std::vector<Point *> intersection(Ellipse e, Line l)
     }
     return v;
 }
+
+std::vector<Point *> intersection(SemiLine s1, SemiLine s2)
+{
+    Line* l1 = new Line(s1.p1,s1.p2);
+    Line* l2 = new Line(s2.p1,s2.p2);
+    std::vector<Point*> p = intersection(*l1,*l2);
+    if(p.size()==0)
+    {
+        return p;
+    }
+    else
+    {
+        if(s1.in_personal_area(p[0]->getx(),p[0]->gety()) && s2.in_personal_area(p[0]->getx(),p[0]->gety()))
+        {
+            return p;
+        }
+        else
+        {
+            std::vector<Point*> v;
+            return v;
+        }
+    }
+}
+
+std::vector<Point *> intersection(SemiLine s, Line l)
+{
+    Line* l1 = new Line(s.p1,s.p2);
+    std::vector<Point*> p = intersection(*l1,l);
+    if(p.size()==0)
+    {
+        return p;
+    }
+    else
+    {
+        if(s.in_personal_area(p[0]->getx(),p[0]->gety()))
+        {
+            return p;
+        }
+        else
+        {
+            std::vector<Point*> v;
+            return v;
+        }
+   }
+}

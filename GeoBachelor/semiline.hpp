@@ -7,7 +7,6 @@
 
 class SemiLine : public MathObject
 {
-  
   private:
 
   public:
@@ -16,7 +15,9 @@ class SemiLine : public MathObject
     Point p2;
 
     virtual void draw();
-    virtual void translate(double xx, double yy);
+    virtual void translate(double dx, double dy);
+    virtual bool in_personal_area(double x, double y);
+    virtual void zoom(double coef, double c_x, double c_y);
 
     SemiLine(Point p1, Point p2); //creates a semiline starting from the first point and going through the second point
     SemiLine();
