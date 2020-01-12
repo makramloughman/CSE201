@@ -2,20 +2,20 @@
 #include <mainwindow.h>
 void Polygone::draw()
 {
-
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
     if(this->selected)
     {
         mainW->SetPen(3,Qt::blue);
     }
+
     std::vector<QPointF> help;
     for (uint i=0; i<Pointlist.size(); i++){
-    help.push_back(mainW->mapToMyScene(Pointlist[i].getx(),Pointlist[i].gety()));
+        help.push_back(mainW->mapToMyScene(Pointlist[i].getx(),Pointlist[i].gety()));
+        qDebug() << Pointlist[i].getx() << Pointlist[i].gety();
     }
     mainW->drawPolygon(help);
 
     mainW->ResetPen();
-
 }
 
 bool Polygone::in_personal_area(double x, double y)

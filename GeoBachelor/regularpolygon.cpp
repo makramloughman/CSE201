@@ -15,6 +15,9 @@ RegularPolygone::RegularPolygone() //empty regular polygone with empty vector of
 RegularPolygone::RegularPolygone(Point center, Point p1, int n)
 /* n is the number of segment */
 {
+    this->center = center;
+    this->p1 = p1;
+    this->n = n;
     MainWindow* mainW = MainWindow::getInstance();
     int i;
     double x=center.getxg();

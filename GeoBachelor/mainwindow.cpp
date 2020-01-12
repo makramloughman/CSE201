@@ -498,14 +498,33 @@ void MainWindow::ItemsDisplay()
         QListWidgetItem *item5 = new QListWidgetItem(text5,ui->listWidget);
     }
 
-    unsigned size6 = mainGrid->obj.functions.size();
-    Functions* curr6 = 0;
+    unsigned size6 = mainGrid->obj.r_polygones.size();
+    RegularPolygone* curr6 = 0;
     for (unsigned i = 0 ; i < size6; i++)
     {
-        curr6 = mainGrid->obj.functions[i];
+        curr6 = mainGrid->obj.r_polygones[i];
         if (curr6 != NULL)
         {
-            QString function = QString::fromStdString(curr6->expression);
+            QString text = tr("Regular Polygon:  center = (%1,%2) \n                                   radius = %3 \n                                   n = %4").arg(curr6->center.getxg()).arg(curr6->center.getyg()).arg(curr6->center.distanceg(curr6->p1)).arg(curr6->n);
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size6 > 0)
+    {
+        QString text6 = "";
+        QListWidgetItem *item6 = new QListWidgetItem(text6,ui->listWidget);
+    }
+
+    unsigned size7 = mainGrid->obj.functions.size();
+    Functions* curr7 = 0;
+    for (unsigned i = 0 ; i < size7; i++)
+    {
+        curr7 = mainGrid->obj.functions[i];
+        if (curr7 != NULL)
+        {
+            QString function = QString::fromStdString(curr7->expression);
             QString text = tr("Function:  %1").arg(function);
             QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
             item->setData(Qt::UserRole,i);
@@ -613,6 +632,12 @@ void MainWindow::DeleteItem()
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.triangles[number]);
         mainGrid->obj.triangles[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "R")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.r_polygones[number]);
+        mainGrid->obj.r_polygones[number]->selected = true;
         Delete();
     }
     if (item[0] == "F")
@@ -1393,5 +1418,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::PushButton3_clicked()
 {
-    std::cout<<mainGrid->obj.semi_lines.size()<<std::endl;
+    //std::cout<<mainGrid->obj.semi_lines.size()<<std::endl;
+    drawTriangle(QPointF(mapToMyScene(100, 100)), QPointF(mapToMyScene(200, 100)), QPointF(mapToMyScene(100, 200)));
 }
