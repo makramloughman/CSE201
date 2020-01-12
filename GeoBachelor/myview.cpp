@@ -9,6 +9,7 @@ MyView::MyView(QWidget *parent) : QGraphicsView(parent)
 
     this->segment_chosen = false; //no segment chosen
     this->inf_line_chosen = false; //no infinite line chosen
+    this->semiline_chosen= false;
 
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected
@@ -162,6 +163,40 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         }
         mainW->ItemsDisplay();
     }
+
+    else if (this->semiline_chosen)
+    {
+        if(this->n_counter==0){
+            this->n_counter++;
+            this->clickedP.push_back(mapToScene(ev->x(),ev->y()));
+            mainW->drawPoint(this->clickedP[0]);
+        }
+        else if (this->n_counter==1){
+            //we are drawing the infinite
+
+            QPointF f_point = mapFromScene(this->clickedP[0].x(),clickedP[0].y());
+            QPointF s_point = QPointF(ev->x(),ev->y());
+            mainW->drawPoint(mapToScene(ev->x(),ev->y()));
+            mainW->drawSemiLine(f_point,s_point);
+
+            //changed to view instead of grid
+            Point* p1 = new Point(mainW->mapFromMyScene(this->clickedP[0].x(),clickedP[0].y()));
+            Point* p2 = new Point(ev->x(),ev->y());
+            SemiLine* p = new SemiLine(*p1,*p2);
+            mainW -> mainGrid -> obj.push(p);
+            mainW -> mainGrid -> obj.push(p1);
+            mainW -> mainGrid -> obj.push(p2);
+
+            int m = mainW->mainGrid->obj.points.size();
+            mainW->mainGrid->obj.points[m-1]->drawName(m-1);
+            mainW->mainGrid->obj.points[m-2]->drawName(m-2);
+
+            mainW->mainGrid->refresh_grid();
+            refresh_indicators();
+            this->move_grid_chosen = true;
+        }
+    }
+
     else if (this->point_chosen)
     {
         mainW -> drawPoint(mapToScene(ev->x(),ev->y()));
@@ -364,6 +399,7 @@ void MyView::refresh_indicators()
 
     this->segment_chosen = false; //no segment chosen
     this->inf_line_chosen = false; //no infinite line chosen
+    this->semiline_chosen = false;
 
     this->polygon_chosen = false; //no polygon chosen
     this->n_counter = 0; //zero points selected

@@ -678,10 +678,6 @@ void MainWindow::drawSemiLine(QPointF p1, QPointF p2)
     slope = l->slope();
     term = l->y_intercept();
 
-    //l->draw();
-    q1->draw();
-    q2->draw();
-
     QPointF a = ui->graphicsView->mapToScene(p1.x(),p1.y());
     int x1 = ui->graphicsView->width();
 
@@ -934,8 +930,23 @@ void MainWindow::Segment_()
 }
 
 void MainWindow::Ray(){
-    qDebug() << "MainWindow::Ray()";
-}
+    if(ui->graphicsView->chosen_objects.size()==2 && ui->graphicsView->chosen_objects.points.size()==2)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        SemiLine* s = new SemiLine(*p1,*p2);
+        mainGrid->obj.push(s);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+    else
+    {
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->semiline_chosen = true;
+    }}
 
 void MainWindow::Polyline(){
     qDebug() << "MainWindow::Polyline()";
@@ -1285,6 +1296,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::PushButton3_clicked()
 {
-    //drawEllipse(QPointF(150,100),100,50);
-    drawSemiLine(QPointF(100,150),QPointF(120,170));
+    std::cout<<mainGrid->obj.semi_lines.size()<<std::endl;
 }

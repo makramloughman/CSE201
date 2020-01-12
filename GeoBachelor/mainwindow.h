@@ -31,6 +31,7 @@
 #include <QFont>
 #include "functions.hpp"
 #include "ellipse.hpp"
+#include <semiline.hpp>
 
 namespace Ui {
 class MainWindow;

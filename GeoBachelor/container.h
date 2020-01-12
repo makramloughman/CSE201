@@ -14,6 +14,7 @@
 #include <polygone.h>
 #include <functions.hpp>
 #include <ellipse.hpp>
+#include <semiline.hpp>
 
 class Container
 {
@@ -32,6 +33,7 @@ class Container
         void push(RegularPolygone* rp);
         void push(Functions* f);
         void push(Ellipse* e);
+        void push(SemiLine* s);
 
         void remove(Point p);
         void remove(Point* p);
@@ -51,6 +53,8 @@ class Container
         void remove(Functions f);
         void remove(Ellipse* e);
         void remove(Ellipse e);
+        void remove(SemiLine* s);
+        void remove(SemiLine s);
 
         std::vector<Point*> points;
         std::vector<Line*> lines;
@@ -61,6 +65,7 @@ class Container
         std::vector<RegularPolygone*> r_polygones;
         std::vector<Functions*> functions;
         std::vector<Ellipse*> ellipses;
+        std::vector<SemiLine*> semi_lines;
         int number_of_bins;
 
         void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid

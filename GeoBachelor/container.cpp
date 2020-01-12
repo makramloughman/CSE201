@@ -10,7 +10,7 @@ bool Container::check_if_in(Point p)
 {
     for(uint i=0; i<points.size();i++)
     {
-        if (distance(*points[i],p)<5)
+        if (distance(*points[i],p)<10)
         {
             return true;
         }
@@ -68,6 +68,11 @@ void Container::push(Functions *f)
 void Container::push(Ellipse *e)
 {
     ellipses.push_back(e);
+}
+
+void Container::push(SemiLine *s)
+{
+    semi_lines.push_back(s);
 }
 
 void Container::remove(Point p)
@@ -270,6 +275,27 @@ void Container::remove(Ellipse e)
     }
 }
 
+void Container::remove(SemiLine *s)
+{
+    remove(*s);
+}
+
+void Container::remove(SemiLine s)
+{
+    std::vector<int> pos;
+    for (uint i=0;i<semi_lines.size();i++)
+    {
+        if (matching(semi_lines[i]->p1,s.p1) && matching(semi_lines[i]->p2,s.p2))
+        {
+            pos.push_back(i);
+        }
+    }
+    for (uint i=0;i<pos.size();i++)
+    {
+        semi_lines.erase(semi_lines.begin()+pos[i]-i);
+    }
+}
+
 void Container::remove(Functions *f)
 {
     remove(*f);
@@ -317,12 +343,18 @@ void Container::move_refresh(double dx, double dy)
         ellipses[i]->draw();
     }
 
+    for(uint i=0;i<semi_lines.size();i++)
+    {
+        semi_lines[i]->translate(dx,dy);
+        semi_lines[i]->draw();
+    }
+
     for(uint i=0;i<functions.size();i++)
     {
         functions[i]->draw();
     }
 
-    for(int i=0;i<points.size();i++) //ORDER MATTERS
+    for(uint i=0;i<points.size();i++) //ORDER MATTERS
     {
         points[i]->translate(dx,dy);
         points[i]->draw();
@@ -429,6 +461,25 @@ bool Container::find_personal_and_store(Container &c, double x, double y)
             {
                 c.remove(lines[i]);
                 lines[i]->selected = false;
+            }
+            return true;
+        }
+    }
+
+    for(uint i=0;i<semi_lines.size();i++)
+    {
+        bool b =semi_lines[i] -> in_personal_area(x,y);
+        if(b)
+        {
+            if (!semi_lines[i]->selected)
+            {
+                c.push(semi_lines[i]); //POINTER, PAY ATTENTION
+                semi_lines[i]->selected = true;
+            }
+            else
+            {
+                c.remove(semi_lines[i]);
+                semi_lines[i]->selected = false;
             }
             return true;
         }
@@ -551,11 +602,15 @@ void Container::deselect()
     {
         ellipses[i]->selected = false;
     }
+    for(uint i=0;i<semi_lines.size();i++)
+    {
+        semi_lines[i]->selected = false;
+    }
 }
 
 int Container::size()
 {
-    return circles.size()+points.size()+lines.size()+segments.size()+triangles.size()+polygones.size()+r_polygones.size()+functions.size()+ellipses.size();
+    return circles.size()+points.size()+lines.size()+segments.size()+triangles.size()+polygones.size()+r_polygones.size()+functions.size()+ellipses.size()+semi_lines.size();
 }
 
 void Container::empty_bins()
@@ -569,6 +624,7 @@ void Container::empty_bins()
     r_polygones.clear();
     functions.clear();
     ellipses.clear();
+    semi_lines.clear();
 }
 
 void Container::cleanFrom(Container &c)
@@ -588,6 +644,15 @@ void Container::cleanFrom(Container &c)
         remove(c.lines[0]->p1);
         remove(c.lines[0]->p2);
         c.remove(c.lines[0]);
+    }
+
+    n = c.semi_lines.size();
+    for(uint i=0;i<n;i++)
+    {
+        remove(c.semi_lines[0]);
+        remove(c.semi_lines[0]->p1);
+        remove(c.semi_lines[0]->p2);
+        c.remove(c.semi_lines[0]);
     }
 
     n = c.segments.size();
@@ -613,7 +678,7 @@ void Container::cleanFrom(Container &c)
     for(uint i=0;i<n;i++)
     {
         remove(c.polygones[0]);
-        for(uint j=0;j<c.polygones[j]->Pointlist.size();j++)
+        for(uint j=0;j<c.polygones[i]->Pointlist.size();j++)
         {
             c.remove(c.polygones[i]->Pointlist[j]);
         }
@@ -624,7 +689,7 @@ void Container::cleanFrom(Container &c)
     for(uint i=0;i<n;i++)
     {
         remove(c.r_polygones[0]);
-        for(uint j=0;j<c.r_polygones[j]->Pointlist.size();j++)
+        for(uint j=0;j<c.r_polygones[i]->Pointlist.size();j++)
         {
             c.remove(c.r_polygones[i]->Pointlist[j]);
         }
@@ -685,6 +750,10 @@ void Container::zoom(double coef, double c_x, double c_y)
     {
         ellipses[i]->zoom(coef,c_x,c_y);
     }
+    for(uint i=0;i<semi_lines.size();i++)
+    {
+        semi_lines[i]->zoom(coef,c_x,c_y);
+    }
 
 }
 
@@ -695,6 +764,10 @@ std::vector<Point *> Container::IntersectObjects()
     //firstly, add the segments from triangles:
     for(uint i=0;i<triangles.size();i++)
     {
+        push(new Point(triangles[i]->point1.getx(),triangles[i]->point1.gety()));
+        push(new Point(triangles[i]->point2.getx(),triangles[i]->point2.gety()));
+        push(new Point(triangles[i]->point3.getx(),triangles[i]->point3.gety()));
+
         push(new Segment(triangles[i]->point1,triangles[i]->point2));
         push(new Segment(triangles[i]->point2,triangles[i]->point3));
         push(new Segment(triangles[i]->point1,triangles[i]->point3));
@@ -705,16 +778,20 @@ std::vector<Point *> Container::IntersectObjects()
         for(uint j=0;j<polygones[i]->Pointlist.size()-1;j++)
         {
             push(new Segment(polygones[i]->Pointlist[j],polygones[i]->Pointlist[j+1]));
+            push(new Point(polygones[i]->Pointlist[j].getx(),polygones[i]->Pointlist[j].gety()));
         }
         push(new Segment(polygones[i]->Pointlist[0],polygones[i]->Pointlist[polygones[i]->Pointlist.size()-1]));
+        push(new Point(polygones[i]->Pointlist[polygones[i]->Pointlist.size()-1].getx(),polygones[i]->Pointlist[polygones[i]->Pointlist.size()-1].gety()));
     }
 
     for(uint i = 0;i<r_polygones.size();i++)
     {
         for(uint j=0;j<r_polygones[i]->Pointlist.size()-1;j++)
         {
+            push(new Point(r_polygones[i]->Pointlist[j].getx(),r_polygones[i]->Pointlist[j].gety()));
             push(new Segment(r_polygones[i]->Pointlist[j],r_polygones[i]->Pointlist[j+1]));
         }
+        push(new Point(r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1].getx(),r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1].gety()));
         push(new Segment(r_polygones[i]->Pointlist[0],r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1]));
     }
 
@@ -724,6 +801,22 @@ std::vector<Point *> Container::IntersectObjects()
         {
             std::vector<Point*> help;
             help = intersection(*lines[i],*lines[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
+            }
+        }
+    }
+
+    for(uint i=0;i<semi_lines.size();i++)
+    {
+        for (uint j=i+1;j<semi_lines.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*semi_lines[i],*semi_lines[j]);
             for(uint k=0;k<help.size();k++)
             {
                 if(!check_if_in(*help[k]))
@@ -772,6 +865,22 @@ std::vector<Point *> Container::IntersectObjects()
         {
             std::vector<Point*> help;
             help = intersection(*lines[i],*segments[j]);
+            for(uint k=0;k<help.size();k++)
+            {
+                if(!check_if_in(*help[k]))
+                {
+                    vec.push_back(help[k]);
+                }
+            }
+        }
+    }
+
+    for(uint i=0;i<lines.size();i++)
+    {
+        for (uint j=0;j<semi_lines.size();j++)
+        {
+            std::vector<Point*> help;
+            help = intersection(*semi_lines[i],*lines[j]);
             for(uint k=0;k<help.size();k++)
             {
                 if(!check_if_in(*help[k]))

@@ -4,19 +4,58 @@
 void SemiLine::draw()
 {
     MainWindow* mainW = MainWindow::getInstance(); //One and only one MainWindow that we have
-    QPointF f1 = mainW->mapFromGridToScene(p1.getx(),p1.gety());
-    QPointF f2 = mainW->mapFromGridToScene(p2.getx(),p2.gety());
-    mainW -> drawInfiniteLine(f1,f2); //Remark: We save data in Grid coordinates, so we need conversion
+    if(this->selected)
+    {
+        mainW->SetPen(3 , Qt::blue);
+    }
+    QPointF f1 = QPointF(p1.getx(),p1.gety());
+    QPointF f2 = QPointF(p2.getx(),p2.gety());
+    mainW -> drawSemiLine(f1,f2); //Remark: We save data in Grid coordinates, so we need conversion
+    mainW->ResetPen();
 }
 
-void SemiLine::translate(double xx, double yy)
+void SemiLine::translate(double dx, double dy)
 {
-    p1.setx(p1.getx()+xx);
-    p1.sety(p1.gety()+yy);
-    p2.setx(p2.getx()+xx);
-    p2.sety(p2.gety()+yy);
+    p1.setx(p1.getx()+dx);
+    p1.sety(p1.gety()+dy);
+    p2.setx(p2.getx()+dx);
+    p2.sety(p2.gety()+dy);
 
 }
+
+bool SemiLine::in_personal_area(double x, double y)
+{
+    Line* l = new Line(p1,p2);
+    bool b = l->in_personal_area(x,y);
+    if(!b)
+    {
+        return false;
+    }
+
+    if(p1.getx()>p2.getx())
+    {
+        if(x<p1.getx()+2)
+        {
+            return true;
+        }
+    }
+
+    if(p1.getx()<p2.getx())
+    {
+        if(x>p1.getx()-2)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void SemiLine::zoom(double coef, double c_x, double c_y)
+{
+    p1.zoom(coef,c_x,c_y);
+    p2.zoom(coef,c_x,c_y);
+}
+
 
 SemiLine::SemiLine(Point p1, Point p2)
 {
