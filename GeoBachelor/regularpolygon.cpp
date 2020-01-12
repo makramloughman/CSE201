@@ -21,7 +21,7 @@ RegularPolygone::RegularPolygone(Point center, Point p1, int n)
     double y=center.getyg();
     size=n;
     double radius=center.distanceg(p1);
-    double angle=2*M_PI/size;
+    double angle = 2*M_PI/size;
     for(i=0; i<n ;i++){
 
         double ag=x+radius*cos(2*M_PI*i/n);
@@ -29,7 +29,7 @@ RegularPolygone::RegularPolygone(Point center, Point p1, int n)
         double a=ag*mainW->mainGrid->unit+mainW->mainGrid->getX();
         double b=mainW->mainGrid->getY()-bg*mainW->mainGrid->unit;
 
-        Point vertice=Point(a,b);
+        Point vertice = Point(a,b);
         Pointlist.push_back(vertice);
     }
 }
