@@ -1191,17 +1191,28 @@ void MainWindow::PerpendicularBisector(){
 
 void MainWindow::AngleBisector()
 {
-    /*
-    if(ui->graphicsView->chosen_objects.segments.size()==3 && ui->graphicsView->chosen_objects.size()==3)
+
+    if(ui->graphicsView->chosen_objects.points.size()==3 && ui->graphicsView->chosen_objects.size()==3)
     {
-        Segment* s = new Segment(*ui->graphicsView->chosen_objects.points[0],*ui->graphicsView->chosen_objects.points[1]);
-        double d = s->getlength();
-        Circle* c = new Circle(*ui->graphicsView->chosen_objects.points[1],d);
-        Line* l1 = new Segment(*ui->graphicsView->chosen_objects.points[0],*ui->graphicsView->chosen_objects.points[1]);
-        Line* l2 = new Line(*ui->graphicsView->chosen_objects.points[2],*ui->graphicsView->chosen_objects.points[1]);
+        Point* p1 = ui->graphicsView->chosen_objects.points[0];
+        Point* p2 = ui->graphicsView->chosen_objects.points[1];
+        Point* p3 = ui->graphicsView->chosen_objects.points[2];
+
+        Triangle* t = new Triangle(*p1,*p2,*p3);
+        Circle c = t->getInscribedcercle();
+        mainGrid->obj.push(new Line(*p2,c.center));
+        mainGrid->obj.push(new Point(c.center.getx(),c.center.gety()));
+        mainGrid->obj.push(new Segment(*p1,*p2));
+        mainGrid->obj.push(new Segment(*p3,*p2));
+
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
 
     }
-    */
+
 }
 
 void MainWindow::Tangent(){
