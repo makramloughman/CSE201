@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <mainwindow.h>
 
+/*void Angle::draw()
+{
+
+}*/
+
 Angle::Angle(Point p1,Point m,Point p3)
 {
     this->p1=p1;
@@ -43,8 +48,8 @@ double Angle::get_angle_degree()
 
     return angleDeg;
 }
-/*
-double Angle::bisector()
+
+/*double Angle::bisector()
 {
     Point p1_new=Point(p1.getx()-m.getx(),p1.gety()-m.gety());
     Point p2_new=Point(p3.getx()-m.getx(),p3.getx()-m.gety());
@@ -53,4 +58,8 @@ double Angle::bisector()
     double OB=atan(p3.gety()-m.gety()/p3.getx()-m.getx());
     double O=acos((p1_new*p2_new)/(sqrt(((p1_new.getx())**2+(p1_new.gety())**2))*(sqrt(((p2_new.getx())**2+(p2_new.gety())**2)))));
     double Q=min(OA,OB)+O/2;
+    double dy=atan(Q);
+    Point D=Point(1+m.getx(),dy+m.gety());
+    return Line(m,D);
+
 }*/
