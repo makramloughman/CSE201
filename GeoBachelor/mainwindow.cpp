@@ -1049,8 +1049,19 @@ void MainWindow::PerpendicularBisector(){
     ItemsDisplay();
 }
 
-void MainWindow::AngleBisector(){
-    qDebug() << "MainWindow::AngleBisector()";
+void MainWindow::AngleBisector()
+{
+    /*
+    if(ui->graphicsView->chosen_objects.segments.size()==3 && ui->graphicsView->chosen_objects.size()==3)
+    {
+        Segment* s = new Segment(*ui->graphicsView->chosen_objects.points[0],*ui->graphicsView->chosen_objects.points[1]);
+        double d = s->getlength();
+        Circle* c = new Circle(*ui->graphicsView->chosen_objects.points[1],d);
+        Line* l1 = new Segment(*ui->graphicsView->chosen_objects.points[0],*ui->graphicsView->chosen_objects.points[1]);
+        Line* l2 = new Line(*ui->graphicsView->chosen_objects.points[2],*ui->graphicsView->chosen_objects.points[1]);
+
+    }
+    */
 }
 
 void MainWindow::Tangent(){
