@@ -202,10 +202,10 @@ private:
     QMenu* SpecialLineMenu;
     DropDownToolButton* SpecialLineButton;
 
-    QAction* RegularPolygonAction;
+    // QAction* RegularPolygonAction;
     QAction* PolygonAction;
-    QAction* SquareAction;
-    QAction* RectangleAction;
+    // QAction* SquareAction;
+    // QAction* RectangleAction;
     QMenu* PolygonMenu;
     DropDownToolButton* PolygonButton;
 
@@ -223,8 +223,8 @@ private:
     DropDownToolButton* CircleButton;
 
     QAction* EllipseAction;
-    QAction* ParabolaAction;
-    QAction* HyperbolaAction;
+    // QAction* ParabolaAction;
+    // QAction* HyperbolaAction;
     QMenu* ConicMenu;
     DropDownToolButton* ConicButton;
 

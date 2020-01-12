@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+﻿ #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "point.hpp"
 #include "rectangle.h"
@@ -53,10 +53,10 @@ void MainWindow::createActions(){
     AngleBisectorAction = new QAction("Angle Bisector", this);
     TangentAction = new QAction("Tangent", this);
 
-    RegularPolygonAction = new QAction("Regular Polygon", this);
+    // RegularPolygonAction = new QAction("Regular Polygon", this);
     PolygonAction = new QAction("Polygon",this);
-    SquareAction = new QAction("Square", this);
-    RectangleAction = new QAction("Rectangle", this);
+    // SquareAction = new QAction("Square", this);
+    // RectangleAction = new QAction("Rectangle", this);
 
     TriangleAction = new QAction("Triangle", this);
     InscribedCircleAction = new QAction("Inscribed Circle", this);
@@ -68,8 +68,8 @@ void MainWindow::createActions(){
     CircleCRTAction = new QAction("Circle: Center and Radius", this);
 
     EllipseAction = new QAction("Ellipse", this);
-    ParabolaAction = new QAction("Parabola", this);
-    HyperbolaAction = new QAction("Hyperbola", this);
+    // ParabolaAction = new QAction("Parabola", this);
+    // HyperbolaAction = new QAction("Hyperbola", this);
 
     // AngleAction = new QAction("Angle", this);
     // DistanceAction = new QAction("Distance or Length", this);
@@ -108,10 +108,10 @@ void MainWindow::createActions(){
     AngleBisectorAction->setIcon(QIcon(":/images/angularbisector.png"));
     TangentAction->setIcon(QIcon(":/images/tangent.png"));
 
-    RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
+    // RegularPolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
     PolygonAction->setIcon(QIcon(":/images/regularpolygon.png"));
-    SquareAction->setIcon(QIcon(":/images/square.png"));
-    RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
+    // SquareAction->setIcon(QIcon(":/images/square.png"));
+    // RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
 
     TriangleAction->setIcon(QIcon(":/images/polygon.png"));
     InscribedCircleAction->setIcon(QIcon(":/images/special2.png"));
@@ -123,8 +123,8 @@ void MainWindow::createActions(){
     CircleCRTAction->setIcon(QIcon(":/images/circlepointradius.png"));
 
     EllipseAction->setIcon(QIcon(":/images/ellipse.png"));
-    ParabolaAction->setIcon(QIcon(":/images/parabola.png"));
-    HyperbolaAction->setIcon(QIcon(":/images/hyperbola3.png"));
+    // ParabolaAction->setIcon(QIcon(":/images/parabola.png"));
+    // HyperbolaAction->setIcon(QIcon(":/images/hyperbola3.png"));
 
     // AngleAction->setIcon(QIcon(":/images/angle.png"));
     // DistanceAction->setIcon(QIcon(":/images/distance.png"));
@@ -163,10 +163,10 @@ void MainWindow::createActions(){
     QObject::connect(AngleBisectorAction, SIGNAL(triggered()), this, SLOT(AngleBisector()));
     QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
 
-    QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
+    // QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
     QObject::connect(PolygonAction, SIGNAL(triggered()),this,SLOT(PolygonDialog()));
-    QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
-    QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
+    // QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
+    // QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
 
     QObject::connect(TriangleAction, SIGNAL(triggered()), this, SLOT(Triangle_()));
     QObject::connect(InscribedCircleAction, SIGNAL(triggered()), this, SLOT(InscribedCircle()));
@@ -178,8 +178,8 @@ void MainWindow::createActions(){
     QObject::connect(CircleCRTAction, SIGNAL(triggered()), this, SLOT(CircleCRT()));
 
     QObject::connect(EllipseAction, SIGNAL(triggered()), this, SLOT(Ellipse_()));
-    QObject::connect(ParabolaAction, SIGNAL(triggered()), this, SLOT(Parabola()));
-    QObject::connect(HyperbolaAction, SIGNAL(triggered()), this, SLOT(Hyperbola()));
+    // QObject::connect(ParabolaAction, SIGNAL(triggered()), this, SLOT(Parabola()));
+    // QObject::connect(HyperbolaAction, SIGNAL(triggered()), this, SLOT(Hyperbola()));
 
     // QObject::connect(AngleAction, SIGNAL(triggered()), this, SLOT(Angle()));
     // QObject::connect(DistanceAction, SIGNAL(triggered()), this, SLOT(Distance()));
@@ -225,10 +225,10 @@ void MainWindow::createMenus(){
     SpecialLineMenu->addAction(TangentAction);
 
     PolygonMenu = new QMenu;
-    PolygonMenu->addAction(RegularPolygonAction);
+    // PolygonMenu->addAction(RegularPolygonAction);
     PolygonMenu->addAction(PolygonAction);
-    PolygonMenu->addAction(SquareAction);
-    PolygonMenu->addAction(RectangleAction);
+    // PolygonMenu->addAction(SquareAction);
+    // PolygonMenu->addAction(RectangleAction);
 
     TriangleFunctionsMenu = new QMenu;
     TriangleFunctionsMenu->addAction(TriangleAction);
@@ -243,8 +243,8 @@ void MainWindow::createMenus(){
 
     ConicMenu = new QMenu;
     ConicMenu->addAction(EllipseAction);
-    ConicMenu->addAction(ParabolaAction);
-    ConicMenu->addAction(HyperbolaAction);
+    // ConicMenu->addAction(ParabolaAction);
+    // ConicMenu->addAction(HyperbolaAction);
 
     // MeasurementMenu = new QMenu;
     // MeasurementMenu->addAction(AngleAction);
@@ -1532,10 +1532,10 @@ MainWindow::~MainWindow()
     delete TangentAction;
     delete SpecialLineMenu;
     delete SpecialLineButton;
-    delete RegularPolygonAction;
+    // delete RegularPolygonAction;
     delete PolygonAction;
-    delete SquareAction;
-    delete RectangleAction;
+    // delete SquareAction;
+    // delete RectangleAction;
     delete PolygonMenu;
     delete PolygonButton;
     delete TriangleAction;
@@ -1550,8 +1550,8 @@ MainWindow::~MainWindow()
     delete CircleMenu;
     delete CircleButton;
     delete EllipseAction;
-    delete ParabolaAction;
-    delete HyperbolaAction;
+    // delete ParabolaAction;
+    // delete HyperbolaAction;
     delete ConicMenu;
     delete ConicButton;
     // delete AngleAction;
