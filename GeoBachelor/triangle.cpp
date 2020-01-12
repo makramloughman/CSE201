@@ -159,7 +159,6 @@ Segment Triangle::Baricenter3(){
     return Segment(m, point3);
 }
 
-
 Point Triangle::getCenterofgravity(){
     Segment seg1=Baricenter1();
     Segment seg2=Baricenter2();
@@ -170,21 +169,28 @@ Point Triangle::getCenterofgravity(){
 Point Triangle::getOrthocenter(){
     Segment s1=Segment(point1,point2);
     Segment s2=Segment(point2,point3);
-    Point m1=s1.midpoint();
-    Point m2=s2.midpoint();
-    Line per_s1=s1.perpendicular(m1);
-    Line per_s2=s2.perpendicular(m2);
-    return *intersection(per_s1,per_s2)[0];
+    Line m1=s1.perpendicular(point3);
+    Line m2=s2.perpendicular(point1);
+    return *intersection(m1,m2)[0];
 }
 
 Circle Triangle::Circumscribedcercle(){
-    Point o=getOrthocenter();
+    Segment s1=Segment(point1,point2);
+    Segment s2=Segment(point2,point3);
+    Point m11=s1.midpoint();
+    Point m21=s2.midpoint();
+    Line m1=s1.perpendicular(m11);
+    Line m2=s2.perpendicular(m21);
+    Point o = *intersection(m1,m2)[0];
     double r=distance(o,point1);
     return Circle(o,r);
 }
 
 Circle Triangle::getInscribedcercle(){
-    Point o=getCenterofgravity();
+    double c = point1.distance(point2);
+    double a = point2.distance(point3);
+    double  b= point1.distance(point3);
+    Point* o=new Point((a*point1.getx()+b*point2.getx()+c*point3.getx())/(a+b+c),(a*point1.gety()+b*point2.gety()+c*point3.gety())/(a+b+c));
     double r=(2*getArea())/getPerimeter();
-    return Circle(o,r);
+    return Circle(*o,r+0.001);
 }

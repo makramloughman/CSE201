@@ -806,6 +806,8 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
+
                 }
             }
         }
@@ -822,6 +824,8 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
+
                 }
             }
         }
@@ -838,6 +842,8 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
+
                 }
             }
         }
@@ -854,6 +860,8 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
+
                 }
             }
         }
@@ -870,6 +878,8 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
+
                 }
             }
         }
@@ -886,6 +896,7 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
                 }
             }
         }
@@ -902,6 +913,7 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
                 }
             }
         }
@@ -918,6 +930,7 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
                 }
             }
         }
@@ -934,6 +947,8 @@ std::vector<Point *> Container::IntersectObjects()
                 if(!check_if_in(*help[k]))
                 {
                     vec.push_back(help[k]);
+                    push(help[k]);
+
                 }
             }
         }

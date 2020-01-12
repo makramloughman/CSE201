@@ -490,7 +490,8 @@ qrc_resources.cpp: ../GeoBachelor/resources.qrc \
 		../GeoBachelor/images/clear.png \
 		../GeoBachelor/images/polyline.png \
 		../GeoBachelor/images/hyperbola3.png \
-		../GeoBachelor/images/rectangle.png
+		../GeoBachelor/images/rectangle.png \
+		../GeoBachelor/images/special2.png
 	/usr/lib/qt5/bin/rcc -name resources ../GeoBachelor/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

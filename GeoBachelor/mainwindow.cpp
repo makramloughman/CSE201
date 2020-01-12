@@ -33,19 +33,19 @@ void MainWindow::createActions(){
     SelectAction = new QAction("Select", this);
 
     PointAction = new QAction("Point", this);
-    PointOnObjectAction = new QAction("Point on Object", this);
+    // PointOnObjectAction = new QAction("Point on Object", this);
     IntersectAction = new QAction("Intersect", this);
     MidPointAction = new QAction("Midpoint or Center", this);
-    ComplexPointAction = new QAction("Complex Number", this);
-    ExtremumAction = new QAction("Extremum", this);
-    RootsAction = new QAction("Roots", this);
+    // ComplexPointAction = new QAction("Complex Number", this);
+    // ExtremumAction = new QAction("Extremum", this);
+    // RootsAction = new QAction("Roots", this);
 
     LineAction = new QAction("Line", this);
     SegmentAction = new QAction("Segment", this);
     RayAction = new QAction("Ray", this);
-    PolylineAction = new QAction("Polyliner", this);
-    VectorAction = new QAction("Vector", this);
-    VectorFromPointAction = new QAction("Vector from Point", this);
+    // PolylineAction = new QAction("Polyliner", this);
+    // VectorAction = new QAction("Vector", this);
+    // VectorFromPointAction = new QAction("Vector from Point", this);
 
     PerpendicularLineAction = new QAction("Perpendicular Line", this);
     ParallelLineAction = new QAction("Parallel Line", this);
@@ -71,15 +71,15 @@ void MainWindow::createActions(){
     ParabolaAction = new QAction("Parabola", this);
     HyperbolaAction = new QAction("Hyperbola", this);
 
-    AngleAction = new QAction("Angle", this);
-    DistanceAction = new QAction("Distance or Length", this);
-    AreaAction = new QAction("Area", this);
-    SlopeAction = new QAction("Slope", this);
-    RelationAction = new QAction("Relation", this);
+    // AngleAction = new QAction("Angle", this);
+    // DistanceAction = new QAction("Distance or Length", this);
+    // AreaAction = new QAction("Area", this);
+    // SlopeAction = new QAction("Slope", this);
+    // RelationAction = new QAction("Relation", this);
 
     LineSymmetryAction = new QAction("Reflect about Line", this);
     PointSymmetryAction = new QAction("Reflect about Point", this);
-    TranslateAction = new QAction("Translate by Vector", this);
+    // TranslateAction = new QAction("Translate by Vector", this);
 
     DeleteAction = new QAction("Delete", this);
     ClearAction = new QAction("Clear", this);
@@ -88,19 +88,19 @@ void MainWindow::createActions(){
     SelectAction->setIcon(QIcon(":/images/middlefinger.png"));
 
     PointAction->setIcon(QIcon(":/images/point.png"));
-    PointOnObjectAction->setIcon(QIcon(":/images/pointonobject.png"));
+    // PointOnObjectAction->setIcon(QIcon(":/images/pointonobject.png"));
     IntersectAction->setIcon(QIcon(":/images/intersect.png"));
     MidPointAction->setIcon(QIcon(":/images/midpoint.png"));
-    ComplexPointAction->setIcon(QIcon(":/images/complexnumber.png"));
-    ExtremumAction->setIcon(QIcon(":/images/extremum.png"));
-    RootsAction->setIcon(QIcon(":/images/roots.png"));
+    // ComplexPointAction->setIcon(QIcon(":/images/complexnumber.png"));
+    // ExtremumAction->setIcon(QIcon(":/images/extremum.png"));
+    // RootsAction->setIcon(QIcon(":/images/roots.png"));
 
     LineAction->setIcon(QIcon(":/images/join.png"));
     SegmentAction->setIcon(QIcon(":/images/segment.png"));
     RayAction->setIcon(QIcon(":/images/ray.png"));
-    PolylineAction->setIcon(QIcon(":/images/polyline.png"));
-    VectorAction->setIcon(QIcon(":/images/vector.png"));
-    VectorFromPointAction->setIcon(QIcon(":/images/vectorfrompoint.png"));
+    // PolylineAction->setIcon(QIcon(":/images/polyline.png"));
+    // VectorAction->setIcon(QIcon(":/images/vector.png"));
+    // VectorFromPointAction->setIcon(QIcon(":/images/vectorfrompoint.png"));
 
     PerpendicularLineAction->setIcon(QIcon(":/images/orthogonal.png"));
     ParallelLineAction->setIcon(QIcon(":/images/parallel.png"));
@@ -114,10 +114,10 @@ void MainWindow::createActions(){
     RectangleAction->setIcon(QIcon(":/images/rectangle.png"));
 
     TriangleAction->setIcon(QIcon(":/images/polygon.png"));
-    InscribedCircleAction->setIcon(QIcon(":/images/xxx.png"));
-    CircumscribedCricleAction->setIcon(QIcon(":/images/xxx.png"));
-    OrthoCenterAction->setIcon(QIcon(":/images/xxx.png"));
-    CenterOfGravityAction->setIcon(QIcon(":/images/xxx.png"));
+    InscribedCircleAction->setIcon(QIcon(":/images/special2.png"));
+    CircumscribedCricleAction->setIcon(QIcon(":/images/special2.png"));
+    OrthoCenterAction->setIcon(QIcon(":/images/special2.png"));
+    CenterOfGravityAction->setIcon(QIcon(":/images/special2.png"));
 
     CircleCPTAction->setIcon(QIcon(":/images/circle2.png"));
     CircleCRTAction->setIcon(QIcon(":/images/circlepointradius.png"));
@@ -126,15 +126,15 @@ void MainWindow::createActions(){
     ParabolaAction->setIcon(QIcon(":/images/parabola.png"));
     HyperbolaAction->setIcon(QIcon(":/images/hyperbola3.png"));
 
-    AngleAction->setIcon(QIcon(":/images/angle.png"));
-    DistanceAction->setIcon(QIcon(":/images/distance.png"));
-    AreaAction->setIcon(QIcon(":/images/area.png"));
-    SlopeAction->setIcon(QIcon(":/images/slope.png"));
-    RelationAction->setIcon(QIcon(":/images/relation.png"));
+    // AngleAction->setIcon(QIcon(":/images/angle.png"));
+    // DistanceAction->setIcon(QIcon(":/images/distance.png"));
+    // AreaAction->setIcon(QIcon(":/images/area.png"));
+    // SlopeAction->setIcon(QIcon(":/images/slope.png"));
+    // RelationAction->setIcon(QIcon(":/images/relation.png"));
 
     LineSymmetryAction->setIcon(QIcon(":/images/mirroratline.png"));
     PointSymmetryAction->setIcon(QIcon(":/images/mirroratpoint.png"));
-    TranslateAction->setIcon(QIcon(":/images/translatebyvector.png"));
+    // TranslateAction->setIcon(QIcon(":/images/translatebyvector.png"));
 
     DeleteAction->setIcon(QIcon(":/images/delete.png"));
     ClearAction->setIcon(QIcon(":/images/clear.png"));
@@ -143,19 +143,19 @@ void MainWindow::createActions(){
     QObject::connect(SelectAction, SIGNAL(triggered()), this, SLOT(Select()));
 
     QObject::connect(PointAction, SIGNAL(triggered()), this, SLOT(Point_()));
-    QObject::connect(PointOnObjectAction, SIGNAL(triggered()), this, SLOT(PointOnObject()));
+    // QObject::connect(PointOnObjectAction, SIGNAL(triggered()), this, SLOT(PointOnObject()));
     QObject::connect(IntersectAction, SIGNAL(triggered()), this, SLOT(Intersection()));
     QObject::connect(MidPointAction, SIGNAL(triggered()), this, SLOT(MidPoint()));
-    QObject::connect(ComplexPointAction, SIGNAL(triggered()), this, SLOT(ComplexPoint()));
-    QObject::connect(ExtremumAction, SIGNAL(triggered()), this, SLOT(Extremum()));
-    QObject::connect(RootsAction, SIGNAL(triggered()), this, SLOT(Roots()));
+    // QObject::connect(ComplexPointAction, SIGNAL(triggered()), this, SLOT(ComplexPoint()));
+    // QObject::connect(ExtremumAction, SIGNAL(triggered()), this, SLOT(Extremum()));
+    // QObject::connect(RootsAction, SIGNAL(triggered()), this, SLOT(Roots()));
 
     QObject::connect(LineAction, SIGNAL(triggered()), this, SLOT(Line_()));
     QObject::connect(SegmentAction, SIGNAL(triggered()), this, SLOT(Segment_()));
     QObject::connect(RayAction, SIGNAL(triggered()), this, SLOT(Ray()));
-    QObject::connect(PolylineAction, SIGNAL(triggered()), this, SLOT(Polyline()));
-    QObject::connect(VectorAction, SIGNAL(triggered()), this, SLOT(Vector()));
-    QObject::connect(VectorFromPointAction, SIGNAL(triggered()), this, SLOT(VectorFromPoint()));
+    // QObject::connect(PolylineAction, SIGNAL(triggered()), this, SLOT(Polyline()));
+    // QObject::connect(VectorAction, SIGNAL(triggered()), this, SLOT(Vector()));
+    // QObject::connect(VectorFromPointAction, SIGNAL(triggered()), this, SLOT(VectorFromPoint()));
 
     QObject::connect(PerpendicularLineAction, SIGNAL(triggered()), this, SLOT(PerpendicularLine()));
     QObject::connect(ParallelLineAction, SIGNAL(triggered()), this, SLOT(ParallelLine()));
@@ -181,15 +181,15 @@ void MainWindow::createActions(){
     QObject::connect(ParabolaAction, SIGNAL(triggered()), this, SLOT(Parabola()));
     QObject::connect(HyperbolaAction, SIGNAL(triggered()), this, SLOT(Hyperbola()));
 
-    QObject::connect(AngleAction, SIGNAL(triggered()), this, SLOT(Angle()));
-    QObject::connect(DistanceAction, SIGNAL(triggered()), this, SLOT(Distance()));
-    QObject::connect(AreaAction, SIGNAL(triggered()), this, SLOT(Area()));
-    QObject::connect(SlopeAction, SIGNAL(triggered()), this, SLOT(Slope()));
-    QObject::connect(RelationAction, SIGNAL(triggered()), this, SLOT(Relation()));
+    // QObject::connect(AngleAction, SIGNAL(triggered()), this, SLOT(Angle()));
+    // QObject::connect(DistanceAction, SIGNAL(triggered()), this, SLOT(Distance()));
+    // QObject::connect(AreaAction, SIGNAL(triggered()), this, SLOT(Area()));
+    // QObject::connect(SlopeAction, SIGNAL(triggered()), this, SLOT(Slope()));
+    // QObject::connect(RelationAction, SIGNAL(triggered()), this, SLOT(Relation()));
 
     QObject::connect(LineSymmetryAction, SIGNAL(triggered()), this, SLOT(LineSymmetry()));
     QObject::connect(PointSymmetryAction, SIGNAL(triggered()), this, SLOT(PointSymmetry()));
-    QObject::connect(TranslateAction, SIGNAL(triggered()), this, SLOT(Translate()));
+    // QObject::connect(TranslateAction, SIGNAL(triggered()), this, SLOT(Translate()));
 
     QObject::connect(DeleteAction, SIGNAL(triggered()), this, SLOT(Delete()));
     QObject::connect(ClearAction, SIGNAL(triggered()), this, SLOT(Clear()));
@@ -202,20 +202,20 @@ void MainWindow::createMenus(){
 
     PointMenu = new QMenu;
     PointMenu->addAction(PointAction);
-    PointMenu->addAction(PointOnObjectAction);
+    // PointMenu->addAction(PointOnObjectAction);
     PointMenu->addAction(IntersectAction);
     PointMenu->addAction(MidPointAction);
-    PointMenu->addAction(ComplexPointAction);
-    PointMenu->addAction(ExtremumAction);
-    PointMenu->addAction(RootsAction);
+    // PointMenu->addAction(ComplexPointAction);
+    // PointMenu->addAction(ExtremumAction);
+    // PointMenu->addAction(RootsAction);
 
     LineMenu = new QMenu;
     LineMenu->addAction(LineAction);
     LineMenu->addAction(SegmentAction);
     LineMenu->addAction(RayAction);
-    LineMenu->addAction(PolylineAction);
-    LineMenu->addAction(VectorAction);
-    LineMenu->addAction(VectorFromPointAction);
+    // LineMenu->addAction(PolylineAction);
+    // LineMenu->addAction(VectorAction);
+    // LineMenu->addAction(VectorFromPointAction);
 
     SpecialLineMenu = new QMenu;
     SpecialLineMenu->addAction(PerpendicularLineAction);
@@ -246,17 +246,17 @@ void MainWindow::createMenus(){
     ConicMenu->addAction(ParabolaAction);
     ConicMenu->addAction(HyperbolaAction);
 
-    MeasurementMenu = new QMenu;
-    MeasurementMenu->addAction(AngleAction);
-    MeasurementMenu->addAction(DistanceAction);
-    MeasurementMenu->addAction(AreaAction);
-    MeasurementMenu->addAction(SlopeAction);
-    MeasurementMenu->addAction(RelationAction);
+    // MeasurementMenu = new QMenu;
+    // MeasurementMenu->addAction(AngleAction);
+    // MeasurementMenu->addAction(DistanceAction);
+    // MeasurementMenu->addAction(AreaAction);
+    // MeasurementMenu->addAction(SlopeAction);
+    // MeasurementMenu->addAction(RelationAction);
 
     TransformationMenu = new QMenu;
     TransformationMenu->addAction(LineSymmetryAction);
     TransformationMenu->addAction(PointSymmetryAction);
-    TransformationMenu->addAction(TranslateAction);
+    // TransformationMenu->addAction(TranslateAction);
 
     GeneralMenu = new QMenu;
     GeneralMenu->addAction(DeleteAction);
@@ -320,12 +320,12 @@ void MainWindow::createToolButtons(){
     ConicButton->setMinimumWidth(44);
     ConicButton->setIconSize(QSize(32,32));
 
-    MeasurementButton = new DropDownToolButton;
-    MeasurementButton->setMenu(MeasurementMenu);
-    MeasurementButton->setDefaultAction(AngleAction);
-    MeasurementButton->setMinimumHeight(32);
-    MeasurementButton->setMinimumWidth(44);
-    MeasurementButton->setIconSize(QSize(32,32));
+    // MeasurementButton = new DropDownToolButton;
+    // MeasurementButton->setMenu(MeasurementMenu);
+    // MeasurementButton->setDefaultAction(AngleAction);
+    // MeasurementButton->setMinimumHeight(32);
+    // MeasurementButton->setMinimumWidth(44);
+    // MeasurementButton->setIconSize(QSize(32,32));
 
     TransformationButton = new DropDownToolButton;
     TransformationButton->setMenu(TransformationMenu);
@@ -357,7 +357,7 @@ void MainWindow::createToolBars(){
     ui->horizontalLayout_2->addWidget(TriangleFunctionsButton);
     ui->horizontalLayout_2->addWidget(CircleButton);
     ui->horizontalLayout_2->addWidget(ConicButton);
-    ui->horizontalLayout_2->addWidget(MeasurementButton);
+    // ui->horizontalLayout_2->addWidget(MeasurementButton);
     ui->horizontalLayout_2->addWidget(TransformationButton);
     ui->horizontalLayout_2->addWidget(GeneralButton);
     ui->horizontalLayout_2->addWidget(PushButton2);
@@ -582,6 +582,10 @@ void MainWindow::LineEditReturn()
             double n = std::stod(input.substr(last_comma+1,last-last_comma-1));
 
             RegularPolygone* p = new RegularPolygone(Point(x1,y1),Point(x2,y2), n);
+            for(int i=0;i<p->size;i++)
+            {
+                mainGrid->obj.push(new Point(p->Pointlist[i].getx(),p->Pointlist[i].gety()));
+            }
             mainGrid->obj.push(p);
             mainGrid->refresh_grid();
             ui->graphicsView->refresh_indicators();
@@ -921,9 +925,9 @@ void MainWindow::Point_()
     ui->graphicsView->point_chosen = true;
 }
 
-void MainWindow::PointOnObject(){
+/*void MainWindow::PointOnObject(){
     qDebug() << "MainWindow::PointOnObject()";
-}
+}*/
 
 void MainWindow::Intersection()
 {
@@ -984,17 +988,17 @@ void MainWindow::MidPoint()
     }
 }
 
-void MainWindow::ComplexPoint(){
+/*void MainWindow::ComplexPoint(){
     qDebug() << "MainWindow::ComplexPoint()";
-}
+}*/
 
-void MainWindow::Extremum(){
+/*void MainWindow::Extremum(){
     qDebug() << "MainWindow::Extremum()";
-}
+}*/
 
-void MainWindow::Roots(){
+/*void MainWindow::Roots(){
     qDebug() << "MainWindow::Roots()";
-}
+}*/
 
 void MainWindow::Line_()
 {
@@ -1059,17 +1063,17 @@ void MainWindow::Ray(){
         ui->graphicsView->semiline_chosen = true;
     }}
 
-void MainWindow::Polyline(){
+/*void MainWindow::Polyline(){
     qDebug() << "MainWindow::Polyline()";
-}
+}*/
 
-void MainWindow::Vector(){
+/*void MainWindow::Vector(){
     qDebug() << "MainWindow::Vector()";
-}
+}*/
 
-void MainWindow::VectorFromPoint(){
+/*void MainWindow::VectorFromPoint(){
     qDebug() << "MainWindow::VectorFromPoint()";
-}
+}*/
 
 void MainWindow::PerpendicularLine()
 {
@@ -1223,6 +1227,22 @@ void MainWindow::CircleCPT()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    else if(ui->graphicsView->chosen_objects.size()==3 && ui->graphicsView->chosen_objects.points.size()==3)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        Point* p3 =  new Point(ui->graphicsView->chosen_objects.points[2]->getx(),ui->graphicsView->chosen_objects.points[2]->gety());
+        Triangle* t = new Triangle(*p1,*p2,*p3);
+        Circle c = t->Circumscribedcercle();
+        mainGrid->obj.push(new Circle(c.center,c.r));
+        mainGrid->obj.push(new Point(c.center.getx(),c.center.gety()));
+
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
     else
     {
         ui->graphicsView->circle_chosen = true;
@@ -1248,25 +1268,25 @@ void MainWindow::Hyperbola(){
     qDebug() << "MainWindow::Hyperbola()";
 }
 
-void MainWindow::Angle(){
+/*void MainWindow::Angle(){
     qDebug() << "MainWindow::Angle()";
-}
+}*/
 
-void MainWindow::Distance(){
+/*void MainWindow::Distance(){
     qDebug() << "MainWindow::Distance()";
-}
+}*/
 
-void MainWindow::Area(){
+/*void MainWindow::Area(){
     qDebug() << "MainWindow::Area()";
-}
+}*/
 
-void MainWindow::Slope(){
+/*void MainWindow::Slope(){
     qDebug() << "MainWindow::Slope()";
-}
+}*/
 
-void MainWindow::Relation(){
+/*void MainWindow::Relation(){
     qDebug() << "MainWindow::Relation()";
-}
+}*/
 
 void MainWindow::LineSymmetry()
 {
@@ -1308,23 +1328,80 @@ void MainWindow::Translate()
 
 void MainWindow::InscribedCircle()
 {
-    qDebug() << "MainWindow::InscribedCircle()";
+    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    {
+        Circle help = ui->graphicsView->chosen_objects.triangles[0]->getInscribedcercle();
+        Container h;
+        h.push(new Circle(help.center,help.r));
+        h.push(ui->graphicsView->chosen_objects.triangles[0]);
+        mainGrid->obj.push(new Point(help.center.getx(),help.center.gety()));
+
+        std::vector<Point*> v = h.IntersectObjects();
+        for(uint i=0;i<v.size();i++)
+         {
+            mainGrid->obj.push(v[i]);
+         }
+        mainGrid->obj.push(new Circle(help.center,help.r));
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::CircumscribedCricle()
 {
-    qDebug() << "MainWindow::CircumscribedCircle()";
+    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    {
+        Circle help = ui->graphicsView->chosen_objects.triangles[0]->Circumscribedcercle();
+        mainGrid->obj.push(new Point(help.center.getx(),help.center.gety()));
+
+        mainGrid->obj.push(new Circle(help.center,help.r));
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::OrthoCenter()
 {
-    qDebug() << "MainWindow::OrthoCenter()";
+    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    {
+        Point help = ui->graphicsView->chosen_objects.triangles[0]->getOrthocenter();
+        Triangle t = *ui->graphicsView->chosen_objects.triangles[0];
+        mainGrid->obj.push(new Point(help.getx(),help.gety()));
+        mainGrid->obj.push(new Line(help,t.point1));
+        mainGrid->obj.push(new Line(help,t.point2));
+        mainGrid->obj.push(new Line(help,t.point3));
+
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::CenterOfGravity()
 {
-    qDebug() << "MainWindow::CenterOfGravity()";
-}
+    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    {
+        Point help = ui->graphicsView->chosen_objects.triangles[0]->getCenterofgravity();
+        Triangle t = *ui->graphicsView->chosen_objects.triangles[0];
+        mainGrid->obj.push(new Point(help.getx(),help.gety()));
+        mainGrid->obj.push(new Line(help,t.point1));
+        mainGrid->obj.push(new Line(help,t.point2));
+        mainGrid->obj.push(new Line(help,t.point3));
+
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }}
 
 void MainWindow::Delete()
 {
@@ -1352,20 +1429,20 @@ MainWindow::~MainWindow()
     delete MouseMenu;
     delete MouseButton;
     delete PointAction;
-    delete PointOnObjectAction;
+    // delete PointOnObjectAction;
     delete IntersectAction;
     delete MidPointAction;
-    delete ComplexPointAction;
-    delete ExtremumAction;
-    delete RootsAction;
+    // delete ComplexPointAction;
+    // delete ExtremumAction;
+    // delete RootsAction;
     delete PointMenu;
     delete PointButton;
     delete LineAction;
     delete SegmentAction;
     delete RayAction;
-    delete PolylineAction;
-    delete VectorAction;
-    delete VectorFromPointAction;
+    // delete PolylineAction;
+    // delete VectorAction;
+    // delete VectorFromPointAction;
     delete LineMenu;
     delete LineButton;
     delete PerpendicularLineAction;
@@ -1397,16 +1474,16 @@ MainWindow::~MainWindow()
     delete HyperbolaAction;
     delete ConicMenu;
     delete ConicButton;
-    delete AngleAction;
-    delete DistanceAction;
-    delete AreaAction;
-    delete SlopeAction;
-    delete RelationAction;
-    delete MeasurementMenu;
-    delete MeasurementButton;
+    // delete AngleAction;
+    // delete DistanceAction;
+    // delete AreaAction;
+    // delete SlopeAction;
+    // delete RelationAction;
+    // delete MeasurementMenu;
+    // delete MeasurementButton;
     delete LineSymmetryAction;
     delete PointSymmetryAction;
-    delete TranslateAction;
+    // delete TranslateAction;
     delete TransformationMenu;
     delete TransformationButton;
     delete DeleteAction;
@@ -1418,6 +1495,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::PushButton3_clicked()
 {
-    //std::cout<<mainGrid->obj.semi_lines.size()<<std::endl;
-    drawTriangle(QPointF(mapToMyScene(100, 100)), QPointF(mapToMyScene(200, 100)), QPointF(mapToMyScene(100, 200)));
+
 }

@@ -102,19 +102,19 @@ public slots:
     void Select();
 
     void Point_(); //DO NOT WRITE IT AS Point, since that's the class..
-    void PointOnObject();
+    // void PointOnObject();
     void Intersection();
     void MidPoint();
-    void ComplexPoint();
-    void Extremum();
-    void Roots();
+    // void ComplexPoint();
+    // void Extremum();
+    // void Roots();
 
     void Line_();
     void Segment_();
     void Ray();
-    void Polyline();
-    void Vector();
-    void VectorFromPoint();
+    // void Polyline();
+    // void Vector();
+    // void VectorFromPoint();
 
     void PerpendicularLine();
     void ParallelLine();
@@ -134,11 +134,11 @@ public slots:
     void Parabola();
     void Hyperbola();
 
-    void Angle();
-    void Distance();
-    void Area();
-    void Slope();
-    void Relation();
+    // void Angle();
+    // void Distance();
+    // void Area();
+    // void Slope();
+    // void Relation();
 
     void LineSymmetry();
     void PointSymmetry();
@@ -175,21 +175,21 @@ private:
     DropDownToolButton* MouseButton;
 
     QAction* PointAction;
-    QAction* PointOnObjectAction;
+    // QAction* PointOnObjectAction;
     QAction* IntersectAction;
     QAction* MidPointAction;
-    QAction* ComplexPointAction;
-    QAction* ExtremumAction;
-    QAction* RootsAction;
+    // QAction* ComplexPointAction;
+    // QAction* ExtremumAction;
+    // QAction* RootsAction;
     QMenu* PointMenu;
     DropDownToolButton* PointButton;
 
     QAction* LineAction;
     QAction* SegmentAction;
     QAction* RayAction;
-    QAction* PolylineAction;
-    QAction* VectorAction;
-    QAction* VectorFromPointAction;
+    // QAction* PolylineAction;
+    // QAction* VectorAction;
+    // QAction* VectorFromPointAction;
     QMenu* LineMenu;
     DropDownToolButton* LineButton;
 
@@ -227,17 +227,17 @@ private:
     QMenu* ConicMenu;
     DropDownToolButton* ConicButton;
 
-    QAction* AngleAction; // get angle
-    QAction* DistanceAction; // get distance
-    QAction* AreaAction; //get area
-    QAction* SlopeAction; // get slope
-    QAction* RelationAction; // get relation between two objects
-    QMenu* MeasurementMenu;
-    DropDownToolButton* MeasurementButton;
+    // QAction* AngleAction; // get angle
+    // QAction* DistanceAction; // get distance
+    // QAction* AreaAction; //get area
+    // QAction* SlopeAction; // get slope
+    // QAction* RelationAction; // get relation between two objects
+    // QMenu* MeasurementMenu;
+    // DropDownToolButton* MeasurementButton;
 
     QAction* LineSymmetryAction;
     QAction* PointSymmetryAction;
-    QAction* TranslateAction; // translate by vector
+    // QAction* TranslateAction; // translate by vector
     QMenu* TransformationMenu;
     DropDownToolButton* TransformationButton;
 

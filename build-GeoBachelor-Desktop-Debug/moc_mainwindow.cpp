@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[50];
-    char stringdata0[527];
+    QByteArrayData data[38];
+    char stringdata0[418];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,65 +36,50 @@ QT_MOC_LITERAL(1, 11, 4), // "Move"
 QT_MOC_LITERAL(2, 16, 0), // ""
 QT_MOC_LITERAL(3, 17, 6), // "Select"
 QT_MOC_LITERAL(4, 24, 6), // "Point_"
-QT_MOC_LITERAL(5, 31, 13), // "PointOnObject"
-QT_MOC_LITERAL(6, 45, 12), // "Intersection"
-QT_MOC_LITERAL(7, 58, 8), // "MidPoint"
-QT_MOC_LITERAL(8, 67, 12), // "ComplexPoint"
-QT_MOC_LITERAL(9, 80, 8), // "Extremum"
-QT_MOC_LITERAL(10, 89, 5), // "Roots"
-QT_MOC_LITERAL(11, 95, 5), // "Line_"
-QT_MOC_LITERAL(12, 101, 8), // "Segment_"
-QT_MOC_LITERAL(13, 110, 3), // "Ray"
-QT_MOC_LITERAL(14, 114, 8), // "Polyline"
-QT_MOC_LITERAL(15, 123, 6), // "Vector"
-QT_MOC_LITERAL(16, 130, 15), // "VectorFromPoint"
-QT_MOC_LITERAL(17, 146, 17), // "PerpendicularLine"
-QT_MOC_LITERAL(18, 164, 12), // "ParallelLine"
-QT_MOC_LITERAL(19, 177, 21), // "PerpendicularBisector"
-QT_MOC_LITERAL(20, 199, 13), // "AngleBisector"
-QT_MOC_LITERAL(21, 213, 7), // "Tangent"
-QT_MOC_LITERAL(22, 221, 9), // "Triangle_"
-QT_MOC_LITERAL(23, 231, 6), // "Square"
-QT_MOC_LITERAL(24, 238, 9), // "Rectangle"
-QT_MOC_LITERAL(25, 248, 14), // "RegularPolygon"
-QT_MOC_LITERAL(26, 263, 7), // "Polygon"
-QT_MOC_LITERAL(27, 271, 9), // "CircleCPT"
-QT_MOC_LITERAL(28, 281, 9), // "CircleCRT"
-QT_MOC_LITERAL(29, 291, 8), // "Ellipse_"
-QT_MOC_LITERAL(30, 300, 8), // "Parabola"
-QT_MOC_LITERAL(31, 309, 9), // "Hyperbola"
-QT_MOC_LITERAL(32, 319, 5), // "Angle"
-QT_MOC_LITERAL(33, 325, 8), // "Distance"
-QT_MOC_LITERAL(34, 334, 4), // "Area"
-QT_MOC_LITERAL(35, 339, 5), // "Slope"
-QT_MOC_LITERAL(36, 345, 8), // "Relation"
-QT_MOC_LITERAL(37, 354, 12), // "LineSymmetry"
-QT_MOC_LITERAL(38, 367, 13), // "PointSymmetry"
-QT_MOC_LITERAL(39, 381, 9), // "Translate"
-QT_MOC_LITERAL(40, 391, 15), // "InscribedCircle"
-QT_MOC_LITERAL(41, 407, 19), // "CircumscribedCricle"
-QT_MOC_LITERAL(42, 427, 11), // "OrthoCenter"
-QT_MOC_LITERAL(43, 439, 15), // "CenterOfGravity"
-QT_MOC_LITERAL(44, 455, 6), // "Delete"
-QT_MOC_LITERAL(45, 462, 5), // "Clear"
-QT_MOC_LITERAL(46, 468, 12), // "ItemsDisplay"
-QT_MOC_LITERAL(47, 481, 14), // "LineEditReturn"
-QT_MOC_LITERAL(48, 496, 10), // "DeleteItem"
-QT_MOC_LITERAL(49, 507, 19) // "PushButton3_clicked"
+QT_MOC_LITERAL(5, 31, 12), // "Intersection"
+QT_MOC_LITERAL(6, 44, 8), // "MidPoint"
+QT_MOC_LITERAL(7, 53, 5), // "Line_"
+QT_MOC_LITERAL(8, 59, 8), // "Segment_"
+QT_MOC_LITERAL(9, 68, 3), // "Ray"
+QT_MOC_LITERAL(10, 72, 17), // "PerpendicularLine"
+QT_MOC_LITERAL(11, 90, 12), // "ParallelLine"
+QT_MOC_LITERAL(12, 103, 21), // "PerpendicularBisector"
+QT_MOC_LITERAL(13, 125, 13), // "AngleBisector"
+QT_MOC_LITERAL(14, 139, 7), // "Tangent"
+QT_MOC_LITERAL(15, 147, 9), // "Triangle_"
+QT_MOC_LITERAL(16, 157, 6), // "Square"
+QT_MOC_LITERAL(17, 164, 9), // "Rectangle"
+QT_MOC_LITERAL(18, 174, 14), // "RegularPolygon"
+QT_MOC_LITERAL(19, 189, 7), // "Polygon"
+QT_MOC_LITERAL(20, 197, 9), // "CircleCPT"
+QT_MOC_LITERAL(21, 207, 9), // "CircleCRT"
+QT_MOC_LITERAL(22, 217, 8), // "Ellipse_"
+QT_MOC_LITERAL(23, 226, 8), // "Parabola"
+QT_MOC_LITERAL(24, 235, 9), // "Hyperbola"
+QT_MOC_LITERAL(25, 245, 12), // "LineSymmetry"
+QT_MOC_LITERAL(26, 258, 13), // "PointSymmetry"
+QT_MOC_LITERAL(27, 272, 9), // "Translate"
+QT_MOC_LITERAL(28, 282, 15), // "InscribedCircle"
+QT_MOC_LITERAL(29, 298, 19), // "CircumscribedCricle"
+QT_MOC_LITERAL(30, 318, 11), // "OrthoCenter"
+QT_MOC_LITERAL(31, 330, 15), // "CenterOfGravity"
+QT_MOC_LITERAL(32, 346, 6), // "Delete"
+QT_MOC_LITERAL(33, 353, 5), // "Clear"
+QT_MOC_LITERAL(34, 359, 12), // "ItemsDisplay"
+QT_MOC_LITERAL(35, 372, 14), // "LineEditReturn"
+QT_MOC_LITERAL(36, 387, 10), // "DeleteItem"
+QT_MOC_LITERAL(37, 398, 19) // "PushButton3_clicked"
 
     },
     "MainWindow\0Move\0\0Select\0Point_\0"
-    "PointOnObject\0Intersection\0MidPoint\0"
-    "ComplexPoint\0Extremum\0Roots\0Line_\0"
-    "Segment_\0Ray\0Polyline\0Vector\0"
-    "VectorFromPoint\0PerpendicularLine\0"
-    "ParallelLine\0PerpendicularBisector\0"
-    "AngleBisector\0Tangent\0Triangle_\0Square\0"
-    "Rectangle\0RegularPolygon\0Polygon\0"
-    "CircleCPT\0CircleCRT\0Ellipse_\0Parabola\0"
-    "Hyperbola\0Angle\0Distance\0Area\0Slope\0"
-    "Relation\0LineSymmetry\0PointSymmetry\0"
-    "Translate\0InscribedCircle\0CircumscribedCricle\0"
+    "Intersection\0MidPoint\0Line_\0Segment_\0"
+    "Ray\0PerpendicularLine\0ParallelLine\0"
+    "PerpendicularBisector\0AngleBisector\0"
+    "Tangent\0Triangle_\0Square\0Rectangle\0"
+    "RegularPolygon\0Polygon\0CircleCPT\0"
+    "CircleCRT\0Ellipse_\0Parabola\0Hyperbola\0"
+    "LineSymmetry\0PointSymmetry\0Translate\0"
+    "InscribedCircle\0CircumscribedCricle\0"
     "OrthoCenter\0CenterOfGravity\0Delete\0"
     "Clear\0ItemsDisplay\0LineEditReturn\0"
     "DeleteItem\0PushButton3_clicked"
@@ -107,7 +92,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      48,   14, // methods
+      36,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -115,68 +100,44 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  254,    2, 0x0a /* Public */,
-       3,    0,  255,    2, 0x0a /* Public */,
-       4,    0,  256,    2, 0x0a /* Public */,
-       5,    0,  257,    2, 0x0a /* Public */,
-       6,    0,  258,    2, 0x0a /* Public */,
-       7,    0,  259,    2, 0x0a /* Public */,
-       8,    0,  260,    2, 0x0a /* Public */,
-       9,    0,  261,    2, 0x0a /* Public */,
-      10,    0,  262,    2, 0x0a /* Public */,
-      11,    0,  263,    2, 0x0a /* Public */,
-      12,    0,  264,    2, 0x0a /* Public */,
-      13,    0,  265,    2, 0x0a /* Public */,
-      14,    0,  266,    2, 0x0a /* Public */,
-      15,    0,  267,    2, 0x0a /* Public */,
-      16,    0,  268,    2, 0x0a /* Public */,
-      17,    0,  269,    2, 0x0a /* Public */,
-      18,    0,  270,    2, 0x0a /* Public */,
-      19,    0,  271,    2, 0x0a /* Public */,
-      20,    0,  272,    2, 0x0a /* Public */,
-      21,    0,  273,    2, 0x0a /* Public */,
-      22,    0,  274,    2, 0x0a /* Public */,
-      23,    0,  275,    2, 0x0a /* Public */,
-      24,    0,  276,    2, 0x0a /* Public */,
-      25,    0,  277,    2, 0x0a /* Public */,
-      26,    0,  278,    2, 0x0a /* Public */,
-      27,    0,  279,    2, 0x0a /* Public */,
-      28,    0,  280,    2, 0x0a /* Public */,
-      29,    0,  281,    2, 0x0a /* Public */,
-      30,    0,  282,    2, 0x0a /* Public */,
-      31,    0,  283,    2, 0x0a /* Public */,
-      32,    0,  284,    2, 0x0a /* Public */,
-      33,    0,  285,    2, 0x0a /* Public */,
-      34,    0,  286,    2, 0x0a /* Public */,
-      35,    0,  287,    2, 0x0a /* Public */,
-      36,    0,  288,    2, 0x0a /* Public */,
-      37,    0,  289,    2, 0x0a /* Public */,
-      38,    0,  290,    2, 0x0a /* Public */,
-      39,    0,  291,    2, 0x0a /* Public */,
-      40,    0,  292,    2, 0x0a /* Public */,
-      41,    0,  293,    2, 0x0a /* Public */,
-      42,    0,  294,    2, 0x0a /* Public */,
-      43,    0,  295,    2, 0x0a /* Public */,
-      44,    0,  296,    2, 0x0a /* Public */,
-      45,    0,  297,    2, 0x0a /* Public */,
-      46,    0,  298,    2, 0x0a /* Public */,
-      47,    0,  299,    2, 0x0a /* Public */,
-      48,    0,  300,    2, 0x0a /* Public */,
-      49,    0,  301,    2, 0x0a /* Public */,
+       1,    0,  194,    2, 0x0a /* Public */,
+       3,    0,  195,    2, 0x0a /* Public */,
+       4,    0,  196,    2, 0x0a /* Public */,
+       5,    0,  197,    2, 0x0a /* Public */,
+       6,    0,  198,    2, 0x0a /* Public */,
+       7,    0,  199,    2, 0x0a /* Public */,
+       8,    0,  200,    2, 0x0a /* Public */,
+       9,    0,  201,    2, 0x0a /* Public */,
+      10,    0,  202,    2, 0x0a /* Public */,
+      11,    0,  203,    2, 0x0a /* Public */,
+      12,    0,  204,    2, 0x0a /* Public */,
+      13,    0,  205,    2, 0x0a /* Public */,
+      14,    0,  206,    2, 0x0a /* Public */,
+      15,    0,  207,    2, 0x0a /* Public */,
+      16,    0,  208,    2, 0x0a /* Public */,
+      17,    0,  209,    2, 0x0a /* Public */,
+      18,    0,  210,    2, 0x0a /* Public */,
+      19,    0,  211,    2, 0x0a /* Public */,
+      20,    0,  212,    2, 0x0a /* Public */,
+      21,    0,  213,    2, 0x0a /* Public */,
+      22,    0,  214,    2, 0x0a /* Public */,
+      23,    0,  215,    2, 0x0a /* Public */,
+      24,    0,  216,    2, 0x0a /* Public */,
+      25,    0,  217,    2, 0x0a /* Public */,
+      26,    0,  218,    2, 0x0a /* Public */,
+      27,    0,  219,    2, 0x0a /* Public */,
+      28,    0,  220,    2, 0x0a /* Public */,
+      29,    0,  221,    2, 0x0a /* Public */,
+      30,    0,  222,    2, 0x0a /* Public */,
+      31,    0,  223,    2, 0x0a /* Public */,
+      32,    0,  224,    2, 0x0a /* Public */,
+      33,    0,  225,    2, 0x0a /* Public */,
+      34,    0,  226,    2, 0x0a /* Public */,
+      35,    0,  227,    2, 0x0a /* Public */,
+      36,    0,  228,    2, 0x0a /* Public */,
+      37,    0,  229,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -226,51 +187,39 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->Move(); break;
         case 1: _t->Select(); break;
         case 2: _t->Point_(); break;
-        case 3: _t->PointOnObject(); break;
-        case 4: _t->Intersection(); break;
-        case 5: _t->MidPoint(); break;
-        case 6: _t->ComplexPoint(); break;
-        case 7: _t->Extremum(); break;
-        case 8: _t->Roots(); break;
-        case 9: _t->Line_(); break;
-        case 10: _t->Segment_(); break;
-        case 11: _t->Ray(); break;
-        case 12: _t->Polyline(); break;
-        case 13: _t->Vector(); break;
-        case 14: _t->VectorFromPoint(); break;
-        case 15: _t->PerpendicularLine(); break;
-        case 16: _t->ParallelLine(); break;
-        case 17: _t->PerpendicularBisector(); break;
-        case 18: _t->AngleBisector(); break;
-        case 19: _t->Tangent(); break;
-        case 20: _t->Triangle_(); break;
-        case 21: _t->Square(); break;
-        case 22: _t->Rectangle(); break;
-        case 23: _t->RegularPolygon(); break;
-        case 24: _t->Polygon(); break;
-        case 25: _t->CircleCPT(); break;
-        case 26: _t->CircleCRT(); break;
-        case 27: _t->Ellipse_(); break;
-        case 28: _t->Parabola(); break;
-        case 29: _t->Hyperbola(); break;
-        case 30: _t->Angle(); break;
-        case 31: _t->Distance(); break;
-        case 32: _t->Area(); break;
-        case 33: _t->Slope(); break;
-        case 34: _t->Relation(); break;
-        case 35: _t->LineSymmetry(); break;
-        case 36: _t->PointSymmetry(); break;
-        case 37: _t->Translate(); break;
-        case 38: _t->InscribedCircle(); break;
-        case 39: _t->CircumscribedCricle(); break;
-        case 40: _t->OrthoCenter(); break;
-        case 41: _t->CenterOfGravity(); break;
-        case 42: _t->Delete(); break;
-        case 43: _t->Clear(); break;
-        case 44: _t->ItemsDisplay(); break;
-        case 45: _t->LineEditReturn(); break;
-        case 46: _t->DeleteItem(); break;
-        case 47: _t->PushButton3_clicked(); break;
+        case 3: _t->Intersection(); break;
+        case 4: _t->MidPoint(); break;
+        case 5: _t->Line_(); break;
+        case 6: _t->Segment_(); break;
+        case 7: _t->Ray(); break;
+        case 8: _t->PerpendicularLine(); break;
+        case 9: _t->ParallelLine(); break;
+        case 10: _t->PerpendicularBisector(); break;
+        case 11: _t->AngleBisector(); break;
+        case 12: _t->Tangent(); break;
+        case 13: _t->Triangle_(); break;
+        case 14: _t->Square(); break;
+        case 15: _t->Rectangle(); break;
+        case 16: _t->RegularPolygon(); break;
+        case 17: _t->Polygon(); break;
+        case 18: _t->CircleCPT(); break;
+        case 19: _t->CircleCRT(); break;
+        case 20: _t->Ellipse_(); break;
+        case 21: _t->Parabola(); break;
+        case 22: _t->Hyperbola(); break;
+        case 23: _t->LineSymmetry(); break;
+        case 24: _t->PointSymmetry(); break;
+        case 25: _t->Translate(); break;
+        case 26: _t->InscribedCircle(); break;
+        case 27: _t->CircumscribedCricle(); break;
+        case 28: _t->OrthoCenter(); break;
+        case 29: _t->CenterOfGravity(); break;
+        case 30: _t->Delete(); break;
+        case 31: _t->Clear(); break;
+        case 32: _t->ItemsDisplay(); break;
+        case 33: _t->LineEditReturn(); break;
+        case 34: _t->DeleteItem(); break;
+        case 35: _t->PushButton3_clicked(); break;
         default: ;
         }
     }
@@ -302,13 +251,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 48)
+        if (_id < 36)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 48;
+        _id -= 36;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 48)
+        if (_id < 36)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 48;
+        _id -= 36;
     }
     return _id;
 }

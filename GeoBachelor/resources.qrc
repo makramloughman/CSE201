@@ -40,5 +40,6 @@
         <file>images/square.png</file>
         <file>images/rectangle.png</file>
         <file>images/clear.png</file>
+        <file>images/special2.png</file>
     </qresource>
 </RCC>
