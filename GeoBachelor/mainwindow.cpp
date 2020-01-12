@@ -517,23 +517,67 @@ void MainWindow::LineEditReturn()
 {
     QString input_tmp = ui->lineEdit->text();
     std::string input = input_tmp.toUtf8().constData();
-    std::cout << input.substr(0,5) << std::endl;
-    if (input.substr(0,5) == "Point")
+    if (input.substr(0,5) == "point")
     {
         int first_parenthesis = input.find("(");
         int comma = input.find(",", first_parenthesis+1);
         int second_parenthesis = input.find(")", comma+1);
-        double x_g = std::stod(input.substr(first_parenthesis+1,comma));
-        double y_g = std::stod(input.substr(comma+1,second_parenthesis));
-        std::cout << x_g << y_g << std::endl;
+
+        double x_g = std::stod(input.substr(first_parenthesis+1,comma-first_parenthesis-1));
+        double y_g = std::stod(input.substr(comma+1,second_parenthesis-comma-1));
+        double x = x_g * mainGrid->unit + mainGrid->getX();
+        double y = mainGrid->getY() - y_g * mainGrid->unit;
+
+        drawPoint(ui->graphicsView->mapToScene(x,y));
+        QPointF help = QPointF(x,y);
+        mainGrid->obj.push(new Point(help));
+        int m = mainGrid->obj.points.size();
+        mainGrid->obj.points[m-1]->drawName(m-1);
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        ui->lineEdit->clear();
+        ItemsDisplay();
     }
     else
     {
-        Functions *f = new Functions(input);
-        f->draw();
-        mainGrid->obj.push(f);
-        ItemsDisplay();
-        ui->lineEdit->clear();
+        if (input.substr(0,5) == "rpoly")
+        {
+            int first_parenthesis = input.find("(");
+            int p1_first_parenthesis = input.find("(", first_parenthesis+1);
+            int p1_comma = input.find(",", p1_first_parenthesis+1);
+            int p1_second_parenthesis = input.find(")", p1_comma+1);
+            int p2_first_parenthesis = input.find("(",p1_second_parenthesis+1);
+            int p2_comma = input.find(",", p2_first_parenthesis+1);
+            int p2_second_parenthesis = input.find(")", p2_comma+1);
+            int last_comma = input.find(",", p2_second_parenthesis+1);
+            int last = input.find(")", last_comma+1);
+
+            double x1_g = std::stod(input.substr(p1_first_parenthesis+1,p1_comma-p1_first_parenthesis-1));
+            double y1_g = std::stod(input.substr(p1_comma+1,p1_second_parenthesis-p1_comma-1));
+            double x2_g = std::stod(input.substr(p2_first_parenthesis+1,p2_comma-p2_first_parenthesis-1));
+            double y2_g = std::stod(input.substr(p2_comma+1,p2_second_parenthesis-p2_comma-1));
+            double x1 = x1_g * mainGrid->unit + mainGrid->getX();
+            double y1 = mainGrid->getY() - y1_g * mainGrid->unit;
+            double x2 = x2_g * mainGrid->unit + mainGrid->getX();
+            double y2 = mainGrid->getY() - y2_g * mainGrid->unit;
+            double n = std::stod(input.substr(last_comma+1,last-last_comma-1));
+
+            RegularPolygone* p = new RegularPolygone(Point(x1,y1),Point(x2,y2), n);
+            mainGrid->obj.push(p);
+            mainGrid->refresh_grid();
+            ui->graphicsView->refresh_indicators();
+            ui->graphicsView->move_grid_chosen = true;
+            ui->lineEdit->clear();
+            ItemsDisplay();
+        }
+        else
+        {
+            Functions *f = new Functions(input);
+            f->draw();
+            mainGrid->obj.push(f);
+            ItemsDisplay();
+            ui->lineEdit->clear();
+        }
     }
 }
 
@@ -664,6 +708,35 @@ void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2) // in ViewCoordinates
         QPointF p11 = ui->graphicsView->mapToScene(0, p1.y());
         QPointF p21 = ui->graphicsView->mapToScene(x1, p2.y());
         MainWindow::drawLine(p11,p21);
+    }
+}
+
+void MainWindow::drawSemiLine(QPointF p1, QPointF p2)
+{
+    // construct y = k*x + n
+    double slope = 0;
+    double term = 0;
+    Point* q1 = new Point(p1.x(),p1.y());
+    Point* q2 = new Point(p2.x(),p2.y());
+    Line* l = new Line(*q1,*q2);
+    slope = l->slope();
+    term = l->y_intercept();
+
+    QPointF a = ui->graphicsView->mapToScene(p1.x(),p1.y());
+    int x1 = ui->graphicsView->width();
+
+    if(slope!=0)
+    {
+        QPointF p11 = ui->graphicsView->mapToScene(0, term);
+        QPointF p21 = ui->graphicsView->mapToScene(x1,slope*x1+term);
+        if (p2.x()>p1.x())
+        {
+            MainWindow::drawLine(a,p21);
+        }
+        else
+        {
+            MainWindow::drawLine(a,p11);
+        }
     }
 }
 
@@ -834,14 +907,56 @@ void MainWindow::Intersection()
     vec = ui->graphicsView->chosen_objects.IntersectObjects();
     for(uint i=0;i<vec.size();i++)
     {
-        mainGrid->obj.push(vec[i]);
+        bool b = mainGrid->obj.check_if_in(*vec[i]);
+        if(!b)
+        {
+            mainGrid->obj.push(vec[i]);
+        }
     }
     mainGrid->obj.deselect();
     mainGrid->refresh_grid();
 }
 
-void MainWindow::MidPoint(){
-    qDebug() << "MainWindow::MidPoint()";
+void MainWindow::MidPoint()
+{
+    if(ui->graphicsView->chosen_objects.segments.size()==ui->graphicsView->chosen_objects.size())
+    {
+        for(uint i=0;i<ui->graphicsView->chosen_objects.segments.size();i++)
+        {
+            Point p = ui->graphicsView->chosen_objects.segments[i]->midpoint();
+            mainGrid->obj.push(new Point(p.getx(),p.gety()));
+        }
+
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+
+    else if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size())
+    {
+        for(uint i=0;i<ui->graphicsView->chosen_objects.triangles.size();i++)
+        {
+            Triangle* t = ui->graphicsView->chosen_objects.triangles[i];
+            Segment* s1 = new Segment(t->point1,t->point2);
+            Segment* s2 = new Segment(t->point1,t->point3);
+            Segment* s3 = new Segment(t->point3,t->point2);
+
+            Point p1 = s1->midpoint();
+            Point p2 = s2->midpoint();
+            Point p3 = s3->midpoint();
+
+            mainGrid->obj.push(new Point(p1.getx(),p1.gety()));
+            mainGrid->obj.push(new Point(p2.getx(),p2.gety()));
+            mainGrid->obj.push(new Point(p3.getx(),p3.gety()));
+        }
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::ComplexPoint(){
@@ -901,8 +1016,23 @@ void MainWindow::Segment_()
 }
 
 void MainWindow::Ray(){
-    qDebug() << "MainWindow::Ray()";
-}
+    if(ui->graphicsView->chosen_objects.size()==2 && ui->graphicsView->chosen_objects.points.size()==2)
+    {
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.points[0]->getx(),ui->graphicsView->chosen_objects.points[0]->gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.points[1]->getx(),ui->graphicsView->chosen_objects.points[1]->gety());
+        SemiLine* s = new SemiLine(*p1,*p2);
+        mainGrid->obj.push(s);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+    else
+    {
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->semiline_chosen = true;
+    }}
 
 void MainWindow::Polyline(){
     qDebug() << "MainWindow::Polyline()";
@@ -1252,15 +1382,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::PushButton3_clicked()
 {
-    //drawEllipse(QPointF(150,100),100,50);
-    Point* p1 = new Point(150.0,100.0);
-    Point* p2 = new Point(200.0,100.0);
-    Ellipse* e = new Ellipse(p1,p2,100.0);
-    Point p = Point(0,0);
-    std::vector<Line> v = e->tangent(p);
-    v[0].draw();
-    v[1].draw();
-    e->draw();
-    mainGrid->obj.push(e);
-    //mainGrid->refresh_grid();
+    std::cout<<mainGrid->obj.semi_lines.size()<<std::endl;
 }

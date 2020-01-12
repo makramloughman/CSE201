@@ -16,6 +16,7 @@
 #include "circle.hpp"
 #include "mathobject.h"
 #include "container.h"
+#include "semiline.hpp"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ class MyView : public QGraphicsView
         std::vector<QPointF> clickedP;
         bool point_chosen;
         bool segment_chosen;
+        bool semiline_chosen;
 
         bool circle_chosen;
         bool circle_chosen_with_radius;

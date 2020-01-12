@@ -31,6 +31,7 @@
 #include <QFont>
 #include "functions.hpp"
 #include "ellipse.hpp"
+#include <semiline.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -68,6 +69,7 @@ public:
     void drawRectangle(std::vector<QPointF> points);
     void drawPolygon(std::vector<QPointF> points);
     void drawEllipse(Point p, double rx, double ry); //in View coordinates
+    void drawSemiLine(QPointF p1,QPointF p2);
 
     void drawText(QString text,double x, double y); //text given in View coordinates
 
