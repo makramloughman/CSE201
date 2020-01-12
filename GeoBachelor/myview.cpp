@@ -276,6 +276,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
                 refresh_indicators();
                 this-> move_grid_chosen = true;
             }
+        mainW->ItemsDisplay();
     }
 
     else if(ellipse_chosen)

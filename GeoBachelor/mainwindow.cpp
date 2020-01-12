@@ -511,14 +511,38 @@ void MainWindow::ItemsDisplay()
         QListWidgetItem *item6 = new QListWidgetItem(text6,ui->listWidget);
     }
 
-    unsigned size7 = mainGrid->obj.functions.size();
-    Functions* curr7 = 0;
+    unsigned size7 = mainGrid->obj.polygones.size();
+    Polygone* curr7 = 0;
     for (unsigned i = 0 ; i < size7; i++)
     {
-        curr7 = mainGrid->obj.functions[i];
+        curr7 = mainGrid->obj.polygones[i];
         if (curr7 != NULL)
         {
-            QString function = QString::fromStdString(curr7->expression);
+            QString text = tr("Polygon:  (%1,%2)").arg(curr7->Pointlist[0].getxg()).arg(curr7->Pointlist[0].getyg());
+            for (int j = 1; j < curr7->Pointlist.size(); j++)
+            {
+                QString tmp = tr("\n                   (%1,%2)").arg(curr7->Pointlist[j].getxg()).arg(curr7->Pointlist[j].getyg());
+                text.append(tmp);
+            }
+            QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
+            item->setData(Qt::UserRole,i);
+        }
+    }
+
+    if (size6 > 0)
+    {
+        QString text7 = "";
+        QListWidgetItem *item7 = new QListWidgetItem(text7,ui->listWidget);
+    }
+
+    unsigned size8 = mainGrid->obj.functions.size();
+    Functions* curr8 = 0;
+    for (unsigned i = 0 ; i < size8; i++)
+    {
+        curr8 = mainGrid->obj.functions[i];
+        if (curr8 != NULL)
+        {
+            QString function = QString::fromStdString(curr8->expression);
             QString text = tr("Function:  %1").arg(function);
             QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
             item->setData(Qt::UserRole,i);
@@ -679,6 +703,12 @@ void MainWindow::DeleteItem()
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.r_polygones[number]);
         mainGrid->obj.r_polygones[number]->selected = true;
+        Delete();
+    }
+    if (item[0] == "P" && item[1] == "o" && item[2] == "l")
+    {
+        ui->graphicsView->chosen_objects.push(mainGrid->obj.polygones[number]);
+        mainGrid->obj.polygones[number]->selected = true;
         Delete();
     }
     if (item[0] == "F")
@@ -1228,7 +1258,6 @@ void MainWindow::Triangle_()
         ui->graphicsView->polygon_chosen = true;
         ui->graphicsView->n_polygon = 3;
     }
-    ItemsDisplay();
 }
 
 void MainWindow::Square(){
