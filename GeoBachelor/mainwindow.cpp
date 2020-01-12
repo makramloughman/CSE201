@@ -863,14 +863,56 @@ void MainWindow::Intersection()
     vec = ui->graphicsView->chosen_objects.IntersectObjects();
     for(uint i=0;i<vec.size();i++)
     {
-        mainGrid->obj.push(vec[i]);
+        bool b = mainGrid->obj.check_if_in(*vec[i]);
+        if(!b)
+        {
+            mainGrid->obj.push(vec[i]);
+        }
     }
     mainGrid->obj.deselect();
     mainGrid->refresh_grid();
 }
 
-void MainWindow::MidPoint(){
-    qDebug() << "MainWindow::MidPoint()";
+void MainWindow::MidPoint()
+{
+    if(ui->graphicsView->chosen_objects.segments.size()==ui->graphicsView->chosen_objects.size())
+    {
+        for(uint i=0;i<ui->graphicsView->chosen_objects.segments.size();i++)
+        {
+            Point p = ui->graphicsView->chosen_objects.segments[i]->midpoint();
+            mainGrid->obj.push(new Point(p.getx(),p.gety()));
+        }
+
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
+
+    else if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size())
+    {
+        for(uint i=0;i<ui->graphicsView->chosen_objects.triangles.size();i++)
+        {
+            Triangle* t = ui->graphicsView->chosen_objects.triangles[i];
+            Segment* s1 = new Segment(t->point1,t->point2);
+            Segment* s2 = new Segment(t->point1,t->point3);
+            Segment* s3 = new Segment(t->point3,t->point2);
+
+            Point p1 = s1->midpoint();
+            Point p2 = s2->midpoint();
+            Point p3 = s3->midpoint();
+
+            mainGrid->obj.push(new Point(p1.getx(),p1.gety()));
+            mainGrid->obj.push(new Point(p2.getx(),p2.gety()));
+            mainGrid->obj.push(new Point(p3.getx(),p3.gety()));
+        }
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
 }
 
 void MainWindow::ComplexPoint(){

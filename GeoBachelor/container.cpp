@@ -10,7 +10,7 @@ bool Container::check_if_in(Point p)
 {
     for(uint i=0; i<points.size();i++)
     {
-        if (distance(*points[i],p)<10)
+        if (distance(*points[i],p)<2.5)
         {
             return true;
         }
