@@ -2,7 +2,6 @@
 #define DROPDOWNTOOLBUTTON_H
 
 #include <QToolButton>
-#include <QDebug>
 
 class DropDownToolButton : public QToolButton
 {

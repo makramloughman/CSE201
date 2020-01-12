@@ -31,7 +31,8 @@
 #include <QFont>
 #include "functions.hpp"
 #include "ellipse.hpp"
-#include <semiline.hpp>
+#include "semiline.hpp"
+#include "addpolygondialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -126,7 +127,8 @@ public slots:
     void Square();
     void Rectangle();
     void RegularPolygon();
-    void Polygon();
+    void PolygonDialog();
+    void Polygon(int n);
     void CircleCPT();
     void CircleCRT();
 
@@ -244,6 +246,8 @@ private:
     QAction* ClearAction;
     QMenu* GeneralMenu;
     DropDownToolButton* GeneralButton;
+
+    AddPolygonDialog* AddPDialog;
 };
 
 #endif // MAINWINDOW_H

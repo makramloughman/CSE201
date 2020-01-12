@@ -164,7 +164,7 @@ void MainWindow::createActions(){
     QObject::connect(TangentAction, SIGNAL(triggered()), this, SLOT(Tangent()));
 
     QObject::connect(RegularPolygonAction, SIGNAL(triggered()), this, SLOT(RegularPolygon()));
-    QObject::connect(PolygonAction, SIGNAL(triggered()),this,SLOT(Polygon()));
+    QObject::connect(PolygonAction, SIGNAL(triggered()),this,SLOT(PolygonDialog()));
     QObject::connect(SquareAction, SIGNAL(triggered()), this, SLOT(Square()));
     QObject::connect(RectangleAction, SIGNAL(triggered()), this, SLOT(Rectangle()));
 
@@ -1246,8 +1246,17 @@ void MainWindow::RegularPolygon(){
     qDebug() << "MainWindow::RegularPolygon()";
 }
 
-void MainWindow::Polygon(){
-    qDebug() <<"MainWindow::Polygon()";
+void MainWindow::PolygonDialog()
+{
+    AddPDialog = new AddPolygonDialog;
+    AddPDialog->show();
+}
+
+void MainWindow::Polygon(int n)
+{
+    ui->graphicsView->refresh_indicators();
+    ui->graphicsView->polygon_chosen = true;
+    ui->graphicsView->n_polygon = n;
 }
 
 void MainWindow::CircleCPT()

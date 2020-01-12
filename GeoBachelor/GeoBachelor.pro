@@ -46,7 +46,8 @@ SOURCES += \
     fparser.cc \
     fpoptimizer.cc \
     functions.cpp \
-    semiline.cpp
+    semiline.cpp \
+    addpolygondialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -70,7 +71,8 @@ HEADERS += \
     fparser.hh \
     fpconfig.hh \
     functions.hpp \
-    semiline.hpp
+    semiline.hpp \
+    addpolygondialog.h
 
 FORMS += \
     mainwindow.ui
