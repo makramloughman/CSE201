@@ -16,8 +16,8 @@ The GeoBachelor is a remake of GeoGebra.
 
 ```
 git clone https://github.com/makramloughman/CSE201.git
-[TBC]
 ```
+Open the project in QT creator, build it and run it.
 
 ### Screenshot
 
