@@ -199,7 +199,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
 
     else if (this->point_chosen)
     {
-        mainW -> drawPoint(mapToScene(ev->x(),ev->y()));
+        mainW->drawPoint(mapToScene(ev->x(),ev->y()));
         QPointF help = QPointF(ev->x(),ev->y());
         mainW->mainGrid->obj.push(new Point(help));
 
@@ -207,7 +207,7 @@ void MyView::mousePressEvent(QMouseEvent *ev)
         mainW->mainGrid->obj.points[m-1]->drawName(m-1);
 
         refresh_indicators();
-        this-> move_grid_chosen = true;
+        this->move_grid_chosen = true;
         mainW->ItemsDisplay();
     }
     else if (this->polygon_chosen)

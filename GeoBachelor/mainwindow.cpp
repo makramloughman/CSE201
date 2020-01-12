@@ -517,23 +517,67 @@ void MainWindow::LineEditReturn()
 {
     QString input_tmp = ui->lineEdit->text();
     std::string input = input_tmp.toUtf8().constData();
-    std::cout << input.substr(0,5) << std::endl;
-    if (input.substr(0,5) == "Point")
+    if (input.substr(0,5) == "point")
     {
         int first_parenthesis = input.find("(");
         int comma = input.find(",", first_parenthesis+1);
         int second_parenthesis = input.find(")", comma+1);
-        double x_g = std::stod(input.substr(first_parenthesis+1,comma));
-        double y_g = std::stod(input.substr(comma+1,second_parenthesis));
-        std::cout << x_g << y_g << std::endl;
+
+        double x_g = std::stod(input.substr(first_parenthesis+1,comma-first_parenthesis-1));
+        double y_g = std::stod(input.substr(comma+1,second_parenthesis-comma-1));
+        double x = x_g * mainGrid->unit + mainGrid->getX();
+        double y = mainGrid->getY() - y_g * mainGrid->unit;
+
+        drawPoint(ui->graphicsView->mapToScene(x,y));
+        QPointF help = QPointF(x,y);
+        mainGrid->obj.push(new Point(help));
+        int m = mainGrid->obj.points.size();
+        mainGrid->obj.points[m-1]->drawName(m-1);
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        ui->lineEdit->clear();
+        ItemsDisplay();
     }
     else
     {
-        Functions *f = new Functions(input);
-        f->draw();
-        mainGrid->obj.push(f);
-        ItemsDisplay();
-        ui->lineEdit->clear();
+        if (input.substr(0,5) == "rpoly")
+        {
+            int first_parenthesis = input.find("(");
+            int p1_first_parenthesis = input.find("(", first_parenthesis+1);
+            int p1_comma = input.find(",", p1_first_parenthesis+1);
+            int p1_second_parenthesis = input.find(")", p1_comma+1);
+            int p2_first_parenthesis = input.find("(",p1_second_parenthesis+1);
+            int p2_comma = input.find(",", p2_first_parenthesis+1);
+            int p2_second_parenthesis = input.find(")", p2_comma+1);
+            int last_comma = input.find(",", p2_second_parenthesis+1);
+            int last = input.find(")", last_comma+1);
+
+            double x1_g = std::stod(input.substr(p1_first_parenthesis+1,p1_comma-p1_first_parenthesis-1));
+            double y1_g = std::stod(input.substr(p1_comma+1,p1_second_parenthesis-p1_comma-1));
+            double x2_g = std::stod(input.substr(p2_first_parenthesis+1,p2_comma-p2_first_parenthesis-1));
+            double y2_g = std::stod(input.substr(p2_comma+1,p2_second_parenthesis-p2_comma-1));
+            double x1 = x1_g * mainGrid->unit + mainGrid->getX();
+            double y1 = mainGrid->getY() - y1_g * mainGrid->unit;
+            double x2 = x2_g * mainGrid->unit + mainGrid->getX();
+            double y2 = mainGrid->getY() - y2_g * mainGrid->unit;
+            double n = std::stod(input.substr(last_comma+1,last-last_comma-1));
+
+            RegularPolygone* p = new RegularPolygone(Point(x1,y1),Point(x2,y2), n);
+            mainGrid->obj.push(p);
+            mainGrid->refresh_grid();
+            ui->graphicsView->refresh_indicators();
+            ui->graphicsView->move_grid_chosen = true;
+            ui->lineEdit->clear();
+            ItemsDisplay();
+        }
+        else
+        {
+            Functions *f = new Functions(input);
+            f->draw();
+            mainGrid->obj.push(f);
+            ItemsDisplay();
+            ui->lineEdit->clear();
+        }
     }
 }
 

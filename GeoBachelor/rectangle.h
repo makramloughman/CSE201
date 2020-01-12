@@ -11,6 +11,7 @@ class Rectangle: public  MathObject
         Point p1;
         Point p2;
         Point p3;
+        Point p4;
 
         int countpoints;
         std::string name;
@@ -21,8 +22,9 @@ class Rectangle: public  MathObject
         Rectangle(std::vector<QPointF> p);
         ~Rectangle();
 
-        Point get_p2();
-        Point get_p4();
+
+        bool Verifier(Point p1, Point p2, Point p3);
+        Point getlastpoint();
 
         virtual void draw();
         virtual void translate(double dx, double dy);
@@ -35,4 +37,5 @@ class Rectangle: public  MathObject
         double getPerimeter();
         double getArea();
         Point getCenter();
+        Segment diagonale();
 };
