@@ -667,6 +667,39 @@ void MainWindow::drawInfiniteLine(QPointF p1, QPointF p2) // in ViewCoordinates
     }
 }
 
+void MainWindow::drawSemiLine(QPointF p1, QPointF p2)
+{
+    // construct y = k*x + n
+    double slope = 0;
+    double term = 0;
+    Point* q1 = new Point(p1.x(),p1.y());
+    Point* q2 = new Point(p2.x(),p2.y());
+    Line* l = new Line(*q1,*q2);
+    slope = l->slope();
+    term = l->y_intercept();
+
+    //l->draw();
+    q1->draw();
+    q2->draw();
+
+    QPointF a = ui->graphicsView->mapToScene(p1.x(),p1.y());
+    int x1 = ui->graphicsView->width();
+
+    if(slope!=0)
+    {
+        QPointF p11 = ui->graphicsView->mapToScene(0, term);
+        QPointF p21 = ui->graphicsView->mapToScene(x1,slope*x1+term);
+        if (p2.x()>p1.x())
+        {
+            MainWindow::drawLine(a,p21);
+        }
+        else
+        {
+            MainWindow::drawLine(a,p11);
+        }
+    }
+}
+
 void MainWindow::drawInfiniteLine(Point p1, Point p2)
 {
     QPointF f1 = QPointF(p1.getx(),p1.gety());
@@ -1253,14 +1286,5 @@ MainWindow::~MainWindow()
 void MainWindow::PushButton3_clicked()
 {
     //drawEllipse(QPointF(150,100),100,50);
-    Point* p1 = new Point(150.0,100.0);
-    Point* p2 = new Point(200.0,100.0);
-    Ellipse* e = new Ellipse(p1,p2,100.0);
-    Point p = Point(0,0);
-    std::vector<Line> v = e->tangent(p);
-    v[0].draw();
-    v[1].draw();
-    e->draw();
-    mainGrid->obj.push(e);
-    //mainGrid->refresh_grid();
+    drawSemiLine(QPointF(100,150),QPointF(120,170));
 }
