@@ -62,7 +62,7 @@ The **toolbar** contains the buttons required to draw mathematical figures. To d
 * **Delete:** *selection of object(s) required*
 * **Clear:** Clear the grid
 
-The **grid** can be moved in any direction by dragging it and can be zoomed in / out using ctrl + scrll.
+The **grid** can be moved in any direction by dragging it and can be zoomed in / out using ctrl + scroll.
 
 The **text-display** contains the objects currently on the grid. One can select and delete an object in this list by clicking on it and pressing on the backspace or delete button.
 
@@ -71,9 +71,9 @@ The **command line** allows one to create objects not necessarly available or po
 * **Point:** point(x,y)
 * **Triangle:** triangle((x1,y1),(x2,y2),(x3,y3))
 * **Regular Polygon:** rpoly((cx,yx),(x1,y1),n) *(where (cx,cy) are the coordinates of the center, (x1,y1) are the coordinates of a point on the polygon, n is the number of sides)*
-* **Function:** any mathemetical function *(must be written linearly line on an old casio calculator)*
+* **Function:** any mathemetical function *(must be written linearly like on an old casio calculator)*
     * *exapmle:* exp(-(1/x)+cos(x))
-    * *exapme:* log(x)+sin(x)
+    * *example:* log(x)+sin(x)
 
 ## Authors
 
