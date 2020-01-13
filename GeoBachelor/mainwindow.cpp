@@ -669,7 +669,7 @@ void MainWindow::DeleteItem()
 {
     QString item = ui->listWidget->currentItem()->text();
     int number = ui->listWidget->currentItem()->data(Qt::UserRole).toInt();
-    if (item[0] == "P")
+    if (item[0] == "P" && item[2] == "i")
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.points[number]);
         mainGrid->obj.points[number]->selected = true;
@@ -705,7 +705,7 @@ void MainWindow::DeleteItem()
         mainGrid->obj.r_polygones[number]->selected = true;
         Delete();
     }
-    if (item[0] == "P" && item[1] == "o" && item[2] == "l")
+    if (item[0] == "P" && item[2] == "l")
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.polygones[number]);
         mainGrid->obj.polygones[number]->selected = true;
@@ -1210,9 +1210,7 @@ void MainWindow::AngleBisector()
         ui->graphicsView->move_grid_chosen = true;
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
-
     }
-
 }
 
 void MainWindow::Tangent(){
