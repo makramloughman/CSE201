@@ -396,7 +396,8 @@ void MainWindow::ItemsDisplay()
         curr = mainGrid->obj.points[i];
         if (curr != NULL)
         {
-            QString text = tr("Point:  (%1,%2)").arg(curr->getxg()).arg(curr->getyg());
+            std::string t = "P"+ std::to_string(i)+" ("+std::to_string(curr->getxg())+", "+std::to_string(curr->getyg())+")";
+            QString text = QString::fromStdString(t);
             QListWidgetItem *item = new QListWidgetItem(text,ui->listWidget);
             item->setData(Qt::UserRole,i);
         }
@@ -604,6 +605,16 @@ void MainWindow::LineEditReturn()
             {
                 mainGrid->obj.push(new Point(p->Pointlist[i].getx(),p->Pointlist[i].gety()));
             }
+            for(int i=0;i<p->size-1;i++)
+            {
+                Point* p1 = new Point(p->Pointlist[i].getx(),p->Pointlist[i].gety());
+                Point* p2 = new Point(p->Pointlist[i+1].getx(),p->Pointlist[i+1].gety());
+                mainGrid->obj.push(new Segment(*p1,*p2));
+            }
+            Point* p1 = new Point(p->Pointlist[0].getx(),p->Pointlist[0].gety());
+            Point* p2 = new Point(p->Pointlist[p->size-1].getx(),p->Pointlist[p->size-1].gety());
+            mainGrid->obj.push(new Segment(*p1,*p2));
+
             mainGrid->obj.push(p);
             mainGrid->refresh_grid();
             ui->graphicsView->refresh_indicators();
@@ -639,7 +650,19 @@ void MainWindow::LineEditReturn()
                 double x3 = x3_g * mainGrid->unit + mainGrid->getX();
                 double y3 = mainGrid->getY() - y3_g * mainGrid->unit;
 
-                Triangle* t = new Triangle(Point(x1,y1),Point(x2,y2),Point(x3,y3));
+                Point* p1 = new Point(x1,y1);
+                Point* p2 = new Point(x2,y2);
+                Point* p3 = new Point(x3,y3);
+
+                Triangle* t = new Triangle(*p1,*p2,*p3);
+                Segment* s1 = new Segment(*p1,*p2);
+                Segment* s2 = new Segment(*p1,*p3);
+                Segment* s3 = new Segment(*p2,*p3);
+                mainGrid->obj.push(s1);
+                mainGrid->obj.push(s2);
+                mainGrid->obj.push(s3);
+
+
                 mainGrid->obj.push(new Point(t->point1.getx(),t->point1.gety()));
                 mainGrid->obj.push(new Point(t->point2.getx(),t->point2.gety()));
                 mainGrid->obj.push(new Point(t->point3.getx(),t->point3.gety()));
@@ -669,7 +692,7 @@ void MainWindow::DeleteItem()
 {
     QString item = ui->listWidget->currentItem()->text();
     int number = ui->listWidget->currentItem()->data(Qt::UserRole).toInt();
-    if (item[0] == "P" && item[2] == "i")
+    if (item[0] == "P" && item[2] != "l")
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.points[number]);
         mainGrid->obj.points[number]->selected = true;
@@ -702,12 +725,31 @@ void MainWindow::DeleteItem()
     if (item[0] == "R")
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.r_polygones[number]);
+        for(uint i = 0; i<mainGrid->obj.r_polygones[number]->size-1;i++)
+        {
+            Point* p1 = new Point(mainGrid->obj.r_polygones[number]->Pointlist[i].getx(),mainGrid->obj.r_polygones[number]->Pointlist[i].gety());
+            Point* p2 = new Point(mainGrid->obj.r_polygones[number]->Pointlist[i+1].getx(),mainGrid->obj.r_polygones[number]->Pointlist[i+1].gety());
+            mainGrid->obj.remove(Segment(*p1,*p2));
+        }
+        Point* p1 = new Point(mainGrid->obj.r_polygones[number]->Pointlist[0].getx(),mainGrid->obj.r_polygones[number]->Pointlist[0].gety());
+        Point* p2 = new Point(mainGrid->obj.r_polygones[number]->Pointlist[mainGrid->obj.r_polygones[number]->size-1].getx(),mainGrid->obj.r_polygones[number]->Pointlist[mainGrid->obj.r_polygones[number]->size-1].gety());
+        mainGrid->obj.remove(Segment(*p1,*p2));
         mainGrid->obj.r_polygones[number]->selected = true;
         Delete();
     }
     if (item[0] == "P" && item[2] == "l")
     {
         ui->graphicsView->chosen_objects.push(mainGrid->obj.polygones[number]);
+        int ss = mainGrid->obj.polygones[number]->Pointlist.size();
+        for(uint i = 0; i<ss-1;i++)
+        {
+            Point* p1 = new Point(mainGrid->obj.polygones[number]->Pointlist[i].getx(),mainGrid->obj.polygones[number]->Pointlist[i].gety());
+            Point* p2 = new Point(mainGrid->obj.polygones[number]->Pointlist[i+1].getx(),mainGrid->obj.polygones[number]->Pointlist[i+1].gety());
+            mainGrid->obj.remove(Segment(*p1,*p2));
+        }
+        Point* p1 = new Point(mainGrid->obj.polygones[number]->Pointlist[0].getx(),mainGrid->obj.polygones[number]->Pointlist[0].gety());
+        Point* p2 = new Point(mainGrid->obj.polygones[number]->Pointlist[ss-1].getx(),mainGrid->obj.polygones[number]->Pointlist[ss-1].gety());
+        mainGrid->obj.remove(Segment(*p1,*p2));
         mainGrid->obj.polygones[number]->selected = true;
         Delete();
     }
@@ -1015,9 +1057,7 @@ void MainWindow::Intersection()
 
 void MainWindow::MidPoint()
 {
-    if(ui->graphicsView->chosen_objects.segments.size()==ui->graphicsView->chosen_objects.size())
-    {
-        for(uint i=0;i<ui->graphicsView->chosen_objects.segments.size();i++)
+   for(uint i=0;i<ui->graphicsView->chosen_objects.segments.size();i++)
         {
             Point p = ui->graphicsView->chosen_objects.segments[i]->midpoint();
             mainGrid->obj.push(new Point(p.getx(),p.gety()));
@@ -1028,31 +1068,6 @@ void MainWindow::MidPoint()
         ui->graphicsView->move_grid_chosen = true;
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
-    }
-
-    else if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size())
-    {
-        for(uint i=0;i<ui->graphicsView->chosen_objects.triangles.size();i++)
-        {
-            Triangle* t = ui->graphicsView->chosen_objects.triangles[i];
-            Segment* s1 = new Segment(t->point1,t->point2);
-            Segment* s2 = new Segment(t->point1,t->point3);
-            Segment* s3 = new Segment(t->point3,t->point2);
-
-            Point p1 = s1->midpoint();
-            Point p2 = s2->midpoint();
-            Point p3 = s3->midpoint();
-
-            mainGrid->obj.push(new Point(p1.getx(),p1.gety()));
-            mainGrid->obj.push(new Point(p2.getx(),p2.gety()));
-            mainGrid->obj.push(new Point(p3.getx(),p3.gety()));
-        }
-        ui->graphicsView->chosen_objects.empty_bins();
-        ui->graphicsView->refresh_indicators();
-        ui->graphicsView->move_grid_chosen = true;
-        mainGrid->obj.deselect();
-        mainGrid->refresh_grid();
-    }
 }
 
 /*void MainWindow::ComplexPoint(){
@@ -1155,6 +1170,18 @@ void MainWindow::PerpendicularLine()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    else if(ui->graphicsView->chosen_objects.segments.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        Line* l1 = new Line(ui->graphicsView->chosen_objects.segments[0]->p1,ui->graphicsView->chosen_objects.segments[0]->p2);
+        Line l = l1->perpendicular( *ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.push(new Line(l.p1,l.p2));
+        mainGrid->obj.push(new Point(l.p1.getx(),l.p1.gety()));
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
     ItemsDisplay();
 }
 
@@ -1201,9 +1228,13 @@ void MainWindow::AngleBisector()
         Triangle* t = new Triangle(*p1,*p2,*p3);
         Circle c = t->getInscribedcercle();
         mainGrid->obj.push(new Line(*p2,c.center));
-        mainGrid->obj.push(new Point(c.center.getx(),c.center.gety()));
-        mainGrid->obj.push(new Segment(*p1,*p2));
-        mainGrid->obj.push(new Segment(*p3,*p2));
+
+        Segment* s1 = new Segment(*p1,*p2);
+        Segment* s2 = new Segment(*p3,*p2);
+        if(!mainGrid->obj.check_if_in(*s1))
+            mainGrid->obj.push(s1);
+        if(!mainGrid->obj.check_if_in(*s2))
+            mainGrid->obj.push(s2);
 
         ui->graphicsView->chosen_objects.empty_bins();
         ui->graphicsView->refresh_indicators();
@@ -1211,6 +1242,8 @@ void MainWindow::AngleBisector()
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    ItemsDisplay();
+
 }
 
 void MainWindow::Tangent(){
@@ -1412,12 +1445,25 @@ void MainWindow::PointSymmetry()
 
 void MainWindow::InscribedCircle()
 {
-    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    if(ui->graphicsView->chosen_objects.triangles.size()==1)
     {
         Circle help = ui->graphicsView->chosen_objects.triangles[0]->getInscribedcercle();
         Container h;
         h.push(new Circle(help.center,help.r));
-        h.push(ui->graphicsView->chosen_objects.triangles[0]);
+        Segment* s1= new Segment(ui->graphicsView->chosen_objects.triangles[0]->point1,ui->graphicsView->chosen_objects.triangles[0]->point2);
+        Segment* s2= new Segment(ui->graphicsView->chosen_objects.triangles[0]->point2,ui->graphicsView->chosen_objects.triangles[0]->point3);
+        Segment* s3= new Segment(ui->graphicsView->chosen_objects.triangles[0]->point1,ui->graphicsView->chosen_objects.triangles[0]->point3);
+        Point* p1 = new Point(ui->graphicsView->chosen_objects.triangles[0]->point1.getx(),ui->graphicsView->chosen_objects.triangles[0]->point1.gety());
+        Point* p2 = new Point(ui->graphicsView->chosen_objects.triangles[0]->point2.getx(),ui->graphicsView->chosen_objects.triangles[0]->point2.gety());
+        Point* p3 = new Point(ui->graphicsView->chosen_objects.triangles[0]->point3.getx(),ui->graphicsView->chosen_objects.triangles[0]->point3.gety());
+
+        h.push(s1);
+        h.push(s2);
+        h.push(s3);
+        h.push(p1);
+        h.push(p2);
+        h.push(p3);
+
         mainGrid->obj.push(new Point(help.center.getx(),help.center.gety()));
 
         std::vector<Point*> v = h.IntersectObjects();
@@ -1437,7 +1483,7 @@ void MainWindow::InscribedCircle()
 
 void MainWindow::CircumscribedCricle()
 {
-    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    if(ui->graphicsView->chosen_objects.triangles.size()==1)
     {
         Circle help = ui->graphicsView->chosen_objects.triangles[0]->Circumscribedcercle();
         mainGrid->obj.push(new Point(help.center.getx(),help.center.gety()));
@@ -1454,7 +1500,7 @@ void MainWindow::CircumscribedCricle()
 
 void MainWindow::OrthoCenter()
 {
-    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    if(ui->graphicsView->chosen_objects.triangles.size()==1)
     {
         Point help = ui->graphicsView->chosen_objects.triangles[0]->getOrthocenter();
         Triangle t = *ui->graphicsView->chosen_objects.triangles[0];
@@ -1474,7 +1520,7 @@ void MainWindow::OrthoCenter()
 
 void MainWindow::CenterOfGravity()
 {
-    if(ui->graphicsView->chosen_objects.triangles.size()==ui->graphicsView->chosen_objects.size() && ui->graphicsView->chosen_objects.triangles.size()==1)
+    if(ui->graphicsView->chosen_objects.triangles.size()==1)
     {
         Point help = ui->graphicsView->chosen_objects.triangles[0]->getCenterofgravity();
         Triangle t = *ui->graphicsView->chosen_objects.triangles[0];

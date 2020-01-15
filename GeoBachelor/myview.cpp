@@ -236,13 +236,26 @@ void MyView::mousePressEvent(QMouseEvent *ev)
             Point* p = new Point(ev->x(),ev->y());
             mainW->mainGrid->obj.push(p);
 
+            Point* p1 = new Point(mainW->mapFromMyScene(this->clickedP[n_counter-2].x(),this->clickedP[n_counter-2].y()));
+            Point* p2 = new Point(mainW->mapFromMyScene(this->clickedP[n_counter-1].x(),this->clickedP[n_counter-1].y()));
+            Segment* s = new Segment(*p1,*p2);
+            mainW->mainGrid->obj.push(s);
+
+
             int m = mainW->mainGrid->obj.points.size();
             mainW->mainGrid->obj.points[m-1]->drawName(m-1);
         }
+
         if(n_counter==n_polygon)
             {
                 QLineF line(this->clickedP[n_counter-1],this->clickedP[0]);
                 mainW->drawLine(line);
+
+                Point* p1 = new Point(mainW->mapFromMyScene(this->clickedP[0].x(),this->clickedP[0].y()));
+                Point* p2 = new Point(mainW->mapFromMyScene(this->clickedP[n_counter-1].x(),this->clickedP[n_counter-1].y()));
+                Segment* s = new Segment(*p1,*p2);
+                mainW->mainGrid->obj.push(s);
+
                 for (int i=0;i<n_counter;i++)
                     mainW->drawPoint(clickedP[i]);
 

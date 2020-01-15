@@ -69,6 +69,9 @@ class Container
         std::vector<SemiLine*> semi_lines;
         int number_of_bins;
 
+        bool check_if_selected(Segment s);
+        bool check_if_in(Segment s);
+
         void move_refresh(double dx, double dy); //move all the objects bu dx.dy and refresh the grid
         void refresh(); //some refresh related to graphics
         bool find_personal_and_store(Container &c,double x, double y); //also make AN object selected if possible

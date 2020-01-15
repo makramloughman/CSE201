@@ -296,6 +296,30 @@ void Container::remove(SemiLine s)
     }
 }
 
+bool Container::check_if_selected(Segment s)
+{
+    for (uint i = 0;i<segments.size();i++)
+    {
+         if(((matching(segments[i]->p1,s.p1) && matching(segments[i]->p2,s.p2))||(matching(segments[i]->p2,s.p1) && matching(segments[i]->p1,s.p2))) && segments[i]->selected)
+         {
+             return true;
+         }
+    }
+    return false;
+}
+
+bool Container::check_if_in(Segment s)
+{
+    for (uint i = 0;i<segments.size();i++)
+    {
+         if(((matching(segments[i]->p1,s.p1) && matching(segments[i]->p2,s.p2))||(matching(segments[i]->p2,s.p1) && matching(segments[i]->p1,s.p2))))
+         {
+             return true;
+         }
+    }
+    return false;
+}
+
 void Container::remove(Functions *f)
 {
     remove(*f);
@@ -404,28 +428,74 @@ bool Container::find_personal_and_store(Container &c, double x, double y)
                 c.remove(segments[i]);
                 segments[i]->selected = false;
             }
+
+            for(uint i=0;i<polygones.size();i++)
+            {
+                bool yes = true;
+                for(uint j = 0; j<polygones[i]->Pointlist.size()-1;j++)
+                {
+                    Segment* s = new Segment(polygones[i]->Pointlist[j],polygones[i]->Pointlist[j+1]);
+                    yes = yes && check_if_selected(*s);
+                }
+                Segment* s = new Segment(polygones[i]->Pointlist[0],polygones[i]->Pointlist[polygones[i]->Pointlist.size()-1]);
+                yes = yes && check_if_selected(*s);
+                if(yes)
+                {
+                    c.push(polygones[i]); //POINTER, PAY ATTENTION
+                    polygones[i]->selected = true;
+                }
+                else
+                {
+                    c.remove(polygones[i]);
+                    polygones[i]->selected = false;
+                }
+            }
+
+            for(uint i=0;i<r_polygones.size();i++)
+            {
+                bool yes = true;
+                for(uint j = 0; j<r_polygones[i]->Pointlist.size()-1;j++)
+                {
+                    Segment* s = new Segment(r_polygones[i]->Pointlist[j],r_polygones[i]->Pointlist[j+1]);
+                    yes = yes && check_if_selected(*s);
+                }
+                Segment* s = new Segment(r_polygones[i]->Pointlist[0],r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1]);
+                yes = yes && check_if_selected(*s);
+                if(yes)
+                {
+                    c.push(r_polygones[i]); //POINTER, PAY ATTENTION
+                    r_polygones[i]->selected = true;
+                }
+                else
+                {
+                    c.remove(r_polygones[i]);
+                    r_polygones[i]->selected = false;
+                }
+            }
+
+            for(uint i=0;i<triangles.size();i++)
+            {
+                bool yes = true;;
+                Segment* s1 = new Segment(triangles[i]->point1,triangles[i]->point2);
+                Segment* s2 = new Segment(triangles[i]->point2,triangles[i]->point3);
+                Segment* s3 = new Segment(triangles[i]->point1,triangles[i]->point3);
+                yes = yes && check_if_selected(*s1) && check_if_selected(*s2) && check_if_selected(*s3);
+                if(yes)
+                {
+                    c.push(triangles[i]); //POINTER, PAY ATTENTION
+                    triangles[i]->selected = true;
+                }
+                else
+                {
+                    c.remove(triangles[i]);
+                    triangles[i]->selected = false;
+                }
+            }
+
             return true;
         }
     }
 
-    for(uint i=0;i<triangles.size();i++)
-    {
-        bool b =triangles[i] -> in_personal_area(x,y);
-        if(b)
-        {
-            if (!triangles[i]->selected)
-            {
-                c.push(triangles[i]); //POINTER, PAY ATTENTION
-                triangles[i]->selected = true;
-            }
-            else
-            {
-                c.remove(triangles[i]);
-                triangles[i]->selected = false;
-            }
-            return true;
-        }
-    }
 
     for(uint i=0;i<circles.size();i++)
     {
@@ -480,44 +550,6 @@ bool Container::find_personal_and_store(Container &c, double x, double y)
             {
                 c.remove(semi_lines[i]);
                 semi_lines[i]->selected = false;
-            }
-            return true;
-        }
-    }
-
-    for(uint i=0;i<polygones.size();i++)
-    {
-        bool b =polygones[i] -> in_personal_area(x,y);
-        if(b)
-        {
-            if (!polygones[i]->selected)
-            {
-                c.push(polygones[i]); //POINTER, PAY ATTENTION
-                polygones[i]->selected = true;
-            }
-            else
-            {
-                c.remove(polygones[i]);
-                polygones[i]->selected = false;
-            }
-            return true;
-        }
-    }
-
-    for(uint i=0;i<r_polygones.size();i++)
-    {
-        bool b = r_polygones[i] -> in_personal_area(x,y);
-        if(b)
-        {
-            if (!r_polygones[i]->selected)
-            {
-                c.push(r_polygones[i]); //POINTER, PAY ATTENTION
-                r_polygones[i]->selected = true;
-            }
-            else
-            {
-                c.remove(r_polygones[i]);
-                r_polygones[i]->selected = false;
             }
             return true;
         }
@@ -762,6 +794,7 @@ std::vector<Point *> Container::IntersectObjects()
     std::vector<Point*> vec;
 
     //firstly, add the segments from triangles:
+    /*
     for(uint i=0;i<triangles.size();i++)
     {
         push(new Point(triangles[i]->point1.getx(),triangles[i]->point1.gety()));
@@ -794,6 +827,7 @@ std::vector<Point *> Container::IntersectObjects()
         push(new Point(r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1].getx(),r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1].gety()));
         push(new Segment(r_polygones[i]->Pointlist[0],r_polygones[i]->Pointlist[r_polygones[i]->Pointlist.size()-1]));
     }
+    */
 
     for(uint i=0;i<lines.size();i++)
     {
