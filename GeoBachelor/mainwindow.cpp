@@ -1197,6 +1197,18 @@ void MainWindow::ParallelLine(){
         mainGrid->obj.deselect();
         mainGrid->refresh_grid();
     }
+    else if(ui->graphicsView->chosen_objects.segments.size()==1 && ui->graphicsView->chosen_objects.points.size()==1)
+    {
+        Line* l1 = new Line(ui->graphicsView->chosen_objects.segments[0]->p1,ui->graphicsView->chosen_objects.segments[0]->p2);
+        Line l = l1->parallel(*ui->graphicsView->chosen_objects.points[0]);
+        ui->graphicsView->chosen_objects.empty_bins();
+        ui->graphicsView->refresh_indicators();
+        ui->graphicsView->move_grid_chosen = true;
+        mainGrid->obj.push(new Line(l.p1,l.p2));
+        mainGrid->obj.push(new Point(l.p1.getx(),l.p1.gety()));
+        mainGrid->obj.deselect();
+        mainGrid->refresh_grid();
+    }
     ItemsDisplay();
 }
 
