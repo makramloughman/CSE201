@@ -24,6 +24,7 @@ html {
 .cover #X-Wrap {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .cover #X {
