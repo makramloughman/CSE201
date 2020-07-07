@@ -21,6 +21,15 @@ html {
   }
 }
 
+.cover #X-Wrap {
+  display: flex;
+  align-items: center;
+}
+
+.cover #X {
+  width: 50px;
+}
+
 .cover ul {
     list-style-type: none;
 }
