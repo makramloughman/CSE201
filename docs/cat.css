@@ -1,0 +1,130 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.cover {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-attachment: fixed;
+  background-image: url(background.png);
+  background-position: center top;
+  background-size: cover;
+}
+
+@media screen and (max-width: 1025px) {
+  .cover {
+      background-attachment: unset;
+  }
+}
+
+.cover ul {
+    list-style-type: none;
+}
+
+.cover h1 {
+  font-size: xxx-large;
+  color: white;
+}
+
+.cover p, .cover ul {
+  font-size: large;
+  color: white;
+}
+
+.cover a {
+  color: #0b87da;
+}
+
+.cover ul {
+  margin: 1em 0;
+}
+
+.cover .cover-main>p:last-child {
+  margin: 2em 0;
+}
+
+.cover .cover-main {
+    z-index: 1;
+    max-width: 40em;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.cover .cover-main>p:last-child a:first-child {
+    border: 1px solid #0b87da;
+    background: #0b87da;
+    text-decoration: none;
+    color: #fff;
+}
+
+.cover .cover-main>p:last-child a {
+    display: block;
+    margin: .375em .25em;
+    padding: 0.5em 2rem;
+    border: 1px solid #0b87da;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    color: #0b87da;
+    background-color: white;
+}
+
+/*@media (min-width: 30.01em) {
+  .cover .cover-main>p:last-child a {
+      display: inline-block;
+      width: 140px;
+  }
+}*/
+
+.github-corner {
+    position: absolute;
+    z-index: 40;
+    top: 0;
+    right: 0;
+    border-bottom: 0;
+    text-decoration: none;
+}
+
+.github-corner svg {
+    height: 70px;
+    width: 70px;
+    fill: #0b87da;
+    color: #fff;
+}
+
+.github-corner:hover .octo-arm {
+    -webkit-animation: octocat-wave 560ms ease-in-out;
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+@-webkit-keyframes octocat-wave {
+    0%,100% {
+        transform: rotate(0);
+    }
+
+    20%,60% {
+        transform: rotate(-25deg);
+    }
+
+    40%,80% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes octocat-wave {
+    0%,100% {
+        transform: rotate(0)
+    }
+
+    20%,60% {
+        transform: rotate(-25deg)
+    }
+
+    40%,80% {
+        transform: rotate(10deg)
+    }
+}

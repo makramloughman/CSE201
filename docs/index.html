@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSE201 - GeoBachelor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cat.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  </head>
+
+  <body>
+
+    <div class="cover">
+
+      <a href="https://github.com/makramloughman/CSE201" target="_blank" class="github-corner" aria-label="View source on Github">
+        <svg viewBox="0 0 250 250" aria-hidden="true" style="">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+          <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+          <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+      </a>
+
+      <div class="cover-main">
+        <h1><span>GeoBachelor</span></h1>
+        <blockquote>
+          <p>A remake of <a href="https://www.geogebra.org/" target="_blank" rel="noopener">GeoGebra</a></p>
+        </blockquote>
+        <ul>
+          <li>Written in C++ using the QT library</li>
+          <li>Application for Desktop (tested on Linux)</li>
+          <li>Available for download</li>
+        </ul>
+        <p>
+          <a href="#scroll">Get Started</a>
+          <a href="https://github.com/makramloughman/CSE201/archive/v1.1.zip">Download</a>
+          <a href="https://github.com/makramloughman/CSE201" target="_blank" rel="noopener">GitHub</a>
+        </p>
+      </div>
+
+    </div>
+
+    <div id="scroll" class="container-lg px-3 my-5 markdown-body">
+
+      <h1 id="cse201---geobachelor">CSE201 - GeoBachelor</h1>
+
+      <h2 id="getting-started">Getting Started</h2>
+
+      <p>This is the project for the class of CSE201.</p>
+
+      <p>The GeoBachelor is a remake of GeoGebra.</p>
+
+      <h3 id="prerequisites">Prerequisites</h3>
+
+      <ul>
+        <li>QT 5.9.5 or newer</li>
+      </ul>
+
+      <blockquote>
+        <p><strong>Note</strong>: The program was tested on Ubuntu 18.04 with QT 5.9.5</p>
+      </blockquote>
+
+      <h3 id="installation">Installation</h3>
+
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/makramloughman/CSE201.git
+      </code></pre></div></div>
+      <p>Open the project in QT creator, build it and run it.</p>
+
+      <h3 id="screenshot">Screenshot</h3>
+
+      <p><img src="https://raw.githubusercontent.com/makramloughman/CSE201/master/GeoBachelor/images/bx21.png" alt="Preview" /></p>
+
+      <p><img src="https://raw.githubusercontent.com/makramloughman/CSE201/master/GeoBachelor/images/bx21(2).png" alt="Preview" /></p>
+
+      <h3 id="instructions">Instructions</h3>
+
+      <p>There are 4 main blocks: the <strong>toolbar</strong>, the <strong>grid</strong>, the <strong>text-display</strong>, and the <strong>command line</strong>.</p>
+
+      <p>The <strong>toolbar</strong> contains the buttons required to draw mathematical figures. To draw an object, one must click on the desired button and complete the necessay action on the gird. After this, the clicked button is automatically deselected, and one can only move the grid and zoom in / out. To draw another (even if the same) mathematical object, one must click again the desired button. This stops unintentional objects of being created on the grid when clicking on it. A detailed list of all possible actions from the toolbar is given below:</p>
+
+      <ul>
+        <li><strong>Move:</strong> only allows user to move the grid</li>
+        <li><strong>Select:</strong> only selects objects in the grid
+          <ol>
+            <li>Select two points for line, segment, midpoint, perpendicular bisector, or reflect about point</li>
+            <li>Select three points for triangle, circle, or angle bisector</li>
+            <li>Select one point and one line for perpendicular line, parallel line, reflect about line</li>
+            <li>Select two lines for intersection</li>
+            <li>Select one point and one line for tangent</li>
+            <li>Select triangle for triangle related functions (inscribed circle, etc)</li>
+            <li>Select random object on grid for intersection</li>
+            <li>Select any object on grid for deletion</li>
+          </ol>
+        </li>
+        <li><strong>Line:</strong> Place two points on the grid <em>(can also be created with selection of points)</em></li>
+        <li><strong>Segment:</strong> Place two points on the grid <em>(can also be created with selection of points)</em></li>
+        <li><strong>Ray:</strong> Place two points on the grid <em>(can also be created with selection of points)</em></li>
+        <li><strong>Perpendicular Line:</strong> <em>selection of point and line required</em></li>
+        <li><strong>Parallel Line:</strong> <em>selection of point and line required</em></li>
+        <li><strong>Perpendicular Bisector:</strong> <em>selection of two points required</em></li>
+        <li><strong>Angle Bisector:</strong> <em>selection of three points required</em></li>
+        <li><strong>Tangent:</strong> <em>selection of point and circle required</em></li>
+        <li><strong>Polygon:</strong> <em>(a box shows up and asks for the number of sides n)</em> Place <em>n+1</em> points on the grid</li>
+        <li><strong>Triangle:</strong> Place three points on the grid <em>(can also be created with selection of points)</em></li>
+        <li><strong>Inscribed Circle:</strong> <em>(a triangle must be selected)</em></li>
+        <li><strong>Circumscribed Circle:</strong> <em>(a triangle must be selected)</em></li>
+        <li><strong>Orthocenter:</strong> <em>(a triangle must be selected)</em></li>
+        <li><strong>Center of Gravity:</strong> <em>(a triangle must be selected)</em></li>
+        <li><strong>Circle with Center through Point:</strong> Place center then point through which the circle passes <em>(can also be created with selection of points)</em></li>
+        <li><strong>Circle with Center and Radius:</strong> Place center and point of the radius</li>
+        <li><strong>Ellipse:</strong> Place three points <em>(works only for points aligned and parallel to the x axis; if they are not then they will be projected to the parallel to the x axis going through the first point placed; if impossible points with these conditions are given, then nothing happens)</em></li>
+        <li><strong>Reflect about Line:</strong> <em>selection of point and line required</em></li>
+        <li><strong>Delete:</strong> <em>selection of object(s) required</em></li>
+        <li><strong>Clear:</strong> Clear the grid</li>
+      </ul>
+
+      <p>The <strong>grid</strong> can be moved in any direction by dragging it and can be zoomed in / out using ctrl + scroll.</p>
+
+      <p>The <strong>text-display</strong> contains the objects currently on the grid. One can select and delete an object in this list by clicking on it and pressing on the backspace or delete button.</p>
+
+      <p>The <strong>command line</strong> allows one to create objects not necessarly available or possible from the toolbar. A detailed list of arguments is given below:</p>
+
+      <ul>
+        <li><strong>Point:</strong> point(x,y)</li>
+        <li><strong>Triangle:</strong> triangle((x1,y1),(x2,y2),(x3,y3))</li>
+        <li><strong>Regular Polygon:</strong> rpoly((cx,yx),(x1,y1),n) <em>(where (cx,cy) are the coordinates of the center, (x1,y1) are the coordinates of a point on the polygon, n is the number of sides)</em></li>
+        <li><strong>Function:</strong> any mathemetical function <em>(must be written linearly like on an old casio calculator)</em>
+          <ul>
+            <li><em>exapmle:</em> exp(-(1/x)+cos(x))</li>
+            <li><em>example:</em> log(x)+sin(x)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2 id="authors">Authors</h2>
+
+      <ul>
+        <li>Bogdan Raonic, bogdanraonic, team leader</li>
+        <li>Milica Bozanic, milicabozanic, ide leader</li>
+        <li>Makram Loughman, makramloughman, git leader</li>
+        <li>Gautier Alassaire, gautieralassaire, treasurer</li>
+        <li>Aya Hankir, ayahankir</li>
+        <li>Meryem Bennani, merybeni</li>
+        <li>Farah El-Euch, faraheleuch</li>
+        <li>Naya Khalil, naya-khalil</li>
+        <li>Kaylynn Pellicer, kaylynnn</li>
+      </ul>
+
+      <h2 id="license">License</h2>
+
+      <p>This project is for educational purposes only. Icons form the official GeoGebra application were used in the design. Under no right this software may be distributed.</p>
+
+    </div>
+
+    <script src="anchor.min.js"></script>
+    <script> anchors.add(); </script>
+
+  </body>
+
+</html>
