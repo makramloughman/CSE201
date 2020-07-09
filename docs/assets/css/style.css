@@ -8,6 +8,3 @@ body {
 .my-gallery figcaption {
   display: none;
 }
-.js-loading {
-  animation-play-state: paused;
-}
