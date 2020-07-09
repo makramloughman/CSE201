@@ -1,7 +1,3 @@
-html {
-  scroll-behavior: smooth;
-}
-
 .cover {
   height: 100vh;
   display: flex;
