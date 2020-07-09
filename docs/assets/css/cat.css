@@ -103,9 +103,20 @@
     color: #fff;
 }
 
-.github-corner:hover .octo-arm {
-    -webkit-animation: octocat-wave 560ms ease-in-out;
-    animation: octocat-wave 560ms ease-in-out;
+@media screen and (min-width: 1026px) {
+  .github-corner:hover .octo-arm {
+      -webkit-animation: octocat-wave 560ms ease-in-out;
+      animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .github-corner .octo-arm {
+      -webkit-animation: octocat-wave 650ms ease-in-out;
+      animation: octocat-wave 650ms ease-in-out;
+      animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
+  }
 }
 
 @-webkit-keyframes octocat-wave {
