@@ -1,10 +1,8 @@
-# CSE201 - GeoBachelor
-
-[Website](https://makramloughman.github.io/CSE201/)
+[![GeoBachelor logo](https://makramloughman.github.io/CSE201/assets/img/screenshot.png)](https://makramloughman.github.io/CSE201/)
 
 ## Getting Started
 
-This is the project for the class of CSE201.
+This is the project for the class of CSE201 (view on [website](https://makramloughman.github.io/CSE201/)).
  
 The GeoBachelor is a remake of GeoGebra.
 
