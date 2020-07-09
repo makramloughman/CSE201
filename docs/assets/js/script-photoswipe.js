@@ -160,6 +160,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
     options.bgOpacity = 0.85;
     options.tapToClose = true;
     options.tapToToggleControls = false;
+    options.history = false;
 
     // PhotoSwipe opened from URL
     if (fromURL) {
