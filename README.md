@@ -1,5 +1,7 @@
 # CSE201 - GeoBachelor
 
+[Website](https://makramloughman.github.io/CSE201/)
+
 ## Getting Started
 
 This is the project for the class of CSE201.
