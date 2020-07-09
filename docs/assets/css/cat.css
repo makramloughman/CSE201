@@ -111,13 +111,13 @@
 }
 
 @media screen and (max-width: 1025px) {
-  .github-corner .octo-arm {
+  .js-loaded {
       -webkit-animation: octocat-wave 650ms ease-in-out;
       animation: octocat-wave 650ms ease-in-out;
       animation-iteration-count: infinite;
       -webkit-animation-iteration-count: infinite;
-      animation-delay: 1s;
-      -webkit-animation-delay: 1s;
+      animation-delay: 2s;
+      -webkit-animation-delay: 2s;
   }
 }
 
