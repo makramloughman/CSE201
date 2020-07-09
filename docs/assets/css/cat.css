@@ -116,6 +116,8 @@
       animation: octocat-wave 650ms ease-in-out;
       animation-iteration-count: infinite;
       -webkit-animation-iteration-count: infinite;
+      animation-delay: 1s;
+      -webkit-animation-delay: 1s;
   }
 }
 
