@@ -1,0 +1,10 @@
+body {
+  font-family: sans-serif;
+}
+.figure-pspw {
+  margin: 0 0 16px 0;
+  text-align: justify;
+}
+.my-gallery figcaption {
+  display: none;
+}
