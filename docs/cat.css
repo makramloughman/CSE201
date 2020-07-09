@@ -10,6 +10,7 @@ html {
   justify-content: center;
   text-align: center;
   background-attachment: fixed;
+  background-color: #292929;
   background-image: url(background.png);
   background-position: center top;
   background-size: cover;
